@@ -1,12 +1,17 @@
 project:
   type: website
   output-dir: docs
+  favicon: "favicon.png"
   render:
     - index.qmd
     - data-cleaning.qmd
     - selection.qmd
     - associations.qmd
     - 404.qmd
+  twitter-card:
+    creator: "@nathansam"
+    site: "@EdinUni_IGC"
+  opengraph: true
 
 format:
   html:
