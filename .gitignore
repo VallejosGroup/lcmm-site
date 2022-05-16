@@ -1,0 +1,12 @@
+
+.quarto/
+.Rproj.user/
+_freeze/
+comparison/
+paper/
+/.quarto/
+figures/
+metrics/
+models/
+*DS_Store
+.Rhistory

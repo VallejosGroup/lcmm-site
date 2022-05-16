@@ -1,0 +1,49 @@
+---
+title: "Analysis for Latent Crohn’s Disease Subgroups Are Identified by Faecal Calprotectin Profiles"
+format:
+  html:
+    code-tools: false
+date: ""
+date-format: ""
+title-block-banner: false # can set as hex col
+---
+
+## About
+
+This website presents the analytical reports developed for *Latent Crohn's
+Disease Subgroups Are Identified by Faecal Calprotectin Profiles* by
+Constantine-Cooke et al. In this work, we use latent class mixed models to
+identify latent subgroups within the Crohn's disease patient population based
+upon the profiles of a biomarker, faecal calprotectin. 
+
+The analysis pipeline for this project consists of three stages:
+
+1. [Data cleaning](data-cleaning.qmd) where data obtained from clinicians are
+   reformatted and any data quality issues are dealt with.
+2. [Model selection](selection.qmd) where latent class mixed models are fitted
+   with differing numbers of assumed classes and the most appropriate model is
+   selected.
+3. [Association testing](associations.qmd) where potentially significant
+   associations between latent class membership for the optimal model and either
+   data available at diagnosis, treatments, or outcomes are tested for. 
+   
+## Using this website
+
+The navigation menu at the top of the page will allow you to navigate through
+the steps of the analysis pipeline.  The code button at the top of each page can
+be used to show all code blocks instead of clicking on the code
+buttons for each individual block of code. Moving the mouse pointer over any
+citations in a report will produce a pop up box with reference details. Clicking
+on the citation will link to the bibliography at the bottom of the page. 
+
+## Software versions
+
+All analyses have been generated using
+[`r strsplit(R.version$version.string, " (", fixed = TRUE)[[1]][1]`](https://www.r-project.org).
+See the Session Information sections at the bottom of each report to see the R
+packages used for that particular analysis and the respective package versions. 
+
+## {.appendix}
+
+This website has been generated using the [Quarto](https://quarto.org)
+scientific publishing system built on [pandoc](https://pandoc.org). 

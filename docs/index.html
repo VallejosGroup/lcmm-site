@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.180">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Analysis by Constantine-Cooke et al.&nbsp;- Analysis for Latent Crohn’s Disease Subgroups Are Identified by Faecal Calprotectin Profiles</title>
+<style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+<script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 3,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script><!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]--><link rel="stylesheet" href="theme.css">
+<meta name="citation_title" content="Analysis for Latent Crohn’s Disease Subgroups Are Identified by Faecal Calprotectin Profiles">
+<meta name="citation_journal_title" content="undefined">
+<meta name="citation_reference" content="citation_title=Normalization of fecal calprotectin within 12 months of diagnosis is associated with reduced risk of disease progression in patients with Crohn’s disease;,citation_author=Nikolas Plevris;,citation_author=James Fulforth;,citation_author=Mathew Lyons;,citation_author=Spyros I. Siakavellas;,citation_author=Philip W. Jenkinson;,citation_author=Cher S. Chuah;,citation_author=Laura Lucaciu;,citation_author=Rebecca J. Pattenden;,citation_author=Ian D. Arnott;,citation_author=Gareth-Rhys Jones;,citation_author=Charlie W. Lees;,citation_publication_date=2021-09;,citation_issue=9;,citation_volume=19;,citation_journal_title=Clinical Gastroenterology and Hepatology;">
+<meta name="citation_reference" content="citation_title=Ulcerative colitis and clinical course: Results of a 5-year population-based follow-up study (the IBSEN study);,citation_author=Magne Henriksen;,citation_author=Jrgen Jahnsen;,citation_author=Idar Lygren;,citation_author=Jostein Sauar;,citation_author=undefined Kjellevold;,citation_author=Tom Schulz;,citation_author=Morten H. Vatn;,citation_author=Bjrn Moum;,citation_publication_date=2006-07;,citation_issue=7;,citation_volume=12;,citation_journal_title=Inflammatory Bowel Diseases;">
+<meta name="citation_reference" content="citation_title=Polynomials and potential theory for gaussian radial basis function interpolation;,citation_author=Rodrigo B. Platte;,citation_author=Tobin A. Driscoll;,citation_fulltext_html_url=https://doi.org/10.1137/040610143;,citation_publication_date=2005;,citation_issue=2;,citation_volume=43;,citation_journal_title=SIAM Journal on Numerical Analysis;">
+<meta name="citation_reference" content="citation_title=Estimation of extended mixed models using latent classes and latent processes: The R package lcmm;,citation_author=Cécile Proust-Lima;,citation_author=Viviane Philipps;,citation_author=Benoit Liquet;,citation_publication_date=2017;,citation_issue=2;,citation_volume=78;,citation_journal_title=Journal of Statistical Software;">
+<meta name="citation_reference" content="citation_title=Regression modeling strategies;,citation_author=undefined Frank E. Harrell;,citation_publication_date=2015;,citation_journal_title=undefined;">
+<meta name="citation_reference" content="citation_title=The runge phenomenon and spatially variable shape parameters in RBF interpolation;,citation_author=Bengt Fornberg;,citation_author=Julia Zuev;,citation_fulltext_html_url=https://www.sciencedirect.com/science/article/pii/S0898122107002210;,citation_publication_date=2007;,citation_issue=3;,citation_issn=0898-1221;,citation_volume=54;,citation_journal_title=Computers &amp;amp;amp; Mathematics with Applications;">
+<meta name="citation_reference" content="citation_title=Using linear and natural cubic splines, SITAR, and latent trajectory models to characterise nonlinear longitudinal growth trajectories in cohort studies;,citation_author=Ahmed Elhakeem;,citation_author=Rachael A. Hughes;,citation_author=Kate Tilling;,citation_author=Diana L. Cousminer;,citation_author=Stefan A. Jackowski;,citation_author=Tim J. Cole;,citation_author=Alex S. F. Kwong;,citation_author=Zheyuan Li;,citation_author=Struan F. A. Grant;,citation_author=Adam D. G. Baxter-Jones;,citation_author=Babette S. Zemel;,citation_author=Deborah A. Lawlor;,citation_fulltext_html_url=https://doi.org/10.1186/s12874-022-01542-8;,citation_publication_date=2022;,citation_issue=1;,citation_isbn=1471-2288;,citation_volume=22;,citation_journal_title=BMC Medical Research Methodology;">
+</head>
+<body>
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Analysis by Constantine-Cooke et al.</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page">About</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./data-cleaning.html">Data Cleaning</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./selection.html">Model Selection</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./associations.html">Association Testing</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+<div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">On this page</h2>
+<ul>
+<li><a href="#about" class="nav-link active" data-scroll-target="#about">About</a></li>
+<li><a href="#using-this-website" class="nav-link" data-scroll-target="#using-this-website">Using this website</a></li>
+<li><a href="#software-versions" class="nav-link" data-scroll-target="#software-versions">Software versions</a></li>
+<li><a href="#section" class="nav-link" data-scroll-target="#section"></a></li>
+</ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/quarto-dev/quarto-demo/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title"><h1 class="title display-7">Analysis for Latent Crohn’s Disease Subgroups Are Identified by Faecal Calprotectin Profiles</h1></div></header><section id="about" class="level2"><h2 class="anchored" data-anchor-id="about">About</h2>
+<p>This website presents the analytical reports developed for <em>Latent Crohn’s Disease Subgroups Are Identified by Faecal Calprotectin Profiles</em> by Constantine-Cooke et al.&nbsp;In this work, we use latent class mixed models to identify latent subgroups within the Crohn’s disease patient population based upon the profiles of a biomarker, faecal calprotectin.</p>
+<p>The analysis pipeline for this project consists of three stages:</p>
+<ol type="1">
+<li>
+<a href="./data-cleaning.html">Data cleaning</a> where data obtained from clinicians are reformatted and any data quality issues are dealt with.</li>
+<li>
+<a href="./selection.html">Model selection</a> where latent class mixed models are fitted with differing numbers of assumed classes and the most appropriate model is selected.</li>
+<li>
+<a href="./associations.html">Association testing</a> where potentially significant associations between latent class membership for the optimal model and either data available at diagnosis, treatments, or outcomes are tested for.</li>
+</ol></section><section id="using-this-website" class="level2"><h2 class="anchored" data-anchor-id="using-this-website">Using this website</h2>
+<p>The navigation menu at the top of the page will allow you to navigate through the steps of the analysis pipeline. The code button at the top of each page can be used to show all code blocks instead of clicking on the code buttons for each individual block of code. Moving the mouse pointer over any citations in a report will produce a pop up box with reference details. Clicking on the citation will link to the bibliography at the bottom of the page.</p>
+</section><section id="software-versions" class="level2"><h2 class="anchored" data-anchor-id="software-versions">Software versions</h2>
+<p>All analyses have been generated using <a href="https://www.r-project.org">R version 4.2.0</a>. See the Session Information sections at the bottom of each report to see the R packages used for that particular analysis and the respective package versions.</p>
+</section><div id="quarto-appendix" class="default"><section id="section" class="level2 appendix"><h2 class="quarto-appendix-heading"></h2><div class="quarto-appendix-contents">
+<p>This website has been generated using the <a href="https://quarto.org">Quarto</a> scientific publishing system built on <a href="https://pandoc.org">pandoc</a>.</p>
+
+
+
+</div></section></div></main><!-- /main --><script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/IBDNathan">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+</div>
+  </div>
+</footer>
+
+
+</body></html>

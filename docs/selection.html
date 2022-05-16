@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.180">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Nathan Contantine-Cooke 1, 2">
+<meta name="author" content="Karla Monterrubio 1">
+<meta name="author" content="Riccardo Marioni 2">
+<meta name="author" content="Catalina A. Vallejos 1, 3">
+<title>Analysis by Constantine-Cooke et al.&nbsp;- Model Selection</title>
+<style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 3,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script><script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="site_libs/datatables-binding-0.22/datatables.js"></script><script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="site_libs/dt-core-bootstrap4-1.11.3/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+<link href="site_libs/dt-core-bootstrap4-1.11.3/css/dataTables.bootstrap4.extra.css" rel="stylesheet">
+<script src="site_libs/dt-core-bootstrap4-1.11.3/js/jquery.dataTables.min.js"></script><script src="site_libs/dt-core-bootstrap4-1.11.3/js/dataTables.bootstrap4.min.js"></script><link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]--><link rel="stylesheet" href="theme.css">
+<meta name="citation_title" content="Model Selection">
+<meta name="citation_author" content="Nathan Contantine-Cooke &amp;amp;lt;sup&amp;gt;1, 2</sup>">
+<meta name="citation_author" content="Karla Monterrubio &amp;amp;lt;sup&amp;gt;1</sup>">
+<meta name="citation_author" content="Riccardo Marioni &amp;amp;lt;sup&amp;gt;2</sup>">
+<meta name="citation_author" content="Catalina A. Vallejos &amp;amp;lt;sup&amp;gt;1, 3</sup>">
+<meta name="citation_online_date" content="2022-05-10">
+<meta name="citation_publication_date" content="2022-05-10">
+<meta name="citation_journal_title" content="undefined">
+<meta name="citation_reference" content="citation_title=Normalization of fecal calprotectin within 12 months of diagnosis is associated with reduced risk of disease progression in patients with Crohn’s disease;,citation_author=Nikolas Plevris;,citation_author=James Fulforth;,citation_author=Mathew Lyons;,citation_author=Spyros I. Siakavellas;,citation_author=Philip W. Jenkinson;,citation_author=Cher S. Chuah;,citation_author=Laura Lucaciu;,citation_author=Rebecca J. Pattenden;,citation_author=Ian D. Arnott;,citation_author=Gareth-Rhys Jones;,citation_author=Charlie W. Lees;,citation_publication_date=2021-09;,citation_issue=9;,citation_volume=19;,citation_journal_title=Clinical Gastroenterology and Hepatology;">
+<meta name="citation_reference" content="citation_title=Ulcerative colitis and clinical course: Results of a 5-year population-based follow-up study (the IBSEN study);,citation_author=Magne Henriksen;,citation_author=Jrgen Jahnsen;,citation_author=Idar Lygren;,citation_author=Jostein Sauar;,citation_author=undefined Kjellevold;,citation_author=Tom Schulz;,citation_author=Morten H. Vatn;,citation_author=Bjrn Moum;,citation_publication_date=2006-07;,citation_issue=7;,citation_volume=12;,citation_journal_title=Inflammatory Bowel Diseases;">
+<meta name="citation_reference" content="citation_title=Polynomials and potential theory for gaussian radial basis function interpolation;,citation_author=Rodrigo B. Platte;,citation_author=Tobin A. Driscoll;,citation_fulltext_html_url=https://doi.org/10.1137/040610143;,citation_publication_date=2005;,citation_issue=2;,citation_volume=43;,citation_journal_title=SIAM Journal on Numerical Analysis;">
+<meta name="citation_reference" content="citation_title=Estimation of extended mixed models using latent classes and latent processes: The R package lcmm;,citation_author=Cécile Proust-Lima;,citation_author=Viviane Philipps;,citation_author=Benoit Liquet;,citation_publication_date=2017;,citation_issue=2;,citation_volume=78;,citation_journal_title=Journal of Statistical Software;">
+<meta name="citation_reference" content="citation_title=Regression modeling strategies;,citation_author=undefined Frank E. Harrell;,citation_publication_date=2015;,citation_journal_title=undefined;">
+<meta name="citation_reference" content="citation_title=The runge phenomenon and spatially variable shape parameters in RBF interpolation;,citation_author=Bengt Fornberg;,citation_author=Julia Zuev;,citation_fulltext_html_url=https://www.sciencedirect.com/science/article/pii/S0898122107002210;,citation_publication_date=2007;,citation_issue=3;,citation_issn=0898-1221;,citation_volume=54;,citation_journal_title=Computers &amp;amp;amp; Mathematics with Applications;">
+<meta name="citation_reference" content="citation_title=Using linear and natural cubic splines, SITAR, and latent trajectory models to characterise nonlinear longitudinal growth trajectories in cohort studies;,citation_author=Ahmed Elhakeem;,citation_author=Rachael A. Hughes;,citation_author=Kate Tilling;,citation_author=Diana L. Cousminer;,citation_author=Stefan A. Jackowski;,citation_author=Tim J. Cole;,citation_author=Alex S. F. Kwong;,citation_author=Zheyuan Li;,citation_author=Struan F. A. Grant;,citation_author=Adam D. G. Baxter-Jones;,citation_author=Babette S. Zemel;,citation_author=Deborah A. Lawlor;,citation_fulltext_html_url=https://doi.org/10.1186/s12874-022-01542-8;,citation_publication_date=2022;,citation_issue=1;,citation_isbn=1471-2288;,citation_volume=22;,citation_journal_title=BMC Medical Research Methodology;">
+</head>
+<body>
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Analysis by Constantine-Cooke et al.</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
+    <a class="nav-link" href="./index.html">About</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./data-cleaning.html">Data Cleaning</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./selection.html" aria-current="page">Model Selection</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./associations.html">Association Testing</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+<div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">On this page</h2>
+<ul>
+<li><a href="#introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+<li><a href="#formal-defintions" class="nav-link" data-scroll-target="#formal-defintions">Formal defintions</a></li>
+<li><a href="#the-crohns-disease-inception-cohort" class="nav-link" data-scroll-target="#the-crohns-disease-inception-cohort">The Crohn’s Disease Inception Cohort</a></li>
+<li><a href="#model-fitting" class="nav-link" data-scroll-target="#model-fitting">Model fitting</a></li>
+<li>
+<a href="#model-selection" class="nav-link" data-scroll-target="#model-selection">Model selection</a>
+<ul class="collapse">
+<li><a href="#model-fit" class="nav-link" data-scroll-target="#model-fit">Model fit</a></li>
+<li><a href="#class-discrimination" class="nav-link" data-scroll-target="#class-discrimination">Class discrimination</a></li>
+<li><a href="#residual-plots" class="nav-link" data-scroll-target="#residual-plots">Residual plots</a></li>
+<li><a href="#spaghetti-plots-per-class" class="nav-link" data-scroll-target="#spaghetti-plots-per-class">Spaghetti plots per class</a></li>
+</ul>
+</li>
+<li><a href="#conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+<li><a href="#session-information" class="nav-link" data-scroll-target="#session-information">Session information</a></li>
+<li><a href="#section" class="nav-link" data-scroll-target="#section"></a></li>
+<li><a href="#acknowledgments" class="nav-link" data-scroll-target="#acknowledgments">Acknowledgments</a></li>
+<li><a href="#author-contributions" class="nav-link" data-scroll-target="#author-contributions">Author contributions</a></li>
+<li><a href="#reuse" class="nav-link" data-scroll-target="#reuse">Reuse</a></li>
+</ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/quarto-dev/quarto-demo/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title-block"><div><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+
+
+
+
+
+
+<div class="quarto-title"><h1 class="title">Model Selection</h1><p class="subtitle lead">Using latent class mixed models with natural cubic splines.</p></div><div class="quarto-title-meta"><div><div class="quarto-title-meta-heading">Authors</div><div class="quarto-title-meta-contents"><div class="quarto-title-authors"><div><a href="https://scholar.google.com/citations?user=2emHWR0AAAAJ&amp;hl=en&amp;oi=ao">
+<p>Nathan Contantine-Cooke <sup>1, 2</sup></p>
+</a></div><div><a href="https://scholar.google.com/citations?user=YmyxSXAAAAAJ&amp;hl=en">
+<p>Karla Monterrubio <sup>1</sup></p>
+</a></div><div><a href="https://scholar.google.com/citations?hl=en&amp;user=gA3Ik3MAAAAJ">
+<p>Riccardo Marioni <sup>2</sup></p>
+</a></div><div><a href="https://scholar.google.com/citations?user=lkdrwm0AAAAJ&amp;hl=en&amp;oi=ao">
+<p>Catalina A. Vallejos <sup>1, 3</sup></p>
+</a></div></div></div></div><div><div class="quarto-title-meta-heading">Affilliations</div><div class="quarto-title-meta-contents"><div class="quarto-title-affiliations"><p><a href="https://www.ed.ac.uk/mrc-human-genetics-unit">
+<p><sup>1</sup> MRC Human Genetics Unit</p>
+</a></p><p><a href="https://www.ed.ac.uk/centre-genomic-medicine">
+<p><sup>2</sup> Centre for Genomic and Experimental Medicine</p>
+</a></p><p><a href="https://www.turing.ac.uk">
+<p><sup>3</sup> The Alan Turing Institute</p>
+</a></p><p>&nbsp;</p></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">May 10, 2022</p></div></div></div></header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
+
+<span class="co"># Fitting the LCMMs takes around three hours (when running single threaded)</span>
+<span class="co"># if cache.models is true then the saved model objects will be used instead of</span>
+<span class="co"># refitting the models</span>
+<span class="va">cache.models</span> <span class="op">&lt;-</span> <span class="cn">TRUE</span>
+
+<span class="co">##########################</span>
+<span class="co">#--     Packages       --#</span>
+<span class="co">##########################</span>
+
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="co">## Modelling ##</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">lcmm</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">splines</span><span class="op">)</span>
+<span class="co">## Presentation ##</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/htmltools">htmltools</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/">ggdist</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">grid</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://corybrunson.github.io/ggalluvial/">ggalluvial</a></span><span class="op">)</span>
+
+<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/DT">DT</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"DT"</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="co">##########################</span>
+<span class="co">#--     Data read      --#</span>
+<span class="co">##########################</span>
+
+<span class="va">FCcumulative</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"/Volumes/igmm/cvallejo-predicct/processed-data/cdi/"</span>,
+                               <span class="st">"FCcumulativeLongInc.RDS"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co">##########################</span>
+<span class="co">#-- Create directories --#</span>
+<span class="co">##########################</span>
+
+<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.exists</a></span><span class="op">(</span><span class="st">"models"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="st">"models"</span><span class="op">)</span>
+<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.exists</a></span><span class="op">(</span><span class="st">"metrics"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="st">"metrics"</span><span class="op">)</span>
+<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.exists</a></span><span class="op">(</span><span class="st">"paper"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="st">"paper"</span><span class="op">)</span>
+<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.exists</a></span><span class="op">(</span><span class="st">"comparison"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="st">"comparison"</span><span class="op">)</span>
+<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.exists</a></span><span class="op">(</span><span class="st">"comparison/plots"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="st">"comparison/plots"</span><span class="op">)</span>
+<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.exists</a></span><span class="op">(</span><span class="st">"comparison/plots/residuals"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="st">"comparison/plots/residuals"</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="co">########################</span>
+<span class="co">#-- Custom Functions --#</span>
+<span class="co">########################</span>
+
+<span class="co"># Build DT::datatable objects from matrix of fit statistics</span>
+<span class="va">DTbuild</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">hlme.metric</span>, <span class="va">caption</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">hlme.metrics</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">hlme.metrics</span>, group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">hlme.metrics</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">hlme.metrics</span> <span class="op">&lt;-</span> <span class="va">hlme.metrics</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">]</span>
+  <span class="fu">DT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DT/man/datatable.html">datatable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">hlme.metrics</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>,
+                options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>dom <span class="op">=</span> <span class="st">'t'</span><span class="op">)</span>,
+                caption <span class="op">=</span> <span class="va">tags</span><span class="op">$</span><span class="fu">caption</span><span class="op">(</span>
+                  style <span class="op">=</span> <span class="st">'text-align: center;'</span>,
+                  <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html">h3</a></span><span class="op">(</span><span class="va">caption</span><span class="op">)</span><span class="op">)</span>,
+                style <span class="op">=</span><span class="st">"bootstrap4"</span>,
+                rownames <span class="op">=</span> <span class="cn">FALSE</span>,
+                colnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Classes"</span>,
+                             <span class="st">"Maximum log-likelihood"</span>,
+                             <span class="st">"AIC"</span>,
+                             <span class="st">"BIC"</span><span class="op">)</span>,
+                escape <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="co">#' Spaghetti plots of each class</span>
+<span class="co">#' @param models list containing HLME objects</span>
+<span class="co">#' @param G How many classes does the model assume?</span>
+<span class="co">#' @param log Logical. Should plots be on log scale</span>
+<span class="co">#' @param indi Logical. Should separate plots for each class be generated?</span>
+<span class="co">#' @param multi Logical. Should all plots be plotted alongside each other? </span>
+<span class="co">#' @param tmax Maximum observation period</span>
+<span class="co">#' @param column Logical. Should all sub-plots be in a single column? Defaults</span>
+<span class="co">#'   to false (two columns)</span>
+<span class="co">#' @param prob.cutoff Posterior probability cut-off for subjects to be included</span>
+<span class="co">#'   as trajectories</span>
+<span class="co">#' @param mapping Numeric vector which gives reordering of plots in a</span>
+<span class="co">#'   multiplot. Need to take into account plots are generated by column - not</span>
+<span class="co">#'   row</span>
+<span class="co">#' @param save Logical. Should sub figure labels be generated?</span>
+<span class="va">spaghetti_plot</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">FCcumulative</span>,
+                           <span class="va">models</span>,
+                           <span class="va">G</span>,
+                           <span class="va">log</span> <span class="op">=</span> <span class="cn">TRUE</span>,
+                           <span class="va">indi</span> <span class="op">=</span> <span class="cn">FALSE</span>, 
+                           <span class="va">multi</span> <span class="op">=</span> <span class="cn">TRUE</span>,
+                           <span class="va">tmax</span> <span class="op">=</span> <span class="fl">5</span>,
+                           <span class="va">column</span> <span class="op">=</span>  <span class="cn">FALSE</span>, 
+                           <span class="va">pprob.cutoff</span> <span class="op">=</span> <span class="cn">NA</span>,
+                           <span class="va">mapping</span> <span class="op">=</span> <span class="cn">NULL</span>,
+                           <span class="va">save</span> <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">{</span>
+  
+  <span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">pprob.cutoff</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">pprob.cutoffs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+    
+    <span class="kw">for</span> <span class="op">(</span><span class="va">subject</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">models</span><span class="op">[[</span><span class="va">G</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">pprob</span><span class="op">$</span><span class="va">id</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+      <span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">models</span><span class="op">[[</span><span class="va">G</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">pprob</span>, <span class="va">id</span> <span class="op">==</span> <span class="va">subject</span><span class="op">)</span>
+      <span class="va">pprob</span> <span class="op">&lt;-</span> <span class="va">temp</span><span class="op">[</span>, <span class="fl">2</span> <span class="op">+</span> <span class="va">temp</span><span class="op">$</span><span class="va">class</span><span class="op">]</span>
+      <span class="kw">if</span> <span class="op">(</span><span class="va">pprob</span> <span class="op">&gt;</span> <span class="va">pprob.cutoff</span><span class="op">)</span> <span class="op">{</span>
+        <span class="va">pprob.cutoffs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">pprob.cutoffs</span>, <span class="va">subject</span><span class="op">)</span>
+      <span class="op">}</span>
+    <span class="op">}</span>
+    <span class="va">FCcumulative</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">pprob.cutoffs</span><span class="op">)</span>
+  <span class="op">}</span>
+  
+  <span class="kw">if</span> <span class="op">(</span><span class="va">indi</span><span class="op">)</span><span class="op">{</span>
+    <span class="fu">spaghetti_plot_sub</span><span class="op">(</span>FCcumulative <span class="op">=</span> <span class="va">FCcumulative</span>, 
+                       models <span class="op">=</span> <span class="va">models</span>,
+                       G <span class="op">=</span> <span class="va">G</span>,
+                       log <span class="op">=</span> <span class="va">log</span>,
+                       multi <span class="op">=</span> <span class="cn">FALSE</span>,
+                       tmax <span class="op">=</span> <span class="va">tmax</span>,
+                       column <span class="op">=</span> <span class="va">column</span>,
+                       pprob <span class="op">=</span> <span class="va">pprob</span>,
+                       mapping <span class="op">=</span> <span class="va">mapping</span><span class="op">)</span>
+    <span class="op">}</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="va">multi</span><span class="op">)</span><span class="op">{</span>
+      <span class="fu">spaghetti_plot_sub</span><span class="op">(</span>FCcumulative <span class="op">=</span> <span class="va">FCcumulative</span>, 
+                         models <span class="op">=</span> <span class="va">models</span>,
+                         G <span class="op">=</span> <span class="va">G</span>,
+                         log <span class="op">=</span> <span class="va">log</span>,
+                         multi <span class="op">=</span> <span class="cn">TRUE</span>,
+                         tmax <span class="op">=</span> <span class="va">tmax</span>,
+                         column <span class="op">=</span> <span class="va">column</span>,
+                         pprob <span class="op">=</span> <span class="va">pprob</span>, 
+                         mapping <span class="op">=</span> <span class="va">mapping</span>,
+                         save <span class="op">=</span> <span class="va">save</span><span class="op">)</span>
+  <span class="op">}</span>
+<span class="op">}</span>
+
+<span class="va">spaghetti_plot_sub</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">FCcumulative</span>,
+                           <span class="va">models</span>,
+                           <span class="va">G</span>,
+                           <span class="va">multi</span> <span class="op">=</span> <span class="cn">FALSE</span>,
+                           <span class="va">log</span>,
+                           <span class="va">unit</span>,
+                           <span class="va">tmax</span> <span class="op">=</span> <span class="fl">5</span>,
+                           <span class="va">column</span> <span class="op">=</span> <span class="va">column</span>,
+                           <span class="va">pprob</span> <span class="op">=</span> <span class="cn">NA</span>,
+                           <span class="va">mapping</span> <span class="op">=</span> <span class="va">mapping</span>,
+                           <span class="va">save</span> <span class="op">=</span> <span class="va">save</span><span class="op">)</span><span class="op">{</span>
+  
+  <span class="va">labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"C"</span>, <span class="st">"B"</span>, <span class="st">"D"</span><span class="op">)</span>
+  
+  <span class="va">time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">tmax</span>, by <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span>
+  
+  <span class="kw">if</span> <span class="op">(</span><span class="va">column</span><span class="op">)</span> <span class="op">{</span>
+    <span class="co"># use single column layout for sub-plots</span>
+    <span class="va">layout</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">G</span><span class="op">)</span>,
+                   ncol <span class="op">=</span> <span class="fl">1</span>,
+                   nrow <span class="op">=</span> <span class="va">G</span><span class="op">)</span>
+  <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+    <span class="co"># use two column layout for sub-plots</span>
+      <span class="va">layout</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="va">G</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span>,
+                   ncol <span class="op">=</span> <span class="fl">2</span>,
+                   nrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="va">G</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+  <span class="op">}</span>
+  <span class="co"># Set up the page</span>
+  <span class="fu"><a href="https://rdrr.io/r/grid/viewports.html">pushViewport</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grid/viewport.html">viewport</a></span><span class="op">(</span>layout <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/grid.layout.html">grid.layout</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">layout</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">layout</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+  
+  <span class="va">data_pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>time <span class="op">=</span> <span class="va">time</span><span class="op">)</span>
+  <span class="va">pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/predictY.html">predictY</a></span><span class="op">(</span><span class="va">models</span><span class="op">[[</span><span class="va">G</span><span class="op">]</span><span class="op">]</span>,
+                   <span class="va">data_pred</span>,
+                   var.time <span class="op">=</span> <span class="st">"time"</span>,
+                   draws <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+  <span class="va">lcmm_uit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">pred</span><span class="op">$</span><span class="va">pred</span><span class="op">)</span>
+  <span class="va">lcmm_uit</span><span class="op">$</span><span class="va">time</span> <span class="op">&lt;-</span> <span class="va">time</span>
+  
+  <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">mapping</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">mapping</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="va">G</span>
+  <span class="op">}</span>
+  
+  <span class="kw">for</span> <span class="op">(</span><span class="va">g</span> <span class="kw">in</span> <span class="va">mapping</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">matchidx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">layout</span> <span class="op">==</span> <span class="va">g</span>, arr.ind <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
+    <span class="va">id.group</span> <span class="op">&lt;-</span> <span class="va">models</span><span class="op">[[</span><span class="va">G</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">pprob</span><span class="op">[</span><span class="va">models</span><span class="op">[[</span><span class="va">G</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">pprob</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span> <span class="op">==</span> <span class="va">mapping</span><span class="op">[</span><span class="va">g</span><span class="op">]</span>, <span class="fl">1</span><span class="op">]</span>
+    
+    
+    <span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="va">log</span><span class="op">)</span><span class="op">{</span>
+      <span class="va">p</span><span class="op">[[</span><span class="va">g</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">id.group</span><span class="op">)</span>,
+                     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>group <span class="op">=</span> <span class="va">id</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">lcmm_uit</span>,
+                <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>,
+                    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">lcmm_uit</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Ypred_class"</span>, <span class="va">mapping</span><span class="op">[</span><span class="va">g</span><span class="op">]</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>,
+                size <span class="op">=</span> <span class="fl">1.5</span>,
+                col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">lcmm_uit</span>,
+                <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>,
+                    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">lcmm_uit</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"lower.Ypred_class"</span>,
+                                              <span class="va">mapping</span><span class="op">[</span><span class="va">g</span><span class="op">]</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>,
+                col <span class="op">=</span> <span class="st">"red"</span>,
+                lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">lcmm_uit</span>,
+                <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>,
+                    y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">lcmm_uit</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"upper.Ypred_class"</span>,
+                                              <span class="va">mapping</span><span class="op">[</span><span class="va">g</span><span class="op">]</span><span class="op">)</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>,
+                col <span class="op">=</span> <span class="st">"red"</span>,
+                lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Time (years)"</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"FCAL (μg/g)"</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2500</span><span class="op">)</span>
+    <span class="op">}</span> <span class="kw">else</span><span class="op">{</span>
+       <span class="va">p</span><span class="op">[[</span><span class="va">g</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">id.group</span><span class="op">)</span>,
+                     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>group <span class="op">=</span> <span class="va">id</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">lcmm_uit</span>,
+                <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">lcmm_uit</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Ypred_class"</span>,
+                                                    <span class="va">mapping</span><span class="op">[</span><span class="va">g</span><span class="op">]</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>,
+                size <span class="op">=</span> <span class="fl">1.5</span>,
+                col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">lcmm_uit</span>,
+                <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">lcmm_uit</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"lower.Ypred_class"</span>,
+                                                    <span class="va">mapping</span><span class="op">[</span><span class="va">g</span><span class="op">]</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>,
+                col <span class="op">=</span> <span class="st">"red"</span>,
+                lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">lcmm_uit</span>,
+                <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">lcmm_uit</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"upper.Ypred_class"</span>,
+                                                    <span class="va">mapping</span><span class="op">[</span><span class="va">g</span><span class="op">]</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>,
+                col <span class="op">=</span> <span class="st">"red"</span>,
+                lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Time (years)"</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Log (FCAL (μg/g))"</span><span class="op">)</span> <span class="op">+</span>
+      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html">ylim</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">2500</span><span class="op">)</span><span class="op">)</span>
+    <span class="op">}</span>
+    <span class="kw">if</span> <span class="op">(</span><span class="va">multi</span><span class="op">)</span> <span class="op">{</span>
+      <span class="kw">if</span> <span class="op">(</span><span class="va">save</span><span class="op">)</span> <span class="op">{</span>
+        <span class="co"># Add subfigure labels</span>
+        <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">[[</span><span class="va">g</span><span class="op">]</span><span class="op">]</span> <span class="op">+</span>
+                <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">labels</span><span class="op">[</span><span class="va">g</span><span class="op">]</span><span class="op">)</span> <span class="op">+</span>
+                <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span>,
+                                                 size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span><span class="op">)</span>,
+              vp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/viewport.html">viewport</a></span><span class="op">(</span>layout.pos.row <span class="op">=</span> <span class="va">matchidx</span><span class="op">$</span><span class="va">row</span>,
+                            layout.pos.col <span class="op">=</span> <span class="va">matchidx</span><span class="op">$</span><span class="va">col</span><span class="op">)</span>
+              <span class="op">)</span>
+      <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+        <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">[[</span><span class="va">g</span><span class="op">]</span><span class="op">]</span>,
+              vp <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/viewport.html">viewport</a></span><span class="op">(</span>layout.pos.row <span class="op">=</span> <span class="va">matchidx</span><span class="op">$</span><span class="va">row</span>,
+                            layout.pos.col <span class="op">=</span> <span class="va">matchidx</span><span class="op">$</span><span class="va">col</span><span class="op">)</span>
+              <span class="op">)</span>
+      <span class="op">}</span>
+    <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+      <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">[[</span><span class="va">g</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
+    <span class="op">}</span>
+  <span class="op">}</span>
+<span class="op">}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>To achieve our aims of identifying classes within the CD population with similar FCAL profiles, we use latent class mixed models (LCMMs) with natural cubic spline formulations for the fixed and random effects components. LCMMs are an extension of linear mixed effects models with an added fixed effect class-specific component. Class membership in a LCMM is given via a multinomial logistic model.</p>
+<p>Previously, we have investigated using polynomial regression, models with an I-splines link function, and models which use Gaussian radial basis functions (GRBFs) in order to model the fixed and random components of an LCMM. Unfortunately, the polynomial regression and I-splines link approaches demonstrated inflexibility and, in the case of polynomial regression behaved erratically near the ends of the time period.</p>
+<p>The GRBF approach was very sensitive to <span class="math inline">l</span>, a length scale parameter, and the iterative Marquardt algorithm implemented in the <code>{lcmm}</code> package did not converge in many cases- possibly due the number of parameters required to be estimated and/or the Runge phenomenon <span class="citation" data-cites="Fornberg2007">(<a href="#ref-Fornberg2007" role="doc-biblioref">Fornberg and Zuev 2007</a>)</span>.</p>
+<p>This has led us to consider an approach using natural cubic splines which has a few notable advantages <span class="citation" data-cites="Elhakeem2022">(<a href="#ref-Elhakeem2022" role="doc-biblioref">Elhakeem et al. 2022</a>)</span>:</p>
+<ol type="1">
+<li>Less parameters need to be estimated than either a Gaussian radial basis function regression model or a polynomial regression model with the same flexibility . This reduces the time complexity when fitting the model and in the future may also make extensions more practically feasible.</li>
+<li>Natural cubic splines enforce linearity between <span class="math inline">t_0</span> and the first knot and between the last knot and <span class="math inline">t_\text{max}</span> which ensures the model does not behave erratically in these sometimes problematic areas.</li>
+<li>Natural cubics are not highly sensitive to a continuous parameter and instead requires only <span class="math inline">K</span>, the number of knots, to be tuned: being robust to where the knots themselves are placed.</li>
+</ol></section><section id="formal-defintions" class="level2"><h2 class="anchored" data-anchor-id="formal-defintions">Formal defintions</h2>
+<p>For formal definitions of the models and statistics we have used in the work, see the supplementary material for our paper.</p>
+</section><section id="the-crohns-disease-inception-cohort" class="level2"><h2 class="anchored" data-anchor-id="the-crohns-disease-inception-cohort">The Crohn’s Disease Inception Cohort</h2>
+<p>The background for the data we will fit to the models and an explanation of the data processing steps implemented can be found on a <a href="./data-cleaning.html">dedicated page</a>. Due to the distribution of the FCAL values (<a href="#fig-dist">Figure&nbsp;1</a>), FCAL values have been log-transformed prior to model fitting (<a href="#fig-dist-log">Figure&nbsp;2</a>).</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">FCcumulative</span> <span class="op"><a href="https://rdrr.io/pkg/DT/man/DT-imports.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/stat_slab.html">stat_slab</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.8</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, fill <span class="op">=</span> <span class="st">"#235789"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/geom_dotsinterval.html">geom_dots</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">10</span>, size <span class="op">=</span> <span class="fl">1</span>, side <span class="op">=</span> <span class="st">"bottom"</span>, color <span class="op">=</span> <span class="st">"#235789"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"FCAL (µg/g)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Distribution of FCAL Measurements"</span>,
+          <span class="st">"Crohn's disease inception cohort"</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-dist" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="selection_files/figure-html/fig-dist-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 1: Distribution of FCAL values when in measurement units.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">FCcumulative</span><span class="op">$</span><span class="va">value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">FCcumulative</span><span class="op">$</span><span class="va">value</span><span class="op">)</span>
+
+<span class="va">FCcumulative</span> <span class="op"><a href="https://rdrr.io/pkg/DT/man/DT-imports.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/stat_slab.html">stat_slab</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.8</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, fill <span class="op">=</span> <span class="st">"#235789"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/geom_dotsinterval.html">geom_dots</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">0.02</span>, size <span class="op">=</span> <span class="fl">1</span>, side <span class="op">=</span> <span class="st">"bottom"</span>, color <span class="op">=</span> <span class="st">"#235789"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Log (FCAL (µg/g))"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Distribution of Log-Transformed FCAL Measurements"</span>,
+          <span class="st">"Crohn's disease inception cohort"</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-dist-log" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="selection_files/figure-html/fig-dist-log-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 2: Distribution of FCAL values after a log transformation has been applied.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="model-fitting" class="level2"><h2 class="anchored" data-anchor-id="model-fitting">Model fitting</h2>
+<p>LCMMs with 2 - 6 assumed classes are considered. As recommended by <span class="citation" data-cites="Proust-Lima2017">Proust-Lima, Philipps, and Liquet (<a href="#ref-Proust-Lima2017" role="doc-biblioref">2017</a>)</span>, a model is initially fitted with 1 class (I.E a regular linear mixed effects model) which is used to sample initial values in a grid search approach which attempts to find optimal models for each assumed number of classes based upon maximum likelihood. The trajectory of this linear mixed effects model is given by <a href="#fig-lme">Figure&nbsp;3</a>.</p>
+<p>For the fixed and random components of each model, we will consider natural cubic splines of time with three knots (I.E five fixed points including the boundaries of the splines. The knots for the natural cubic splines are placed at the 1<sup>st</sup> quantile, median, and 3<sup>rd</sup> quartile of the FCAL measurement times for the study cohort. This corresponds to [0.63, 1.64, 3.05] years from diagnosis.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">ngroups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span>
+<span class="va">rep</span> <span class="op">&lt;-</span> <span class="fl">50</span>
+<span class="va">maxiter</span> <span class="op">&lt;-</span> <span class="fl">10</span>
+<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="st">"models/cubicbf.fits.RDS"</span><span class="op">)</span> <span class="op">|</span> <span class="op">!</span><span class="va">cache.models</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">m1</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/hlme.html">hlme</a></span><span class="op">(</span>fixed <span class="op">=</span>  <span class="va">value</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/splines/ns.html">ns</a></span><span class="op">(</span><span class="va">time</span>, df <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,
+              random <span class="op">=</span> <span class="op">~</span>  <span class="fu"><a href="https://rdrr.io/r/splines/ns.html">ns</a></span><span class="op">(</span><span class="va">time</span>, df <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,
+              subject <span class="op">=</span> <span class="st">"id"</span>,
+              data <span class="op">=</span> <span class="va">FCcumulative</span>,
+              verbose <span class="op">=</span> <span class="cn">FALSE</span>,
+              var.time <span class="op">=</span> <span class="st">"time"</span>,
+              maxiter <span class="op">=</span> <span class="fl">8000</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">m1</span><span class="op">)</span><span class="op">)</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="va">m1</span><span class="op">$</span><span class="va">conv</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/stop.html">stop</a></span><span class="op">(</span><span class="st">"LME did not converge \n"</span><span class="op">)</span>
+  
+  <span class="va">hlme.metrics</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">0</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">hlme.metrics</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"maximum log-likelihood"</span>, <span class="st">"AIC"</span>, <span class="st">"BIC"</span><span class="op">)</span>
+  <span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">m1</span><span class="op">$</span><span class="va">loglik</span>, <span class="va">m1</span><span class="op">$</span><span class="va">AIC</span>, <span class="va">m1</span><span class="op">$</span><span class="va">BIC</span><span class="op">)</span>,  nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+  <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">temp</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"1"</span>
+  <span class="va">hlme.metrics</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">hlme.metrics</span>, <span class="va">temp</span><span class="op">)</span>
+  
+  
+  <span class="va">cubicbf.fits</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="va">cubicbf.fits</span><span class="op">[[</span><span class="st">"group1"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">m1</span>
+
+  <span class="kw">for</span> <span class="op">(</span><span class="va">ngroup</span> <span class="kw">in</span> <span class="va">ngroups</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">ng</span> <span class="op">&lt;-</span> <span class="va">ngroup</span>
+    <span class="va">cl</span> <span class="op">&lt;-</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/makeCluster.html">makeCluster</a></span><span class="op">(</span><span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html">detectCores</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+    <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/clusterApply.html">clusterExport</a></span><span class="op">(</span><span class="va">cl</span>, <span class="st">"ng"</span><span class="op">)</span>
+    <span class="va">hlme.fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/gridsearch.html">gridsearch</a></span><span class="op">(</span>
+      rep <span class="op">=</span> <span class="va">rep</span>,
+      maxiter <span class="op">=</span> <span class="va">maxiter</span>,
+      minit <span class="op">=</span> <span class="va">m1</span>,
+      cl <span class="op">=</span> <span class="va">cl</span>,
+      <span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/hlme.html">hlme</a></span><span class="op">(</span>fixed <span class="op">=</span>  <span class="va">value</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/splines/ns.html">ns</a></span><span class="op">(</span><span class="va">time</span>, df <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,
+           mixture <span class="op">=</span> <span class="op">~</span>  <span class="fu"><a href="https://rdrr.io/r/splines/ns.html">ns</a></span><span class="op">(</span><span class="va">time</span>, df <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,
+           random <span class="op">=</span> <span class="op">~</span>  <span class="fu"><a href="https://rdrr.io/r/splines/ns.html">ns</a></span><span class="op">(</span><span class="va">time</span>, df <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,
+           subject <span class="op">=</span> <span class="st">"id"</span>,
+           ng <span class="op">=</span> <span class="va">ng</span>,
+           data <span class="op">=</span> <span class="va">FCcumulative</span>,
+           verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+    <span class="op">)</span>
+    <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/makeCluster.html">stopCluster</a></span><span class="op">(</span><span class="va">cl</span><span class="op">)</span>
+    
+    <span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"group"</span>, <span class="va">ngroup</span><span class="op">)</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">hlme.fit</span>
+  
+    <span class="kw">if</span> <span class="op">(</span><span class="va">hlme.fit</span><span class="op">$</span><span class="va">conv</span><span class="op">)</span> <span class="op">{</span>
+      <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Convergence achieved for "</span>, <span class="va">ng</span>, <span class="st">"subgroups ✅ \n"</span><span class="op">)</span>
+    <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+      <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Convergence NOT achieved for "</span>, <span class="va">ng</span>, <span class="st">" subgroups ⚠️ \n"</span><span class="op">)</span>
+    <span class="op">}</span>
+    
+    <span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">hlme.fit</span><span class="op">$</span><span class="va">loglik</span>, <span class="va">hlme.fit</span><span class="op">$</span><span class="va">AIC</span>, <span class="va">hlme.fit</span><span class="op">$</span><span class="va">BIC</span><span class="op">)</span>,  nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+    <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">temp</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">ngroup</span>
+    <span class="va">hlme.metrics</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">hlme.metrics</span>, <span class="va">temp</span><span class="op">)</span>
+  <span class="op">}</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">cubicbf.fits</span>, <span class="st">"models/cubicbf.fits.RDS"</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">hlme.metrics</span>, <span class="st">"metrics/cubicbf.RDS"</span><span class="op">)</span>
+<span class="op">}</span> <span class="kw">else</span><span class="op">{</span>
+  <span class="va">cubicbf.fits</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"models/cubicbf.fits.RDS"</span><span class="op">)</span>
+  <span class="va">hlme.metrics</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"metrics/cubicbf.RDS"</span> <span class="op">)</span>
+<span class="op">}</span>
+
+<span class="va">m1</span> <span class="op">&lt;-</span> <span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/predictY.html">predictY</a></span><span class="op">(</span><span class="va">m1</span>,
+              newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5</span>, by <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span>,
+              var.time <span class="op">=</span> <span class="st">"time"</span>,
+              draws <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/plot.html">plot</a></span><span class="op">(</span><span class="va">FCcumulative</span><span class="op">$</span><span class="va">time</span>,
+     <span class="va">FCcumulative</span><span class="op">$</span><span class="va">value</span>,
+     xlab <span class="op">=</span> <span class="st">"Time"</span>,
+     ylab <span class="op">=</span> <span class="st">"Log(FCAL)"</span>,
+     main <span class="op">=</span> <span class="st">"LME with Cubic Natural Splines (Log Scale)"</span>,
+     col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>, <span class="fl">0.3</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">times</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">x</span><span class="op">$</span><span class="va">pred</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">times</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">x</span><span class="op">$</span><span class="va">pred</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, col <span class="op">=</span> <span class="st">"red"</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="co"># Conf intervals</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">times</span><span class="op">[</span>,<span class="fl">1</span><span class="op">]</span>, <span class="va">x</span><span class="op">$</span><span class="va">pred</span><span class="op">[</span>,<span class="fl">3</span><span class="op">]</span>, col <span class="op">=</span> <span class="st">"red"</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> 
+
+<span class="co"># Plot knots a vertical lines</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/splines/ns.html">ns</a></span><span class="op">(</span><span class="va">FCcumulative</span><span class="op">$</span><span class="va">time</span>, df <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,
+                           <span class="st">"knots"</span><span class="op">)</span><span class="op">)</span>,
+       col <span class="op">=</span> <span class="st">"blue"</span>,
+       lty <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
+ 
+<span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/plot.html">plot</a></span><span class="op">(</span><span class="va">FCcumulative</span><span class="op">$</span><span class="va">time</span>,
+     <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">FCcumulative</span><span class="op">$</span><span class="va">value</span><span class="op">)</span>,
+     xlab <span class="op">=</span> <span class="st">"Time"</span>,
+     ylab <span class="op">=</span> <span class="st">"FCAL"</span>,
+     main <span class="op">=</span> <span class="st">"LME with Cubic Natural Splines (Measurement Scale)"</span>,
+     col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/rgb.html">rgb</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>, <span class="fl">0.3</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">times</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">pred</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">times</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">pred</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"red"</span>, lty<span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/lines.html">lines</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">times</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">pred</span><span class="op">[</span>, <span class="fl">3</span><span class="op">]</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"red"</span>, lty<span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op">(</span>v <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/splines/ns.html">ns</a></span><span class="op">(</span><span class="va">FCcumulative</span><span class="op">$</span><span class="va">time</span>, df <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>, <span class="st">"knots"</span><span class="op">)</span><span class="op">)</span>,
+       col <span class="op">=</span> <span class="st">"blue"</span>, lty <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-lme" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="selection_files/figure-html/fig-lme-1.png" class="img-fluid figure-img" width="1152"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 3: Linear mixed effects (LME) model fitted to data and used to generate inital values for the grid search method used for LCMMs with <span class="math inline">G &gt; 2</span></figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="model-selection" class="level2"><h2 class="anchored" data-anchor-id="model-selection">Model selection</h2>
+<section id="model-fit" class="level3"><h3 class="anchored" data-anchor-id="model-fit">Model fit</h3>
+<p>We consider two metrics when considering model fit: AIC and BIC which penalises model complexity.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">groups.1</span> <span class="op">&lt;-</span> <span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>
+<span class="va">groups.2</span> <span class="op">&lt;-</span> <span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>
+<span class="va">groups.3</span> <span class="op">&lt;-</span> <span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span>
+<span class="va">groups.4</span> <span class="op">&lt;-</span> <span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span>
+<span class="va">groups.5</span> <span class="op">&lt;-</span> <span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">5</span><span class="op">]</span><span class="op">]</span>
+<span class="va">groups.6</span> <span class="op">&lt;-</span> <span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">6</span><span class="op">]</span><span class="op">]</span>
+
+<span class="fu">DTbuild</span><span class="op">(</span><span class="va">hlme.metrics</span>,
+        caption <span class="op">=</span> <span class="st">"Fit Metrics for Natural Cubic Splines Model"</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="htmlwidget-9eceb20dc2a931752ae4" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9eceb20dc2a931752ae4">{"x":{"style":"bootstrap4","filter":"none","vertical":false,"caption":"<caption style=\"text-align: center;\">\n  <h3>Fit Metrics for Natural Cubic Splines Model<\/h3>\n<\/caption>","data":[[1,2,3,4,5,6],[-4030.5,-4005.34,-3990.46,-3983.49,-3970.17,-3968.42],[8103,8064.69,8046.92,8044.97,8030.33,8038.84],[8184.38,8169.31,8174.79,8196.1,8204.71,8236.46]],"container":"<table class=\"table table-striped table-hover row-border order-column display\">\n  <thead>\n    <tr>\n      <th>Classes<\/th>\n      <th>Maximum log-likelihood<\/th>\n      <th>AIC<\/th>\n      <th>BIC<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-right","targets":[0,1,2,3]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Considering all of the models above, AIC is most optimal for the <span class="math inline">G = 5</span> model and BIC is optimal for the <span class="math inline">G = 2</span> model. However, considering an alluvial plot (<a href="#fig-alluvial">Figure&nbsp;4</a>) suggest neither <span class="math inline">G = 2</span> nor <span class="math inline">G = 5</span> are suitable models. The <span class="math inline">G = 2</span> model clearly has additional well defined latent classes not properly represented by just two classes, whilst the <span class="math inline">G=5</span> model results in an incredibly small new class. As such, <span class="math inline">G = 4</span> may be a more suitable alternative.</p>
+</section><section id="class-discrimination" class="level3"><h3 class="anchored" data-anchor-id="class-discrimination">Class discrimination</h3>
+<section id="alluvial-plots" class="level4"><h4 class="anchored" data-anchor-id="alluvial-plots">Alluvial plots</h4>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">re_label</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">old.G</span>, <span class="va">new.G</span>, <span class="va">alluvial.df</span><span class="op">)</span><span class="op">{</span>
+  
+  <span class="va">new.order</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">new.G</span>, <span class="va">new.G</span><span class="op">)</span>
+  <span class="va">old.clusters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">alluvial.df</span>, <span class="va">G</span> <span class="op">==</span> <span class="va">old.G</span><span class="op">)</span>
+  <span class="va">new.clusters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">alluvial.df</span>, <span class="va">G</span> <span class="op">==</span> <span class="va">new.G</span><span class="op">)</span>
+
+  <span class="kw">for</span> <span class="op">(</span><span class="va">g</span> <span class="kw">in</span> <span class="va">old.G</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">old.clusters</span>, <span class="va">class</span> <span class="op">==</span> <span class="va">g</span><span class="op">)</span><span class="op">$</span><span class="va">id</span>
+    <span class="kw">for</span> <span class="op">(</span><span class="va">new.g</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">new.G</span><span class="op">)</span> <span class="op">{</span>
+      <span class="va">new.clusters.g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">new.clusters</span>, <span class="va">new.g</span> <span class="op">==</span> <span class="va">class</span><span class="op">)</span>
+      <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">new.clusters.g</span>, <span class="va">id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">ids</span><span class="op">)</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0.5</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">ids</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+        <span class="va">new.order</span><span class="op">[</span><span class="va">new.g</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">g</span> 
+      <span class="op">}</span>
+    <span class="op">}</span>
+  <span class="op">}</span>
+  
+  <span class="va">alluvial.df</span><span class="op">[</span><span class="va">alluvial.df</span><span class="op">[</span>, <span class="st">"G"</span><span class="op">]</span> <span class="op">==</span> <span class="va">new.G</span>, <span class="st">"class"</span><span class="op">]</span> <span class="op">&lt;-</span>
+    <span class="fu">plyr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/plyr/man/mapvalues.html">mapvalues</a></span><span class="op">(</span><span class="va">alluvial.df</span><span class="op">[</span><span class="va">alluvial.df</span><span class="op">[</span>, <span class="st">"G"</span><span class="op">]</span> <span class="op">==</span> <span class="va">new.G</span>, <span class="st">"class"</span><span class="op">]</span>,
+                    from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">new.G</span><span class="op">)</span>,
+                    <span class="va">new.order</span><span class="op">)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">alluvial.df</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="co"># convert to alluvial format</span>
+<span class="va">alluvial.df</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">groups.2</span><span class="op">$</span><span class="va">pprob</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, G <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<span class="va">alluvial.df</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">alluvial.df</span>, <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">groups.3</span><span class="op">$</span><span class="va">pprob</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, G <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span>
+<span class="va">alluvial.df</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">alluvial.df</span>, <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">groups.4</span><span class="op">$</span><span class="va">pprob</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, G <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span>
+<span class="va">alluvial.df</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">alluvial.df</span>, <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">groups.5</span><span class="op">$</span><span class="va">pprob</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, G <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span>
+<span class="va">alluvial.df</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">alluvial.df</span>, <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">groups.6</span><span class="op">$</span><span class="va">pprob</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, G <span class="op">=</span> <span class="fl">6</span><span class="op">)</span><span class="op">)</span>
+<span class="va">alluvial.df</span><span class="op">$</span><span class="va">id</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">alluvial.df</span><span class="op">$</span><span class="va">id</span><span class="op">)</span>
+<span class="va">alluvial.df</span><span class="op">$</span><span class="va">class</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">alluvial.df</span><span class="op">$</span><span class="va">class</span><span class="op">)</span> 
+
+<span class="co"># eliminate label switching</span>
+<span class="va">alluvial.df</span> <span class="op">&lt;-</span> <span class="fu">re_label</span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="va">alluvial.df</span><span class="op">)</span>
+<span class="va">alluvial.df</span> <span class="op">&lt;-</span> <span class="fu">re_label</span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span>, <span class="va">alluvial.df</span><span class="op">)</span>
+<span class="va">alluvial.df</span> <span class="op">&lt;-</span> <span class="fu">re_label</span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span>, <span class="va">alluvial.df</span><span class="op">)</span>
+<span class="va">alluvial.df</span> <span class="op">&lt;-</span> <span class="fu">re_label</span><span class="op">(</span><span class="fl">5</span>, <span class="fl">6</span>, <span class="va">alluvial.df</span><span class="op">)</span>
+
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">alluvial.df</span>,
+            <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">G</span>,
+            stratum <span class="op">=</span> <span class="va">class</span>,
+            alluvium <span class="op">=</span> <span class="va">id</span>,
+            fill <span class="op">=</span> <span class="va">class</span>,
+            label <span class="op">=</span> <span class="va">class</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_x_discrete</a></span><span class="op">(</span>expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.1</span>, <span class="fl">.1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="http://corybrunson.github.io/ggalluvial/reference/geom_flow.html">geom_flow</a></span><span class="op">(</span><span class="op">)</span>  <span class="op">+</span>
+  <span class="fu"><a href="http://corybrunson.github.io/ggalluvial/reference/geom_stratum.html">geom_stratum</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"stratum"</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Alluvial plot of class membership across G"</span>,
+          <span class="st">"Crohn's disease inception cohort"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#e3281f"</span>,
+                               <span class="st">"#3aa534"</span>,
+                               <span class="st">"#ff5885"</span>,
+                               <span class="st">"#fbc926"</span>,
+                               <span class="st">"#511e9d"</span>,
+                               <span class="st">"black"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Assumed number of latent classes"</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Frequency"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span>
+
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">""</span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"paper/alluvial.png"</span>, <span class="va">p</span>, width <span class="op">=</span> <span class="fl">8</span>, height <span class="op">=</span> <span class="fl">4.5</span>, units <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"paper/alluvial.pdf"</span>, <span class="va">p</span>, width <span class="op">=</span> <span class="fl">8</span>, height <span class="op">=</span> <span class="fl">4.5</span>, units <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-alluvial" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="selection_files/figure-html/fig-alluvial-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 4: Alluvial plot demonstrating how class membership changes as the assumed number of classes increase. The height of each band indicates the size of each class.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="posterior-classifications" class="level4"><h4 class="anchored" data-anchor-id="posterior-classifications">Posterior classifications</h4>
+<p>An alternative to co-clustering when considering class discrimination is to consider posterior classification possibilities. From the below data, we can see how these posterior probabilities change as the number of assumed classes increase</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">G = 2</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">G = 3</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">G = 4</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">G = 5</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">G = 6</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labeledby="tabset-1-1-tab">
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/postprob.html">postprob</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stdout">
+<pre><code> 
+Posterior classification: 
+  class1 class2
+N  96.00 260.00
+%  26.97  73.03
+ 
+Posterior classification table: 
+     --&gt; mean of posterior probabilities in each class 
+        prob1  prob2
+class1 0.8747 0.1253
+class2 0.0506 0.9494
+ 
+Posterior probabilities above a threshold (%): 
+         class1 class2
+prob&gt;0.7  80.21  95.38
+prob&gt;0.8  70.83  92.31
+prob&gt;0.9  62.50  83.08
+ </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labeledby="tabset-1-2-tab">
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/postprob.html">postprob</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stdout">
+<pre><code> 
+Posterior classification: 
+  class1 class2 class3
+N  97.00  204.0  55.00
+%  27.25   57.3  15.45
+ 
+Posterior classification table: 
+     --&gt; mean of posterior probabilities in each class 
+        prob1  prob2  prob3
+class1 0.8678 0.0789 0.0533
+class2 0.0366 0.8925 0.0710
+class3 0.0606 0.1298 0.8095
+ 
+Posterior probabilities above a threshold (%): 
+         class1 class2 class3
+prob&gt;0.7  80.41  88.24  70.91
+prob&gt;0.8  68.04  77.45  60.00
+prob&gt;0.9  57.73  65.20  43.64
+ </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labeledby="tabset-1-3-tab">
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/postprob.html">postprob</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stdout">
+<pre><code> 
+Posterior classification: 
+  class1 class2 class3 class4
+N  15.00  58.00  92.00 191.00
+%   4.21  16.29  25.84  53.65
+ 
+Posterior classification table: 
+     --&gt; mean of posterior probabilities in each class 
+        prob1  prob2  prob3  prob4
+class1 0.7105 0.0549 0.0944 0.1401
+class2 0.0540 0.7997 0.0484 0.0978
+class3 0.0707 0.0653 0.8191 0.0449
+class4 0.0747 0.0618 0.0229 0.8406
+ 
+Posterior probabilities above a threshold (%): 
+         class1 class2 class3 class4
+prob&gt;0.7  53.33  65.52  71.74  78.01
+prob&gt;0.8  46.67  58.62  63.04  64.92
+prob&gt;0.9  13.33  39.66  51.09  53.93
+ </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labeledby="tabset-1-4-tab">
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/postprob.html">postprob</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">5</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stdout">
+<pre><code> 
+Posterior classification: 
+  class1 class2 class3 class4 class5
+N  95.00 191.00   6.00  11.00  53.00
+%  26.69  53.65   1.69   3.09  14.89
+ 
+Posterior classification table: 
+     --&gt; mean of posterior probabilities in each class 
+        prob1  prob2  prob3  prob4  prob5
+class1 0.8229 0.0664 0.0353 0.0336 0.0418
+class2 0.0291 0.8529 0.0048 0.0645 0.0488
+class3 0.1424 0.0132 0.8431 0.0012 0.0001
+class4 0.0209 0.1351 0.0000 0.7499 0.0940
+class5 0.0663 0.0763 0.0001 0.0572 0.8001
+ 
+Posterior probabilities above a threshold (%): 
+         class1 class2 class3 class4 class5
+prob&gt;0.7  74.74  76.96  66.67  63.64  67.92
+prob&gt;0.8  60.00  66.49  66.67  45.45  54.72
+prob&gt;0.9  47.37  53.40  50.00  36.36  39.62
+ </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labeledby="tabset-1-5-tab">
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/postprob.html">postprob</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">6</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stdout">
+<pre><code> 
+Posterior classification: 
+  class1 class2 class3 class4 class5 class6
+N  48.00   63.0  52.00 117.00  67.00   9.00
+%  13.48   17.7  14.61  32.87  18.82   2.53
+ 
+Posterior classification table: 
+     --&gt; mean of posterior probabilities in each class 
+        prob1  prob2  prob3  prob4  prob5  prob6
+class1 0.8604 0.1241 0.0070 0.0001 0.0043 0.0042
+class2 0.0798 0.7354 0.0588 0.0092 0.1022 0.0147
+class3 0.0016 0.0447 0.7671 0.0471 0.0893 0.0501
+class4 0.0003 0.0067 0.0439 0.7737 0.1381 0.0373
+class5 0.0022 0.1143 0.0554 0.1256 0.6373 0.0651
+class6 0.0004 0.0169 0.0223 0.0490 0.1295 0.7818
+ 
+Posterior probabilities above a threshold (%): 
+         class1 class2 class3 class4 class5 class6
+prob&gt;0.7  87.50  57.14  65.38  60.68  32.84  77.78
+prob&gt;0.8  66.67  42.86  53.85  52.99  17.91  55.56
+prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
+ </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">pprobs.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">pprobs.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">pprobs.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">pprobs.5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">pprobs.6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">pprob</span><span class="op">)</span><span class="op">)</span><span class="op">{</span>
+  <span class="va">class.2</span> <span class="op">&lt;-</span> <span class="va">groups.2</span><span class="op">$</span><span class="va">pprob</span><span class="op">[</span><span class="va">i</span>, <span class="fl">2</span><span class="op">]</span>
+  <span class="va">pprobs.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">pprobs.2</span>, <span class="va">groups.2</span><span class="op">$</span><span class="va">pprob</span><span class="op">[</span><span class="va">i</span>, <span class="va">class.2</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">]</span><span class="op">)</span>
+  <span class="va">class.3</span> <span class="op">&lt;-</span> <span class="va">groups.3</span><span class="op">$</span><span class="va">pprob</span><span class="op">[</span><span class="va">i</span>, <span class="fl">2</span><span class="op">]</span>
+  <span class="va">pprobs.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">pprobs.3</span>, <span class="va">groups.3</span><span class="op">$</span><span class="va">pprob</span><span class="op">[</span><span class="va">i</span>, <span class="va">class.3</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">]</span><span class="op">)</span>
+  <span class="va">class.4</span> <span class="op">&lt;-</span> <span class="va">groups.4</span><span class="op">$</span><span class="va">pprob</span><span class="op">[</span><span class="va">i</span>, <span class="fl">2</span><span class="op">]</span>
+  <span class="va">pprobs.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">pprobs.4</span>, <span class="va">groups.4</span><span class="op">$</span><span class="va">pprob</span><span class="op">[</span><span class="va">i</span>, <span class="va">class.4</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">]</span><span class="op">)</span>
+  <span class="va">class.5</span> <span class="op">&lt;-</span> <span class="va">groups.5</span><span class="op">$</span><span class="va">pprob</span><span class="op">[</span><span class="va">i</span>, <span class="fl">2</span><span class="op">]</span>
+  <span class="va">pprobs.5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">pprobs.5</span>, <span class="va">groups.5</span><span class="op">$</span><span class="va">pprob</span><span class="op">[</span><span class="va">i</span>, <span class="va">class.5</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">]</span><span class="op">)</span>
+  <span class="va">class.6</span> <span class="op">&lt;-</span> <span class="va">groups.6</span><span class="op">$</span><span class="va">pprob</span><span class="op">[</span><span class="va">i</span>, <span class="fl">2</span><span class="op">]</span>
+  <span class="va">pprobs.6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">pprobs.6</span>, <span class="va">groups.6</span><span class="op">$</span><span class="va">pprob</span><span class="op">[</span><span class="va">i</span>, <span class="va">class.6</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">]</span><span class="op">)</span>
+<span class="op">}</span>
+<span class="va">pprobs.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>prob <span class="op">=</span> <span class="va">pprobs.2</span><span class="op">)</span>
+<span class="va">pprobs.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>prob <span class="op">=</span> <span class="va">pprobs.3</span><span class="op">)</span>
+<span class="va">pprobs.4</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>prob <span class="op">=</span> <span class="va">pprobs.4</span><span class="op">)</span>
+<span class="va">pprobs.5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>prob <span class="op">=</span> <span class="va">pprobs.5</span><span class="op">)</span>
+<span class="va">pprobs.6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>prob <span class="op">=</span> <span class="va">pprobs.6</span><span class="op">)</span>
+
+<span class="va">pprobs.2</span><span class="op">$</span><span class="va">Model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Two classes"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pprobs.2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">pprobs.3</span><span class="op">$</span><span class="va">Model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Three classes"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pprobs.3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">pprobs.4</span><span class="op">$</span><span class="va">Model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Four classes"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pprobs.4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">pprobs.5</span><span class="op">$</span><span class="va">Model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Five classes"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pprobs.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">pprobs.6</span><span class="op">$</span><span class="va">Model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Six classes"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pprobs.6</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+<span class="va">pprobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">pprobs.2</span>, <span class="va">pprobs.3</span>, <span class="va">pprobs.4</span>, <span class="va">pprobs.5</span>, <span class="va">pprobs.6</span><span class="op">)</span>
+
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">pprobs</span> <span class="op"><a href="https://rdrr.io/pkg/DT/man/DT-imports.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">prob</span>, y <span class="op">=</span> <span class="va">Model</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="co">#geom_histogram(bins = 40, fill = NA, position="identity")</span>
+  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/stat_slab.html">stat_slab</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">Model</span><span class="op">)</span>,color <span class="op">=</span> <span class="st">"gray"</span>,
+                    size <span class="op">=</span> <span class="fl">0.8</span>,
+                    alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/geom_dotsinterval.html">geom_dots</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">Model</span>, color <span class="op">=</span> <span class="va">Model</span><span class="op">)</span>, dotsize <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Posterior Probability for Class Membership"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Distribution of Posterior Probabilities Across Models"</span>,
+          <span class="st">"Subject-specific posterior probabilities for assigned class"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#e3281f"</span>,
+                                <span class="st">"#3aa534"</span>,
+                                <span class="st">"#ff5885"</span>,
+                                <span class="st">"#fbc926"</span>,
+                                <span class="st">"#511e9d"</span><span class="op">)</span>
+                     <span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#e3281f"</span>,
+                               <span class="st">"#3aa534"</span>,
+                               <span class="st">"#ff5885"</span>,
+                               <span class="st">"#fbc926"</span>,
+                               <span class="st">"#511e9d"</span><span class="op">)</span>
+                    <span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html">scale_y_discrete</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="va">rev</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Pprob%20distributions-1.png" class="img-fluid" width="768"></p>
+</div>
+<details><summary>Code</summary><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"paper/Distributions.png"</span>, <span class="va">p</span>, width <span class="op">=</span> <span class="fl">8.5</span>, height <span class="op">=</span> <span class="fl">4.5</span>, units <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"paper/Distributions.pdf"</span>, <span class="va">p</span>, width <span class="op">=</span> <span class="fl">8.5</span>, height <span class="op">=</span> <span class="fl">4.5</span>, units <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section></section><section id="residual-plots" class="level3"><h3 class="anchored" data-anchor-id="residual-plots">Residual plots</h3>
+<p>To ensure model assumptions are not violated, residual plots are also consulted. The residual plots are very similar across all models considered and are reassuring.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">G = 1</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">G = 2</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">G = 3</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">G = 4</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" role="tab" aria-controls="tabset-2-5" aria-selected="false">G = 5</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-6" role="tab" aria-controls="tabset-2-6" aria-selected="false">G = 6</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labeledby="tabset-2-1-tab">
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/plot.html">plot</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, shades <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Print%20residual%20G1-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labeledby="tabset-2-2-tab">
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/plot.html">plot</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, shades <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Print%20residual%20G2-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labeledby="tabset-2-3-tab">
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/plot.html">plot</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span>, shades <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Print%20residual%20G3-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labeledby="tabset-2-4-tab">
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/plot.html">plot</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span>, shades <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Print%20residual%20G4-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</div>
+<div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labeledby="tabset-2-5-tab">
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/plot.html">plot</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">5</span><span class="op">]</span><span class="op">]</span>, shades <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Print%20residual%20G5-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</div>
+<div id="tabset-2-6" class="tab-pane" role="tabpanel" aria-labeledby="tabset-2-6-tab">
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/plot.html">plot</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">6</span><span class="op">]</span><span class="op">]</span>, shades <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Print%20residual%20G6-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="spaghetti-plots-per-class" class="level3"><h3 class="anchored" data-anchor-id="spaghetti-plots-per-class">Spaghetti plots per class</h3>
+<p>Plotting the mean class trajectories alongside spaghetti plots of all subject trajectories provides evidence for the <span class="math inline">G = 4</span> model being the most appropriate.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist">
+<li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">For G = 2</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">For G = 3</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">For G = 4</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false">For G = 5</a></li>
+<li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-5" role="tab" aria-controls="tabset-3-5" aria-selected="false">For G = 6</a></li>
+</ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labeledby="tabset-3-1-tab">
+<section id="log-scale-all-subjects" class="level5"><h5 class="anchored" data-anchor-id="log-scale-all-subjects">Log-scale, all subjects</h5>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">2</span>, log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Spaghetti%20G2%20log%20all%20subjects-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</section><section id="measurement-scale-all-subjects" class="level5"><h5 class="anchored" data-anchor-id="measurement-scale-all-subjects">Measurement-scale, all subjects</h5>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">2</span>, log <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Spaghetti%20G2%20measurement%20scale%20all%20subjects-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</section><section id="log-scale-pprob-0.8-only" class="level5"><h5 class="anchored" data-anchor-id="log-scale-pprob-0.8-only">Log-scale, pprob &gt; 0.8 only</h5>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,
+               <span class="va">cubicbf.fits</span>,
+               G <span class="op">=</span> <span class="fl">2</span>,
+               log <span class="op">=</span> <span class="cn">TRUE</span>,
+               pprob.cutoff <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Spaghetti%20G2%20log%20cutoff-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</section><section id="measurement-scale-pprob-0.8-only" class="level5"><h5 class="anchored" data-anchor-id="measurement-scale-pprob-0.8-only">Measurement-scale, pprob &gt; 0.8 only</h5>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,
+               <span class="va">cubicbf.fits</span>,
+               G <span class="op">=</span> <span class="fl">2</span>,
+               log <span class="op">=</span> <span class="cn">FALSE</span>,
+               pprob.cutoff <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Spaghetti%20G2%20measurement%20scale%20cutoff-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</section>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labeledby="tabset-3-2-tab">
+<section id="log-scale-all-subjects-1" class="level5"><h5 class="anchored" data-anchor-id="log-scale-all-subjects-1">Log-scale, all subjects</h5>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="co">#| fig-width: 11</span>
+<span class="co">#| fig.height: 8</span>
+<span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">3</span>, log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Spaghetti%20G3%20log%20all%20subjects-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section><section id="measurement-scale-all-subjects-1" class="level5"><h5 class="anchored" data-anchor-id="measurement-scale-all-subjects-1">Measurement-scale, all subjects</h5>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">3</span>, log <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Spaghetti%20G3%20measurement%20scale%20all%20subjects-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</section><section id="log-scale-pprob-0.8-only-1" class="level5"><h5 class="anchored" data-anchor-id="log-scale-pprob-0.8-only-1">Log-scale, pprob &gt; 0.8 only</h5>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,
+               <span class="va">cubicbf.fits</span>,
+               G <span class="op">=</span> <span class="fl">3</span>,
+               log <span class="op">=</span> <span class="cn">TRUE</span>,
+               pprob.cutoff <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Spaghetti%20G3%20log%20cutoff-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</section><section id="measurement-scale-pprob-0.8-only-1" class="level5"><h5 class="anchored" data-anchor-id="measurement-scale-pprob-0.8-only-1">Measurement-scale, pprob &gt; 0.8 only</h5>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,
+               <span class="va">cubicbf.fits</span>,
+               G <span class="op">=</span> <span class="fl">3</span>,
+               log <span class="op">=</span> <span class="cn">FALSE</span>,
+               pprob.cutoff <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Spaghetti%20G3%20measurement%20scale%20cutoff-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</section>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labeledby="tabset-3-3-tab">
+<p>Class membership has been relabelled to ensure consistency with the alluvial plot</p>
+<section id="log-scale-all-subjects-2" class="level5"><h5 class="anchored" data-anchor-id="log-scale-all-subjects-2">Log-scale, all subjects</h5>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,
+               <span class="va">cubicbf.fits</span>,
+               G <span class="op">=</span> <span class="fl">4</span>,
+               log <span class="op">=</span> <span class="cn">TRUE</span>,
+               mapping <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Spaghetti%20G4%20log%20all%20subjects-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</section><section id="measurement-scale-all-subjects-2" class="level5"><h5 class="anchored" data-anchor-id="measurement-scale-all-subjects-2">Measurement-scale, all subjects</h5>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,
+               <span class="va">cubicbf.fits</span>,
+               G <span class="op">=</span> <span class="fl">4</span>,
+               log <span class="op">=</span> <span class="cn">FALSE</span>,
+               mapping <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Spaghetti%20G4%20measurement%20scale%20all%20subjects-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</section><section id="log-scale-pprob-0.8-only-2" class="level5"><h5 class="anchored" data-anchor-id="log-scale-pprob-0.8-only-2">Log-scale, pprob &gt; 0.8 only</h5>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,
+               <span class="va">cubicbf.fits</span>,
+               G <span class="op">=</span> <span class="fl">4</span>,
+               log <span class="op">=</span> <span class="cn">TRUE</span>,
+               pprob.cutoff <span class="op">=</span> <span class="fl">0.8</span>,
+               mapping <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Spaghetti%20G4%20log%20cutoff-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</section><section id="measurement-scale-pprob-0.8-only-2" class="level5"><h5 class="anchored" data-anchor-id="measurement-scale-pprob-0.8-only-2">Measurement-scale, pprob &gt; 0.8 only</h5>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,
+               <span class="va">cubicbf.fits</span>,
+               G <span class="op">=</span> <span class="fl">4</span>,
+               log <span class="op">=</span> <span class="cn">FALSE</span>,
+               pprob.cutoff <span class="op">=</span> <span class="fl">0.8</span>,
+               mapping <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Spaghetti%20G4%20measurement%20scale%20cutoff-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</section>
+</div>
+<div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labeledby="tabset-3-4-tab">
+<section id="log-scale-all-subjects-3" class="level5"><h5 class="anchored" data-anchor-id="log-scale-all-subjects-3">Log-scale, all subjects</h5>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">5</span>, log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Spaghetti%20G5%20log%20all%20subjects-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</section><section id="measurement-scale-all-subjects-3" class="level5"><h5 class="anchored" data-anchor-id="measurement-scale-all-subjects-3">Measurement-scale, all subjects</h5>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">5</span>, log <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Spaghetti%20G5%20measurement%20scale%20all%20subjects-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</section><section id="log-scale-pprob-0.8-only-3" class="level5"><h5 class="anchored" data-anchor-id="log-scale-pprob-0.8-only-3">Log-scale, pprob &gt; 0.8 only</h5>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,
+               <span class="va">cubicbf.fits</span>,
+               G <span class="op">=</span> <span class="fl">5</span>,
+               log <span class="op">=</span> <span class="cn">TRUE</span>,
+               pprob.cutoff <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Spaghetti%20G5%20log%20cutoff-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</section><section id="measurement-scale-pprob-0.8-only-3" class="level5"><h5 class="anchored" data-anchor-id="measurement-scale-pprob-0.8-only-3">Measurement-scale, pprob &gt; 0.8 only</h5>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb40"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,
+               <span class="va">cubicbf.fits</span>,
+               G <span class="op">=</span> <span class="fl">5</span>,
+               log <span class="op">=</span> <span class="cn">FALSE</span>,
+               pprob.cutoff <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Spaghetti%20G5%20measurement%20scale%20cutoff-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</section>
+</div>
+<div id="tabset-3-5" class="tab-pane" role="tabpanel" aria-labeledby="tabset-3-5-tab">
+<section id="log-scale-all-subjects-4" class="level5"><h5 class="anchored" data-anchor-id="log-scale-all-subjects-4">Log-scale, all subjects</h5>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">6</span>, log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Spaghetti%20G6%20log%20all%20subjects-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</section><section id="measurement-scale-all-subjects-4" class="level5"><h5 class="anchored" data-anchor-id="measurement-scale-all-subjects-4">Measurement-scale, all subjects</h5>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb42"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">6</span>, log <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Spaghetti%20G6%20measurement%20scale%20all%20subjects-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</section><section id="log-scale-pprob-0.8-only-4" class="level5"><h5 class="anchored" data-anchor-id="log-scale-pprob-0.8-only-4">Log-scale, pprob &gt; 0.8 only</h5>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,
+               <span class="va">cubicbf.fits</span>,
+               G <span class="op">=</span> <span class="fl">6</span>,
+               log <span class="op">=</span> <span class="cn">TRUE</span>,
+               pprob.cutoff <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Spaghetti%20G6%20log%20cutoff-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</section><section id="measurement-scale-pprob-0.8-only-4" class="level5"><h5 class="anchored" data-anchor-id="measurement-scale-pprob-0.8-only-4">Measurement-scale, pprob &gt; 0.8 only</h5>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,
+               <span class="va">cubicbf.fits</span>,
+               G <span class="op">=</span> <span class="fl">6</span>,
+               log <span class="op">=</span> <span class="cn">FALSE</span>,
+               pprob.cutoff <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="selection_files/figure-html/Spaghetti%20G6%20measurement%20scale%20cutoff-1.png" class="img-fluid" width="1056"></p>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</section></section><section id="conclusion" class="level2"><h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>After considering all of the above findings, the model which assumes four latent classes has been deemed the most appropriate.</p>
+</section><section id="session-information" class="level2"><h2 class="anchored" data-anchor-id="session-information">Session information</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><strong>R version 4.2.0 (2022-04-22)</strong></p>
+<p><strong>Platform:</strong> x86_64-apple-darwin17.0 (64-bit)</p>
+<p><strong>locale:</strong> en_GB.UTF-8||en_GB.UTF-8||en_GB.UTF-8||C||en_GB.UTF-8||en_GB.UTF-8</p>
+<p><strong>attached base packages:</strong> <em>grid</em>, <em>splines</em>, <em>parallel</em>, <em>stats</em>, <em>graphics</em>, <em>grDevices</em>, <em>datasets</em>, <em>utils</em>, <em>methods</em> and <em>base</em></p>
+<p><strong>other attached packages:</strong> <em>DT(v.0.22)</em>, <em>ggalluvial(v.0.12.3)</em>, <em>ggdist(v.3.1.1)</em>, <em>patchwork(v.1.1.1)</em>, <em>htmltools(v.0.5.2)</em>, <em>lcmm(v.1.9.5)</em>, <em>randtoolbox(v.1.31.1)</em>, <em>rngWELL(v.0.10-7)</em>, <em>mvtnorm(v.1.1-3)</em>, <em>survival(v.3.3-1)</em>, <em>forcats(v.0.5.1)</em>, <em>stringr(v.1.4.0)</em>, <em>dplyr(v.1.0.9)</em>, <em>purrr(v.0.3.4)</em>, <em>readr(v.2.1.2)</em>, <em>tidyr(v.1.2.0)</em>, <em>tibble(v.3.1.7)</em>, <em>ggplot2(v.3.3.6)</em> and <em>tidyverse(v.1.3.1)</em></p>
+<p><strong>loaded via a namespace (and not attached):</strong> <em>httr(v.1.4.3)</em>, <em>jsonlite(v.1.8.0)</em>, <em>modelr(v.0.1.8)</em>, <em>assertthat(v.0.2.1)</em>, <em>distributional(v.0.3.0)</em>, <em>pander(v.0.6.5)</em>, <em>renv(v.0.15.4)</em>, <em>cellranger(v.1.1.0)</em>, <em>yaml(v.2.3.5)</em>, <em>pillar(v.1.7.0)</em>, <em>backports(v.1.4.1)</em>, <em>lattice(v.0.20-45)</em>, <em>glue(v.1.6.2)</em>, <em>digest(v.0.6.29)</em>, <em>rvest(v.1.0.2)</em>, <em>colorspace(v.2.0-3)</em>, <em>plyr(v.1.8.7)</em>, <em>Matrix(v.1.4-1)</em>, <em>pkgconfig(v.2.0.3)</em>, <em>broom(v.0.8.0)</em>, <em>haven(v.2.5.0)</em>, <em>scales(v.1.2.0)</em>, <em>tzdb(v.0.3.0)</em>, <em>generics(v.0.1.2)</em>, <em>farver(v.2.1.0)</em>, <em>ellipsis(v.0.3.2)</em>, <em>withr(v.2.5.0)</em>, <em>cli(v.3.3.0)</em>, <em>magrittr(v.2.0.3)</em>, <em>crayon(v.1.5.1)</em>, <em>readxl(v.1.4.0)</em>, <em>evaluate(v.0.15)</em>, <em>fs(v.1.5.2)</em>, <em>fansi(v.1.0.3)</em>, <em>nlme(v.3.1-157)</em>, <em>xml2(v.1.3.3)</em>, <em>textshaping(v.0.3.6)</em>, <em>tools(v.4.2.0)</em>, <em>hms(v.1.1.1)</em>, <em>lifecycle(v.1.0.1)</em>, <em>munsell(v.0.5.0)</em>, <em>reprex(v.2.0.1)</em>, <em>jquerylib(v.0.1.4)</em>, <em>compiler(v.4.2.0)</em>, <em>systemfonts(v.1.0.4)</em>, <em>rlang(v.1.0.2)</em>, <em>rstudioapi(v.0.13)</em>, <em>htmlwidgets(v.1.5.4)</em>, <em>crosstalk(v.1.2.0)</em>, <em>labeling(v.0.4.2)</em>, <em>rmarkdown(v.2.14)</em>, <em>gtable(v.0.3.0)</em>, <em>DBI(v.1.1.2)</em>, <em>R6(v.2.5.1)</em>, <em>lubridate(v.1.8.0)</em>, <em>knitr(v.1.39)</em>, <em>fastmap(v.1.1.0)</em>, <em>utf8(v.1.2.2)</em>, <em>ragg(v.1.2.2)</em>, <em>stringi(v.1.7.6)</em>, <em>Rcpp(v.1.0.8.3)</em>, <em>vctrs(v.0.4.1)</em>, <em>dbplyr(v.2.1.1)</em>, <em>tidyselect(v.1.1.2)</em> and <em>xfun(v.0.30)</em></p>
+</div>
+</div>
+</section><div id="quarto-appendix" class="default"><section id="section" class="level2 appendix"><h2 class="quarto-appendix-heading"></h2><div class="quarto-appendix-contents">
+<div class="center">
+<p><img class="center" src="images/MRC_HGU_Edinburgh%20RGB.png" alt="MRC Human Genetics Unit logo" height="50px"><img src="images/cgem-logo.png" alt="Centre for Genomic &amp; Experimental Medicine logo" height="50px"></p>
+</div>
+</div></section><section id="acknowledgments" class="level2 appendix"><h2 class="quarto-appendix-heading">Acknowledgments</h2><div class="quarto-appendix-contents">
+<p>This work is funded by the Medical Research Council &amp; University of Edinburgh via a Precision Medicine PhD studentship (MR/N013166/1, to <strong>NC-C</strong>)</p>
+</div></section><section id="author-contributions" class="level2 appendix"><h2 class="quarto-appendix-heading">Author contributions</h2><div class="quarto-appendix-contents">
+<p><strong>NC-C</strong> wrote the analysis. <strong>KM</strong> and <strong>CAV</strong> performed code review and contributed suggestions. <strong>KM</strong>, <strong>RM</strong> and <strong>CAV</strong> provided feedback.</p>
+</div></section><section id="reuse" class="level2 appendix"><h2 class="quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents">
+<p>Licensed by <a href="https://creativecommons.org/licenses/by/4.0/">CC BY </a> unless otherwise stated.</p>
+
+
+
+
+</div></section><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Elhakeem2022" class="csl-entry" role="doc-biblioentry">
+Elhakeem, Ahmed, Rachael A. Hughes, Kate Tilling, Diana L. Cousminer, Stefan A. Jackowski, Tim J. Cole, Alex S. F. Kwong, et al. 2022. <span>“Using Linear and Natural Cubic Splines, SITAR, and Latent Trajectory Models to Characterise Nonlinear Longitudinal Growth Trajectories in Cohort Studies.”</span> <em>BMC Medical Research Methodology</em> 22 (1): 68. <a href="https://doi.org/10.1186/s12874-022-01542-8">https://doi.org/10.1186/s12874-022-01542-8</a>.
+</div>
+<div id="ref-Fornberg2007" class="csl-entry" role="doc-biblioentry">
+Fornberg, Bengt, and Julia Zuev. 2007. <span>“The Runge Phenomenon and Spatially Variable Shape Parameters in RBF Interpolation.”</span> <em>Computers &amp; Mathematics with Applications</em> 54 (3): 379–98. https://doi.org/<a href="https://doi.org/10.1016/j.camwa.2007.01.028">https://doi.org/10.1016/j.camwa.2007.01.028</a>.
+</div>
+<div id="ref-Proust-Lima2017" class="csl-entry" role="doc-biblioentry">
+Proust-Lima, Cécile, Viviane Philipps, and Benoit Liquet. 2017. <span>“Estimation of Extended Mixed Models Using Latent Classes and Latent Processes: The <span>R</span> Package <span class="nocase">lcmm</span>.”</span> <em>Journal of Statistical Software</em> 78 (2): 1–56. <a href="https://doi.org/10.18637/jss.v078.i02">https://doi.org/10.18637/jss.v078.i02</a>.
+</div>
+</div></section></div></main><!-- /main --><script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/IBDNathan">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+</div>
+  </div>
+</footer>
+
+
+</body></html>

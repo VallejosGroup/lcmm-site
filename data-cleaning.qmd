@@ -1,0 +1,519 @@
+---
+title: "Data Cleaning"
+subtitle: "The Crohn's Disease Inception Cohort."
+author:
+  - name: "Nathan Contantine-Cooke <sup>1, 2</sup>" 
+    url: https://scholar.google.com/citations?user=2emHWR0AAAAJ&hl=en&oi=ao
+    affiliation: "<sup>1</sup> MRC Human Genetics Unit"
+    affiliation-url: https://www.ed.ac.uk/mrc-human-genetics-unit
+  - name: "Nikolas Plevris <sup>2, 3</sup>"
+    affiliation: "<sup>2</sup> Centre for Genomic and Experimental Medicine"
+    affiliation-url: https://www.ed.ac.uk/centre-genomic-medicine
+  - name: " "
+    affiliation: "<sup>3</sup> Edinburgh IBD Unit"
+    affiliation-url: https://services.nhslothian.scot/EdinburghIBDUnit/Pages/default.aspx
+#comments:
+#  giscus: 
+#    repo: quarto-dev/quarto-docs
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+## Introduction
+
+```{R setup}
+#| message: false
+library(tidyverse)
+library(ggdist)
+library(datefixR)
+
+if(!require(pander)) {
+  install.packages("pander")
+}
+
+if(!require(viridis)) {
+  install.packages("viridis")
+}
+
+options(knitr.table.format = "pipe")
+FCcumulative <- read.csv(paste0("/Volumes/igmm/cvallejo-predicct/data/",
+                                "crohns-inception/20211201/FCcumulative.csv"))
+```
+
+This analysis, which aims to find latent Crohn's disease (CD) subgroups with
+similar faecal calprotectin (FCAL) profiles, uses data from the Crohn's Disease
+Inception Cohort [@Plevris2021]. The Crohn's disease inception cohort is a
+manually validated longitudinal cohort of `r length(unique(FCcumulative$Patient.number))`
+incident Crohn's disease (CD) cases. These are all incident CD cases diagnosed
+between 2005 and 2017 with a diagnosis FCAL of
+$\geq 250 \mu g/g$, at least one FCAL measurement within the first
+12 months of diagnosis, and at least 12 months of follow-up. @fig-flow
+shows how this cohort was derived.
+
+![Flowchart of how the Crohn's disease inception cohort was derived
+[@Plevris2021] (licensed under CC BY).](Nik-flow.jpg){#fig-flow}
+
+Previously, data from this cohort has been used by @Plevris2021 to
+demonstrate an association between normalising (< 250 $\mu g/g$) FCAL  within
+one year of diagnosis and CD disease outcomes. The outcomes considered were
+hospitalisation, surgery, disease behaviour progression, and a composite
+end-point of all three outcomes.
+
+Additional follow-up data for this cohort has been collated by a medical student
+into a large multi-sheet Excel file. Plevris had begun formatting the relevant
+data into a relevant format for modelling of longitudinal and
+survival outcomes, but this process had not been completed before the
+data was transferred. This document details the data processing steps
+undertaken to facilitate modelling.
+
+The data is currently in long format: one row per subject with one date
+column and one associated FCAL value per sample (see @tbl-tab1). As
+such, there are `r nrow(FCcumulative)` rows in this dataset. This
+dataset has `r ncol(FCcumulative)` columns in the dataset. There are up
+to 45 FCAL measurements with associated date columns, followed by
+censored status for each of the four outcomes and the associated dates.
+Some columns are entirely `NA`.
+
+```{R}
+#| label: "tbl-tab1"
+#| tbl-cap: "First 5 rows and first 5 columns of the dataset."
+knitr::kable(FCcumulative[1:5, 1:5], align = "c")
+```
+
+## Data wrangling
+
+### Dropping columns
+
+The first column lists "Overall" for all subjects. This is believed to
+be a holdover from the original format of the data, where each outcome
+for a subject had separate rows. As such, this column can be freely
+dropped. Additionally, all `NA`-only columns can also be dropped.
+
+Furthermore, there are some unnamed columns which give the number of
+days between the diagnosis FCAL and the date of the FCAL measurement.
+These columns can also be dropped as they will be recalculated alongside
+all of the FCAL measurements which do not already have this statistic
+calculated.
+
+```{R}
+FCcumulative <- FCcumulative[, -1] %>% # drop first column
+  select(function(x) !all(is.na(x))) %>% # drop all NA columns
+  select(!starts_with("X")) # Drop columns giving days from diagnosis
+```
+
+Dropping these columns results in `r ncol(FCcumulative)` columns being
+retained.
+
+### Converting to long format
+
+For analysis, it is necessary to convert the data to long format: one
+row per measurement.
+`fix_dates()` from the `{datefixR}` R package is
+used to convert the dates to R's `Date` type. We also map censoring status
+indicators for endpoints to either 0 (censored) or 1 (observed).
+
+@tbl-tab2 presents the first 5 rows of the long format table.
+
+```{R}
+#| label: "tbl-tab2"
+#| tbl-cap: "First 5 observations of the long-format table."
+ids <- c()
+values <- c()
+dates <- c()
+hosps <- c()
+date.hosps <- c()
+progs <- c()
+date.progs <- c()
+surgs <- c()
+date.surgs <- c()
+
+composites <- c()
+composites.days <- c()
+
+
+for (subject in 1:nrow(FCcumulative)) {
+  is.measurement <- TRUE
+  measurement <- 0
+  while (is.measurement & measurement < 45) {
+    measurement <- measurement + 1
+    value <- FCcumulative[subject, 2 * measurement]
+    if (is.na(value)) {
+      is.measurement <- FALSE
+    } else {
+    date <- FCcumulative[subject, (2 * measurement) + 1]
+    
+    hosp <- FCcumulative[subject, "IBD.HOSPITALISATION.POST.1.YEAR..Y.N."]
+    if (hosp == "Y") hosp <- 1
+    if (hosp == "N") hosp <- 0
+    if (hosp == "N ") hosp <- 0
+    date.hosp <- FCcumulative[subject, "DATE.OF.FIRST.IBD.HOSPITALISATION.POST.1.YEAR"]
+    if (date.hosp == "N" | date.hosp == "NO") {
+      date.hosp <- FCcumulative[subject, "DATE.OF.LAST.FOLLOW.UP"]
+    } 
+    
+    prog <- FCcumulative[subject, "DISEASE.PROGRESSION.POST.1.YEAR..Y.N...B1.B2.3..B2.B3.new.perianal."]
+    if (prog == "Y") prog <- 1
+    if (prog == "N") prog <- 0
+    
+    date.prog <- FCcumulative[subject, "DATE.OF.DISEASE.PROGRESSION.POST.1.YEAR"]
+    if (date.prog == "N" | date.prog == "NO") {
+      date.prog <- FCcumulative[subject, "DATE.OF.LAST.FOLLOW.UP"]
+    }
+    
+    surg <- FCcumulative[subject, "RESECTIONAL.SURGERY.POST.1.YEAR..Y.N."]
+    if (surg == "Y") surg <- 1
+    if (surg == "y") surg <- 1
+    if (surg == "N") surg <- 0
+    if (surg == "NO") surg <- 0
+
+    date.surg <- FCcumulative[subject, "DATE.OF.FIRST.SURGERY.POST.1.YEAR"]
+    if (date.surg == "N" | date.surg == "NO") {
+      date.surg <- FCcumulative[subject, "DATE.OF.LAST.FOLLOW.UP"]
+    }
+    
+    composite  <- FCcumulative[subject, "COMPOSITE.CENSOR"]
+    composite.day <- FCcumulative[subject, "COMPOSITE.DAYS"]
+    
+    ids <- c(ids, subject); values <- c(values, value); dates <- c(dates, date)
+    hosps <- c(hosps, hosp); date.hosps <- c(date.hosps, date.hosp)
+    progs <- c(progs, prog); date.progs <- c(date.progs, date.prog)
+    surgs <- c(surgs, surg); date.surgs <- c(date.surgs, date.surg)
+    composites <- c(composites, composite)
+    composites.days <- c(composites.days, composite.day)
+    }
+  }
+}
+
+FCcumulativeLong <- data.frame(id = ids,
+                               date = dates, 
+                               value = values,
+                               hosp = hosps,
+                               hosp.date = date.hosps,
+                               prog = progs,
+                               prog.date = date.progs,
+                               surg = surgs,
+                               surg.date = date.surgs,
+                               composite = composites,
+                               composites.day = composites.days)
+
+FCcumulativeLong <- fix_dates(FCcumulativeLong,
+                              c("date",
+                                "hosp.date",
+                                "prog.date",
+                                "surg.date"))
+
+FCcounts <- as.vector(table(FCcumulativeLong$id))
+
+max.followup <- max(c(FCcumulativeLong$hosp.date,
+                      FCcumulativeLong$prog.date,
+                      FCcumulativeLong$surg.date))
+
+knitr::kable(FCcumulativeLong[1:5, 1:3], align = "c")
+```
+
+Converting to long format reveals there are `r nrow(FCcumulativeLong)`
+FCAL samples reported in this dataset with mean
+`r round(mean(FCcounts), 2)` measurements per subject and median
+`r median(FCcounts)` (Q1: `r quantile(FCcounts)[2]`, Q3:
+`r quantile(FCcounts)[4]`) measurements per subject. From these
+quantiles, it appears the distribution of number of FCAL measurements is
+highly skewed. @fig-dist shows this distribution in greater
+detail and demonstrates the substantial skew observed.
+
+
+```{R}
+#| label: fig-dist
+#| fig-cap: "Distribution of number of FCAL measurements per subject."
+FCcountsdf <- tibble(counts = FCcounts)
+
+FCcountsdf %>%
+  ggplot(aes(x = counts)) +
+  stat_slab(size = 0.8, alpha = 0.9, fill = "#235789", color = "#235789") +
+  geom_dots(fill = "#ed1c24",
+            color = "#ed1c24",
+            alpha = 0.5,
+            binwidth = 1,
+            dotsize = 0.5) +
+  theme_minimal() +
+  theme(axis.text.y = element_blank()) +
+  xlab("Number of FCAL observations per subject") +
+  ylab("") +
+  ggtitle("Distribution of Number of FCAL Measurements per Subject",
+          "Crohn's disease inception cohort")
+```
+
+
+## Quality control
+
+```{R}
+largeFC <- subset(FCcumulativeLong, value > 2500)
+```
+
+From @fig-dist-2500, we can see there are FCAL
+measurements greater than 2500 $\mu g/g$ despite the assay used by NHS Lothian
+having an upper accuracy limit of 2500 with values greater than this normally 
+reported as "> 2500". There are `r nrow(largeFC)`
+measurements which are above this threshold.
+
+```{R}
+#| label: fig-dist-2500
+#| fig-cap: "Distribution of FCAL values. Red dots indicate FCAL values above 2500."
+FCcumulativeLong %>%
+  ggplot(aes(x = value, y = NULL)) +
+  stat_slab(size = 0.8, alpha = 0.5, fill = "#235789") +
+  geom_dots(aes(color = value > 2500, fill = value > 2500),
+            binwidth = 10,
+            size = 1,
+            side = "bottom") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank()) +
+  xlab("FCAL (µg/g)") +
+  ylab("") +
+  ggtitle("Distribution of FCAL Measurements",
+          "Crohn's disease inception cohort (before quality control)") +
+  scale_fill_manual(values = c("#235789", "#ed1c24")) + 
+  scale_color_manual(values = c("#235789", "#ed1c24")) +
+  labs(fill = "FCAL > 2500", color = "FCAL > 2500")
+```
+
+FCAL \> 2500 has been mapped to FCAL = 2500 which results in the distribution
+seen in @fig-dist-fix.
+
+```{R}
+#| label: fig-dist-fix
+#| fig-cap: "Distribution of FCAL values once values above 2500 are mapped to 2500."
+FCcumulativeLong$value <- ifelse(FCcumulativeLong$value > 2500,
+                           2500,
+                           FCcumulativeLong$value)
+
+FCcumulativeLong %>%
+  ggplot(aes(x = value, y = NULL)) +
+  stat_slab(size = 0.8, alpha = 0.5, fill = "#235789") +
+  geom_dots(binwidth = 10, size = 1, side = "bottom", color = "#235789") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank()) +
+  xlab("FCAL (µg/g)") +
+  ylab("") +
+  ggtitle("Distribution of FCAL Measurements (After Quality Control)",
+          "Crohn's disease inception cohort")
+```
+
+## Time retiming
+
+We will create a new variable, `time`, which will give the number of days
+since the subject's diagnostic FCAL for each FCAL measurement. It follows
+`time = 0` for each subject's diagnostic measurement. `time` has been scaled
+to be on a year-scale. @tbl-tab4 presents the first 10 FCAL observations.
+
+```{R}
+#| label: "tbl-tab4"
+#| tbl-cap: "FCAL measurements with time since diagnosis."
+tempdf <- data.frame()
+
+for (subject in seq_along(FCcumulative$Patient.number)) {
+  temp <- subset(FCcumulativeLong, id == subject)
+  # Should already be in order, but worth ensuring
+  temp <- temp[order(temp$date), ]
+  temp$time <- as.numeric(temp$date - temp$date[1]) / 365.25
+  temp$hosp.date <- as.numeric(temp$hosp.date - temp$date[1]) / 365.25
+  temp$prog.date <- as.numeric(temp$prog.date - temp$date[1]) / 365.25
+  temp$surg.date <- as.numeric(temp$surg.date - temp$date[1]) / 365.25
+  tempdf <- rbind(tempdf, temp)
+}
+
+FCcumulativeLong <- tempdf
+rm(tempdf)
+
+knitr::kable(FCcumulativeLong[1:10, c(1, 2, 3, 12)], row.names = FALSE)
+```
+
+From these data, we are able to plot subject-specific FCAL trajectories.
+As expected, a high degree of heterogeneity is observed (@fig-spag).
+
+```{R}
+#| label: fig-spag
+#| fig-cap: "Spaghetti plot of all FCAL trajectories in the Crohn's disease inception cohort."
+FCcumulativeLong %>% 
+  ggplot(aes(x = time, y = log(value), color = factor(id))) +
+  geom_line(alpha = 0.2) +
+  geom_point(alpha = 0.6) +
+  theme_minimal() + 
+  scale_color_manual(values = viridis::viridis(375)) +
+  guides(color = "none") +
+  xlab("Time (years)") +
+  ylab("Log FCAL") +
+  ggtitle("Spaghetti Plot of FCAL Trajectories",
+          "Subject-specific trajectories show a high degree of heterogeneity")
+```
+
+## Time cut-off
+
+As a sparse number of measurements at the end of the follow-up may result
+in a longitudinal model performing poorly for this time-period, a cut-off for
+time should be mandated. As such, we have performed an exploratory analysis to
+inform our decision on the value for this cut-off (@tbl-tab5). At least three
+measurements in the eligible time period have been mandated for a subject to be
+included.
+
+```{R}
+#| label: tbl-tab5
+#| tbl-cap: "Mean, median and interquartile range for number of FCAL measurements per subject for different time cut-offs."
+years <- seq(2, 10)
+mean.n <- c()
+median.n <- c()
+IQR.n <- c()
+
+for (year in years) {
+  # restrict to measurements within threshold
+  temp <- subset(FCcumulativeLong, time <= year) 
+  # restrict to subjects with three measurements within threshold
+  temp <- subset(temp, id %in% (unique(temp$id))[table(temp$id) > 3])
+  counts <- table(temp$id)
+  mean.n <- c(mean.n, round(mean(counts), 2))
+  median.n <- c(median.n, median(counts))
+  IQR.n <- c(IQR.n,  IQR(counts))
+}
+
+knitr::kable(data.frame(years = years,
+                     mean.n = mean.n,
+                     median.n = median.n,
+                     IQR.n = IQR.n),
+             col.names = c("Year cut-off", "Mean", "Median", "IQR"))
+```
+
+From this table, measurements within six years of diagnosis seems a
+sensible cut-off. However, we have ultimately decided five years is a better
+choice in order to be able to directly compare with other studies, for example
+the IBSEN study [@Henriksen2006], which describe 5-year disease activity
+trajectories.
+
+
+Based on the data cleaning step of the pipeline, restricting measurements to
+within 5 years of diagnosis seemed appropriate. Additionally, we will only
+consider subjects with at least 3 FCAL measurements within this time period.
+This report reports descriptive statistics for the cohort after this inclusion
+criteria is applied. 
+
+```{R}
+FCcumulativeLong <- subset(FCcumulativeLong, time < 5)
+subjects.with.3 <- unique(FCcumulativeLong$id)[table(FCcumulativeLong$id) >=3]
+FCcumulativeLong <- subset(FCcumulativeLong, id %in% subjects.with.3)
+```
+
+There are `r length(subjects.with.3)` CDI subjects which meet the criteria of having
+at least 3 FCAL measurements within 5 years of diagnosis. 
+
+```{R}
+FCcounts <- as.vector(table(FCcumulativeLong$id))
+```
+
+There are `r nrow(FCcumulativeLong)` FCAL
+samples reported with mean `r round(mean(FCcounts), 2)` measurements per subject
+and median `r median(FCcounts)` (Q1: `r quantile(FCcounts)[2]`, Q3:
+`r quantile(FCcounts)[4]`) measurements per subject.  The below plots are updated
+version of previous plots: updated to only include subjects which meet this
+criteria. 
+
+
+```{R}
+#| fig.width: 8
+#| fig.height: 4.5
+FCcountsdf <- tibble(counts = FCcounts)
+
+p <- FCcountsdf %>%
+  ggplot(aes(x = counts)) +
+  stat_slab(size = 0.8, alpha = 0.9, fill = "#235789", color = "#235789") +
+  geom_dots(fill = "#ed1c24",
+            color = "#ed1c24",
+            alpha = 0.5,
+            binwidth = 1,
+            dotsize = 0.22) +
+  theme_minimal() +
+  theme(axis.text.y = element_blank()) +
+  xlab("Number of FCAL observations per subject") +
+  ylab("") +
+  ggtitle("Distribution of Number of FCAL Measurements per Subject",
+          paste("Crohn's disease inception cohort,",
+                "(inclusion: >2 FCAL measurements within 5 years)"))
+ggsave("figures/dist1.png" , p, width = 8, height = 4.5, units = "in")
+print(p)
+```
+
+```{R}
+p <- FCcumulativeLong %>%
+  ggplot(aes(x = value, y = NULL)) +
+  stat_slab(size = 0.8, alpha = 0.5, fill = "#235789") +
+  geom_dots(color = "#235789",
+            fill = "#235789",
+            binwidth = 10,
+            size = 1,
+            side = "bottom") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank()) +
+  xlab("FCAL (µg/g)") +
+  ylab("") +
+  ggtitle("Distribution of FCAL Measurements",
+          paste("Crohn's disease inception cohort,",
+                "(inclusion: >2 FCAL measurements within 5 years)"))
+ggsave("figures/dist2.png", p, width = 8, height = 4.5, units = "in")
+print(p)
+```
+
+```{R}
+FCcumulativeLong %>% 
+  ggplot(aes(x = time, y = log(value), color = factor(id))) + geom_line(alpha = 0.2) +
+  geom_point(alpha = 0.6) +
+  theme_minimal() + 
+  scale_color_manual(values = viridis::viridis(375)) +
+  guides(color = "none") +
+  xlab("Time (years)") +
+  ylab("Log FCAL") +
+  ggtitle("Spaghetti Plot of FCAL Trajectories",
+          "Subject-specific trajectories show a high degree of heterogeneity")
+```
+
+It should be noted `r lubridate::month(max.followup, label = TRUE, abbr = FALSE)`
+`r lubridate::year(max.followup)` is the last month of followup
+
+## Data saving
+
+The tidied data, with a 5-year cut-off applied, has been saved as a  RDS file for
+the [model selection](selection.qmd) step of the analysis pipeline.
+
+```{R}
+saveRDS(FCcumulativeLong,
+        paste0("/Volumes/igmm/cvallejo-predicct/processed-data/cdi/",
+               "FCcumulativeLongInc.RDS"))
+```
+
+## Session information
+
+```{R}
+#| echo: false
+pander::pander(sessionInfo())
+```
+
+## {.appendix}
+
+<div class = "center">
+<img class = "center" src="images/MRC_HGU_Edinburgh RGB.png" alt="MRC Human Genetics Unit logo" height = 50px>
+<img src="images/cgem-logo.png" alt="Centre for Genomic & Experimental Medicine logo" height = 50px> 
+</div>
+
+## Acknowledgments {.appendix}
+
+This work is funded by the Medical Research Council & University of Edinburgh
+via a Precision Medicine PhD studentship (MR/N013166/1, to **NC-C**).
+
+## Author contributions {.appendix}
+
+**NC-C** performed the data cleaning detailed in this report. **NP** and INSERT
+extracted the data from electronic health records and formatted the data in 
+the form initially described.
+
+## Reuse {.appendix}
+
+Licensed by 
+<a href="https://creativecommons.org/licenses/by/4.0/">CC BY </a>
+ unless otherwise stated.

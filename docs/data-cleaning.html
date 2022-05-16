@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.180">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Nathan Contantine-Cooke 1, 2">
+<meta name="author" content="Nikolas Plevris 2, 3">
+<title>Analysis by Constantine-Cooke et al.&nbsp;- Data Cleaning</title>
+<style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+    "location": "navbar",
+    "copy-button": false,
+    "collapse-after": 3,
+    "panel-placement": "end",
+    "type": "overlay",
+    "limit": 20,
+    "language": {
+      "search-no-results-text": "No results",
+      "search-matching-documents-text": "matching documents",
+      "search-copy-link-title": "Copy link to search",
+      "search-hide-matches-text": "Hide additional matches",
+      "search-more-match-text": "more match in this document",
+      "search-more-matches-text": "more matches in this document",
+      "search-clear-button-title": "Clear",
+      "search-detached-cancel-button-title": "Cancel",
+      "search-submit-button-title": "Submit"
+    }
+  }</script><script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+<!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]--><link rel="stylesheet" href="theme.css">
+<meta name="citation_title" content="Data Cleaning">
+<meta name="citation_author" content="Nathan Contantine-Cooke &amp;amp;lt;sup&amp;gt;1, 2</sup>">
+<meta name="citation_author" content="Nikolas Plevris &amp;amp;lt;sup&amp;gt;2, 3</sup>">
+<meta name="citation_author" content=" ">
+<meta name="citation_online_date" content="2022-05-16">
+<meta name="citation_publication_date" content="2022-05-16">
+<meta name="citation_journal_title" content="undefined">
+<meta name="citation_reference" content="citation_title=Normalization of fecal calprotectin within 12 months of diagnosis is associated with reduced risk of disease progression in patients with Crohn’s disease;,citation_author=Nikolas Plevris;,citation_author=James Fulforth;,citation_author=Mathew Lyons;,citation_author=Spyros I. Siakavellas;,citation_author=Philip W. Jenkinson;,citation_author=Cher S. Chuah;,citation_author=Laura Lucaciu;,citation_author=Rebecca J. Pattenden;,citation_author=Ian D. Arnott;,citation_author=Gareth-Rhys Jones;,citation_author=Charlie W. Lees;,citation_publication_date=2021-09;,citation_issue=9;,citation_volume=19;,citation_journal_title=Clinical Gastroenterology and Hepatology;">
+<meta name="citation_reference" content="citation_title=Ulcerative colitis and clinical course: Results of a 5-year population-based follow-up study (the IBSEN study);,citation_author=Magne Henriksen;,citation_author=Jrgen Jahnsen;,citation_author=Idar Lygren;,citation_author=Jostein Sauar;,citation_author=undefined Kjellevold;,citation_author=Tom Schulz;,citation_author=Morten H. Vatn;,citation_author=Bjrn Moum;,citation_publication_date=2006-07;,citation_issue=7;,citation_volume=12;,citation_journal_title=Inflammatory Bowel Diseases;">
+<meta name="citation_reference" content="citation_title=Polynomials and potential theory for gaussian radial basis function interpolation;,citation_author=Rodrigo B. Platte;,citation_author=Tobin A. Driscoll;,citation_fulltext_html_url=https://doi.org/10.1137/040610143;,citation_publication_date=2005;,citation_issue=2;,citation_volume=43;,citation_journal_title=SIAM Journal on Numerical Analysis;">
+<meta name="citation_reference" content="citation_title=Estimation of extended mixed models using latent classes and latent processes: The R package lcmm;,citation_author=Cécile Proust-Lima;,citation_author=Viviane Philipps;,citation_author=Benoit Liquet;,citation_publication_date=2017;,citation_issue=2;,citation_volume=78;,citation_journal_title=Journal of Statistical Software;">
+<meta name="citation_reference" content="citation_title=Regression modeling strategies;,citation_author=undefined Frank E. Harrell;,citation_publication_date=2015;,citation_journal_title=undefined;">
+<meta name="citation_reference" content="citation_title=The runge phenomenon and spatially variable shape parameters in RBF interpolation;,citation_author=Bengt Fornberg;,citation_author=Julia Zuev;,citation_fulltext_html_url=https://www.sciencedirect.com/science/article/pii/S0898122107002210;,citation_publication_date=2007;,citation_issue=3;,citation_issn=0898-1221;,citation_volume=54;,citation_journal_title=Computers &amp;amp;amp; Mathematics with Applications;">
+<meta name="citation_reference" content="citation_title=Using linear and natural cubic splines, SITAR, and latent trajectory models to characterise nonlinear longitudinal growth trajectories in cohort studies;,citation_author=Ahmed Elhakeem;,citation_author=Rachael A. Hughes;,citation_author=Kate Tilling;,citation_author=Diana L. Cousminer;,citation_author=Stefan A. Jackowski;,citation_author=Tim J. Cole;,citation_author=Alex S. F. Kwong;,citation_author=Zheyuan Li;,citation_author=Struan F. A. Grant;,citation_author=Adam D. G. Baxter-Jones;,citation_author=Babette S. Zemel;,citation_author=Deborah A. Lawlor;,citation_fulltext_html_url=https://doi.org/10.1186/s12874-022-01542-8;,citation_publication_date=2022;,citation_issue=1;,citation_isbn=1471-2288;,citation_volume=22;,citation_journal_title=BMC Medical Research Methodology;">
+</head>
+<body>
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Analysis by Constantine-Cooke et al.</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+<li class="nav-item">
+    <a class="nav-link" href="./index.html">About</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./data-cleaning.html" aria-current="page">Data Cleaning</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./selection.html">Model Selection</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./associations.html">Association Testing</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+<div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc"><h2 id="toc-title">On this page</h2>
+<ul>
+<li><a href="#introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+<li>
+<a href="#data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">Data wrangling</a>
+<ul class="collapse">
+<li><a href="#dropping-columns" class="nav-link" data-scroll-target="#dropping-columns">Dropping columns</a></li>
+<li><a href="#converting-to-long-format" class="nav-link" data-scroll-target="#converting-to-long-format">Converting to long format</a></li>
+</ul>
+</li>
+<li><a href="#quality-control" class="nav-link" data-scroll-target="#quality-control">Quality control</a></li>
+<li><a href="#time-retiming" class="nav-link" data-scroll-target="#time-retiming">Time retiming</a></li>
+<li><a href="#time-cut-off" class="nav-link" data-scroll-target="#time-cut-off">Time cut-off</a></li>
+<li><a href="#data-saving" class="nav-link" data-scroll-target="#data-saving">Data saving</a></li>
+<li><a href="#session-information" class="nav-link" data-scroll-target="#session-information">Session information</a></li>
+<li><a href="#section" class="nav-link" data-scroll-target="#section"></a></li>
+<li><a href="#acknowledgments" class="nav-link" data-scroll-target="#acknowledgments">Acknowledgments</a></li>
+<li><a href="#author-contributions" class="nav-link" data-scroll-target="#author-contributions">Author contributions</a></li>
+<li><a href="#reuse" class="nav-link" data-scroll-target="#reuse">Reuse</a></li>
+</ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/quarto-dev/quarto-demo/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title-block"><div><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+
+
+
+
+
+<div class="quarto-title"><h1 class="title">Data Cleaning</h1><p class="subtitle lead">The Crohn’s Disease Inception Cohort.</p></div><div class="quarto-title-meta"><div><div class="quarto-title-meta-heading">Authors</div><div class="quarto-title-meta-contents"><div class="quarto-title-authors"><div><a href="https://scholar.google.com/citations?user=2emHWR0AAAAJ&amp;hl=en&amp;oi=ao">
+<p>Nathan Contantine-Cooke <sup>1, 2</sup></p>
+</a></div><div><div>
+<p>Nikolas Plevris <sup>2, 3</sup></p>
+</div></div><div></div></div></div></div><div><div class="quarto-title-meta-heading">Affilliations</div><div class="quarto-title-meta-contents"><div class="quarto-title-affiliations"><p><a href="https://www.ed.ac.uk/mrc-human-genetics-unit">
+<p><sup>1</sup> MRC Human Genetics Unit</p>
+</a></p><p><a href="https://www.ed.ac.uk/centre-genomic-medicine">
+<p><sup>2</sup> Centre for Genomic and Experimental Medicine</p>
+</a></p><p><a href="https://services.nhslothian.scot/EdinburghIBDUnit/Pages/default.aspx">
+<p><sup>3</sup> Edinburgh IBD Unit</p>
+</a></p></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">May 16, 2022</p></div></div></div></header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/">ggdist</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/nathansam/datefixR">datefixR</a></span><span class="op">)</span>
+
+<span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://rapporter.github.io/pander/">pander</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"pander"</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://sjmgarnier.github.io/viridis/">viridis</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"viridis"</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>knitr.table.format <span class="op">=</span> <span class="st">"pipe"</span><span class="op">)</span>
+<span class="va">FCcumulative</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"/Volumes/igmm/cvallejo-predicct/data/"</span>,
+                                <span class="st">"crohns-inception/20211201/FCcumulative.csv"</span><span class="op">)</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>This analysis, which aims to find latent Crohn’s disease (CD) subgroups with similar faecal calprotectin (FCAL) profiles, uses data from the Crohn’s Disease Inception Cohort <span class="citation" data-cites="Plevris2021">(<a href="#ref-Plevris2021" role="doc-biblioref">Plevris et al. 2021</a>)</span>. The Crohn’s disease inception cohort is a manually validated longitudinal cohort of 375 incident Crohn’s disease (CD) cases. These are all incident CD cases diagnosed between 2005 and 2017 with a diagnosis FCAL of <span class="math inline">\geq 250 \mu g/g</span>, at least one FCAL measurement within the first 12 months of diagnosis, and at least 12 months of follow-up. <a href="#fig-flow">Figure&nbsp;1</a> shows how this cohort was derived.</p>
+<div id="fig-flow" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="Nik-flow.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 1: Flowchart of how the Crohn’s disease inception cohort was derived <span class="citation" data-cites="Plevris2021">(<a href="#ref-Plevris2021" role="doc-biblioref">Plevris et al. 2021</a>)</span> (licensed under CC BY).</figcaption><p></p>
+</figure>
+</div>
+<p>Previously, data from this cohort has been used by <span class="citation" data-cites="Plevris2021">Plevris et al. (<a href="#ref-Plevris2021" role="doc-biblioref">2021</a>)</span> to demonstrate an association between normalising (&lt; 250 <span class="math inline">\mu g/g</span>) FCAL within one year of diagnosis and CD disease outcomes. The outcomes considered were hospitalisation, surgery, disease behaviour progression, and a composite end-point of all three outcomes.</p>
+<p>Additional follow-up data for this cohort has been collated by a medical student into a large multi-sheet Excel file. Plevris had begun formatting the relevant data into a relevant format for modelling of longitudinal and survival outcomes, but this process had not been completed before the data was transferred. This document details the data processing steps undertaken to facilitate modelling.</p>
+<p>The data is currently in long format: one row per subject with one date column and one associated FCAL value per sample (see <a href="#tbl-tab1">Table&nbsp;1</a>). As such, there are 375 rows in this dataset. This dataset has 147 columns in the dataset. There are up to 45 FCAL measurements with associated date columns, followed by censored status for each of the four outcomes and the associated dates. Some columns are entirely <code>NA</code>.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">FCcumulative</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, align <span class="op">=</span> <span class="st">"c"</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="tbl-tab1" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table 1: First 5 rows and first 5 columns of the dataset.</caption>
+<thead><tr class="header">
+<th style="text-align: center;">X</th>
+<th style="text-align: center;">Patient.number</th>
+<th style="text-align: center;">FC1..DIAGNOSIS.</th>
+<th style="text-align: center;">FC1.DATE</th>
+<th style="text-align: center;">FC2</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">OVERALL</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">880</td>
+<td style="text-align: center;">01/01/2015</td>
+<td style="text-align: center;">770</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">OVERALL</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1080</td>
+<td style="text-align: center;">24/03/2017</td>
+<td style="text-align: center;">142</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">OVERALL</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">410</td>
+<td style="text-align: center;">01/01/2009</td>
+<td style="text-align: center;">1215</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">OVERALL</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">400</td>
+<td style="text-align: center;">14/06/2011</td>
+<td style="text-align: center;">200</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">OVERALL</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">1650</td>
+<td style="text-align: center;">17/11/2008</td>
+<td style="text-align: center;">1920</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section><section id="data-wrangling" class="level2"><h2 class="anchored" data-anchor-id="data-wrangling">Data wrangling</h2>
+<section id="dropping-columns" class="level3"><h3 class="anchored" data-anchor-id="dropping-columns">Dropping columns</h3>
+<p>The first column lists “Overall” for all subjects. This is believed to be a holdover from the original format of the data, where each outcome for a subject had separate rows. As such, this column can be freely dropped. Additionally, all <code>NA</code>-only columns can also be dropped.</p>
+<p>Furthermore, there are some unnamed columns which give the number of days between the diagnosis FCAL and the date of the FCAL measurement. These columns can also be dropped as they will be recalculated alongside all of the FCAL measurements which do not already have this statistic calculated.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">FCcumulative</span> <span class="op">&lt;-</span> <span class="va">FCcumulative</span><span class="op">[</span>, <span class="op">-</span><span class="fl">1</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># drop first column</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="co"># drop all NA columns</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">starts_with</a></span><span class="op">(</span><span class="st">"X"</span><span class="op">)</span><span class="op">)</span> <span class="co"># Drop columns giving days from diagnosis</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Dropping these columns results in 102 columns being retained.</p>
+</section><section id="converting-to-long-format" class="level3"><h3 class="anchored" data-anchor-id="converting-to-long-format">Converting to long format</h3>
+<p>For analysis, it is necessary to convert the data to long format: one row per measurement. <code><a href="https://rdrr.io/pkg/datefixR/man/fix_dates.html">fix_dates()</a></code> from the <a href="https://github.com/nathansam/datefixR">datefixR</a> R package is used to convert the dates to R’s <code>Date</code> type. We also map censoring status indicators for endpoints to either 0 (censored) or 1 (observed).</p>
+<p><a href="#tbl-tab2">Table&nbsp;2</a> presents the first 5 rows of the long format table.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">dates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">hosps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">date.hosps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">progs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">date.progs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">surgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">date.surgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">composites</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">composites.days</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+
+
+<span class="kw">for</span> <span class="op">(</span><span class="va">subject</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">FCcumulative</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">is.measurement</span> <span class="op">&lt;-</span> <span class="cn">TRUE</span>
+  <span class="va">measurement</span> <span class="op">&lt;-</span> <span class="fl">0</span>
+  <span class="kw">while</span> <span class="op">(</span><span class="va">is.measurement</span> <span class="op">&amp;</span> <span class="va">measurement</span> <span class="op">&lt;</span> <span class="fl">45</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">measurement</span> <span class="op">&lt;-</span> <span class="va">measurement</span> <span class="op">+</span> <span class="fl">1</span>
+    <span class="va">value</span> <span class="op">&lt;-</span> <span class="va">FCcumulative</span><span class="op">[</span><span class="va">subject</span>, <span class="fl">2</span> <span class="op">*</span> <span class="va">measurement</span><span class="op">]</span>
+    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+      <span class="va">is.measurement</span> <span class="op">&lt;-</span> <span class="cn">FALSE</span>
+    <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
+    <span class="va">date</span> <span class="op">&lt;-</span> <span class="va">FCcumulative</span><span class="op">[</span><span class="va">subject</span>, <span class="op">(</span><span class="fl">2</span> <span class="op">*</span> <span class="va">measurement</span><span class="op">)</span> <span class="op">+</span> <span class="fl">1</span><span class="op">]</span>
+    
+    <span class="va">hosp</span> <span class="op">&lt;-</span> <span class="va">FCcumulative</span><span class="op">[</span><span class="va">subject</span>, <span class="st">"IBD.HOSPITALISATION.POST.1.YEAR..Y.N."</span><span class="op">]</span>
+    <span class="kw">if</span> <span class="op">(</span><span class="va">hosp</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="va">hosp</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+    <span class="kw">if</span> <span class="op">(</span><span class="va">hosp</span> <span class="op">==</span> <span class="st">"N"</span><span class="op">)</span> <span class="va">hosp</span> <span class="op">&lt;-</span> <span class="fl">0</span>
+    <span class="kw">if</span> <span class="op">(</span><span class="va">hosp</span> <span class="op">==</span> <span class="st">"N "</span><span class="op">)</span> <span class="va">hosp</span> <span class="op">&lt;-</span> <span class="fl">0</span>
+    <span class="va">date.hosp</span> <span class="op">&lt;-</span> <span class="va">FCcumulative</span><span class="op">[</span><span class="va">subject</span>, <span class="st">"DATE.OF.FIRST.IBD.HOSPITALISATION.POST.1.YEAR"</span><span class="op">]</span>
+    <span class="kw">if</span> <span class="op">(</span><span class="va">date.hosp</span> <span class="op">==</span> <span class="st">"N"</span> <span class="op">|</span> <span class="va">date.hosp</span> <span class="op">==</span> <span class="st">"NO"</span><span class="op">)</span> <span class="op">{</span>
+      <span class="va">date.hosp</span> <span class="op">&lt;-</span> <span class="va">FCcumulative</span><span class="op">[</span><span class="va">subject</span>, <span class="st">"DATE.OF.LAST.FOLLOW.UP"</span><span class="op">]</span>
+    <span class="op">}</span> 
+    
+    <span class="va">prog</span> <span class="op">&lt;-</span> <span class="va">FCcumulative</span><span class="op">[</span><span class="va">subject</span>, <span class="st">"DISEASE.PROGRESSION.POST.1.YEAR..Y.N...B1.B2.3..B2.B3.new.perianal."</span><span class="op">]</span>
+    <span class="kw">if</span> <span class="op">(</span><span class="va">prog</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="va">prog</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+    <span class="kw">if</span> <span class="op">(</span><span class="va">prog</span> <span class="op">==</span> <span class="st">"N"</span><span class="op">)</span> <span class="va">prog</span> <span class="op">&lt;-</span> <span class="fl">0</span>
+    
+    <span class="va">date.prog</span> <span class="op">&lt;-</span> <span class="va">FCcumulative</span><span class="op">[</span><span class="va">subject</span>, <span class="st">"DATE.OF.DISEASE.PROGRESSION.POST.1.YEAR"</span><span class="op">]</span>
+    <span class="kw">if</span> <span class="op">(</span><span class="va">date.prog</span> <span class="op">==</span> <span class="st">"N"</span> <span class="op">|</span> <span class="va">date.prog</span> <span class="op">==</span> <span class="st">"NO"</span><span class="op">)</span> <span class="op">{</span>
+      <span class="va">date.prog</span> <span class="op">&lt;-</span> <span class="va">FCcumulative</span><span class="op">[</span><span class="va">subject</span>, <span class="st">"DATE.OF.LAST.FOLLOW.UP"</span><span class="op">]</span>
+    <span class="op">}</span>
+    
+    <span class="va">surg</span> <span class="op">&lt;-</span> <span class="va">FCcumulative</span><span class="op">[</span><span class="va">subject</span>, <span class="st">"RESECTIONAL.SURGERY.POST.1.YEAR..Y.N."</span><span class="op">]</span>
+    <span class="kw">if</span> <span class="op">(</span><span class="va">surg</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="va">surg</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+    <span class="kw">if</span> <span class="op">(</span><span class="va">surg</span> <span class="op">==</span> <span class="st">"y"</span><span class="op">)</span> <span class="va">surg</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+    <span class="kw">if</span> <span class="op">(</span><span class="va">surg</span> <span class="op">==</span> <span class="st">"N"</span><span class="op">)</span> <span class="va">surg</span> <span class="op">&lt;-</span> <span class="fl">0</span>
+    <span class="kw">if</span> <span class="op">(</span><span class="va">surg</span> <span class="op">==</span> <span class="st">"NO"</span><span class="op">)</span> <span class="va">surg</span> <span class="op">&lt;-</span> <span class="fl">0</span>
+
+    <span class="va">date.surg</span> <span class="op">&lt;-</span> <span class="va">FCcumulative</span><span class="op">[</span><span class="va">subject</span>, <span class="st">"DATE.OF.FIRST.SURGERY.POST.1.YEAR"</span><span class="op">]</span>
+    <span class="kw">if</span> <span class="op">(</span><span class="va">date.surg</span> <span class="op">==</span> <span class="st">"N"</span> <span class="op">|</span> <span class="va">date.surg</span> <span class="op">==</span> <span class="st">"NO"</span><span class="op">)</span> <span class="op">{</span>
+      <span class="va">date.surg</span> <span class="op">&lt;-</span> <span class="va">FCcumulative</span><span class="op">[</span><span class="va">subject</span>, <span class="st">"DATE.OF.LAST.FOLLOW.UP"</span><span class="op">]</span>
+    <span class="op">}</span>
+    
+    <span class="va">composite</span>  <span class="op">&lt;-</span> <span class="va">FCcumulative</span><span class="op">[</span><span class="va">subject</span>, <span class="st">"COMPOSITE.CENSOR"</span><span class="op">]</span>
+    <span class="va">composite.day</span> <span class="op">&lt;-</span> <span class="va">FCcumulative</span><span class="op">[</span><span class="va">subject</span>, <span class="st">"COMPOSITE.DAYS"</span><span class="op">]</span>
+    
+    <span class="va">ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">ids</span>, <span class="va">subject</span><span class="op">)</span>; <span class="va">values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">values</span>, <span class="va">value</span><span class="op">)</span>; <span class="va">dates</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">dates</span>, <span class="va">date</span><span class="op">)</span>
+    <span class="va">hosps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">hosps</span>, <span class="va">hosp</span><span class="op">)</span>; <span class="va">date.hosps</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">date.hosps</span>, <span class="va">date.hosp</span><span class="op">)</span>
+    <span class="va">progs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">progs</span>, <span class="va">prog</span><span class="op">)</span>; <span class="va">date.progs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">date.progs</span>, <span class="va">date.prog</span><span class="op">)</span>
+    <span class="va">surgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">surgs</span>, <span class="va">surg</span><span class="op">)</span>; <span class="va">date.surgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">date.surgs</span>, <span class="va">date.surg</span><span class="op">)</span>
+    <span class="va">composites</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">composites</span>, <span class="va">composite</span><span class="op">)</span>
+    <span class="va">composites.days</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">composites.days</span>, <span class="va">composite.day</span><span class="op">)</span>
+    <span class="op">}</span>
+  <span class="op">}</span>
+<span class="op">}</span>
+
+<span class="va">FCcumulativeLong</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="va">ids</span>,
+                               date <span class="op">=</span> <span class="va">dates</span>, 
+                               value <span class="op">=</span> <span class="va">values</span>,
+                               hosp <span class="op">=</span> <span class="va">hosps</span>,
+                               hosp.date <span class="op">=</span> <span class="va">date.hosps</span>,
+                               prog <span class="op">=</span> <span class="va">progs</span>,
+                               prog.date <span class="op">=</span> <span class="va">date.progs</span>,
+                               surg <span class="op">=</span> <span class="va">surgs</span>,
+                               surg.date <span class="op">=</span> <span class="va">date.surgs</span>,
+                               composite <span class="op">=</span> <span class="va">composites</span>,
+                               composites.day <span class="op">=</span> <span class="va">composites.days</span><span class="op">)</span>
+
+<span class="va">FCcumulativeLong</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/datefixR/man/fix_dates.html">fix_dates</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span>,
+                              <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"date"</span>,
+                                <span class="st">"hosp.date"</span>,
+                                <span class="st">"prog.date"</span>,
+                                <span class="st">"surg.date"</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">FCcounts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span><span class="op">$</span><span class="va">id</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">max.followup</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span><span class="op">$</span><span class="va">hosp.date</span>,
+                      <span class="va">FCcumulativeLong</span><span class="op">$</span><span class="va">prog.date</span>,
+                      <span class="va">FCcumulativeLong</span><span class="op">$</span><span class="va">surg.date</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>, align <span class="op">=</span> <span class="st">"c"</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="tbl-tab2" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table 2: First 5 observations of the long-format table.</caption>
+<thead><tr class="header">
+<th style="text-align: center;">id</th>
+<th style="text-align: center;">date</th>
+<th style="text-align: center;">value</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2015-01-01</td>
+<td style="text-align: center;">880</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2015-06-09</td>
+<td style="text-align: center;">770</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2016-10-28</td>
+<td style="text-align: center;">90</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2017-03-24</td>
+<td style="text-align: center;">1080</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2017-07-04</td>
+<td style="text-align: center;">142</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Converting to long format reveals there are 3616 FCAL samples reported in this dataset with mean 9.64 measurements per subject and median 7 (Q1: 5, Q3: 12) measurements per subject. From these quantiles, it appears the distribution of number of FCAL measurements is highly skewed. <a href="#fig-dist">Figure&nbsp;2</a> shows this distribution in greater detail and demonstrates the substantial skew observed.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">FCcountsdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>counts <span class="op">=</span> <span class="va">FCcounts</span><span class="op">)</span>
+
+<span class="va">FCcountsdf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">counts</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/stat_slab.html">stat_slab</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.8</span>, alpha <span class="op">=</span> <span class="fl">0.9</span>, fill <span class="op">=</span> <span class="st">"#235789"</span>, color <span class="op">=</span> <span class="st">"#235789"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/geom_dotsinterval.html">geom_dots</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#ed1c24"</span>,
+            color <span class="op">=</span> <span class="st">"#ed1c24"</span>,
+            alpha <span class="op">=</span> <span class="fl">0.5</span>,
+            binwidth <span class="op">=</span> <span class="fl">1</span>,
+            dotsize <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Number of FCAL observations per subject"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Distribution of Number of FCAL Measurements per Subject"</span>,
+          <span class="st">"Crohn's disease inception cohort"</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-dist" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="data-cleaning_files/figure-html/fig-dist-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 2: Distribution of number of FCAL measurements per subject.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section></section><section id="quality-control" class="level2"><h2 class="anchored" data-anchor-id="quality-control">Quality control</h2>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">largeFC</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span>, <span class="va">value</span> <span class="op">&gt;</span> <span class="fl">2500</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>From <a href="#fig-dist-2500">Figure&nbsp;3</a>, we can see there are FCAL measurements greater than 2500 <span class="math inline">\mu g/g</span> despite the assay used by NHS Lothian having an upper accuracy limit of 2500 with values greater than this normally reported as “&gt; 2500”. There are 10 measurements which are above this threshold.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">FCcumulativeLong</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/stat_slab.html">stat_slab</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.8</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, fill <span class="op">=</span> <span class="st">"#235789"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/geom_dotsinterval.html">geom_dots</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">value</span> <span class="op">&gt;</span> <span class="fl">2500</span>, fill <span class="op">=</span> <span class="va">value</span> <span class="op">&gt;</span> <span class="fl">2500</span><span class="op">)</span>,
+            binwidth <span class="op">=</span> <span class="fl">10</span>,
+            size <span class="op">=</span> <span class="fl">1</span>,
+            side <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"FCAL (µg/g)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Distribution of FCAL Measurements"</span>,
+          <span class="st">"Crohn's disease inception cohort (before quality control)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#235789"</span>, <span class="st">"#ed1c24"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#235789"</span>, <span class="st">"#ed1c24"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"FCAL &gt; 2500"</span>, color <span class="op">=</span> <span class="st">"FCAL &gt; 2500"</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-dist-2500" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="data-cleaning_files/figure-html/fig-dist-2500-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 3: Distribution of FCAL values. Red dots indicate FCAL values above 2500.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>FCAL &gt; 2500 has been mapped to FCAL = 2500 which results in the distribution seen in <a href="#fig-dist-fix">Figure&nbsp;4</a>.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">FCcumulativeLong</span><span class="op">$</span><span class="va">value</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span><span class="op">$</span><span class="va">value</span> <span class="op">&gt;</span> <span class="fl">2500</span>,
+                           <span class="fl">2500</span>,
+                           <span class="va">FCcumulativeLong</span><span class="op">$</span><span class="va">value</span><span class="op">)</span>
+
+<span class="va">FCcumulativeLong</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/stat_slab.html">stat_slab</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.8</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, fill <span class="op">=</span> <span class="st">"#235789"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/geom_dotsinterval.html">geom_dots</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">10</span>, size <span class="op">=</span> <span class="fl">1</span>, side <span class="op">=</span> <span class="st">"bottom"</span>, color <span class="op">=</span> <span class="st">"#235789"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"FCAL (µg/g)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Distribution of FCAL Measurements (After Quality Control)"</span>,
+          <span class="st">"Crohn's disease inception cohort"</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-dist-fix" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="data-cleaning_files/figure-html/fig-dist-fix-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 4: Distribution of FCAL values once values above 2500 are mapped to 2500.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="time-retiming" class="level2"><h2 class="anchored" data-anchor-id="time-retiming">Time retiming</h2>
+<p>We will create a new variable, <code>time</code>, which will give the number of days since the subject’s diagnostic FCAL for each FCAL measurement. It follows <code>time = 0</code> for each subject’s diagnostic measurement. <code>time</code> has been scaled to be on a year-scale. <a href="#tbl-tab4">Table&nbsp;3</a> presents the first 10 FCAL observations.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">tempdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="kw">for</span> <span class="op">(</span><span class="va">subject</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">FCcumulative</span><span class="op">$</span><span class="va">Patient.number</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span>, <span class="va">id</span> <span class="op">==</span> <span class="va">subject</span><span class="op">)</span>
+  <span class="co"># Should already be in order, but worth ensuring</span>
+  <span class="va">temp</span> <span class="op">&lt;-</span> <span class="va">temp</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">temp</span><span class="op">$</span><span class="va">date</span><span class="op">)</span>, <span class="op">]</span>
+  <span class="va">temp</span><span class="op">$</span><span class="va">time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">temp</span><span class="op">$</span><span class="va">date</span> <span class="op">-</span> <span class="va">temp</span><span class="op">$</span><span class="va">date</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="fl">365.25</span>
+  <span class="va">temp</span><span class="op">$</span><span class="va">hosp.date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">temp</span><span class="op">$</span><span class="va">hosp.date</span> <span class="op">-</span> <span class="va">temp</span><span class="op">$</span><span class="va">date</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="fl">365.25</span>
+  <span class="va">temp</span><span class="op">$</span><span class="va">prog.date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">temp</span><span class="op">$</span><span class="va">prog.date</span> <span class="op">-</span> <span class="va">temp</span><span class="op">$</span><span class="va">date</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="fl">365.25</span>
+  <span class="va">temp</span><span class="op">$</span><span class="va">surg.date</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">temp</span><span class="op">$</span><span class="va">surg.date</span> <span class="op">-</span> <span class="va">temp</span><span class="op">$</span><span class="va">date</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="fl">365.25</span>
+  <span class="va">tempdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">tempdf</span>, <span class="va">temp</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="va">FCcumulativeLong</span> <span class="op">&lt;-</span> <span class="va">tempdf</span>
+<span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span><span class="va">tempdf</span><span class="op">)</span>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">12</span><span class="op">)</span><span class="op">]</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="tbl-tab4" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table 3: FCAL measurements with time since diagnosis.</caption>
+<thead><tr class="header">
+<th style="text-align: right;">id</th>
+<th style="text-align: left;">date</th>
+<th style="text-align: right;">value</th>
+<th style="text-align: right;">time</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2015-01-01</td>
+<td style="text-align: right;">880</td>
+<td style="text-align: right;">0.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2015-06-09</td>
+<td style="text-align: right;">770</td>
+<td style="text-align: right;">0.4353183</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2016-10-28</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">1.8234086</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2017-03-24</td>
+<td style="text-align: right;">1080</td>
+<td style="text-align: right;">0.0000000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2017-07-04</td>
+<td style="text-align: right;">142</td>
+<td style="text-align: right;">0.2792608</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2018-03-22</td>
+<td style="text-align: right;">363</td>
+<td style="text-align: right;">0.9938398</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2018-06-26</td>
+<td style="text-align: right;">376</td>
+<td style="text-align: right;">1.2566735</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2018-10-02</td>
+<td style="text-align: right;">1210</td>
+<td style="text-align: right;">1.5249829</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">2009-01-01</td>
+<td style="text-align: right;">410</td>
+<td style="text-align: right;">0.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">2009-05-12</td>
+<td style="text-align: right;">1215</td>
+<td style="text-align: right;">0.3586585</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>From these data, we are able to plot subject-specific FCAL trajectories. As expected, a high degree of heterogeneity is observed (<a href="#fig-spag">Figure&nbsp;5</a>).</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">FCcumulativeLong</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">id</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu">viridis</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html">viridis</a></span><span class="op">(</span><span class="fl">375</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Time (years)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Log FCAL"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Spaghetti Plot of FCAL Trajectories"</span>,
+          <span class="st">"Subject-specific trajectories show a high degree of heterogeneity"</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="fig-spag" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure"><p><img src="data-cleaning_files/figure-html/fig-spag-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 5: Spaghetti plot of all FCAL trajectories in the Crohn’s disease inception cohort.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section><section id="time-cut-off" class="level2"><h2 class="anchored" data-anchor-id="time-cut-off">Time cut-off</h2>
+<p>As a sparse number of measurements at the end of the follow-up may result in a longitudinal model performing poorly for this time-period, a cut-off for time should be mandated. As such, we have performed an exploratory analysis to inform our decision on the value for this cut-off (<a href="#tbl-tab5">Table&nbsp;4</a>). At least three measurements in the eligible time period have been mandated for a subject to be included.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">years</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">10</span><span class="op">)</span>
+<span class="va">mean.n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">median.n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">IQR.n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="kw">for</span> <span class="op">(</span><span class="va">year</span> <span class="kw">in</span> <span class="va">years</span><span class="op">)</span> <span class="op">{</span>
+  <span class="co"># restrict to measurements within threshold</span>
+  <span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span>, <span class="va">time</span> <span class="op">&lt;=</span> <span class="va">year</span><span class="op">)</span> 
+  <span class="co"># restrict to subjects with three measurements within threshold</span>
+  <span class="va">temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">temp</span><span class="op">$</span><span class="va">id</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">temp</span><span class="op">$</span><span class="va">id</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">3</span><span class="op">]</span><span class="op">)</span>
+  <span class="va">counts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">temp</span><span class="op">$</span><span class="va">id</span><span class="op">)</span>
+  <span class="va">mean.n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">mean.n</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">counts</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">median.n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">median.n</span>, <span class="fu"><a href="https://rdrr.io/r/stats/median.html">median</a></span><span class="op">(</span><span class="va">counts</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">IQR.n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">IQR.n</span>,  <span class="fu"><a href="https://rdrr.io/r/stats/IQR.html">IQR</a></span><span class="op">(</span><span class="va">counts</span><span class="op">)</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>years <span class="op">=</span> <span class="va">years</span>,
+                     mean.n <span class="op">=</span> <span class="va">mean.n</span>,
+                     median.n <span class="op">=</span> <span class="va">median.n</span>,
+                     IQR.n <span class="op">=</span> <span class="va">IQR.n</span><span class="op">)</span>,
+             col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Year cut-off"</span>, <span class="st">"Mean"</span>, <span class="st">"Median"</span>, <span class="st">"IQR"</span><span class="op">)</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<div id="tbl-tab5" class="anchored">
+<table class="table table-sm table-striped">
+<caption>Table 4: Mean, median and interquartile range for number of FCAL measurements per subject for different time cut-offs.</caption>
+<thead><tr class="header">
+<th style="text-align: right;">Year cut-off</th>
+<th style="text-align: right;">Mean</th>
+<th style="text-align: right;">Median</th>
+<th style="text-align: right;">IQR</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">5.72</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">6.83</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">7.79</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">8.64</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">9.30</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">9.82</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">10.16</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">10.36</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">10.50</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">7</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>From this table, measurements within six years of diagnosis seems a sensible cut-off. However, we have ultimately decided five years is a better choice in order to be able to directly compare with other studies, for example the IBSEN study <span class="citation" data-cites="Henriksen2006">(<a href="#ref-Henriksen2006" role="doc-biblioref">Henriksen et al. 2006</a>)</span>, which describe 5-year disease activity trajectories.</p>
+<p>Based on the data cleaning step of the pipeline, restricting measurements to within 5 years of diagnosis seemed appropriate. Additionally, we will only consider subjects with at least 3 FCAL measurements within this time period. This report reports descriptive statistics for the cohort after this inclusion criteria is applied.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">FCcumulativeLong</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span>, <span class="va">time</span> <span class="op">&lt;</span> <span class="fl">5</span><span class="op">)</span>
+<span class="va">subjects.with.3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span><span class="op">$</span><span class="va">id</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span><span class="op">$</span><span class="va">id</span><span class="op">)</span> <span class="op">&gt;=</span><span class="fl">3</span><span class="op">]</span>
+<span class="va">FCcumulativeLong</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span>, <span class="va">id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">subjects.with.3</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>There are 356 CDI subjects which meet the criteria of having at least 3 FCAL measurements within 5 years of diagnosis.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">FCcounts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">as.vector</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span><span class="op">$</span><span class="va">id</span><span class="op">)</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>There are 2856 FCAL samples reported with mean 8.02 measurements per subject and median 7 (Q1: 5, Q3: 10) measurements per subject. The below plots are updated version of previous plots: updated to only include subjects which meet this criteria.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">FCcountsdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>counts <span class="op">=</span> <span class="va">FCcounts</span><span class="op">)</span>
+
+<span class="va">p</span> <span class="op">&lt;-</span> <span class="va">FCcountsdf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">counts</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/stat_slab.html">stat_slab</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.8</span>, alpha <span class="op">=</span> <span class="fl">0.9</span>, fill <span class="op">=</span> <span class="st">"#235789"</span>, color <span class="op">=</span> <span class="st">"#235789"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/geom_dotsinterval.html">geom_dots</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#ed1c24"</span>,
+            color <span class="op">=</span> <span class="st">"#ed1c24"</span>,
+            alpha <span class="op">=</span> <span class="fl">0.5</span>,
+            binwidth <span class="op">=</span> <span class="fl">1</span>,
+            dotsize <span class="op">=</span> <span class="fl">0.22</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Number of FCAL observations per subject"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Distribution of Number of FCAL Measurements per Subject"</span>,
+          <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Crohn's disease inception cohort,"</span>,
+                <span class="st">"(inclusion: &gt;2 FCAL measurements within 5 years)"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"figures/dist1.png"</span> , <span class="va">p</span>, width <span class="op">=</span> <span class="fl">8</span>, height <span class="op">=</span> <span class="fl">4.5</span>, units <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="data-cleaning_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">FCcumulativeLong</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/stat_slab.html">stat_slab</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.8</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, fill <span class="op">=</span> <span class="st">"#235789"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/geom_dotsinterval.html">geom_dots</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#235789"</span>,
+            fill <span class="op">=</span> <span class="st">"#235789"</span>,
+            binwidth <span class="op">=</span> <span class="fl">10</span>,
+            size <span class="op">=</span> <span class="fl">1</span>,
+            side <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"FCAL (µg/g)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Distribution of FCAL Measurements"</span>,
+          <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Crohn's disease inception cohort,"</span>,
+                <span class="st">"(inclusion: &gt;2 FCAL measurements within 5 years)"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"figures/dist2.png"</span>, <span class="va">p</span>, width <span class="op">=</span> <span class="fl">8</span>, height <span class="op">=</span> <span class="fl">4.5</span>, units <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="data-cleaning_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">FCcumulativeLong</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">id</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu">viridis</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html">viridis</a></span><span class="op">(</span><span class="fl">375</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Time (years)"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Log FCAL"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Spaghetti Plot of FCAL Trajectories"</span>,
+          <span class="st">"Subject-specific trajectories show a high degree of heterogeneity"</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<p><img src="data-cleaning_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>It should be noted June 2019 is the last month of followup</p>
+</section><section id="data-saving" class="level2"><h2 class="anchored" data-anchor-id="data-saving">Data saving</h2>
+<p>The tidied data, with a 5-year cut-off applied, has been saved as a RDS file for the <a href="./selection.html">model selection</a> step of the analysis pipeline.</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span>,
+        <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"/Volumes/igmm/cvallejo-predicct/processed-data/cdi/"</span>,
+               <span class="st">"FCcumulativeLongInc.RDS"</span><span class="op">)</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section><section id="session-information" class="level2"><h2 class="anchored" data-anchor-id="session-information">Session information</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><strong>R version 4.2.0 (2022-04-22)</strong></p>
+<p><strong>Platform:</strong> x86_64-apple-darwin17.0 (64-bit)</p>
+<p><strong>locale:</strong> en_GB.UTF-8||en_GB.UTF-8||en_GB.UTF-8||C||en_GB.UTF-8||en_GB.UTF-8</p>
+<p><strong>attached base packages:</strong> <em>stats</em>, <em>graphics</em>, <em>grDevices</em>, <em>datasets</em>, <em>utils</em>, <em>methods</em> and <em>base</em></p>
+<p><strong>other attached packages:</strong> <em>viridis(v.0.6.2)</em>, <em>viridisLite(v.0.4.0)</em>, <em>pander(v.0.6.5)</em>, <em>datefixR(v.0.1.4)</em>, <em>ggdist(v.3.1.1)</em>, <em>forcats(v.0.5.1)</em>, <em>stringr(v.1.4.0)</em>, <em>dplyr(v.1.0.9)</em>, <em>purrr(v.0.3.4)</em>, <em>readr(v.2.1.2)</em>, <em>tidyr(v.1.2.0)</em>, <em>tibble(v.3.1.7)</em>, <em>ggplot2(v.3.3.6)</em> and <em>tidyverse(v.1.3.1)</em></p>
+<p><strong>loaded via a namespace (and not attached):</strong> <em>Rcpp(v.1.0.8.3)</em>, <em>lubridate(v.1.8.0)</em>, <em>assertthat(v.0.2.1)</em>, <em>digest(v.0.6.29)</em>, <em>utf8(v.1.2.2)</em>, <em>R6(v.2.5.1)</em>, <em>cellranger(v.1.1.0)</em>, <em>backports(v.1.4.1)</em>, <em>reprex(v.2.0.1)</em>, <em>evaluate(v.0.15)</em>, <em>highr(v.0.9)</em>, <em>httr(v.1.4.3)</em>, <em>pillar(v.1.7.0)</em>, <em>rlang(v.1.0.2)</em>, <em>readxl(v.1.4.0)</em>, <em>rstudioapi(v.0.13)</em>, <em>rmarkdown(v.2.14)</em>, <em>textshaping(v.0.3.6)</em>, <em>labeling(v.0.4.2)</em>, <em>htmlwidgets(v.1.5.4)</em>, <em>munsell(v.0.5.0)</em>, <em>broom(v.0.8.0)</em>, <em>compiler(v.4.2.0)</em>, <em>modelr(v.0.1.8)</em>, <em>xfun(v.0.30)</em>, <em>systemfonts(v.1.0.4)</em>, <em>pkgconfig(v.2.0.3)</em>, <em>htmltools(v.0.5.2)</em>, <em>tidyselect(v.1.1.2)</em>, <em>gridExtra(v.2.3)</em>, <em>fansi(v.1.0.3)</em>, <em>crayon(v.1.5.1)</em>, <em>tzdb(v.0.3.0)</em>, <em>dbplyr(v.2.1.1)</em>, <em>withr(v.2.5.0)</em>, <em>grid(v.4.2.0)</em>, <em>distributional(v.0.3.0)</em>, <em>jsonlite(v.1.8.0)</em>, <em>gtable(v.0.3.0)</em>, <em>lifecycle(v.1.0.1)</em>, <em>DBI(v.1.1.2)</em>, <em>magrittr(v.2.0.3)</em>, <em>scales(v.1.2.0)</em>, <em>cli(v.3.3.0)</em>, <em>stringi(v.1.7.6)</em>, <em>farver(v.2.1.0)</em>, <em>renv(v.0.15.4)</em>, <em>fs(v.1.5.2)</em>, <em>xml2(v.1.3.3)</em>, <em>ragg(v.1.2.2)</em>, <em>ellipsis(v.0.3.2)</em>, <em>generics(v.0.1.2)</em>, <em>vctrs(v.0.4.1)</em>, <em>tools(v.4.2.0)</em>, <em>glue(v.1.6.2)</em>, <em>hms(v.1.1.1)</em>, <em>fastmap(v.1.1.0)</em>, <em>yaml(v.2.3.5)</em>, <em>colorspace(v.2.0-3)</em>, <em>rvest(v.1.0.2)</em>, <em>knitr(v.1.39)</em> and <em>haven(v.2.5.0)</em></p>
+</div>
+</div>
+</section><div id="quarto-appendix" class="default"><section id="section" class="level2 appendix"><h2 class="quarto-appendix-heading"></h2><div class="quarto-appendix-contents">
+<div class="center">
+<p><img class="center" src="images/MRC_HGU_Edinburgh%20RGB.png" alt="MRC Human Genetics Unit logo" height="50px"><img src="images/cgem-logo.png" alt="Centre for Genomic &amp; Experimental Medicine logo" height="50px"></p>
+</div>
+</div></section><section id="acknowledgments" class="level2 appendix"><h2 class="quarto-appendix-heading">Acknowledgments</h2><div class="quarto-appendix-contents">
+<p>This work is funded by the Medical Research Council &amp; University of Edinburgh via a Precision Medicine PhD studentship (MR/N013166/1, to <strong>NC-C</strong>).</p>
+</div></section><section id="author-contributions" class="level2 appendix"><h2 class="quarto-appendix-heading">Author contributions</h2><div class="quarto-appendix-contents">
+<p><strong>NC-C</strong> performed the data cleaning detailed in this report. <strong>NP</strong> and INSERT extracted the data from electronic health records and formatted the data in the form initially described.</p>
+</div></section><section id="reuse" class="level2 appendix"><h2 class="quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents">
+<p>Licensed by <a href="https://creativecommons.org/licenses/by/4.0/">CC BY </a> unless otherwise stated.</p>
+
+
+
+
+</div></section><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Henriksen2006" class="csl-entry" role="doc-biblioentry">
+Henriksen, Magne, Jrgen Jahnsen, Idar Lygren, Jostein Sauar, ystein Kjellevold, Tom Schulz, Morten H. Vatn, and Bjrn Moum. 2006. <span>“Ulcerative Colitis and Clinical Course: Results of a 5-Year Population-Based Follow-up Study (the <span>IBSEN</span> Study).”</span> <em>Inflammatory Bowel Diseases</em> 12 (7): 543–50. <a href="https://doi.org/10.1097/01.mib.0000225339.91484.fc">https://doi.org/10.1097/01.mib.0000225339.91484.fc</a>.
+</div>
+<div id="ref-Plevris2021" class="csl-entry" role="doc-biblioentry">
+Plevris, Nikolas, James Fulforth, Mathew Lyons, Spyros I. Siakavellas, Philip W. Jenkinson, Cher S. Chuah, Laura Lucaciu, et al. 2021. <span>“Normalization of Fecal Calprotectin Within 12 Months of Diagnosis Is Associated with Reduced Risk of Disease Progression in Patients with <span class="nocase">Crohn’s</span> Disease.”</span> <em>Clinical Gastroenterology and Hepatology</em> 19 (9): 1835–1844.e6. <a href="https://doi.org/10.1016/j.cgh.2020.08.022">https://doi.org/10.1016/j.cgh.2020.08.022</a>.
+</div>
+</div></section></div></main><!-- /main --><script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+<li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/IBDNathan">
+      <i class="bi bi-twitter" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+</div>
+  </div>
+</footer>
+
+
+</body></html>

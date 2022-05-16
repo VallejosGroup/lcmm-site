@@ -1,0 +1,54 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - index.qmd
+    - data-cleaning.qmd
+    - selection.qmd
+    - associations.qmd
+    - 404.qmd
+
+format:
+  html:
+    css: theme.css
+    code-fold: true
+    code-link: true
+    toc: true
+    code-tools:
+      source: repo
+    html-math-method: katex
+    self-contained: false
+    self-contained-math: false
+    mainfont: "Mulish"
+    monofont: "Noto Sans Mono"
+
+website:
+  title: "Analysis by Constantine-Cooke et al."
+  navbar:
+    background: "#004276"
+    search: true
+    right:
+      - href: index.qmd
+        text: About
+      - data-cleaning.qmd
+      - selection.qmd
+      - associations.qmd
+      - icon: github
+        href: https://github.com/
+  page-footer:
+    right:
+      - icon: twitter
+        href: https://twitter.com/IBDNathan
+  page-navigation: true
+  repo-url: https://github.com/quarto-dev/quarto-demo
+  repo-actions: [issue]
+
+bibliography: references.bib
+google-scholar: true
+date: "last-modified"
+title-block-banner: false
+
+execute:
+  freeze: auto
+  cache: false
+
