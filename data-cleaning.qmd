@@ -441,6 +441,18 @@ print(p)
 ```
 
 ```{R}
+p <- FCcountsdf %>%
+  ggplot(aes(x = counts)) +
+  geom_histogram(binwidth = 1, fill = "#479AA7", col = "#327c88") +
+  theme_minimal() +
+  xlab("Faecal calprotectin measurement frequency") +
+  ylab("Subjects")
+ggsave("paper/fcal-dist.png", p, width = 8, height = 4.5, units = "in")
+ggsave("paper/fcal-dist.pdf", p, width = 8, height = 4.5, units = "in")
+```
+
+
+```{R}
 p <- FCcumulativeLong %>%
   ggplot(aes(x = value, y = NULL)) +
   stat_slab(size = 0.8, alpha = 0.5, fill = "#235789") +
