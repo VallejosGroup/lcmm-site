@@ -125,8 +125,8 @@
 <meta name="citation_author" content="Karla Monterrubio &amp;amp;lt;sup&amp;gt;1</sup>">
 <meta name="citation_author" content="Riccardo Marioni &amp;amp;lt;sup&amp;gt;2</sup>">
 <meta name="citation_author" content="Catalina A. Vallejos &amp;amp;lt;sup&amp;gt;1, 3</sup>">
-<meta name="citation_online_date" content="2022-04-20">
-<meta name="citation_publication_date" content="2022-04-20">
+<meta name="citation_online_date" content="2022-06-09">
+<meta name="citation_publication_date" content="2022-06-09">
 <meta name="citation_journal_title" content="undefined">
 <meta name="citation_reference" content="citation_title=Normalization of fecal calprotectin within 12 months of diagnosis is associated with reduced risk of disease progression in patients with Crohn’s disease;,citation_author=Nikolas Plevris;,citation_author=James Fulforth;,citation_author=Mathew Lyons;,citation_author=Spyros I. Siakavellas;,citation_author=Philip W. Jenkinson;,citation_author=Cher S. Chuah;,citation_author=Laura Lucaciu;,citation_author=Rebecca J. Pattenden;,citation_author=Ian D. Arnott;,citation_author=Gareth-Rhys Jones;,citation_author=Charlie W. Lees;,citation_publication_date=2021-09;,citation_issue=9;,citation_volume=19;,citation_journal_title=Clinical Gastroenterology and Hepatology;">
 <meta name="citation_reference" content="citation_title=Ulcerative colitis and clinical course: Results of a 5-year population-based follow-up study (the IBSEN study);,citation_author=Magne Henriksen;,citation_author=Jrgen Jahnsen;,citation_author=Idar Lygren;,citation_author=Jostein Sauar;,citation_author=undefined Kjellevold;,citation_author=Tom Schulz;,citation_author=Morten H. Vatn;,citation_author=Bjrn Moum;,citation_publication_date=2006-07;,citation_issue=7;,citation_volume=12;,citation_journal_title=Inflammatory Bowel Diseases;">
@@ -214,7 +214,7 @@
 <p><sup>2</sup> Centre for Genomic and Experimental Medicine</p>
 </a></p><p><a href="https://www.turing.ac.uk">
 <p><sup>3</sup> The Alan Turing Institute</p>
-</a></p><p>&nbsp;</p></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">April 20, 2022</p></div></div></div></header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+</a></p><p>&nbsp;</p></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">June 9, 2022</p></div></div></div></header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">nnet</a></span><span class="op">)</span> <span class="co"># Multinomial logistic regression</span>
@@ -223,6 +223,7 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival">survival</a></span><span class="op">)</span> <span class="co"># Kaplan-Meier</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/survminer/index.html">survminer</a></span><span class="op">)</span> <span class="co"># Plot Kaplan-Meier curves</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/koalaverse/vip/">vip</a></span><span class="op">)</span>
 
 <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="http://had.co.nz/plyr">plyr</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span><span class="va">s</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"plyr"</span><span class="op">)</span>
@@ -726,7 +727,8 @@ Residuals   354 104332274  294724               </code></pre>
 </div>
 <div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labeledby="tabset-2-5-tab">
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">demographic</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">demographic</span><span class="op">)</span> <span class="op">==</span> <span class="st">"BEHAVIOUR.AT.DIAGNOSIS"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"behaviour"</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb56"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">demographic</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">demographic</span><span class="op">)</span> <span class="op">==</span> <span class="st">"BEHAVIOUR.AT.DIAGNOSIS"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"behaviour"</span>
+<span class="va">demographic</span><span class="op">$</span><span class="va">behaviour</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">demographic</span><span class="op">$</span><span class="va">behaviour</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <section id="population-4" class="level4"><h4 class="anchored" data-anchor-id="population-4">Population</h4>
@@ -770,11 +772,11 @@ Residuals   354 104332274  294724               </code></pre>
 <details><summary>Code</summary><div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">describe_cat</span><span class="op">(</span><span class="st">"behaviour"</span>, <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">demographic</span>, <span class="va">class</span> <span class="op">==</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-stdout">
 <pre><code>
-   1    2 &lt;NA&gt; 
-  55    3    0 
+   1    2    3 &lt;NA&gt; 
+  55    3    0    0 
 
-         1          2       &lt;NA&gt; 
-0.94827586 0.05172414 0.00000000 </code></pre>
+         1          2          3       &lt;NA&gt; 
+0.94827586 0.05172414 0.00000000 0.00000000 </code></pre>
 </div>
 </div>
 </section><section id="class-4-4" class="level4"><h4 class="anchored" data-anchor-id="class-4-4">Class = 4</h4>
@@ -782,11 +784,11 @@ Residuals   354 104332274  294724               </code></pre>
 <details><summary>Code</summary><div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">describe_cat</span><span class="op">(</span><span class="st">"behaviour"</span>, <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">demographic</span>, <span class="va">class</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-stdout">
 <pre><code>
-   1    2 &lt;NA&gt; 
-  13    2    0 
+   1    2    3 &lt;NA&gt; 
+  13    2    0    0 
 
-        1         2      &lt;NA&gt; 
-0.8666667 0.1333333 0.0000000 </code></pre>
+        1         2         3      &lt;NA&gt; 
+0.8666667 0.1333333 0.0000000 0.0000000 </code></pre>
 </div>
 </div>
 </section><section id="fishers-exact-test-1" class="level4"><h4 class="anchored" data-anchor-id="fishers-exact-test-1">Fisher’s exact test</h4>
@@ -1674,6 +1676,7 @@ Residuals   354 397129240 1121834               </code></pre>
 <p>Firstly, we attempt to predict class membership for all four classes.</p>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb210"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">demographic</span><span class="op">$</span><span class="va">class</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">demographic</span><span class="op">$</span><span class="va">class</span><span class="op">)</span>
+<span class="va">demographic</span><span class="op">$</span><span class="va">class</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/relevel.html">relevel</a></span><span class="op">(</span><span class="va">demographic</span><span class="op">$</span><span class="va">class</span>, ref <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="co"># </span>
 
 <span class="va">data_split</span> <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">demographic</span>, prop <span class="op">=</span> <span class="fl">0.75</span>, strata <span class="op">=</span> <span class="va">class</span><span class="op">)</span>
 <span class="va">train_data</span> <span class="op">&lt;-</span> <span class="fu">training</span><span class="op">(</span><span class="va">data_split</span><span class="op">)</span>
@@ -1693,41 +1696,300 @@ Residuals   354 397129240 1121834               </code></pre>
 </details>
 </div>
 <section id="multinomial-logistic-regression" class="level4"><h4 class="anchored" data-anchor-id="multinomial-logistic-regression">Multinomial logistic regression</h4>
-<section id="metrics" class="level5"><h5 class="anchored" data-anchor-id="metrics">Metrics</h5>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb211"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">mlr_mod</span> <span class="op">&lt;-</span> <span class="fu">multinom_reg</span><span class="op">(</span>penalty <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,
-                        mode <span class="op">=</span> <span class="st">"classification"</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
+                        mode <span class="op">=</span> <span class="st">"classification"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">set_engine</span><span class="op">(</span><span class="st">"nnet"</span><span class="op">)</span>
 
 <span class="va">class_wflow</span> <span class="op">&lt;-</span> 
-  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">add_model</span><span class="op">(</span><span class="va">mlr_mod</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">add_model</span><span class="op">(</span><span class="va">mlr_mod</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">add_recipe</span><span class="op">(</span><span class="va">class_rec</span><span class="op">)</span>
 
 <span class="va">mlr_grid</span> <span class="op">&lt;-</span> <span class="fu">grid_regular</span><span class="op">(</span>
                          <span class="fu">penalty</span><span class="op">(</span><span class="op">)</span>,
                          levels <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
 
-<span class="va">class_fit</span> <span class="op">&lt;-</span> <span class="va">class_wflow</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> 
+<span class="va">class_fit</span> <span class="op">&lt;-</span> <span class="va">class_wflow</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">tune_grid</span><span class="op">(</span>
     resamples <span class="op">=</span> <span class="va">folds</span>,
     grid <span class="op">=</span> <span class="va">mlr_grid</span>
     <span class="op">)</span>
 
-<span class="va">best_mlr</span> <span class="op">&lt;-</span> <span class="va">class_fit</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
+<span class="va">best_mlr</span> <span class="op">&lt;-</span> <span class="va">class_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">select_best</span><span class="op">(</span><span class="st">"accuracy"</span><span class="op">)</span>
 
 <span class="va">final_wf</span> <span class="op">&lt;-</span> 
-  <span class="va">class_wflow</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> 
+  <span class="va">class_wflow</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">finalize_workflow</span><span class="op">(</span><span class="va">best_mlr</span><span class="op">)</span>
 
 
 <span class="va">final_fit</span> <span class="op">&lt;-</span> 
-  <span class="va">final_wf</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
+  <span class="va">final_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">last_fit</span><span class="op">(</span><span class="va">data_split</span><span class="op">)</span> 
 
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>
-  <span class="va">final_fit</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
+<span class="va">temp</span> <span class="op">&lt;-</span> <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">extract_fit_engine</span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">temp</span><span class="op">$</span><span class="va">call</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/substitute.html">quote</a></span><span class="op">(</span><span class="fu">nnet</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/nnet/man/multinom.html">multinom</a></span><span class="op">(</span>formula <span class="op">=</span> <span class="va">class</span> <span class="op">~</span> <span class="va">age</span> <span class="op">+</span>
+                                      <span class="va">SEX</span>  <span class="op">+</span>
+                                      <span class="va">smoking</span> <span class="op">+</span>
+                                      <span class="va">LOCATION</span> <span class="op">+</span>
+                                      <span class="va">L4</span> <span class="op">+</span>
+                                      <span class="va">behaviour</span> <span class="op">+</span>
+                                      <span class="va">peri</span> <span class="op">+</span>
+                                      <span class="va">DiagFC</span>,
+                                  data <span class="op">=</span> <span class="va">train_data</span>,
+                                  decay <span class="op">=</span> <span class="op">~</span><span class="fl">0.00316227766016838</span>, 
+                                  trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">hmm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">temp</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="odd-ratios" class="level5"><h5 class="anchored" data-anchor-id="odd-ratios">Odd ratios</h5>
+<p>Point estimates:</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb212"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">hmm</span><span class="op">$</span><span class="va">coefficients</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 11%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 5%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 7%">
+<col style="width: 6%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">(Intercept)</th>
+<th style="text-align: right;">age</th>
+<th style="text-align: right;">SEXM</th>
+<th style="text-align: right;">smokingyes</th>
+<th style="text-align: right;">LOCATIONL2</th>
+<th style="text-align: right;">LOCATIONL3</th>
+<th style="text-align: right;">L4yes</th>
+<th style="text-align: right;">behaviour2</th>
+<th style="text-align: right;">behaviour3</th>
+<th style="text-align: right;">periyes</th>
+<th style="text-align: right;">DiagFC</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">1.35</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">0.83</td>
+<td style="text-align: right;">1.09</td>
+<td style="text-align: right;">2.51</td>
+<td style="text-align: right;">2.98</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">1.85</td>
+<td style="text-align: right;">32.65</td>
+<td style="text-align: right;">1.72</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.53</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">2.16</td>
+<td style="text-align: right;">1.45</td>
+<td style="text-align: right;">1.42</td>
+<td style="text-align: right;">0.97</td>
+<td style="text-align: right;">0.80</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">1.02</td>
+<td style="text-align: right;">1.17</td>
+<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">0.34</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: right;">1.30</td>
+<td style="text-align: right;">1.16</td>
+<td style="text-align: right;">0.86</td>
+<td style="text-align: right;">2.67</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Lower 95% confidence interval:</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb213"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">hmm</span><span class="op">$</span><span class="va">coefficients</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.975</span><span class="op">)</span> <span class="op">*</span> <span class="va">hmm</span><span class="op">$</span><span class="va">standard.errors</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 11%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 5%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 7%">
+<col style="width: 6%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">(Intercept)</th>
+<th style="text-align: right;">age</th>
+<th style="text-align: right;">SEXM</th>
+<th style="text-align: right;">smokingyes</th>
+<th style="text-align: right;">LOCATIONL2</th>
+<th style="text-align: right;">LOCATIONL3</th>
+<th style="text-align: right;">L4yes</th>
+<th style="text-align: right;">behaviour2</th>
+<th style="text-align: right;">behaviour3</th>
+<th style="text-align: right;">periyes</th>
+<th style="text-align: right;">DiagFC</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">0.39</td>
+<td style="text-align: right;">0.96</td>
+<td style="text-align: right;">0.44</td>
+<td style="text-align: right;">0.51</td>
+<td style="text-align: right;">1.08</td>
+<td style="text-align: right;">1.23</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.62</td>
+<td style="text-align: right;">32.51</td>
+<td style="text-align: right;">0.74</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.80</td>
+<td style="text-align: right;">0.49</td>
+<td style="text-align: right;">0.56</td>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.80</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.36</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.27</td>
+<td style="text-align: right;">0.29</td>
+<td style="text-align: right;">0.17</td>
+<td style="text-align: right;">0.86</td>
+<td style="text-align: right;">0.61</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Upper 95% confidence interval:</p>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb214"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">hmm</span><span class="op">$</span><span class="va">coefficients</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.975</span><span class="op">)</span> <span class="op">*</span> <span class="va">hmm</span><span class="op">$</span><span class="va">standard.errors</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 11%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 5%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 7%">
+<col style="width: 6%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">(Intercept)</th>
+<th style="text-align: right;">age</th>
+<th style="text-align: right;">SEXM</th>
+<th style="text-align: right;">smokingyes</th>
+<th style="text-align: right;">LOCATIONL2</th>
+<th style="text-align: right;">LOCATIONL3</th>
+<th style="text-align: right;">L4yes</th>
+<th style="text-align: right;">behaviour2</th>
+<th style="text-align: right;">behaviour3</th>
+<th style="text-align: right;">periyes</th>
+<th style="text-align: right;">DiagFC</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">4.64</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.57</td>
+<td style="text-align: right;">2.33</td>
+<td style="text-align: right;">5.83</td>
+<td style="text-align: right;">7.23</td>
+<td style="text-align: right;">0.43</td>
+<td style="text-align: right;">5.52</td>
+<td style="text-align: right;">32.79</td>
+<td style="text-align: right;">4.02</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">1.96</td>
+<td style="text-align: right;">1.02</td>
+<td style="text-align: right;">1.12</td>
+<td style="text-align: right;">0.73</td>
+<td style="text-align: right;">5.77</td>
+<td style="text-align: right;">4.26</td>
+<td style="text-align: right;">3.62</td>
+<td style="text-align: right;">4.85</td>
+<td style="text-align: right;">0.80</td>
+<td style="text-align: right;">2.20</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">1.04</td>
+<td style="text-align: right;">3.82</td>
+<td style="text-align: right;">1.09</td>
+<td style="text-align: right;">1.37</td>
+<td style="text-align: right;">3.72</td>
+<td style="text-align: right;">5.92</td>
+<td style="text-align: right;">7.79</td>
+<td style="text-align: right;">0.86</td>
+<td style="text-align: right;">11.71</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section><section id="metrics" class="level5"><h5 class="anchored" data-anchor-id="metrics">Metrics</h5>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb215"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>
+  <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu">collect_metrics</span><span class="op">(</span><span class="op">)</span>, 
   col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Metric"</span>, <span class="st">"Estimator"</span>, <span class="st">"Estimate"</span>, <span class="st">"Config"</span><span class="op">)</span>,
   align <span class="op">=</span> <span class="st">"cccc"</span><span class="op">)</span> </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1743,13 +2005,13 @@ Residuals   354 397129240 1121834               </code></pre>
 <tr class="odd">
 <td style="text-align: center;">accuracy</td>
 <td style="text-align: center;">multiclass</td>
-<td style="text-align: center;">0.5222222</td>
+<td style="text-align: center;">0.5444444</td>
 <td style="text-align: center;">Preprocessor1_Model1</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">roc_auc</td>
 <td style="text-align: center;">hand_till</td>
-<td style="text-align: center;">0.6502770</td>
+<td style="text-align: center;">0.6527881</td>
 <td style="text-align: center;">Preprocessor1_Model1</td>
 </tr>
 </tbody>
@@ -1758,7 +2020,7 @@ Residuals   354 397129240 1121834               </code></pre>
 </div>
 </section><section id="confusion-matrix" class="level5"><h5 class="anchored" data-anchor-id="confusion-matrix">Confusion matrix</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb212"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">final_fit</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb216"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">collect_predictions</span><span class="op">(</span><span class="op">)</span> 
 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">results</span><span class="op">$</span><span class="va">class</span>, <span class="va">results</span><span class="op">$</span><span class="va">.pred_class</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1766,37 +2028,37 @@ Residuals   354 397129240 1121834               </code></pre>
 <table class="table table-sm table-striped">
 <thead><tr class="header">
 <th style="text-align: left;"></th>
-<th style="text-align: right;">1</th>
 <th style="text-align: right;">2</th>
+<th style="text-align: right;">1</th>
 <th style="text-align: right;">3</th>
 <th style="text-align: right;">4</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">20</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">7</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">43</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">8</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">3</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">12</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">4</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">4</td>
-<td style="text-align: right;">0</td>
 <td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
@@ -1807,39 +2069,57 @@ Residuals   354 397129240 1121834               </code></pre>
 </section></section><section id="random-forest" class="level4"><h4 class="anchored" data-anchor-id="random-forest">Random forest</h4>
 <section id="metrics-1" class="level5"><h5 class="anchored" data-anchor-id="metrics-1">Metrics</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb213"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">rf_mod</span> <span class="op">&lt;-</span> <span class="fu">rand_forest</span><span class="op">(</span>mtry <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>, 
+<details><summary>Code</summary><div class="sourceCode" id="cb217"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">rf_mod</span> <span class="op">&lt;-</span> <span class="fu">rand_forest</span><span class="op">(</span>mtry <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>, 
                       trees <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,
-                      mode <span class="op">=</span> <span class="st">"classification"</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"ranger"</span><span class="op">)</span>
+                      mode <span class="op">=</span> <span class="st">"classification"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"ranger"</span>,
+             num.threads <span class="op">=</span> <span class="fu">parallel</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/parallel/detectCores.html">detectCores</a></span><span class="op">(</span><span class="op">)</span>,
+             importance <span class="op">=</span> <span class="st">"permutation"</span><span class="op">)</span>
 
 <span class="va">class_wflow</span> <span class="op">&lt;-</span> 
-  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">add_model</span><span class="op">(</span><span class="va">rf_mod</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">add_model</span><span class="op">(</span><span class="va">rf_mod</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">add_recipe</span><span class="op">(</span><span class="va">class_rec</span><span class="op">)</span>
 
 <span class="va">tree_grid</span> <span class="op">&lt;-</span> <span class="fu">grid_regular</span><span class="op">(</span><span class="fu">mtry</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
                           <span class="fu"><a href="https://rdrr.io/r/datasets/trees.html">trees</a></span><span class="op">(</span><span class="op">)</span>,
                           levels <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
 
-<span class="va">class_fit</span> <span class="op">&lt;-</span> <span class="va">class_wflow</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> 
+<span class="va">class_fit</span> <span class="op">&lt;-</span> <span class="va">class_wflow</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">tune_grid</span><span class="op">(</span>
     resamples <span class="op">=</span> <span class="va">folds</span>,
     grid <span class="op">=</span> <span class="va">tree_grid</span>
     <span class="op">)</span>
 
-<span class="va">best_tree</span> <span class="op">&lt;-</span> <span class="va">class_fit</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
+<span class="va">best_tree</span> <span class="op">&lt;-</span> <span class="va">class_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">select_best</span><span class="op">(</span><span class="st">"accuracy"</span><span class="op">)</span>
 
 <span class="va">final_wf</span> <span class="op">&lt;-</span> 
-  <span class="va">class_wflow</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> 
+  <span class="va">class_wflow</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">finalize_workflow</span><span class="op">(</span><span class="va">best_tree</span><span class="op">)</span>
 
 <span class="va">final_fit</span> <span class="op">&lt;-</span> 
-  <span class="va">final_wf</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
+  <span class="va">final_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">last_fit</span><span class="op">(</span><span class="va">data_split</span><span class="op">)</span> 
 
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>
-  <span class="va">final_fit</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
+<span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">extract_fit_parsnip</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu"><a href="https://rdrr.io/pkg/vip/man/vi.html">vi</a></span><span class="op">(</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-stdout">
+<pre><code># A tibble: 8 × 2
+  Variable  Importance
+  &lt;chr&gt;          &lt;dbl&gt;
+1 L4          0.00563 
+2 smoking     0.00322 
+3 LOCATION    0.00150 
+4 age         0.00133 
+5 DiagFC      0.000374
+6 behaviour   0.000197
+7 SEX        -0.000842
+8 peri       -0.00180 </code></pre>
+</div>
+<details><summary>Code</summary><div class="sourceCode" id="cb219"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>
+  <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu">collect_metrics</span><span class="op">(</span><span class="op">)</span>, 
   col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Metric"</span>, <span class="st">"Estimator"</span>, <span class="st">"Estimate"</span>, <span class="st">"Config"</span><span class="op">)</span>,
   align <span class="op">=</span> <span class="st">"cccc"</span><span class="op">)</span> </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1870,44 +2150,44 @@ Residuals   354 397129240 1121834               </code></pre>
 </div>
 </section><section id="confusion-matrix-1" class="level5"><h5 class="anchored" data-anchor-id="confusion-matrix-1">Confusion matrix</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb214"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">final_fit</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb220"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">collect_predictions</span><span class="op">(</span><span class="op">)</span> 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">results</span><span class="op">$</span><span class="va">class</span>, <span class="va">results</span><span class="op">$</span><span class="va">.pred_class</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <table class="table table-sm table-striped">
 <thead><tr class="header">
 <th style="text-align: left;"></th>
-<th style="text-align: right;">1</th>
 <th style="text-align: right;">2</th>
+<th style="text-align: right;">1</th>
 <th style="text-align: right;">3</th>
 <th style="text-align: right;">4</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">21</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">43</td>
+<td style="text-align: right;">5</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">43</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">3</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">3</td>
-<td style="text-align: right;">0</td>
 <td style="text-align: right;">14</td>
+<td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">4</td>
-<td style="text-align: right;">0</td>
 <td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
@@ -1919,7 +2199,7 @@ Residuals   354 397129240 1121834               </code></pre>
 </section></section></section><section id="class-2-16" class="level3"><h3 class="anchored" data-anchor-id="class-2-16">Class 2</h3>
 <p>Due to the clinical significance of class 2 (see <a href="#outcomes">outcomes</a>), the clear separation in mean class profiles between class 2 and the other classes, and the poor model performance described above, we now consider binary outcome models which attempt to predict membership, or non-membership, of class 2.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb215"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">demographic</span><span class="op">$</span><span class="va">class2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">demographic</span><span class="op">)</span><span class="op">)</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb221"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">demographic</span><span class="op">$</span><span class="va">class2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">demographic</span><span class="op">)</span><span class="op">)</span>
 <span class="va">demographic</span><span class="op">[</span><span class="va">demographic</span><span class="op">[</span>,<span class="st">"class"</span><span class="op">]</span> <span class="op">==</span> <span class="fl">2</span>, <span class="st">"class2"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 <span class="va">demographic</span><span class="op">[</span><span class="va">demographic</span><span class="op">[</span>,<span class="st">"class"</span><span class="op">]</span> <span class="op">!=</span> <span class="fl">2</span>, <span class="st">"class2"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span>
 <span class="va">demographic</span><span class="op">$</span><span class="va">class2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">demographic</span><span class="op">$</span><span class="va">class2</span><span class="op">)</span>
@@ -1945,19 +2225,19 @@ Residuals   354 397129240 1121834               </code></pre>
 <p>As we now considering a binary outcome, logistic regression via the <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> function is used instead of multinomial logistic regression.</p>
 <section id="metrics-2" class="level5"><h5 class="anchored" data-anchor-id="metrics-2">Metrics</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb216"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">lr_mod</span> <span class="op">&lt;-</span> <span class="fu">logistic_reg</span><span class="op">(</span>penalty <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,
-                        mode <span class="op">=</span> <span class="st">"classification"</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb222"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">lr_mod</span> <span class="op">&lt;-</span> <span class="fu">logistic_reg</span><span class="op">(</span>penalty <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,
+                        mode <span class="op">=</span> <span class="st">"classification"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">set_engine</span><span class="op">(</span><span class="st">"glm"</span><span class="op">)</span>
 
 <span class="va">class_wflow</span> <span class="op">&lt;-</span> 
-  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">add_model</span><span class="op">(</span><span class="va">lr_mod</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">add_model</span><span class="op">(</span><span class="va">lr_mod</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">add_recipe</span><span class="op">(</span><span class="va">class_rec</span><span class="op">)</span>
 
 <span class="va">lr_grid</span> <span class="op">&lt;-</span> <span class="fu">grid_regular</span><span class="op">(</span><span class="fu">penalty</span><span class="op">(</span><span class="op">)</span>,
                         levels <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
 
-<span class="va">class_fit</span> <span class="op">&lt;-</span> <span class="va">class_wflow</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> 
+<span class="va">class_fit</span> <span class="op">&lt;-</span> <span class="va">class_wflow</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">tune_grid</span><span class="op">(</span>
     resamples <span class="op">=</span> <span class="va">folds</span>,
     grid <span class="op">=</span> <span class="va">lr_grid</span>
@@ -1966,20 +2246,20 @@ Residuals   354 397129240 1121834               </code></pre>
 <pre><code>Warning: No tuning parameters have been detected, performance will be evaluated
 using the resamples with no tuning. Did you want to [tune()] parameters?</code></pre>
 </div>
-<details><summary>Code</summary><div class="sourceCode" id="cb218"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">best_lr</span> <span class="op">&lt;-</span> <span class="va">class_fit</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb224"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">best_lr</span> <span class="op">&lt;-</span> <span class="va">class_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">select_best</span><span class="op">(</span><span class="st">"accuracy"</span><span class="op">)</span>
 
 <span class="va">final_wf</span> <span class="op">&lt;-</span> 
-  <span class="va">class_wflow</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> 
+  <span class="va">class_wflow</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">finalize_workflow</span><span class="op">(</span><span class="va">best_lr</span><span class="op">)</span>
 
 
 <span class="va">final_fit</span> <span class="op">&lt;-</span> 
-  <span class="va">final_wf</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
+  <span class="va">final_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">last_fit</span><span class="op">(</span><span class="va">data_split</span><span class="op">)</span> 
 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>
-  <span class="va">final_fit</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
+  <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu">collect_metrics</span><span class="op">(</span><span class="op">)</span>, 
   col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Metric"</span>, <span class="st">"Estimator"</span>, <span class="st">"Estimate"</span>, <span class="st">"Config"</span><span class="op">)</span>,
   align <span class="op">=</span> <span class="st">"cccc"</span><span class="op">)</span> </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2010,7 +2290,7 @@ using the resamples with no tuning. Did you want to [tune()] parameters?</code><
 </div>
 </section><section id="confusion-matrix-2" class="level5"><h5 class="anchored" data-anchor-id="confusion-matrix-2">Confusion matrix</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb219"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">final_fit</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb225"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">collect_predictions</span><span class="op">(</span><span class="op">)</span> 
 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">results</span><span class="op">$</span><span class="va">class2</span>, <span class="va">results</span><span class="op">$</span><span class="va">.pred_class</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2039,40 +2319,40 @@ using the resamples with no tuning. Did you want to [tune()] parameters?</code><
 </section></section><section id="random-forest-1" class="level4"><h4 class="anchored" data-anchor-id="random-forest-1">Random forest</h4>
 <section id="metrics-3" class="level5"><h5 class="anchored" data-anchor-id="metrics-3">Metrics</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb220"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">rf_mod</span> <span class="op">&lt;-</span> <span class="fu">rand_forest</span><span class="op">(</span>mtry <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>, 
+<details><summary>Code</summary><div class="sourceCode" id="cb226"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">rf_mod</span> <span class="op">&lt;-</span> <span class="fu">rand_forest</span><span class="op">(</span>mtry <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>, 
                       trees <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,
-                      mode <span class="op">=</span> <span class="st">"classification"</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
+                      mode <span class="op">=</span> <span class="st">"classification"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">set_engine</span><span class="op">(</span><span class="st">"ranger"</span><span class="op">)</span>
 
 <span class="va">class_wflow</span> <span class="op">&lt;-</span> 
-  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">add_model</span><span class="op">(</span><span class="va">rf_mod</span><span class="op">)</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">workflow</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+  <span class="fu">add_model</span><span class="op">(</span><span class="va">rf_mod</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">add_recipe</span><span class="op">(</span><span class="va">class_rec</span><span class="op">)</span>
 
 <span class="va">tree_grid</span> <span class="op">&lt;-</span> <span class="fu">grid_regular</span><span class="op">(</span><span class="fu">mtry</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/range.html">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">8</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
                           <span class="fu"><a href="https://rdrr.io/r/datasets/trees.html">trees</a></span><span class="op">(</span><span class="op">)</span>,
                           levels <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
 
-<span class="va">class_fit</span> <span class="op">&lt;-</span> <span class="va">class_wflow</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> 
+<span class="va">class_fit</span> <span class="op">&lt;-</span> <span class="va">class_wflow</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
     <span class="fu">tune_grid</span><span class="op">(</span>
     resamples <span class="op">=</span> <span class="va">folds</span>,
     grid <span class="op">=</span> <span class="va">tree_grid</span>
     <span class="op">)</span>
 
-<span class="va">best_tree</span> <span class="op">&lt;-</span> <span class="va">class_fit</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
+<span class="va">best_tree</span> <span class="op">&lt;-</span> <span class="va">class_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">select_best</span><span class="op">(</span><span class="st">"accuracy"</span><span class="op">)</span>
 
 <span class="va">final_wf</span> <span class="op">&lt;-</span> 
-  <span class="va">class_wflow</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span> 
+  <span class="va">class_wflow</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu">finalize_workflow</span><span class="op">(</span><span class="va">best_tree</span><span class="op">)</span>
 
 
 <span class="va">final_fit</span> <span class="op">&lt;-</span> 
-  <span class="va">final_wf</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
+  <span class="va">final_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">last_fit</span><span class="op">(</span><span class="va">data_split</span><span class="op">)</span> 
 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>
-  <span class="va">final_fit</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
+  <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu">collect_metrics</span><span class="op">(</span><span class="op">)</span>, 
   col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Metric"</span>, <span class="st">"Estimator"</span>, <span class="st">"Estimate"</span>, <span class="st">"Config"</span><span class="op">)</span>,
   align <span class="op">=</span> <span class="st">"cccc"</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2103,7 +2383,7 @@ using the resamples with no tuning. Did you want to [tune()] parameters?</code><
 </div>
 </section><section id="confusion-matrix-3" class="level5"><h5 class="anchored" data-anchor-id="confusion-matrix-3">Confusion matrix</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb221"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">final_fit</span> <span class="op"><a href="https://rpkgs.datanovia.com/ggpubr/reference/pipe.html">%&gt;%</a></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb227"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">collect_predictions</span><span class="op">(</span><span class="op">)</span> 
 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">results</span><span class="op">$</span><span class="va">class2</span>, <span class="va">results</span><span class="op">$</span><span class="va">.pred_class</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2137,8 +2417,8 @@ using the resamples with no tuning. Did you want to [tune()] parameters?</code><
 <p><strong>Platform:</strong> x86_64-apple-darwin17.0 (64-bit)</p>
 <p><strong>locale:</strong> en_GB.UTF-8||en_GB.UTF-8||en_GB.UTF-8||C||en_GB.UTF-8||en_GB.UTF-8</p>
 <p><strong>attached base packages:</strong> <em>stats</em>, <em>graphics</em>, <em>grDevices</em>, <em>datasets</em>, <em>utils</em>, <em>methods</em> and <em>base</em></p>
-<p><strong>other attached packages:</strong> <em>plyr(v.1.8.7)</em>, <em>patchwork(v.1.1.1)</em>, <em>survminer(v.0.4.9)</em>, <em>ggpubr(v.0.4.0)</em>, <em>survival(v.3.3-1)</em>, <em>ranger(v.0.13.1)</em>, <em>yardstick(v.0.0.9)</em>, <em>workflowsets(v.0.2.1)</em>, <em>workflows(v.0.2.6)</em>, <em>tune(v.0.2.0)</em>, <em>tidyr(v.1.2.0)</em>, <em>tibble(v.3.1.7)</em>, <em>rsample(v.0.1.1)</em>, <em>recipes(v.0.2.0)</em>, <em>purrr(v.0.3.4)</em>, <em>parsnip(v.0.2.1)</em>, <em>modeldata(v.0.1.1)</em>, <em>infer(v.1.0.0)</em>, <em>ggplot2(v.3.3.6)</em>, <em>dplyr(v.1.0.9)</em>, <em>dials(v.0.1.1)</em>, <em>scales(v.1.2.0)</em>, <em>broom(v.0.8.0)</em>, <em>tidymodels(v.0.2.0)</em> and <em>nnet(v.7.3-17)</em></p>
-<p><strong>loaded via a namespace (and not attached):</strong> <em>colorspace(v.2.0-3)</em>, <em>ggsignif(v.0.6.3)</em>, <em>ellipsis(v.0.3.2)</em>, <em>class(v.7.3-20)</em>, <em>rstudioapi(v.0.13)</em>, <em>listenv(v.0.8.0)</em>, <em>furrr(v.0.3.0)</em>, <em>farver(v.2.1.0)</em>, <em>prodlim(v.2019.11.13)</em>, <em>fansi(v.1.0.3)</em>, <em>lubridate(v.1.8.0)</em>, <em>codetools(v.0.2-18)</em>, <em>splines(v.4.2.0)</em>, <em>knitr(v.1.39)</em>, <em>jsonlite(v.1.8.0)</em>, <em>pROC(v.1.18.0)</em>, <em>km.ci(v.0.5-6)</em>, <em>compiler(v.4.2.0)</em>, <em>backports(v.1.4.1)</em>, <em>assertthat(v.0.2.1)</em>, <em>Matrix(v.1.4-1)</em>, <em>fastmap(v.1.1.0)</em>, <em>cli(v.3.3.0)</em>, <em>htmltools(v.0.5.2)</em>, <em>tools(v.4.2.0)</em>, <em>gtable(v.0.3.0)</em>, <em>glue(v.1.6.2)</em>, <em>Rcpp(v.1.0.8.3)</em>, <em>carData(v.3.0-5)</em>, <em>DiceDesign(v.1.9)</em>, <em>vctrs(v.0.4.1)</em>, <em>iterators(v.1.0.14)</em>, <em>timeDate(v.3043.102)</em>, <em>gower(v.1.0.0)</em>, <em>xfun(v.0.30)</em>, <em>stringr(v.1.4.0)</em>, <em>globals(v.0.14.0)</em>, <em>lifecycle(v.1.0.1)</em>, <em>renv(v.0.15.4)</em>, <em>rstatix(v.0.7.0)</em>, <em>future(v.1.25.0)</em>, <em>MASS(v.7.3-57)</em>, <em>zoo(v.1.8-10)</em>, <em>ipred(v.0.9-12)</em>, <em>ragg(v.1.2.2)</em>, <em>parallel(v.4.2.0)</em>, <em>yaml(v.2.3.5)</em>, <em>gridExtra(v.2.3)</em>, <em>pander(v.0.6.5)</em>, <em>KMsurv(v.0.1-5)</em>, <em>rpart(v.4.1.16)</em>, <em>stringi(v.1.7.6)</em>, <em>highr(v.0.9)</em>, <em>foreach(v.1.5.2)</em>, <em>lhs(v.1.1.5)</em>, <em>hardhat(v.0.2.0)</em>, <em>lava(v.1.6.10)</em>, <em>rlang(v.1.0.2)</em>, <em>pkgconfig(v.2.0.3)</em>, <em>systemfonts(v.1.0.4)</em>, <em>evaluate(v.0.15)</em>, <em>lattice(v.0.20-45)</em>, <em>datefixR(v.0.1.4)</em>, <em>htmlwidgets(v.1.5.4)</em>, <em>labeling(v.0.4.2)</em>, <em>tidyselect(v.1.1.2)</em>, <em>parallelly(v.1.31.1)</em>, <em>magrittr(v.2.0.3)</em>, <em>R6(v.2.5.1)</em>, <em>generics(v.0.1.2)</em>, <em>DBI(v.1.1.2)</em>, <em>pillar(v.1.7.0)</em>, <em>withr(v.2.5.0)</em>, <em>abind(v.1.4-5)</em>, <em>future.apply(v.1.9.0)</em>, <em>crayon(v.1.5.1)</em>, <em>car(v.3.0-13)</em>, <em>survMisc(v.0.5.6)</em>, <em>utf8(v.1.2.2)</em>, <em>rmarkdown(v.2.14)</em>, <em>grid(v.4.2.0)</em>, <em>data.table(v.1.14.2)</em>, <em>digest(v.0.6.29)</em>, <em>xtable(v.1.8-4)</em>, <em>textshaping(v.0.3.6)</em>, <em>GPfit(v.1.0-8)</em> and <em>munsell(v.0.5.0)</em></p>
+<p><strong>other attached packages:</strong> <em>plyr(v.1.8.7)</em>, <em>vip(v.0.3.2)</em>, <em>patchwork(v.1.1.1)</em>, <em>survminer(v.0.4.9)</em>, <em>ggpubr(v.0.4.0)</em>, <em>survival(v.3.3-1)</em>, <em>ranger(v.0.13.1)</em>, <em>yardstick(v.0.0.9)</em>, <em>workflowsets(v.0.2.1)</em>, <em>workflows(v.0.2.6)</em>, <em>tune(v.0.2.0)</em>, <em>tidyr(v.1.2.0)</em>, <em>tibble(v.3.1.7)</em>, <em>rsample(v.0.1.1)</em>, <em>recipes(v.0.2.0)</em>, <em>purrr(v.0.3.4)</em>, <em>parsnip(v.0.2.1)</em>, <em>modeldata(v.0.1.1)</em>, <em>infer(v.1.0.0)</em>, <em>ggplot2(v.3.3.6)</em>, <em>dplyr(v.1.0.9)</em>, <em>dials(v.0.1.1)</em>, <em>scales(v.1.2.0)</em>, <em>broom(v.0.8.0)</em>, <em>tidymodels(v.0.2.0)</em> and <em>nnet(v.7.3-17)</em></p>
+<p><strong>loaded via a namespace (and not attached):</strong> <em>colorspace(v.2.0-3)</em>, <em>ggsignif(v.0.6.3)</em>, <em>ellipsis(v.0.3.2)</em>, <em>class(v.7.3-20)</em>, <em>rstudioapi(v.0.13)</em>, <em>listenv(v.0.8.0)</em>, <em>furrr(v.0.3.0)</em>, <em>farver(v.2.1.0)</em>, <em>prodlim(v.2019.11.13)</em>, <em>fansi(v.1.0.3)</em>, <em>lubridate(v.1.8.0)</em>, <em>codetools(v.0.2-18)</em>, <em>splines(v.4.2.0)</em>, <em>knitr(v.1.39)</em>, <em>jsonlite(v.1.8.0)</em>, <em>pROC(v.1.18.0)</em>, <em>km.ci(v.0.5-6)</em>, <em>compiler(v.4.2.0)</em>, <em>backports(v.1.4.1)</em>, <em>assertthat(v.0.2.1)</em>, <em>Matrix(v.1.4-1)</em>, <em>fastmap(v.1.1.0)</em>, <em>cli(v.3.3.0)</em>, <em>htmltools(v.0.5.2)</em>, <em>tools(v.4.2.0)</em>, <em>gtable(v.0.3.0)</em>, <em>glue(v.1.6.2)</em>, <em>Rcpp(v.1.0.8.3)</em>, <em>carData(v.3.0-5)</em>, <em>DiceDesign(v.1.9)</em>, <em>vctrs(v.0.4.1)</em>, <em>iterators(v.1.0.14)</em>, <em>timeDate(v.3043.102)</em>, <em>gower(v.1.0.0)</em>, <em>xfun(v.0.30)</em>, <em>stringr(v.1.4.0)</em>, <em>globals(v.0.14.0)</em>, <em>lifecycle(v.1.0.1)</em>, <em>renv(v.0.15.4)</em>, <em>rstatix(v.0.7.0)</em>, <em>future(v.1.25.0)</em>, <em>MASS(v.7.3-57)</em>, <em>zoo(v.1.8-10)</em>, <em>ipred(v.0.9-12)</em>, <em>ragg(v.1.2.2)</em>, <em>parallel(v.4.2.0)</em>, <em>yaml(v.2.3.5)</em>, <em>gridExtra(v.2.3)</em>, <em>pander(v.0.6.5)</em>, <em>KMsurv(v.0.1-5)</em>, <em>rpart(v.4.1.16)</em>, <em>stringi(v.1.7.6)</em>, <em>highr(v.0.9)</em>, <em>foreach(v.1.5.2)</em>, <em>lhs(v.1.1.5)</em>, <em>hardhat(v.0.2.0)</em>, <em>lava(v.1.6.10)</em>, <em>systemfonts(v.1.0.4)</em>, <em>rlang(v.1.0.2)</em>, <em>pkgconfig(v.2.0.3)</em>, <em>evaluate(v.0.15)</em>, <em>lattice(v.0.20-45)</em>, <em>datefixR(v.0.1.4)</em>, <em>htmlwidgets(v.1.5.4)</em>, <em>labeling(v.0.4.2)</em>, <em>tidyselect(v.1.1.2)</em>, <em>parallelly(v.1.31.1)</em>, <em>magrittr(v.2.0.3)</em>, <em>R6(v.2.5.1)</em>, <em>generics(v.0.1.2)</em>, <em>DBI(v.1.1.2)</em>, <em>pillar(v.1.7.0)</em>, <em>withr(v.2.5.0)</em>, <em>abind(v.1.4-5)</em>, <em>future.apply(v.1.9.0)</em>, <em>crayon(v.1.5.1)</em>, <em>car(v.3.0-13)</em>, <em>survMisc(v.0.5.6)</em>, <em>utf8(v.1.2.2)</em>, <em>rmarkdown(v.2.14)</em>, <em>grid(v.4.2.0)</em>, <em>data.table(v.1.14.2)</em>, <em>digest(v.0.6.29)</em>, <em>xtable(v.1.8-4)</em>, <em>textshaping(v.0.3.6)</em>, <em>GPfit(v.1.0-8)</em> and <em>munsell(v.0.5.0)</em></p>
 </div>
 </div>
 </section><div id="quarto-appendix" class="default"><section id="section" class="level2 appendix"><h2 class="quarto-appendix-heading"></h2><div class="quarto-appendix-contents">

@@ -32,6 +32,7 @@ library(ranger) # Random forest
 library(survival) # Kaplan-Meier
 library(survminer) # Plot Kaplan-Meier curves
 library(patchwork)
+library(vip)
 
 if (!require(plyr)) {s
   install.packages("plyr")
@@ -505,6 +506,7 @@ summary(aov(DiagFC ~ class, data = demographic))
 
 ```{R}
 colnames(demographic)[colnames(demographic) == "BEHAVIOUR.AT.DIAGNOSIS"] <- "behaviour"
+demographic$behaviour <- as.factor(demographic$behaviour)
 ```
 
 #### Population
@@ -1047,6 +1049,7 @@ Firstly, we attempt to predict class membership for all four classes.
 
 ```{R}
 demographic$class <- as.factor(demographic$class)
+demographic$class = relevel(demographic$class, ref = 2) # 
 
 data_split <- initial_split(demographic, prop = 0.75, strata = class)
 train_data <- training(data_split)
@@ -1066,8 +1069,6 @@ class_rec <- recipe(class ~ age +
 ```
 
 #### Multinomial logistic regression
-
-##### Metrics
 
 ```{R}
 mlr_mod <- multinom_reg(penalty = tune(),
@@ -1101,6 +1102,46 @@ final_fit <-
   final_wf %>%
   last_fit(data_split) 
 
+temp <- final_fit %>% extract_fit_engine()
+
+temp$call <- quote(nnet::multinom(formula = class ~ age +
+                                      SEX  +
+                                      smoking +
+                                      LOCATION +
+                                      L4 +
+                                      behaviour +
+                                      peri +
+                                      DiagFC,
+                                  data = train_data,
+                                  decay = ~0.00316227766016838, 
+                                  trace = FALSE))
+
+hmm <- summary(temp)
+```
+
+##### Odd ratios 
+
+Point estimates:
+
+```{R}
+knitr::kable(round(exp(hmm$coefficients), 2)) 
+```
+
+Lower 95% confidence interval:
+
+```{R}
+knitr::kable(round(exp(hmm$coefficients - qnorm(0.975) * hmm$standard.errors), 2))
+```
+
+Upper 95% confidence interval:
+
+```{R}
+knitr::kable(round(exp(hmm$coefficients + qnorm(0.975) * hmm$standard.errors), 2))
+```
+
+##### Metrics
+
+```{R}
 knitr::kable(
   final_fit %>%
     collect_metrics(), 
@@ -1125,7 +1166,9 @@ knitr::kable(table(results$class, results$.pred_class), row.names = TRUE)
 rf_mod <- rand_forest(mtry = tune(), 
                       trees = tune(),
                       mode = "classification") %>%
-  set_engine("ranger")
+  set_engine("ranger",
+             num.threads = parallel::detectCores(),
+             importance = "permutation")
 
 class_wflow <- 
   workflow() %>% 
@@ -1152,6 +1195,10 @@ final_wf <-
 final_fit <- 
   final_wf %>%
   last_fit(data_split) 
+
+final_fit %>% 
+  extract_fit_parsnip() %>% 
+  vi()
 
 knitr::kable(
   final_fit %>%

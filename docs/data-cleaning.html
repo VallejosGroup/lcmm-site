@@ -141,8 +141,8 @@
 <meta name="citation_author" content="Nathan Contantine-Cooke &amp;amp;lt;sup&amp;gt;1, 2</sup>">
 <meta name="citation_author" content="Nikolas Plevris &amp;amp;lt;sup&amp;gt;2, 3</sup>">
 <meta name="citation_author" content=" ">
-<meta name="citation_online_date" content="2022-05-16">
-<meta name="citation_publication_date" content="2022-05-16">
+<meta name="citation_online_date" content="2022-06-06">
+<meta name="citation_publication_date" content="2022-06-06">
 <meta name="citation_journal_title" content="undefined">
 <meta name="citation_reference" content="citation_title=Normalization of fecal calprotectin within 12 months of diagnosis is associated with reduced risk of disease progression in patients with Crohn’s disease;,citation_author=Nikolas Plevris;,citation_author=James Fulforth;,citation_author=Mathew Lyons;,citation_author=Spyros I. Siakavellas;,citation_author=Philip W. Jenkinson;,citation_author=Cher S. Chuah;,citation_author=Laura Lucaciu;,citation_author=Rebecca J. Pattenden;,citation_author=Ian D. Arnott;,citation_author=Gareth-Rhys Jones;,citation_author=Charlie W. Lees;,citation_publication_date=2021-09;,citation_issue=9;,citation_volume=19;,citation_journal_title=Clinical Gastroenterology and Hepatology;">
 <meta name="citation_reference" content="citation_title=Ulcerative colitis and clinical course: Results of a 5-year population-based follow-up study (the IBSEN study);,citation_author=Magne Henriksen;,citation_author=Jrgen Jahnsen;,citation_author=Idar Lygren;,citation_author=Jostein Sauar;,citation_author=undefined Kjellevold;,citation_author=Tom Schulz;,citation_author=Morten H. Vatn;,citation_author=Bjrn Moum;,citation_publication_date=2006-07;,citation_issue=7;,citation_volume=12;,citation_journal_title=Inflammatory Bowel Diseases;">
@@ -226,7 +226,7 @@
 <p><sup>2</sup> Centre for Genomic and Experimental Medicine</p>
 </a></p><p><a href="https://services.nhslothian.scot/EdinburghIBDUnit/Pages/default.aspx">
 <p><sup>3</sup> Edinburgh IBD Unit</p>
-</a></p></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">May 16, 2022</p></div></div></div></header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+</a></p></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">June 6, 2022</p></div></div></div></header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/">ggdist</a></span><span class="op">)</span>
@@ -786,7 +786,18 @@
 </div>
 </div>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">FCcumulativeLong</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">FCcountsdf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">counts</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">1</span>, fill <span class="op">=</span> <span class="st">"#479AA7"</span>, col <span class="op">=</span> <span class="st">"#327c88"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Faecal calprotectin measurement frequency"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Subjects"</span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"paper/fcal-dist.png"</span>, <span class="va">p</span>, width <span class="op">=</span> <span class="fl">8</span>, height <span class="op">=</span> <span class="fl">4.5</span>, units <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"paper/fcal-dist.pdf"</span>, <span class="va">p</span>, width <span class="op">=</span> <span class="fl">8</span>, height <span class="op">=</span> <span class="fl">4.5</span>, units <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">FCcumulativeLong</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/stat_slab.html">stat_slab</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.8</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, fill <span class="op">=</span> <span class="st">"#235789"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/geom_dotsinterval.html">geom_dots</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"#235789"</span>,
@@ -804,11 +815,11 @@
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"figures/dist2.png"</span>, <span class="va">p</span>, width <span class="op">=</span> <span class="fl">8</span>, height <span class="op">=</span> <span class="fl">4.5</span>, units <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="data-cleaning_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<p><img src="data-cleaning_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">FCcumulativeLong</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+<details><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">FCcumulativeLong</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">id</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
@@ -819,14 +830,14 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Spaghetti Plot of FCAL Trajectories"</span>,
           <span class="st">"Subject-specific trajectories show a high degree of heterogeneity"</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
-<p><img src="data-cleaning_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<p><img src="data-cleaning_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>It should be noted June 2019 is the last month of followup</p>
 </section><section id="data-saving" class="level2"><h2 class="anchored" data-anchor-id="data-saving">Data saving</h2>
 <p>The tidied data, with a 5-year cut-off applied, has been saved as a RDS file for the <a href="./selection.html">model selection</a> step of the analysis pipeline.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span>,
+<details><summary>Code</summary><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span>,
         <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"/Volumes/igmm/cvallejo-predicct/processed-data/cdi/"</span>,
                <span class="st">"FCcumulativeLongInc.RDS"</span><span class="op">)</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>

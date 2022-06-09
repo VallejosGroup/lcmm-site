@@ -250,6 +250,10 @@ spaghetti_plot_sub <- function(FCcumulative,
                                                     mapping[g])]),
                 col = "red",
                 lty = 2) +
+      geom_hline(yintercept = log(250),
+                 color = "#007add",
+                 lty = 3,
+                 size = 1.5) +
       xlab("Time (years)") +
       ylab("Log (FCAL (μg/g))") +
       ylim(2, log(2500))
@@ -458,7 +462,7 @@ lines(x$times[,1], x$pred[,1], col = "red")
 lines(x$times[,1], x$pred[,2], col = "red", lty = 2) # Conf intervals
 lines(x$times[,1], x$pred[,3], col = "red", lty = 2) 
 
-# Plot knots a vertical lines
+# Plot knots as vertical lines
 abline(v = as.numeric(attr(ns(FCcumulative$time, df = 4),
                            "knots")),
        col = "blue",
@@ -1044,6 +1048,19 @@ spaghetti_plot(FCcumulative, cubicbf.fits, G = 5, log = TRUE)
 #| fig-height: 8
 #| warning: false
 spaghetti_plot(FCcumulative, cubicbf.fits, G = 5, log = FALSE)
+```
+
+```{R}
+#| include: false
+cairo_pdf("paper/all_trajectories-5.pdf", width = 8.25, height = 8)
+spaghetti_plot(FCcumulative,
+               cubicbf.fits,
+               G = 5,
+               log = FALSE,
+               column = FALSE,
+               mapping = c(1, 5, 2, 4, 3), 
+               save = TRUE)
+dev.off()
 ```
 
 ##### Log-scale, pprob > 0.8 only
