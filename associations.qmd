@@ -1196,9 +1196,11 @@ final_fit <-
   final_wf %>%
   last_fit(data_split) 
 
-final_fit %>% 
-  extract_fit_parsnip() %>% 
-  vi()
+knitr::kable(
+  final_fit %>% 
+    extract_fit_parsnip() %>% 
+    vi()
+)
 
 knitr::kable(
   final_fit %>%

@@ -2411,6 +2411,20 @@
         "rlang"
       ]
     },
+    "vip": {
+      "Package": "vip",
+      "Version": "0.3.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "70e6da4dbf60a40e80c57901ffef043d",
+      "Requirements": [
+        "ggplot2",
+        "gridExtra",
+        "magrittr",
+        "plyr",
+        "tibble"
+      ]
+    },
     "viridis": {
       "Package": "viridis",
       "Version": "0.6.2",

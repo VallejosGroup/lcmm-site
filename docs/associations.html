@@ -2102,23 +2102,54 @@ Residuals   354 397129240 1121834               </code></pre>
   <span class="va">final_wf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">last_fit</span><span class="op">(</span><span class="va">data_split</span><span class="op">)</span> 
 
-<span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu">extract_fit_parsnip</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
-  <span class="fu"><a href="https://rdrr.io/pkg/vip/man/vi.html">vi</a></span><span class="op">(</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stdout">
-<pre><code># A tibble: 8 × 2
-  Variable  Importance
-  &lt;chr&gt;          &lt;dbl&gt;
-1 L4          0.00563 
-2 smoking     0.00322 
-3 LOCATION    0.00150 
-4 age         0.00133 
-5 DiagFC      0.000374
-6 behaviour   0.000197
-7 SEX        -0.000842
-8 peri       -0.00180 </code></pre>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>
+  <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu">extract_fit_parsnip</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://rdrr.io/pkg/vip/man/vi.html">vi</a></span><span class="op">(</span><span class="op">)</span>
+<span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+<table class="table table-sm table-striped">
+<thead><tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: right;">Importance</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">L4</td>
+<td style="text-align: right;">0.0056340</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">smoking</td>
+<td style="text-align: right;">0.0032240</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LOCATION</td>
+<td style="text-align: right;">0.0015034</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">age</td>
+<td style="text-align: right;">0.0013339</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DiagFC</td>
+<td style="text-align: right;">0.0003739</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">behaviour</td>
+<td style="text-align: right;">0.0001972</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SEX</td>
+<td style="text-align: right;">-0.0008423</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">peri</td>
+<td style="text-align: right;">-0.0018048</td>
+</tr>
+</tbody>
+</table>
 </div>
-<details><summary>Code</summary><div class="sourceCode" id="cb219"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb218"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span>
   <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
     <span class="fu">collect_metrics</span><span class="op">(</span><span class="op">)</span>, 
   col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Metric"</span>, <span class="st">"Estimator"</span>, <span class="st">"Estimate"</span>, <span class="st">"Config"</span><span class="op">)</span>,
@@ -2150,7 +2181,7 @@ Residuals   354 397129240 1121834               </code></pre>
 </div>
 </section><section id="confusion-matrix-1" class="level5"><h5 class="anchored" data-anchor-id="confusion-matrix-1">Confusion matrix</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb220"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb219"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">collect_predictions</span><span class="op">(</span><span class="op">)</span> 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">results</span><span class="op">$</span><span class="va">class</span>, <span class="va">results</span><span class="op">$</span><span class="va">.pred_class</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
@@ -2199,7 +2230,7 @@ Residuals   354 397129240 1121834               </code></pre>
 </section></section></section><section id="class-2-16" class="level3"><h3 class="anchored" data-anchor-id="class-2-16">Class 2</h3>
 <p>Due to the clinical significance of class 2 (see <a href="#outcomes">outcomes</a>), the clear separation in mean class profiles between class 2 and the other classes, and the poor model performance described above, we now consider binary outcome models which attempt to predict membership, or non-membership, of class 2.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb221"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">demographic</span><span class="op">$</span><span class="va">class2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">demographic</span><span class="op">)</span><span class="op">)</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb220"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">demographic</span><span class="op">$</span><span class="va">class2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">demographic</span><span class="op">)</span><span class="op">)</span>
 <span class="va">demographic</span><span class="op">[</span><span class="va">demographic</span><span class="op">[</span>,<span class="st">"class"</span><span class="op">]</span> <span class="op">==</span> <span class="fl">2</span>, <span class="st">"class2"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">1</span>
 <span class="va">demographic</span><span class="op">[</span><span class="va">demographic</span><span class="op">[</span>,<span class="st">"class"</span><span class="op">]</span> <span class="op">!=</span> <span class="fl">2</span>, <span class="st">"class2"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span>
 <span class="va">demographic</span><span class="op">$</span><span class="va">class2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">demographic</span><span class="op">$</span><span class="va">class2</span><span class="op">)</span>
@@ -2225,7 +2256,7 @@ Residuals   354 397129240 1121834               </code></pre>
 <p>As we now considering a binary outcome, logistic regression via the <code><a href="https://rdrr.io/r/stats/glm.html">glm()</a></code> function is used instead of multinomial logistic regression.</p>
 <section id="metrics-2" class="level5"><h5 class="anchored" data-anchor-id="metrics-2">Metrics</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb222"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">lr_mod</span> <span class="op">&lt;-</span> <span class="fu">logistic_reg</span><span class="op">(</span>penalty <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,
+<details><summary>Code</summary><div class="sourceCode" id="cb221"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">lr_mod</span> <span class="op">&lt;-</span> <span class="fu">logistic_reg</span><span class="op">(</span>penalty <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,
                         mode <span class="op">=</span> <span class="st">"classification"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">set_engine</span><span class="op">(</span><span class="st">"glm"</span><span class="op">)</span>
 
@@ -2246,7 +2277,7 @@ Residuals   354 397129240 1121834               </code></pre>
 <pre><code>Warning: No tuning parameters have been detected, performance will be evaluated
 using the resamples with no tuning. Did you want to [tune()] parameters?</code></pre>
 </div>
-<details><summary>Code</summary><div class="sourceCode" id="cb224"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">best_lr</span> <span class="op">&lt;-</span> <span class="va">class_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb223"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">best_lr</span> <span class="op">&lt;-</span> <span class="va">class_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">select_best</span><span class="op">(</span><span class="st">"accuracy"</span><span class="op">)</span>
 
 <span class="va">final_wf</span> <span class="op">&lt;-</span> 
@@ -2290,7 +2321,7 @@ using the resamples with no tuning. Did you want to [tune()] parameters?</code><
 </div>
 </section><section id="confusion-matrix-2" class="level5"><h5 class="anchored" data-anchor-id="confusion-matrix-2">Confusion matrix</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb225"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb224"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">collect_predictions</span><span class="op">(</span><span class="op">)</span> 
 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">results</span><span class="op">$</span><span class="va">class2</span>, <span class="va">results</span><span class="op">$</span><span class="va">.pred_class</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2319,7 +2350,7 @@ using the resamples with no tuning. Did you want to [tune()] parameters?</code><
 </section></section><section id="random-forest-1" class="level4"><h4 class="anchored" data-anchor-id="random-forest-1">Random forest</h4>
 <section id="metrics-3" class="level5"><h5 class="anchored" data-anchor-id="metrics-3">Metrics</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb226"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">rf_mod</span> <span class="op">&lt;-</span> <span class="fu">rand_forest</span><span class="op">(</span>mtry <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>, 
+<details><summary>Code</summary><div class="sourceCode" id="cb225"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">rf_mod</span> <span class="op">&lt;-</span> <span class="fu">rand_forest</span><span class="op">(</span>mtry <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>, 
                       trees <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,
                       mode <span class="op">=</span> <span class="st">"classification"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">set_engine</span><span class="op">(</span><span class="st">"ranger"</span><span class="op">)</span>
@@ -2383,7 +2414,7 @@ using the resamples with no tuning. Did you want to [tune()] parameters?</code><
 </div>
 </section><section id="confusion-matrix-3" class="level5"><h5 class="anchored" data-anchor-id="confusion-matrix-3">Confusion matrix</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb227"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb226"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu">collect_predictions</span><span class="op">(</span><span class="op">)</span> 
 
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">results</span><span class="op">$</span><span class="va">class2</span>, <span class="va">results</span><span class="op">$</span><span class="va">.pred_class</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
