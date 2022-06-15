@@ -274,29 +274,29 @@ kaplan_plot(comp.model, "Kaplan-Meier Curves for Composite Endpoint")
 ```{R}
 #| include: false
 # Plot in 2x2 grid
-splots <- list(kap.hosp = kaplan_plot(hosp.model,
+splots <- list(kap.comp = kaplan_plot(comp.model,
                                       "A",
-                                      subtitle = FALSE,
+                                      subtitle = FALSE, 
                                       legend = TRUE),
                kap.prog = kaplan_plot(prog.model,
                                       "C",
                                       subtitle = FALSE,
                                       legend = TRUE ),
+               kap.hosp = kaplan_plot(hosp.model,
+                                      "B",
+                                      subtitle = FALSE,
+                                      legend = TRUE),
                kap.surgery = kaplan_plot(surg.model,
-                                         "B",
+                                         "D",
                                          subtitle = FALSE,
-                                         legend = TRUE),
-               kap.comp = kaplan_plot(comp.model,
-                                      "D",
-                                      subtitle = FALSE, 
-                                      legend = TRUE)
+                                         legend = TRUE)
                )
 
 ggsave("paper/kaplan.pdf",
-       (splots$kap.hosp$plot +
-          splots$kap.surgery$plot +
+       (splots$kap.comp$plot +
+          splots$kap.hosp$plot +
           splots$kap.prog$plot +
-          splots$kap.comp$plot) +
+          splots$kap.surgery$plot) +
          plot_layout(ncol = 2,
                      nrow = 2,
                      guides = 'collect',
@@ -306,15 +306,15 @@ ggsave("paper/kaplan.pdf",
        height = 8, 
        units = "in")
 ggsave("paper/kaplan.png",
-       (splots$kap.hosp$plot +
-          splots$kap.surgery$plot +
+       (splots$kap.comp$plot +
+          splots$kap.hosp$plot +
           splots$kap.prog$plot +
-          splots$kap.comp$plot) +
+          splots$kap.surgery$plot) +
          plot_layout(ncol = 2,
                      nrow = 2,
                      guides = 'collect',
                      widths = 1,
-                     heights = 1) & theme(legend.position = 'bottom'),
+                     heights = 1) & theme(legend.position = 'bottom'), 
        width = 8.25, 
        height = 8, 
        units = "in")

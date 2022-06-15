@@ -25,4 +25,3 @@ Depends:
   patchwork (==1.1.1),
   plyr (==1.8.7),
   vip (==0.3.2)
-  

@@ -872,6 +872,18 @@ most appropriate.
 spaghetti_plot(FCcumulative, cubicbf.fits, G = 2, log = TRUE)
 ```
 
+```{R}
+#| include: false
+cairo_pdf("paper/all_trajectories_2_log.pdf", width = 8.25, height = 4)
+spaghetti_plot(FCcumulative,
+               cubicbf.fits,
+               G = 2,
+               log = TRUE,
+               column = FALSE,
+               save = TRUE)
+dev.off()
+```
+
 ##### Measurement-scale, all subjects
 
 ```{R Spaghetti G2 measurement scale all subjects}
@@ -915,6 +927,18 @@ spaghetti_plot(FCcumulative,
 #| fig-width: 11
 #| fig.height: 8
 spaghetti_plot(FCcumulative, cubicbf.fits, G = 3, log = TRUE)
+```
+
+```{R}
+#| include: false
+cairo_pdf("paper/all_trajectories_3_log.pdf", width = 8.25, height = 8)
+spaghetti_plot(FCcumulative,
+               cubicbf.fits,
+               G = 3,
+               log = TRUE,
+               column = FALSE,
+               save = TRUE)
+dev.off()
 ```
 
 ##### Measurement-scale, all subjects
@@ -1041,6 +1065,19 @@ spaghetti_plot(FCcumulative,
 spaghetti_plot(FCcumulative, cubicbf.fits, G = 5, log = TRUE)
 ```
 
+```{R}
+#| include: false
+cairo_pdf("paper/all_trajectories_5_log.pdf", width = 8.25, height = 12)
+spaghetti_plot(FCcumulative,
+               cubicbf.fits,
+               G = 5,
+               log = TRUE,
+               column = FALSE,
+               save = TRUE,
+               mapping = c(1, 5, 3, 2, 4)) 
+dev.off()
+```
+
 ##### Measurement-scale, all subjects
 
 ```{R Spaghetti G5 measurement scale all subjects}
@@ -1058,7 +1095,7 @@ spaghetti_plot(FCcumulative,
                G = 5,
                log = FALSE,
                column = FALSE,
-               mapping = c(1, 5, 2, 4, 3), 
+               mapping = c(1, 5, 3, 2, 4), 
                save = TRUE)
 dev.off()
 ```
@@ -1097,6 +1134,19 @@ spaghetti_plot(FCcumulative,
 #| fig-width: 11
 #| fig-height: 8
 spaghetti_plot(FCcumulative, cubicbf.fits, G = 6, log = TRUE)
+```
+
+```{R}
+#| include: false
+cairo_pdf("paper/all_trajectories_6_log.pdf", width = 8.25, height = 12)
+spaghetti_plot(FCcumulative,
+               cubicbf.fits,
+               G = 6,
+               log = TRUE,
+               column = FALSE,
+               save = TRUE, 
+               mapping = c(2, 3, 1, 4, 6, 5))
+dev.off()
 ```
 
 ##### Measurement-scale, all subjects
