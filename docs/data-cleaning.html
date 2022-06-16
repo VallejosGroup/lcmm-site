@@ -141,8 +141,8 @@
 <meta name="citation_author" content="Nathan Contantine-Cooke &amp;amp;lt;sup&amp;gt;1, 2</sup>">
 <meta name="citation_author" content="Nikolas Plevris &amp;amp;lt;sup&amp;gt;2, 3</sup>">
 <meta name="citation_author" content=" ">
-<meta name="citation_online_date" content="2022-06-06">
-<meta name="citation_publication_date" content="2022-06-06">
+<meta name="citation_online_date" content="2022-06-16">
+<meta name="citation_publication_date" content="2022-06-16">
 <meta name="citation_journal_title" content="undefined">
 <meta name="citation_reference" content="citation_title=Normalization of fecal calprotectin within 12 months of diagnosis is associated with reduced risk of disease progression in patients with Crohn’s disease;,citation_author=Nikolas Plevris;,citation_author=James Fulforth;,citation_author=Mathew Lyons;,citation_author=Spyros I. Siakavellas;,citation_author=Philip W. Jenkinson;,citation_author=Cher S. Chuah;,citation_author=Laura Lucaciu;,citation_author=Rebecca J. Pattenden;,citation_author=Ian D. Arnott;,citation_author=Gareth-Rhys Jones;,citation_author=Charlie W. Lees;,citation_publication_date=2021-09;,citation_issue=9;,citation_volume=19;,citation_journal_title=Clinical Gastroenterology and Hepatology;">
 <meta name="citation_reference" content="citation_title=Ulcerative colitis and clinical course: Results of a 5-year population-based follow-up study (the IBSEN study);,citation_author=Magne Henriksen;,citation_author=Jrgen Jahnsen;,citation_author=Idar Lygren;,citation_author=Jostein Sauar;,citation_author=undefined Kjellevold;,citation_author=Tom Schulz;,citation_author=Morten H. Vatn;,citation_author=Bjrn Moum;,citation_publication_date=2006-07;,citation_issue=7;,citation_volume=12;,citation_journal_title=Inflammatory Bowel Diseases;">
@@ -226,7 +226,7 @@
 <p><sup>2</sup> Centre for Genomic and Experimental Medicine</p>
 </a></p><p><a href="https://services.nhslothian.scot/EdinburghIBDUnit/Pages/default.aspx">
 <p><sup>3</sup> Edinburgh IBD Unit</p>
-</a></p></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">June 6, 2022</p></div></div></div></header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+</a></p></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">June 16, 2022</p></div></div></div></header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/">ggdist</a></span><span class="op">)</span>
@@ -247,7 +247,7 @@
 </div>
 <p>This analysis, which aims to find latent Crohn’s disease (CD) subgroups with similar faecal calprotectin (FCAL) profiles, uses data from the Crohn’s Disease Inception Cohort <span class="citation" data-cites="Plevris2021">(<a href="#ref-Plevris2021" role="doc-biblioref">Plevris et al. 2021</a>)</span>. The Crohn’s disease inception cohort is a manually validated longitudinal cohort of 375 incident Crohn’s disease (CD) cases. These are all incident CD cases diagnosed between 2005 and 2017 with a diagnosis FCAL of <span class="math inline">\geq 250 \mu g/g</span>, at least one FCAL measurement within the first 12 months of diagnosis, and at least 12 months of follow-up. <a href="#fig-flow">Figure&nbsp;1</a> shows how this cohort was derived.</p>
 <div id="fig-flow" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="Nik-flow.jpg" class="img-fluid figure-img"></p>
+<figure class="figure"><p><img src="images/Nik-flow.jpg" class="img-fluid figure-img"></p>
 <p></p><figcaption aria-hidden="true" class="figure-caption">Figure 1: Flowchart of how the Crohn’s disease inception cohort was derived <span class="citation" data-cites="Plevris2021">(<a href="#ref-Plevris2021" role="doc-biblioref">Plevris et al. 2021</a>)</span> (licensed under CC BY).</figcaption><p></p>
 </figure>
 </div>
@@ -779,7 +779,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Distribution of Number of FCAL Measurements per Subject"</span>,
           <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Crohn's disease inception cohort,"</span>,
                 <span class="st">"(inclusion: &gt;2 FCAL measurements within 5 years)"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"figures/dist1.png"</span> , <span class="va">p</span>, width <span class="op">=</span> <span class="fl">8</span>, height <span class="op">=</span> <span class="fl">4.5</span>, units <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"plots/dist1.png"</span> , <span class="va">p</span>, width <span class="op">=</span> <span class="fl">8</span>, height <span class="op">=</span> <span class="fl">4.5</span>, units <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <p><img src="data-cleaning_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="768"></p>
@@ -812,7 +812,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Distribution of FCAL Measurements"</span>,
           <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Crohn's disease inception cohort,"</span>,
                 <span class="st">"(inclusion: &gt;2 FCAL measurements within 5 years)"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"figures/dist2.png"</span>, <span class="va">p</span>, width <span class="op">=</span> <span class="fl">8</span>, height <span class="op">=</span> <span class="fl">4.5</span>, units <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"plots/dist2.png"</span>, <span class="va">p</span>, width <span class="op">=</span> <span class="fl">8</span>, height <span class="op">=</span> <span class="fl">4.5</span>, units <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <p><img src="data-cleaning_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>

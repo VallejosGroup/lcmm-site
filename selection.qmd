@@ -58,17 +58,42 @@ if (!require(DT)) {
 FCcumulative <- readRDS(paste0("/Volumes/igmm/cvallejo-predicct/processed-data/cdi/",
                                "FCcumulativeLongInc.RDS"))
 
-##########################
-#-- Create directories --#
-##########################
+###########################################
+#-- Create directories and readme files --#
+###########################################
 
-if (!dir.exists("models")) dir.create("models")
-if (!dir.exists("metrics")) dir.create("metrics")
+fileConn <- file("plots/README.md")
+writeLines(c("# README",
+             "",
+             paste("This directory contains plots created by the analysis", 
+                   "but are not provided as figures (supplementary or", 
+                   "otherwise) in the paper")),
+           fileConn)
+close(fileConn)
+
+
+if (!dir.exists("cache")) dir.create("cache")
+fileConn <- file("cache/README.md")
+writeLines(c("# README",
+             "",
+             paste("This directory stores cached versions of R objects which",
+                   "take a long time to create (such as LCMM fit objects).")),
+           fileConn)
+close(fileConn)
+
 if (!dir.exists("paper")) dir.create("paper")
-if (!dir.exists("comparison")) dir.create("comparison")
-if (!dir.exists("comparison/plots")) dir.create("comparison/plots")
-if (!dir.exists("comparison/plots/residuals")) {
-  dir.create("comparison/plots/residuals")
+fileConn <- file("paper/README.md")
+writeLines(c("# README",
+             "",
+             paste("This directory contains all figures used in the paper.",
+                   "The sup subdirectory contains supplementary figures")),
+           fileConn)
+close(fileConn)
+
+if (!dir.exists("paper/sup")) dir.create("paper/sup")
+
+if (!dir.exists("plots/residuals")) {
+  dir.create("plots/residuals")
 }
 
 ########################
@@ -386,7 +411,7 @@ diagnosis.
 ngroups <- c(2, 3, 4, 5, 6)
 rep <- 50
 maxiter <- 10
-if (!file.exists("models/cubicbf.fits.RDS") | !cache.models){
+if (!file.exists("cache/cubicbf.fits.RDS") | !cache.models){
   m1 <-  hlme(fixed =  value ~ ns(time, df = 4),
               random = ~  ns(time, df = 4),
               subject = "id",
@@ -438,11 +463,11 @@ if (!file.exists("models/cubicbf.fits.RDS") | !cache.models){
     rownames(temp) <- ngroup
     hlme.metrics <- rbind(hlme.metrics, temp)
   }
-  saveRDS(cubicbf.fits, "models/cubicbf.fits.RDS")
-  saveRDS(hlme.metrics, "metrics/cubicbf.RDS")
+  saveRDS(cubicbf.fits, "cache/cubicbf.fits.RDS")
+  saveRDS(hlme.metrics, "cache/cubicbf.RDS")
 } else{
-  cubicbf.fits <- readRDS("models/cubicbf.fits.RDS")
-  hlme.metrics <- readRDS("metrics/cubicbf.RDS" )
+  cubicbf.fits <- readRDS("cache/cubicbf.fits.RDS")
+  hlme.metrics <- readRDS("cache/cubicbf.RDS" )
 }
 
 m1 <- cubicbf.fits[[1]]
@@ -723,8 +748,8 @@ p <- pprobs %>%
                     ) +
   scale_y_discrete(limits = rev)
 print(p)
-ggsave("paper/Distributions.png", p, width = 8.5, height = 4.5, units = "in")
-ggsave("paper/Distributions.pdf", p, width = 8.5, height = 4.5, units = "in")
+ggsave("plots/Distributions.png", p, width = 8.5, height = 4.5, units = "in")
+ggsave("plots/Distributions.pdf", p, width = 8.5, height = 4.5, units = "in")
 ```
 
 ### Residual plots
@@ -739,10 +764,7 @@ reassuring.
 
 ```{R Save residual G1}
 #| include: false
-if (!dir.exists("comparison/plots/residuals")) {
-  dir.create("comparison/plots/residuals")
-}
-png("comparison/plots/residuals/g1.png",
+png("plots/residuals/g1.png",
     width = 16,
     height = 9,
     units = "in",
@@ -761,7 +783,7 @@ plot(cubicbf.fits[[1]], shades = TRUE)
 
 ```{R Save residual G2}
 #| include: false
-png("comparison/plots/residuals/g2.png",
+png("plots/residuals/g2.png",
     width = 16,
     height = 9,
     units = "in",
@@ -781,7 +803,7 @@ plot(cubicbf.fits[[2]], shades = TRUE)
 
 ```{R Save residual G3}
 #| include: false
-png("comparison/plots/residuals/g3.png",
+png("plots/residuals/g3.png",
     width = 16,
     height = 9,
     units = "in",
@@ -800,7 +822,7 @@ plot(cubicbf.fits[[3]], shades = TRUE)
 
 ```{R Save residual G4}
 #| include: false
-png("comparison/plots/residuals/g4.png",
+png("plots/residuals/g4.png",
     width = 16,
     height = 9,
     units = "in",
@@ -818,7 +840,7 @@ plot(cubicbf.fits[[4]], shades = TRUE)
 
 ```{R Save residual G5}
 #| include: false
-png("comparison/plots/residuals/g5.png",
+png("plots/residuals/g5.png",
     width = 16,
     height = 9,
     units = "in",
@@ -837,7 +859,7 @@ plot(cubicbf.fits[[5]], shades = TRUE)
 
 ```{R Save residual G6}
 #| include: false
-png("comparison/plots/residuals/g5.png",
+png("plots/residuals/g5.png",
     width = 16,
     height = 9,
     units = "in",
@@ -874,7 +896,7 @@ spaghetti_plot(FCcumulative, cubicbf.fits, G = 2, log = TRUE)
 
 ```{R}
 #| include: false
-cairo_pdf("paper/all_trajectories_2_log.pdf", width = 8.25, height = 4)
+cairo_pdf("paper/sup/all_trajectories_2_log.pdf", width = 8.25, height = 4)
 spaghetti_plot(FCcumulative,
                cubicbf.fits,
                G = 2,
@@ -931,7 +953,7 @@ spaghetti_plot(FCcumulative, cubicbf.fits, G = 3, log = TRUE)
 
 ```{R}
 #| include: false
-cairo_pdf("paper/all_trajectories_3_log.pdf", width = 8.25, height = 8)
+cairo_pdf("paper/sup/all_trajectories_3_log.pdf", width = 8.25, height = 8)
 spaghetti_plot(FCcumulative,
                cubicbf.fits,
                G = 3,
@@ -1017,7 +1039,7 @@ spaghetti_plot(FCcumulative,
 
 ```{R}
 #| include: false
-cairo_pdf("paper/all_trajectories.pdf", width = 8.25, height = 8)
+cairo_pdf("paper/sup/all_trajectories.pdf", width = 8.25, height = 8)
 spaghetti_plot(FCcumulative,
                cubicbf.fits,
                G = 4,
@@ -1067,7 +1089,7 @@ spaghetti_plot(FCcumulative, cubicbf.fits, G = 5, log = TRUE)
 
 ```{R}
 #| include: false
-cairo_pdf("paper/all_trajectories_5_log.pdf", width = 8.25, height = 12)
+cairo_pdf("paper/sup/all_trajectories_5_log.pdf", width = 8.25, height = 12)
 spaghetti_plot(FCcumulative,
                cubicbf.fits,
                G = 5,
@@ -1089,7 +1111,7 @@ spaghetti_plot(FCcumulative, cubicbf.fits, G = 5, log = FALSE)
 
 ```{R}
 #| include: false
-cairo_pdf("paper/all_trajectories-5.pdf", width = 8.25, height = 8)
+cairo_pdf("paper/sup/all_trajectories-5.pdf", width = 8.25, height = 8)
 spaghetti_plot(FCcumulative,
                cubicbf.fits,
                G = 5,
@@ -1138,7 +1160,7 @@ spaghetti_plot(FCcumulative, cubicbf.fits, G = 6, log = TRUE)
 
 ```{R}
 #| include: false
-cairo_pdf("paper/all_trajectories_6_log.pdf", width = 8.25, height = 12)
+cairo_pdf("paper/sup/all_trajectories_6_log.pdf", width = 8.25, height = 12)
 spaghetti_plot(FCcumulative,
                cubicbf.fits,
                G = 6,

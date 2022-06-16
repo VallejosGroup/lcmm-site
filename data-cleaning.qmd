@@ -52,7 +52,7 @@ $\geq 250 \mu g/g$, at least one FCAL measurement within the first
 shows how this cohort was derived.
 
 ![Flowchart of how the Crohn's disease inception cohort was derived
-[@Plevris2021] (licensed under CC BY).](Nik-flow.jpg){#fig-flow}
+[@Plevris2021] (licensed under CC BY).](images/Nik-flow.jpg){#fig-flow}
 
 Previously, data from this cohort has been used by @Plevris2021 to
 demonstrate an association between normalising (< 250 $\mu g/g$) FCAL  within
@@ -436,7 +436,7 @@ p <- FCcountsdf %>%
   ggtitle("Distribution of Number of FCAL Measurements per Subject",
           paste("Crohn's disease inception cohort,",
                 "(inclusion: >2 FCAL measurements within 5 years)"))
-ggsave("figures/dist1.png" , p, width = 8, height = 4.5, units = "in")
+ggsave("plots/dist1.png" , p, width = 8, height = 4.5, units = "in")
 print(p)
 ```
 
@@ -468,7 +468,7 @@ p <- FCcumulativeLong %>%
   ggtitle("Distribution of FCAL Measurements",
           paste("Crohn's disease inception cohort,",
                 "(inclusion: >2 FCAL measurements within 5 years)"))
-ggsave("figures/dist2.png", p, width = 8, height = 4.5, units = "in")
+ggsave("plots/dist2.png", p, width = 8, height = 4.5, units = "in")
 print(p)
 ```
 

@@ -2,11 +2,9 @@
 .quarto/
 .Rproj.user/
 _freeze/
-comparison/
 paper/
 /.quarto/
-figures/
-metrics/
-models/
+plots/
+cache/
 *DS_Store
 .Rhistory

@@ -148,8 +148,8 @@
 <meta name="citation_author" content="Karla Monterrubio &amp;amp;lt;sup&amp;gt;1</sup>">
 <meta name="citation_author" content="Riccardo Marioni &amp;amp;lt;sup&amp;gt;2</sup>">
 <meta name="citation_author" content="Catalina A. Vallejos &amp;amp;lt;sup&amp;gt;1, 3</sup>">
-<meta name="citation_online_date" content="2022-06-15">
-<meta name="citation_publication_date" content="2022-06-15">
+<meta name="citation_online_date" content="2022-06-16">
+<meta name="citation_publication_date" content="2022-06-16">
 <meta name="citation_journal_title" content="undefined">
 <meta name="citation_reference" content="citation_title=Normalization of fecal calprotectin within 12 months of diagnosis is associated with reduced risk of disease progression in patients with Crohn’s disease;,citation_author=Nikolas Plevris;,citation_author=James Fulforth;,citation_author=Mathew Lyons;,citation_author=Spyros I. Siakavellas;,citation_author=Philip W. Jenkinson;,citation_author=Cher S. Chuah;,citation_author=Laura Lucaciu;,citation_author=Rebecca J. Pattenden;,citation_author=Ian D. Arnott;,citation_author=Gareth-Rhys Jones;,citation_author=Charlie W. Lees;,citation_publication_date=2021-09;,citation_issue=9;,citation_volume=19;,citation_journal_title=Clinical Gastroenterology and Hepatology;">
 <meta name="citation_reference" content="citation_title=Ulcerative colitis and clinical course: Results of a 5-year population-based follow-up study (the IBSEN study);,citation_author=Magne Henriksen;,citation_author=Jrgen Jahnsen;,citation_author=Idar Lygren;,citation_author=Jostein Sauar;,citation_author=undefined Kjellevold;,citation_author=Tom Schulz;,citation_author=Morten H. Vatn;,citation_author=Bjrn Moum;,citation_publication_date=2006-07;,citation_issue=7;,citation_volume=12;,citation_journal_title=Inflammatory Bowel Diseases;">
@@ -240,7 +240,7 @@
 <p><sup>2</sup> Centre for Genomic and Experimental Medicine</p>
 </a></p><p><a href="https://www.turing.ac.uk">
 <p><sup>3</sup> The Alan Turing Institute</p>
-</a></p><p>&nbsp;</p></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">June 15, 2022</p></div></div></div></header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+</a></p><p>&nbsp;</p></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">June 16, 2022</p></div></div></div></header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span>
 
@@ -275,17 +275,42 @@
 <span class="va">FCcumulative</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"/Volumes/igmm/cvallejo-predicct/processed-data/cdi/"</span>,
                                <span class="st">"FCcumulativeLongInc.RDS"</span><span class="op">)</span><span class="op">)</span>
 
-<span class="co">##########################</span>
-<span class="co">#-- Create directories --#</span>
-<span class="co">##########################</span>
+<span class="co">###########################################</span>
+<span class="co">#-- Create directories and readme files --#</span>
+<span class="co">###########################################</span>
 
-<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.exists</a></span><span class="op">(</span><span class="st">"models"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="st">"models"</span><span class="op">)</span>
-<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.exists</a></span><span class="op">(</span><span class="st">"metrics"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="st">"metrics"</span><span class="op">)</span>
+<span class="va">fileConn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/connections.html">file</a></span><span class="op">(</span><span class="st">"plots/README.md"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"# README"</span>,
+             <span class="st">""</span>,
+             <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"This directory contains plots created by the analysis"</span>, 
+                   <span class="st">"but are not provided as figures (supplementary or"</span>, 
+                   <span class="st">"otherwise) in the paper"</span><span class="op">)</span><span class="op">)</span>,
+           <span class="va">fileConn</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/connections.html">close</a></span><span class="op">(</span><span class="va">fileConn</span><span class="op">)</span>
+
+
+<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.exists</a></span><span class="op">(</span><span class="st">"cache"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="st">"cache"</span><span class="op">)</span>
+<span class="va">fileConn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/connections.html">file</a></span><span class="op">(</span><span class="st">"cache/README.md"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"# README"</span>,
+             <span class="st">""</span>,
+             <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"This directory stores cached versions of R objects which"</span>,
+                   <span class="st">"take a long time to create (such as LCMM fit objects)."</span><span class="op">)</span><span class="op">)</span>,
+           <span class="va">fileConn</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/connections.html">close</a></span><span class="op">(</span><span class="va">fileConn</span><span class="op">)</span>
+
 <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.exists</a></span><span class="op">(</span><span class="st">"paper"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="st">"paper"</span><span class="op">)</span>
-<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.exists</a></span><span class="op">(</span><span class="st">"comparison"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="st">"comparison"</span><span class="op">)</span>
-<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.exists</a></span><span class="op">(</span><span class="st">"comparison/plots"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="st">"comparison/plots"</span><span class="op">)</span>
-<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.exists</a></span><span class="op">(</span><span class="st">"comparison/plots/residuals"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="st">"comparison/plots/residuals"</span><span class="op">)</span>
+<span class="va">fileConn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/connections.html">file</a></span><span class="op">(</span><span class="st">"paper/README.md"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/writeLines.html">writeLines</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"# README"</span>,
+             <span class="st">""</span>,
+             <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"This directory contains all figures used in the paper."</span>,
+                   <span class="st">"The sup subdirectory contains supplementary figures"</span><span class="op">)</span><span class="op">)</span>,
+           <span class="va">fileConn</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/connections.html">close</a></span><span class="op">(</span><span class="va">fileConn</span><span class="op">)</span>
+
+<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.exists</a></span><span class="op">(</span><span class="st">"paper/sup"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="st">"paper/sup"</span><span class="op">)</span>
+
+<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.exists</a></span><span class="op">(</span><span class="st">"plots/residuals"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="st">"plots/residuals"</span><span class="op">)</span>
 <span class="op">}</span>
 
 <span class="co">########################</span>
@@ -557,7 +582,7 @@
 <details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="va">ngroups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span>
 <span class="va">rep</span> <span class="op">&lt;-</span> <span class="fl">50</span>
 <span class="va">maxiter</span> <span class="op">&lt;-</span> <span class="fl">10</span>
-<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="st">"models/cubicbf.fits.RDS"</span><span class="op">)</span> <span class="op">|</span> <span class="op">!</span><span class="va">cache.models</span><span class="op">)</span><span class="op">{</span>
+<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="st">"cache/cubicbf.fits.RDS"</span><span class="op">)</span> <span class="op">|</span> <span class="op">!</span><span class="va">cache.models</span><span class="op">)</span><span class="op">{</span>
   <span class="va">m1</span> <span class="op">&lt;-</span>  <span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/hlme.html">hlme</a></span><span class="op">(</span>fixed <span class="op">=</span>  <span class="va">value</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/splines/ns.html">ns</a></span><span class="op">(</span><span class="va">time</span>, df <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,
               random <span class="op">=</span> <span class="op">~</span>  <span class="fu"><a href="https://rdrr.io/r/splines/ns.html">ns</a></span><span class="op">(</span><span class="va">time</span>, df <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,
               subject <span class="op">=</span> <span class="st">"id"</span>,
@@ -609,11 +634,11 @@
     <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames</a></span><span class="op">(</span><span class="va">temp</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">ngroup</span>
     <span class="va">hlme.metrics</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">hlme.metrics</span>, <span class="va">temp</span><span class="op">)</span>
   <span class="op">}</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">cubicbf.fits</span>, <span class="st">"models/cubicbf.fits.RDS"</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">hlme.metrics</span>, <span class="st">"metrics/cubicbf.RDS"</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">cubicbf.fits</span>, <span class="st">"cache/cubicbf.fits.RDS"</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">hlme.metrics</span>, <span class="st">"cache/cubicbf.RDS"</span><span class="op">)</span>
 <span class="op">}</span> <span class="kw">else</span><span class="op">{</span>
-  <span class="va">cubicbf.fits</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"models/cubicbf.fits.RDS"</span><span class="op">)</span>
-  <span class="va">hlme.metrics</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"metrics/cubicbf.RDS"</span> <span class="op">)</span>
+  <span class="va">cubicbf.fits</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"cache/cubicbf.fits.RDS"</span><span class="op">)</span>
+  <span class="va">hlme.metrics</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"cache/cubicbf.RDS"</span> <span class="op">)</span>
 <span class="op">}</span>
 
 <span class="va">m1</span> <span class="op">&lt;-</span> <span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>
@@ -962,8 +987,8 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 </details><div class="cell-output-display">
 <p><img src="selection_files/figure-html/Pprob%20distributions-1.png" class="img-fluid" width="768"></p>
 </div>
-<details><summary>Code</summary><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"paper/Distributions.png"</span>, <span class="va">p</span>, width <span class="op">=</span> <span class="fl">8.5</span>, height <span class="op">=</span> <span class="fl">4.5</span>, units <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"paper/Distributions.pdf"</span>, <span class="va">p</span>, width <span class="op">=</span> <span class="fl">8.5</span>, height <span class="op">=</span> <span class="fl">4.5</span>, units <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"plots/Distributions.png"</span>, <span class="va">p</span>, width <span class="op">=</span> <span class="fl">8.5</span>, height <span class="op">=</span> <span class="fl">4.5</span>, units <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"plots/Distributions.pdf"</span>, <span class="va">p</span>, width <span class="op">=</span> <span class="fl">8.5</span>, height <span class="op">=</span> <span class="fl">4.5</span>, units <span class="op">=</span> <span class="st">"in"</span><span class="op">)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section></section><section id="residual-plots" class="level3"><h3 class="anchored" data-anchor-id="residual-plots">Residual plots</h3>
