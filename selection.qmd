@@ -1208,16 +1208,13 @@ spaghetti_plot(FCcumulative,
 
 ### Model output
 
-#### Fixed effects
+After considering all of the above findings, the model which assumes four latent
+classes has been deemed the most appropriate. The summary statistics for this
+model can be found below. 
 
 ```{R}
 summary(cubicbf.fits[[4]])
 ```
-
-## Conclusion
-
-After considering all of the above findings, the model which assumes four latent
-classes has been deemed the most appropriate. 
 
 ## Session information
 
