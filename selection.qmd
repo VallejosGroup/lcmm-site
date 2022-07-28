@@ -228,6 +228,7 @@ spaghetti_plot_sub <- function(FCcumulative,
   for (g in mapping) {
     matchidx <- as.data.frame(which(layout == g, arr.ind = TRUE))
     id.group <- models[[G]]$pprob[models[[G]]$pprob[, 2] == mapping[g], 1]
+    message("There are ", length(id.group), " subjects in class ", g, ".")  
     
     
     if(!log){
@@ -1204,6 +1205,14 @@ spaghetti_plot(FCcumulative,
 ```
 
 :::
+
+### Model output
+
+#### Fixed effects
+
+```{R}
+summary(cubicbf.fits[[4]])
+```
 
 ## Conclusion
 
