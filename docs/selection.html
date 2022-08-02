@@ -148,8 +148,8 @@
 <meta name="citation_author" content="Karla Monterrubio &amp;amp;lt;sup&amp;gt;1</sup>">
 <meta name="citation_author" content="Riccardo Marioni &amp;amp;lt;sup&amp;gt;2</sup>">
 <meta name="citation_author" content="Catalina A. Vallejos &amp;amp;lt;sup&amp;gt;1, 3</sup>">
-<meta name="citation_online_date" content="2022-07-28">
-<meta name="citation_publication_date" content="2022-07-28">
+<meta name="citation_online_date" content="2022-08-02">
+<meta name="citation_publication_date" content="2022-08-02">
 <meta name="citation_journal_title" content="undefined">
 <meta name="citation_reference" content="citation_title=Normalization of fecal calprotectin within 12 months of diagnosis is associated with reduced risk of disease progression in patients with Crohn’s disease;,citation_author=Nikolas Plevris;,citation_author=James Fulforth;,citation_author=Mathew Lyons;,citation_author=Spyros I. Siakavellas;,citation_author=Philip W. Jenkinson;,citation_author=Cher S. Chuah;,citation_author=Laura Lucaciu;,citation_author=Rebecca J. Pattenden;,citation_author=Ian D. Arnott;,citation_author=Gareth-Rhys Jones;,citation_author=Charlie W. Lees;,citation_publication_date=2021-09;,citation_issue=9;,citation_volume=19;,citation_journal_title=Clinical Gastroenterology and Hepatology;">
 <meta name="citation_reference" content="citation_title=Ulcerative colitis and clinical course: Results of a 5-year population-based follow-up study (the IBSEN study);,citation_author=Magne Henriksen;,citation_author=Jrgen Jahnsen;,citation_author=Idar Lygren;,citation_author=Jostein Sauar;,citation_author=undefined Kjellevold;,citation_author=Tom Schulz;,citation_author=Morten H. Vatn;,citation_author=Bjrn Moum;,citation_publication_date=2006-07;,citation_issue=7;,citation_volume=12;,citation_journal_title=Inflammatory Bowel Diseases;">
@@ -240,7 +240,7 @@
 <p><sup>2</sup> Centre for Genomic and Experimental Medicine</p>
 </a></p><p><a href="https://www.turing.ac.uk">
 <p><sup>3</sup> The Alan Turing Institute</p>
-</a></p><p>&nbsp;</p></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">July 28, 2022</p></div></div></div></header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+</a></p><p>&nbsp;</p></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">August 2, 2022</p></div></div></div></header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
@@ -1456,9 +1456,20 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 </div>
 </div>
 </section><section id="model-output" class="level3"><h3 class="anchored" data-anchor-id="model-output">Model output</h3>
-<p>After considering all of the above findings, the model which assumes four latent classes has been deemed the most appropriate. The summary statistics for this model can be found below.</p>
+<p>After considering all of the above findings, the model which assumes four latent classes has been deemed the most appropriate. The summary statistics for this model can be found below. The four splines are denoted by <span class="math inline">X_{1}(t), \ldots, X_{4}(t)</span>. We use this notation in the supplementary materials for the paper.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb105"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb105"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Match notation to supp. materials</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="va">x</span><span class="op">$</span><span class="va">Xnames</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Intercept"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span>, <span class="st">"(t)"</span><span class="op">)</span><span class="op">)</span> <span class="co"># Random effects</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">best</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Intercept class "</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,<span class="co"># Class membership model</span></span>
+<span>                   <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Intercept class "</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>,<span class="co"># Longitudinal model</span></span>
+<span>                   <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"X1(t) class "</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span> <span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                   <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"X2(t) class "</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span> <span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                   <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"X3(t) class "</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span> <span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                   <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"X4(t) class "</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span> <span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                   <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Varcov "</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">15</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>                   <span class="st">"Standard error"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-stdout">
 <pre><code>Heterogenous linear mixed model 
      fitted by maximum likelihood method 
@@ -1492,49 +1503,43 @@ Maximum Likelihood Estimates:
 Fixed effects in the class-membership model:
 (the class of reference is the last class) 
 
-                     coef      Se    Wald p-value
-intercept class1 -1.60714 0.60509  -2.656 0.00791
-intercept class2 -0.97547 0.24466  -3.987 0.00007
-intercept class3 -0.71987 0.19000  -3.789 0.00015
+                       coef      Se    Wald p-value
+Intercept class  1 -1.60714 0.60509  -2.656 0.00791
+Intercept class  2 -0.97547 0.24466  -3.987 0.00007
+Intercept class  3 -0.71987 0.19000  -3.789 0.00015
 
 Fixed effects in the longitudinal model:
 
-                             coef      Se    Wald p-value
-intercept class1          6.63001 0.18260  36.309 0.00000
-intercept class2          6.60767 0.10692  61.803 0.00000
-intercept class3          6.40075 0.08792  72.805 0.00000
-intercept class4          6.68268 0.05943 112.452 0.00000
-ns(time, df = 4)1 class1 -0.06345 0.61580  -0.103 0.91794
-ns(time, df = 4)1 class2 -3.02786 0.30213 -10.022 0.00000
-ns(time, df = 4)1 class3 -2.58120 0.28225  -9.145 0.00000
-ns(time, df = 4)1 class4 -0.32661 0.15224  -2.145 0.03192
-ns(time, df = 4)2 class1 -1.66557 0.66716  -2.497 0.01254
-ns(time, df = 4)2 class2 -2.43912 0.41567  -5.868 0.00000
-ns(time, df = 4)2 class3 -0.73639 0.30260  -2.434 0.01495
-ns(time, df = 4)2 class4 -0.76938 0.18402  -4.181 0.00003
-ns(time, df = 4)3 class1 -4.31021 0.83955  -5.134 0.00000
-ns(time, df = 4)3 class2 -2.38786 0.33995  -7.024 0.00000
-ns(time, df = 4)3 class3 -4.60973 0.32173 -14.328 0.00000
-ns(time, df = 4)3 class4 -1.29125 0.19433  -6.645 0.00000
-ns(time, df = 4)4 class1 -1.93148 0.69759  -2.769 0.00563
-ns(time, df = 4)4 class2 -2.65713 0.33911  -7.835 0.00000
-ns(time, df = 4)4 class3 -0.59806 0.28348  -2.110 0.03488
-ns(time, df = 4)4 class4 -0.21947 0.15304  -1.434 0.15155
+                       coef      Se    Wald p-value
+Intercept class  1  6.63001 0.18260  36.309 0.00000
+Intercept class  2  6.60767 0.10692  61.803 0.00000
+Intercept class  3  6.40075 0.08792  72.805 0.00000
+Intercept class  4  6.68268 0.05943 112.452 0.00000
+X1(t) class  1     -0.06345 0.61580  -0.103 0.91794
+X1(t) class  2     -3.02786 0.30213 -10.022 0.00000
+X1(t) class  3     -2.58120 0.28225  -9.145 0.00000
+X1(t) class  4     -0.32661 0.15224  -2.145 0.03192
+X2(t) class  1     -1.66557 0.66716  -2.497 0.01254
+X2(t) class  2     -2.43912 0.41567  -5.868 0.00000
+X2(t) class  3     -0.73639 0.30260  -2.434 0.01495
+X2(t) class  4     -0.76938 0.18402  -4.181 0.00003
+X3(t) class  1     -4.31021 0.83955  -5.134 0.00000
+X3(t) class  2     -2.38786 0.33995  -7.024 0.00000
+X3(t) class  3     -4.60973 0.32173 -14.328 0.00000
+X3(t) class  4     -1.29125 0.19433  -6.645 0.00000
+X4(t) class  1     -1.93148 0.69759  -2.769 0.00563
+X4(t) class  2     -2.65713 0.33911  -7.835 0.00000
+X4(t) class  3     -0.59806 0.28348  -2.110 0.03488
+X4(t) class  4     -0.21947 0.15304  -1.434 0.15155
 
 
 Variance-covariance matrix of the random-effects:
-                  intercept ns(time, df = 4)1 ns(time, df = 4)2
-intercept           0.01816                                    
-ns(time, df = 4)1   0.00354           0.69013                  
-ns(time, df = 4)2  -0.07139          -0.20182           1.56220
-ns(time, df = 4)3   0.03241          -0.21967           0.67262
-ns(time, df = 4)4  -0.06129          -0.19956           0.31425
-                  ns(time, df = 4)3 ns(time, df = 4)4
-intercept                                            
-ns(time, df = 4)1                                    
-ns(time, df = 4)2                                    
-ns(time, df = 4)3           0.65261                  
-ns(time, df = 4)4           0.09602           0.47886
+          Intercept    X1(t)   X2(t)   X3(t)   X4(t)
+Intercept   0.01816                                 
+X1(t)       0.00354  0.69013                        
+X2(t)      -0.07139 -0.20182 1.56220                
+X3(t)       0.03241 -0.21967 0.67262 0.65261        
+X4(t)      -0.06129 -0.19956 0.31425 0.09602 0.47886
 
                              coef      Se
 Residual standard error:  0.77672 0.01273</code></pre>
