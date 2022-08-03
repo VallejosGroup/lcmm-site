@@ -39,13 +39,13 @@ website:
       - selection.qmd
       - associations.qmd
       - icon: github
-        href: https://github.com/nathansam/lcmm-site
+        href: https://github.com/vallejosgroup/lcmm-site
   page-footer:
     right:
       - icon: twitter
         href: https://twitter.com/IBDNathan
   page-navigation: true
-  repo-url: https://github.com/nathansam/lcmm-site
+  repo-url: https://github.com/vallejosgroup/lcmm-site
   repo-actions: [issue]
 
 bibliography: references.bib
