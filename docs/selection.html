@@ -148,8 +148,8 @@
 <meta name="citation_author" content="Karla Monterrubio &amp;amp;lt;sup&amp;gt;1</sup>">
 <meta name="citation_author" content="Riccardo Marioni &amp;amp;lt;sup&amp;gt;2</sup>">
 <meta name="citation_author" content="Catalina A. Vallejos &amp;amp;lt;sup&amp;gt;1, 3</sup>">
-<meta name="citation_online_date" content="2022-08-03">
-<meta name="citation_publication_date" content="2022-08-03">
+<meta name="citation_online_date" content="2022-08-04">
+<meta name="citation_publication_date" content="2022-08-04">
 <meta name="citation_journal_title" content="undefined">
 <meta name="citation_reference" content="citation_title=Normalization of fecal calprotectin within 12 months of diagnosis is associated with reduced risk of disease progression in patients with Crohn’s disease;,citation_author=Nikolas Plevris;,citation_author=James Fulforth;,citation_author=Mathew Lyons;,citation_author=Spyros I. Siakavellas;,citation_author=Philip W. Jenkinson;,citation_author=Cher S. Chuah;,citation_author=Laura Lucaciu;,citation_author=Rebecca J. Pattenden;,citation_author=Ian D. Arnott;,citation_author=Gareth-Rhys Jones;,citation_author=Charlie W. Lees;,citation_publication_date=2021-09;,citation_issue=9;,citation_volume=19;,citation_journal_title=Clinical Gastroenterology and Hepatology;">
 <meta name="citation_reference" content="citation_title=Ulcerative colitis and clinical course: Results of a 5-year population-based follow-up study (the IBSEN study);,citation_author=Magne Henriksen;,citation_author=Jrgen Jahnsen;,citation_author=Idar Lygren;,citation_author=Jostein Sauar;,citation_author=undefined Kjellevold;,citation_author=Tom Schulz;,citation_author=Morten H. Vatn;,citation_author=Bjrn Moum;,citation_publication_date=2006-07;,citation_issue=7;,citation_volume=12;,citation_journal_title=Inflammatory Bowel Diseases;">
@@ -183,7 +183,7 @@
     <a class="nav-link" href="./associations.html">Association Testing</a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/nathansam/lcmm-site"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/vallejosgroup/lcmm-site"><i class="bi bi-github" role="img">
 </i> 
  </a>
   </li>  
@@ -216,7 +216,7 @@
 <li><a href="#acknowledgments" class="nav-link" data-scroll-target="#acknowledgments">Acknowledgments</a></li>
 <li><a href="#author-contributions" class="nav-link" data-scroll-target="#author-contributions">Author contributions</a></li>
 <li><a href="#reuse" class="nav-link" data-scroll-target="#reuse">Reuse</a></li>
-</ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/nathansam/lcmm-site/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+</ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/vallejosgroup/lcmm-site/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title-block"><div><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
@@ -240,7 +240,7 @@
 <p><sup>2</sup> Centre for Genomic and Experimental Medicine</p>
 </a></p><p><a href="https://www.turing.ac.uk">
 <p><sup>3</sup> The Alan Turing Institute</p>
-</a></p><p>&nbsp;</p></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">August 3, 2022</p></div></div></div></header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+</a></p><p>&nbsp;</p></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">August 4, 2022</p></div></div></div></header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
@@ -272,8 +272,10 @@
 <span><span class="co">#--     Data read      --#</span></span>
 <span><span class="co">##########################</span></span>
 <span></span>
-<span><span class="va">FCcumulative</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"/Volumes/igmm/cvallejo-predicct/processed-data/cdi/"</span>,</span>
-<span>                               <span class="st">"FCcumulativeLongInc.RDS"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">FCcumulative</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"/Volumes/igmm/cvallejo-predicct/"</span>,</span>
+<span>                               <span class="st">"processed-data/cdi/"</span>,</span>
+<span>                               <span class="st">"FCcumulativeLongInc.RDS"</span><span class="op">)</span></span>
+<span>                        <span class="op">)</span></span>
 <span></span>
 <span><span class="co">###########################################</span></span>
 <span><span class="co">#-- Create directories and readme files --#</span></span>
@@ -349,6 +351,7 @@
 <span><span class="co">#' @param mapping Numeric vector which gives reordering of plots in a</span></span>
 <span><span class="co">#'   multiplot. Need to take into account plots are generated by column - not</span></span>
 <span><span class="co">#'   row</span></span>
+<span><span class="co">#' @param sizes Output latent class sizes</span></span>
 <span><span class="co">#' @param save Logical. Should sub figure labels be generated?</span></span>
 <span><span class="va">spaghetti_plot</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
 <span>                           <span class="va">models</span>,</span>
@@ -359,6 +362,7 @@
 <span>                           <span class="va">tmax</span> <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>                           <span class="va">column</span> <span class="op">=</span>  <span class="cn">FALSE</span>, </span>
 <span>                           <span class="va">pprob.cutoff</span> <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>                           <span class="va">sizes</span> <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>                           <span class="va">mapping</span> <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>                           <span class="va">save</span> <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">{</span></span>
 <span>  </span>
@@ -384,6 +388,7 @@
 <span>                       tmax <span class="op">=</span> <span class="va">tmax</span>,</span>
 <span>                       column <span class="op">=</span> <span class="va">column</span>,</span>
 <span>                       pprob <span class="op">=</span> <span class="va">pprob</span>,</span>
+<span>                       sizes <span class="op">=</span> <span class="va">sizes</span>,</span>
 <span>                       mapping <span class="op">=</span> <span class="va">mapping</span><span class="op">)</span></span>
 <span>    <span class="op">}</span></span>
 <span>  <span class="kw">if</span> <span class="op">(</span><span class="va">multi</span><span class="op">)</span><span class="op">{</span></span>
@@ -394,7 +399,8 @@
 <span>                         multi <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>                         tmax <span class="op">=</span> <span class="va">tmax</span>,</span>
 <span>                         column <span class="op">=</span> <span class="va">column</span>,</span>
-<span>                         pprob <span class="op">=</span> <span class="va">pprob</span>, </span>
+<span>                         pprob <span class="op">=</span> <span class="va">pprob</span>,</span>
+<span>                         sizes <span class="op">=</span> <span class="va">sizes</span>,</span>
 <span>                         mapping <span class="op">=</span> <span class="va">mapping</span>,</span>
 <span>                         save <span class="op">=</span> <span class="va">save</span><span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
@@ -409,6 +415,7 @@
 <span>                           <span class="va">tmax</span> <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>                           <span class="va">column</span> <span class="op">=</span> <span class="va">column</span>,</span>
 <span>                           <span class="va">pprob</span> <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>                           <span class="va">sizes</span> <span class="op">=</span> <span class="va">sizes</span>,</span>
 <span>                           <span class="va">mapping</span> <span class="op">=</span> <span class="va">mapping</span>,</span>
 <span>                           <span class="va">save</span> <span class="op">=</span> <span class="va">save</span><span class="op">)</span><span class="op">{</span></span>
 <span>  </span>
@@ -442,12 +449,17 @@
 <span>    <span class="va">mapping</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="va">G</span></span>
 <span>  <span class="op">}</span></span>
 <span>  </span>
+<span>  </span>
 <span>  <span class="kw">for</span> <span class="op">(</span><span class="va">g</span> <span class="kw">in</span> <span class="va">mapping</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">matchidx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">layout</span> <span class="op">==</span> <span class="va">g</span>, arr.ind <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="va">id.group</span> <span class="op">&lt;-</span> <span class="va">models</span><span class="op">[[</span><span class="va">G</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">pprob</span><span class="op">[</span><span class="va">models</span><span class="op">[[</span><span class="va">G</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">pprob</span><span class="op">[</span>, <span class="fl">2</span><span class="op">]</span> <span class="op">==</span> <span class="va">mapping</span><span class="op">[</span><span class="va">g</span><span class="op">]</span>, <span class="fl">1</span><span class="op">]</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/message.html">message</a></span><span class="op">(</span><span class="st">"There are "</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">id.group</span><span class="op">)</span>, <span class="st">" subjects in class "</span>, <span class="va">g</span>, <span class="st">"."</span><span class="op">)</span>  </span>
-<span>    </span>
-<span>    </span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="va">sizes</span><span class="op">)</span> <span class="op">{</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/message.html">message</a></span><span class="op">(</span><span class="st">"There are "</span>,</span>
+<span>              <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">id.group</span><span class="op">)</span>,</span>
+<span>              <span class="st">" subjects in class "</span>,</span>
+<span>              <span class="va">g</span>,</span>
+<span>              <span class="st">"."</span><span class="op">)</span></span>
+<span>    <span class="op">}</span></span>
 <span>    <span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="va">log</span><span class="op">)</span><span class="op">{</span></span>
 <span>      <span class="va">p</span><span class="op">[[</span><span class="va">g</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">id.group</span><span class="op">)</span>,</span>
 <span>                     <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -1068,7 +1080,7 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labeledby="tabset-3-1-tab">
 <section id="log-scale-all-subjects" class="level5"><h5 class="anchored" data-anchor-id="log-scale-all-subjects">Log-scale, all subjects</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">2</span>, log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">2</span>, log <span class="op">=</span> <span class="cn">TRUE</span>, sizes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-stderr">
 <pre><code>There are 96 subjects in class 1.</code></pre>
 </div>
@@ -1082,47 +1094,29 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 </section><section id="measurement-scale-all-subjects" class="level5"><h5 class="anchored" data-anchor-id="measurement-scale-all-subjects">Measurement-scale, all subjects</h5>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">2</span>, log <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stderr">
-<pre><code>There are 96 subjects in class 1.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 260 subjects in class 2.</code></pre>
-</div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <p><img src="selection_files/figure-html/Spaghetti%20G2%20measurement%20scale%20all%20subjects-1.png" class="img-fluid" width="1056"></p>
 </div>
 </div>
 </section><section id="log-scale-pprob-0.8-only" class="level5"><h5 class="anchored" data-anchor-id="log-scale-pprob-0.8-only">Log-scale, pprob &gt; 0.8 only</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
 <span>               <span class="va">cubicbf.fits</span>,</span>
 <span>               G <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>               log <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>               pprob.cutoff <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stderr">
-<pre><code>There are 96 subjects in class 1.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 260 subjects in class 2.</code></pre>
-</div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <p><img src="selection_files/figure-html/Spaghetti%20G2%20log%20cutoff-1.png" class="img-fluid" width="1056"></p>
 </div>
 </div>
 </section><section id="measurement-scale-pprob-0.8-only" class="level5"><h5 class="anchored" data-anchor-id="measurement-scale-pprob-0.8-only">Measurement-scale, pprob &gt; 0.8 only</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
 <span>               <span class="va">cubicbf.fits</span>,</span>
 <span>               G <span class="op">=</span> <span class="fl">2</span>,</span>
 <span>               log <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>               pprob.cutoff <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stderr">
-<pre><code>There are 96 subjects in class 1.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 260 subjects in class 2.</code></pre>
-</div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <p><img src="selection_files/figure-html/Spaghetti%20G2%20measurement%20scale%20cutoff-1.png" class="img-fluid" width="1056"></p>
 </div>
 </div>
@@ -1131,17 +1125,22 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labeledby="tabset-3-2-tab">
 <section id="log-scale-all-subjects-1" class="level5"><h5 class="anchored" data-anchor-id="log-scale-all-subjects-1">Log-scale, all subjects</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#| fig-width: 11</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#| fig-width: 11</span></span>
 <span><span class="co">#| fig.height: 8</span></span>
-<span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">3</span>, log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
+<span>               <span class="va">cubicbf.fits</span>,</span>
+<span>               G <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>               log <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>               mapping <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">2</span><span class="op">)</span>,</span>
+<span>               sizes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-stderr">
 <pre><code>There are 97 subjects in class 1.</code></pre>
 </div>
 <div class="cell-output-stderr">
-<pre><code>There are 204 subjects in class 2.</code></pre>
+<pre><code>There are 204 subjects in class 3.</code></pre>
 </div>
 <div class="cell-output-stderr">
-<pre><code>There are 55 subjects in class 3.</code></pre>
+<pre><code>There are 55 subjects in class 2.</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="selection_files/figure-html/Spaghetti%20G3%20log%20all%20subjects-1.png" class="img-fluid" width="672"></p>
@@ -1149,57 +1148,30 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 </div>
 </section><section id="measurement-scale-all-subjects-1" class="level5"><h5 class="anchored" data-anchor-id="measurement-scale-all-subjects-1">Measurement-scale, all subjects</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">3</span>, log <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stderr">
-<pre><code>There are 97 subjects in class 1.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 204 subjects in class 2.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 55 subjects in class 3.</code></pre>
-</div>
-<div class="cell-output-display">
+<details><summary>Code</summary><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">3</span>, log <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
 <p><img src="selection_files/figure-html/Spaghetti%20G3%20measurement%20scale%20all%20subjects-1.png" class="img-fluid" width="1056"></p>
 </div>
 </div>
 </section><section id="log-scale-pprob-0.8-only-1" class="level5"><h5 class="anchored" data-anchor-id="log-scale-pprob-0.8-only-1">Log-scale, pprob &gt; 0.8 only</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb36"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
 <span>               <span class="va">cubicbf.fits</span>,</span>
 <span>               G <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>               log <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>               pprob.cutoff <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stderr">
-<pre><code>There are 97 subjects in class 1.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 204 subjects in class 2.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 55 subjects in class 3.</code></pre>
-</div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <p><img src="selection_files/figure-html/Spaghetti%20G3%20log%20cutoff-1.png" class="img-fluid" width="1056"></p>
 </div>
 </div>
 </section><section id="measurement-scale-pprob-0.8-only-1" class="level5"><h5 class="anchored" data-anchor-id="measurement-scale-pprob-0.8-only-1">Measurement-scale, pprob &gt; 0.8 only</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
 <span>               <span class="va">cubicbf.fits</span>,</span>
 <span>               G <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>               log <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>               pprob.cutoff <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stderr">
-<pre><code>There are 97 subjects in class 1.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 204 subjects in class 2.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 55 subjects in class 3.</code></pre>
-</div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <p><img src="selection_files/figure-html/Spaghetti%20G3%20measurement%20scale%20cutoff-1.png" class="img-fluid" width="1056"></p>
 </div>
 </div>
@@ -1209,11 +1181,12 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 <p>Class membership has been relabelled to ensure consistency with the alluvial plot</p>
 <section id="log-scale-all-subjects-2" class="level5"><h5 class="anchored" data-anchor-id="log-scale-all-subjects-2">Log-scale, all subjects</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
 <span>               <span class="va">cubicbf.fits</span>,</span>
 <span>               G <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>               log <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>               mapping <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>               mapping <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">1</span><span class="op">)</span>,</span>
+<span>               sizes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-stderr">
 <pre><code>There are 191 subjects in class 3.</code></pre>
 </div>
@@ -1232,72 +1205,36 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 </div>
 </section><section id="measurement-scale-all-subjects-2" class="level5"><h5 class="anchored" data-anchor-id="measurement-scale-all-subjects-2">Measurement-scale, all subjects</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
 <span>               <span class="va">cubicbf.fits</span>,</span>
 <span>               G <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>               log <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>               mapping <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stderr">
-<pre><code>There are 191 subjects in class 3.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 58 subjects in class 2.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 15 subjects in class 4.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 92 subjects in class 1.</code></pre>
-</div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <p><img src="selection_files/figure-html/Spaghetti%20G4%20measurement%20scale%20all%20subjects-1.png" class="img-fluid" width="1056"></p>
 </div>
 </div>
 </section><section id="log-scale-pprob-0.8-only-2" class="level5"><h5 class="anchored" data-anchor-id="log-scale-pprob-0.8-only-2">Log-scale, pprob &gt; 0.8 only</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb44"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
 <span>               <span class="va">cubicbf.fits</span>,</span>
 <span>               G <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>               log <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>               pprob.cutoff <span class="op">=</span> <span class="fl">0.8</span>,</span>
 <span>               mapping <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stderr">
-<pre><code>There are 191 subjects in class 3.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 58 subjects in class 2.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 15 subjects in class 4.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 92 subjects in class 1.</code></pre>
-</div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <p><img src="selection_files/figure-html/Spaghetti%20G4%20log%20cutoff-1.png" class="img-fluid" width="1056"></p>
 </div>
 </div>
 </section><section id="measurement-scale-pprob-0.8-only-2" class="level5"><h5 class="anchored" data-anchor-id="measurement-scale-pprob-0.8-only-2">Measurement-scale, pprob &gt; 0.8 only</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb68"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
 <span>               <span class="va">cubicbf.fits</span>,</span>
 <span>               G <span class="op">=</span> <span class="fl">4</span>,</span>
 <span>               log <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>               pprob.cutoff <span class="op">=</span> <span class="fl">0.8</span>,</span>
 <span>               mapping <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stderr">
-<pre><code>There are 191 subjects in class 3.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 58 subjects in class 2.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 15 subjects in class 4.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 92 subjects in class 1.</code></pre>
-</div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <p><img src="selection_files/figure-html/Spaghetti%20G4%20measurement%20scale%20cutoff-1.png" class="img-fluid" width="1056"></p>
 </div>
 </div>
@@ -1306,21 +1243,21 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 <div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labeledby="tabset-3-4-tab">
 <section id="log-scale-all-subjects-3" class="level5"><h5 class="anchored" data-anchor-id="log-scale-all-subjects-3">Log-scale, all subjects</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb73"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">5</span>, log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">5</span>, log <span class="op">=</span> <span class="cn">TRUE</span>, sizes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <p><img src="selection_files/figure-html/Spaghetti%20G5%20log%20all%20subjects-1.png" class="img-fluid" width="1056"></p>
 </div>
 </div>
 </section><section id="measurement-scale-all-subjects-3" class="level5"><h5 class="anchored" data-anchor-id="measurement-scale-all-subjects-3">Measurement-scale, all subjects</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb74"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">5</span>, log <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">5</span>, log <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <p><img src="selection_files/figure-html/Spaghetti%20G5%20measurement%20scale%20all%20subjects-1.png" class="img-fluid" width="1056"></p>
 </div>
 </div>
 </section><section id="log-scale-pprob-0.8-only-3" class="level5"><h5 class="anchored" data-anchor-id="log-scale-pprob-0.8-only-3">Log-scale, pprob &gt; 0.8 only</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
 <span>               <span class="va">cubicbf.fits</span>,</span>
 <span>               G <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>               log <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -1331,7 +1268,7 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 </div>
 </section><section id="measurement-scale-pprob-0.8-only-3" class="level5"><h5 class="anchored" data-anchor-id="measurement-scale-pprob-0.8-only-3">Measurement-scale, pprob &gt; 0.8 only</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb76"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
 <span>               <span class="va">cubicbf.fits</span>,</span>
 <span>               G <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>               log <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -1345,7 +1282,7 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 <div id="tabset-3-5" class="tab-pane" role="tabpanel" aria-labeledby="tabset-3-5-tab">
 <section id="log-scale-all-subjects-4" class="level5"><h5 class="anchored" data-anchor-id="log-scale-all-subjects-4">Log-scale, all subjects</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb77"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">6</span>, log <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">6</span>, log <span class="op">=</span> <span class="cn">TRUE</span>, sizes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-stderr">
 <pre><code>There are 48 subjects in class 1.</code></pre>
 </div>
@@ -1370,84 +1307,30 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 </div>
 </section><section id="measurement-scale-all-subjects-4" class="level5"><h5 class="anchored" data-anchor-id="measurement-scale-all-subjects-4">Measurement-scale, all subjects</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb84"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">6</span>, log <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stderr">
-<pre><code>There are 48 subjects in class 1.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 63 subjects in class 2.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 52 subjects in class 3.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 117 subjects in class 4.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 67 subjects in class 5.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 9 subjects in class 6.</code></pre>
-</div>
-<div class="cell-output-display">
+<details><summary>Code</summary><div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">6</span>, log <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
 <p><img src="selection_files/figure-html/Spaghetti%20G6%20measurement%20scale%20all%20subjects-1.png" class="img-fluid" width="1056"></p>
 </div>
 </div>
 </section><section id="log-scale-pprob-0.8-only-4" class="level5"><h5 class="anchored" data-anchor-id="log-scale-pprob-0.8-only-4">Log-scale, pprob &gt; 0.8 only</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb91"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb58"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
 <span>               <span class="va">cubicbf.fits</span>,</span>
 <span>               G <span class="op">=</span> <span class="fl">6</span>,</span>
 <span>               log <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>               pprob.cutoff <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stderr">
-<pre><code>There are 48 subjects in class 1.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 63 subjects in class 2.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 52 subjects in class 3.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 117 subjects in class 4.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 67 subjects in class 5.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 9 subjects in class 6.</code></pre>
-</div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <p><img src="selection_files/figure-html/Spaghetti%20G6%20log%20cutoff-1.png" class="img-fluid" width="1056"></p>
 </div>
 </div>
 </section><section id="measurement-scale-pprob-0.8-only-4" class="level5"><h5 class="anchored" data-anchor-id="measurement-scale-pprob-0.8-only-4">Measurement-scale, pprob &gt; 0.8 only</h5>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb98"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>,</span>
 <span>               <span class="va">cubicbf.fits</span>,</span>
 <span>               G <span class="op">=</span> <span class="fl">6</span>,</span>
 <span>               log <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>               pprob.cutoff <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stderr">
-<pre><code>There are 48 subjects in class 1.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 63 subjects in class 2.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 52 subjects in class 3.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 117 subjects in class 4.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 67 subjects in class 5.</code></pre>
-</div>
-<div class="cell-output-stderr">
-<pre><code>There are 9 subjects in class 6.</code></pre>
-</div>
-<div class="cell-output-display">
+</details><div class="cell-output-display">
 <p><img src="selection_files/figure-html/Spaghetti%20G6%20measurement%20scale%20cutoff-1.png" class="img-fluid" width="1056"></p>
 </div>
 </div>
@@ -1458,7 +1341,7 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 </section><section id="model-output" class="level3"><h3 class="anchored" data-anchor-id="model-output">Model output</h3>
 <p>After considering all of the above findings, the model which assumes four latent classes has been deemed the most appropriate. The summary statistics for this model can be found below. The four splines are denoted by <span class="math inline">X_{1}(t), \ldots, X_{4}(t)</span>. We use this notation in the supplementary materials for the paper.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb105"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Match notation to supp. materials</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Match notation to supp. materials</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="va">x</span><span class="op">$</span><span class="va">Xnames</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Intercept"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"X"</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span>, <span class="st">"(t)"</span><span class="op">)</span><span class="op">)</span> <span class="co"># Random effects</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">best</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Intercept class "</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,<span class="co"># Class membership model</span></span>
