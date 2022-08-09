@@ -36,6 +36,9 @@ if(!require(viridis)) {
   install.packages("viridis")
 }
 
+if (!dir.exists("paper")) dir.create("paper")
+if (!dir.exists("plots")) dir.create("plots")
+
 options(knitr.table.format = "pipe")
 FCcumulative <- read.csv(paste0("/Volumes/igmm/cvallejo-predicct/data/",
                                 "crohns-inception/20211201/FCcumulative.csv"))
