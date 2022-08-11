@@ -63,12 +63,10 @@ one year of diagnosis and CD disease outcomes. The outcomes considered were
 hospitalisation, surgery, disease behaviour progression, and a composite
 end-point of all three outcomes.
 
-Additional follow-up data for this cohort has been collated by a medical student
-into a large multi-sheet Excel file. Plevris had begun formatting the relevant
-data into a relevant format for modelling of longitudinal and
-survival outcomes, but this process had not been completed before the
-data was transferred. This document details the data processing steps
-undertaken to facilitate modelling.
+Plevris had begun formatting the relevant data into a relevant format for
+modelling of longitudinal and survival outcomes, but this process had not been
+completed before the data was transferred. This document details the data
+processing steps undertaken to facilitate modelling.
 
 The data is currently in long format: one row per subject with one date
 column and one associated FCAL value per sample (see @tbl-tab1). As
@@ -523,9 +521,9 @@ via a Precision Medicine PhD studentship (MR/N013166/1, to **NC-C**).
 
 ## Author contributions {.appendix}
 
-**NC-C** performed the data cleaning detailed in this report. **NP** and INSERT
-extracted the data from electronic health records and formatted the data in 
-the form initially described.
+**NC-C** performed the data cleaning detailed in this report. **NP** extracted
+the data from electronic health records and formatted the data in the form
+initially described.
 
 ## Reuse {.appendix}
 

@@ -1106,7 +1106,9 @@ class_rec <- recipe(class ~ age +
                       L4 +
                       behaviour +
                       peri +
-                      DiagFC,
+                      DiagFC +
+                      use_bio +
+                      use_bio3,
                     data = test_data)
 ```
 
@@ -1153,7 +1155,9 @@ temp$call <- quote(nnet::multinom(formula = class ~ age +
                                       L4 +
                                       behaviour +
                                       peri +
-                                      DiagFC,
+                                      DiagFC +
+                                      use_bio +
+                                      use_bio3,
                                   data = train_data,
                                   decay = ~0.00316227766016838, 
                                   trace = FALSE))
@@ -1289,7 +1293,9 @@ class_rec <- recipe(class2 ~ age +
                       L4 +
                       behaviour +
                       peri +
-                      FC.VALUE.AT.DIAGNOSIS,
+                      FC.VALUE.AT.DIAGNOSIS + 
+                      use_bio +
+                      use_bio3,
                     data = test_data)
 ```
 

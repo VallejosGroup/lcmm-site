@@ -144,8 +144,8 @@
 <meta name="citation_author" content="Karla Monterrubio &amp;amp;lt;sup&amp;gt;1</sup>">
 <meta name="citation_author" content="Riccardo Marioni &amp;amp;lt;sup&amp;gt;2</sup>">
 <meta name="citation_author" content="Catalina A. Vallejos &amp;amp;lt;sup&amp;gt;1, 3</sup>">
-<meta name="citation_online_date" content="2022-08-09">
-<meta name="citation_publication_date" content="2022-08-09">
+<meta name="citation_online_date" content="2022-08-11">
+<meta name="citation_publication_date" content="2022-08-11">
 <meta name="citation_journal_title" content="undefined">
 <meta name="citation_reference" content="citation_title=Normalization of fecal calprotectin within 12 months of diagnosis is associated with reduced risk of disease progression in patients with Crohn’s disease;,citation_author=Nikolas Plevris;,citation_author=James Fulforth;,citation_author=Mathew Lyons;,citation_author=Spyros I. Siakavellas;,citation_author=Philip W. Jenkinson;,citation_author=Cher S. Chuah;,citation_author=Laura Lucaciu;,citation_author=Rebecca J. Pattenden;,citation_author=Ian D. Arnott;,citation_author=Gareth-Rhys Jones;,citation_author=Charlie W. Lees;,citation_publication_date=2021-09;,citation_issue=9;,citation_volume=19;,citation_journal_title=Clinical Gastroenterology and Hepatology;">
 <meta name="citation_reference" content="citation_title=Ulcerative colitis and clinical course: Results of a 5-year population-based follow-up study (the IBSEN study);,citation_author=Magne Henriksen;,citation_author=Jrgen Jahnsen;,citation_author=Idar Lygren;,citation_author=Jostein Sauar;,citation_author=undefined Kjellevold;,citation_author=Tom Schulz;,citation_author=Morten H. Vatn;,citation_author=Bjrn Moum;,citation_publication_date=2006-07;,citation_issue=7;,citation_volume=12;,citation_journal_title=Inflammatory Bowel Diseases;">
@@ -234,7 +234,7 @@
 <p><sup>2</sup> Centre for Genomic and Experimental Medicine</p>
 </a></p><p><a href="https://www.turing.ac.uk">
 <p><sup>3</sup> The Alan Turing Institute</p>
-</a></p><p>&nbsp;</p></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">August 9, 2022</p></div></div></div></header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+</a></p><p>&nbsp;</p></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">August 11, 2022</p></div></div></div></header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">nnet</a></span><span class="op">)</span> <span class="co"># Multinomial logistic regression</span></span>
@@ -1963,7 +1963,9 @@ Residuals   354 397129240 1121834               </code></pre>
 <span>                      <span class="va">L4</span> <span class="op">+</span></span>
 <span>                      <span class="va">behaviour</span> <span class="op">+</span></span>
 <span>                      <span class="va">peri</span> <span class="op">+</span></span>
-<span>                      <span class="va">DiagFC</span>,</span>
+<span>                      <span class="va">DiagFC</span> <span class="op">+</span></span>
+<span>                      <span class="va">use_bio</span> <span class="op">+</span></span>
+<span>                      <span class="va">use_bio3</span>,</span>
 <span>                    data <span class="op">=</span> <span class="va">test_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
@@ -2009,7 +2011,9 @@ Residuals   354 397129240 1121834               </code></pre>
 <span>                                      <span class="va">L4</span> <span class="op">+</span></span>
 <span>                                      <span class="va">behaviour</span> <span class="op">+</span></span>
 <span>                                      <span class="va">peri</span> <span class="op">+</span></span>
-<span>                                      <span class="va">DiagFC</span>,</span>
+<span>                                      <span class="va">DiagFC</span> <span class="op">+</span></span>
+<span>                                      <span class="va">use_bio</span> <span class="op">+</span></span>
+<span>                                      <span class="va">use_bio3</span>,</span>
 <span>                                  data <span class="op">=</span> <span class="va">train_data</span>,</span>
 <span>                                  decay <span class="op">=</span> <span class="op">~</span><span class="fl">0.00316227766016838</span>, </span>
 <span>                                  trace <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
@@ -2025,17 +2029,19 @@ Residuals   354 397129240 1121834               </code></pre>
 <table class="table table-sm table-striped">
 <colgroup>
 <col style="width: 2%">
-<col style="width: 11%">
+<col style="width: 10%">
 <col style="width: 4%">
 <col style="width: 4%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
 <col style="width: 5%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 9%">
 <col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 7%">
 </colgroup>
 <thead><tr class="header">
 <th style="text-align: left;"></th>
@@ -2050,49 +2056,57 @@ Residuals   354 397129240 1121834               </code></pre>
 <th style="text-align: right;">behaviour3</th>
 <th style="text-align: right;">periyes</th>
 <th style="text-align: right;">DiagFC</th>
+<th style="text-align: right;">use_bioY</th>
+<th style="text-align: right;">use_bio3</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">1</td>
-<td style="text-align: right;">1.35</td>
-<td style="text-align: right;">0.98</td>
-<td style="text-align: right;">0.83</td>
-<td style="text-align: right;">1.09</td>
-<td style="text-align: right;">2.51</td>
-<td style="text-align: right;">2.98</td>
-<td style="text-align: right;">0.16</td>
-<td style="text-align: right;">1.85</td>
-<td style="text-align: right;">32.65</td>
-<td style="text-align: right;">1.72</td>
+<td style="text-align: right;">1.22</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: right;">0.89</td>
+<td style="text-align: right;">1.15</td>
+<td style="text-align: right;">1.60</td>
+<td style="text-align: right;">1.69</td>
+<td style="text-align: right;">0.30</td>
+<td style="text-align: right;">1.21</td>
+<td style="text-align: right;">1.28</td>
+<td style="text-align: right;">1.16</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">2.21</td>
+<td style="text-align: right;">2.09</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">3</td>
-<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">0.72</td>
 <td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0.53</td>
-<td style="text-align: right;">0.16</td>
-<td style="text-align: right;">2.16</td>
-<td style="text-align: right;">1.45</td>
-<td style="text-align: right;">1.42</td>
-<td style="text-align: right;">0.97</td>
-<td style="text-align: right;">0.80</td>
-<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">0.59</td>
+<td style="text-align: right;">0.37</td>
+<td style="text-align: right;">1.58</td>
+<td style="text-align: right;">1.05</td>
+<td style="text-align: right;">1.34</td>
+<td style="text-align: right;">0.86</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">0.81</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">1.11</td>
+<td style="text-align: right;">1.29</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">4</td>
-<td style="text-align: right;">0.06</td>
-<td style="text-align: right;">1.02</td>
-<td style="text-align: right;">1.17</td>
-<td style="text-align: right;">0.22</td>
-<td style="text-align: right;">0.34</td>
+<td style="text-align: right;">0.45</td>
 <td style="text-align: right;">0.99</td>
-<td style="text-align: right;">1.30</td>
-<td style="text-align: right;">1.16</td>
-<td style="text-align: right;">0.86</td>
-<td style="text-align: right;">2.67</td>
+<td style="text-align: right;">0.82</td>
+<td style="text-align: right;">0.60</td>
+<td style="text-align: right;">0.57</td>
+<td style="text-align: right;">0.87</td>
+<td style="text-align: right;">0.96</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">1.35</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">1.28</td>
+<td style="text-align: right;">1.02</td>
 </tr>
 </tbody>
 </table>
@@ -2105,17 +2119,19 @@ Residuals   354 397129240 1121834               </code></pre>
 <table class="table table-sm table-striped">
 <colgroup>
 <col style="width: 2%">
-<col style="width: 11%">
+<col style="width: 10%">
 <col style="width: 4%">
 <col style="width: 4%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
 <col style="width: 5%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 9%">
 <col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 7%">
 </colgroup>
 <thead><tr class="header">
 <th style="text-align: left;"></th>
@@ -2130,49 +2146,57 @@ Residuals   354 397129240 1121834               </code></pre>
 <th style="text-align: right;">behaviour3</th>
 <th style="text-align: right;">periyes</th>
 <th style="text-align: right;">DiagFC</th>
+<th style="text-align: right;">use_bioY</th>
+<th style="text-align: right;">use_bio3</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">1</td>
-<td style="text-align: right;">0.39</td>
-<td style="text-align: right;">0.96</td>
-<td style="text-align: right;">0.44</td>
-<td style="text-align: right;">0.51</td>
-<td style="text-align: right;">1.08</td>
-<td style="text-align: right;">1.23</td>
-<td style="text-align: right;">0.06</td>
-<td style="text-align: right;">0.62</td>
-<td style="text-align: right;">32.51</td>
-<td style="text-align: right;">0.74</td>
+<td style="text-align: right;">0.35</td>
+<td style="text-align: right;">0.97</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">0.53</td>
+<td style="text-align: right;">0.69</td>
+<td style="text-align: right;">0.70</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">1.22</td>
+<td style="text-align: right;">0.48</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">1.02</td>
+<td style="text-align: right;">0.74</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">3</td>
-<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.18</td>
 <td style="text-align: right;">0.98</td>
-<td style="text-align: right;">0.25</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.80</td>
-<td style="text-align: right;">0.49</td>
-<td style="text-align: right;">0.56</td>
+<td style="text-align: right;">0.29</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">0.62</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">0.54</td>
 <td style="text-align: right;">0.19</td>
-<td style="text-align: right;">0.80</td>
-<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.96</td>
+<td style="text-align: right;">0.29</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">0.42</td>
+<td style="text-align: right;">0.33</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">4</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">0.36</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.08</td>
-<td style="text-align: right;">0.27</td>
-<td style="text-align: right;">0.29</td>
-<td style="text-align: right;">0.17</td>
-<td style="text-align: right;">0.86</td>
-<td style="text-align: right;">0.61</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.96</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.23</td>
+<td style="text-align: right;">0.21</td>
+<td style="text-align: right;">0.13</td>
+<td style="text-align: right;">0.93</td>
+<td style="text-align: right;">0.28</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">0.38</td>
+<td style="text-align: right;">0.55</td>
 </tr>
 </tbody>
 </table>
@@ -2185,17 +2209,19 @@ Residuals   354 397129240 1121834               </code></pre>
 <table class="table table-sm table-striped">
 <colgroup>
 <col style="width: 2%">
-<col style="width: 11%">
+<col style="width: 10%">
 <col style="width: 4%">
 <col style="width: 4%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
 <col style="width: 5%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 9%">
 <col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 7%">
 </colgroup>
 <thead><tr class="header">
 <th style="text-align: left;"></th>
@@ -2210,49 +2236,57 @@ Residuals   354 397129240 1121834               </code></pre>
 <th style="text-align: right;">behaviour3</th>
 <th style="text-align: right;">periyes</th>
 <th style="text-align: right;">DiagFC</th>
+<th style="text-align: right;">use_bioY</th>
+<th style="text-align: right;">use_bio3</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">1</td>
-<td style="text-align: right;">4.64</td>
+<td style="text-align: right;">4.29</td>
 <td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1.57</td>
-<td style="text-align: right;">2.33</td>
-<td style="text-align: right;">5.83</td>
-<td style="text-align: right;">7.23</td>
-<td style="text-align: right;">0.43</td>
-<td style="text-align: right;">5.52</td>
-<td style="text-align: right;">32.79</td>
-<td style="text-align: right;">4.02</td>
+<td style="text-align: right;">1.68</td>
+<td style="text-align: right;">2.48</td>
+<td style="text-align: right;">3.74</td>
+<td style="text-align: right;">4.07</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">3.71</td>
+<td style="text-align: right;">1.35</td>
+<td style="text-align: right;">2.81</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">4.81</td>
+<td style="text-align: right;">5.94</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">3</td>
-<td style="text-align: right;">1.96</td>
+<td style="text-align: right;">2.86</td>
 <td style="text-align: right;">1.02</td>
-<td style="text-align: right;">1.12</td>
-<td style="text-align: right;">0.73</td>
-<td style="text-align: right;">5.77</td>
-<td style="text-align: right;">4.26</td>
-<td style="text-align: right;">3.62</td>
-<td style="text-align: right;">4.85</td>
-<td style="text-align: right;">0.80</td>
-<td style="text-align: right;">2.20</td>
+<td style="text-align: right;">1.22</td>
+<td style="text-align: right;">1.16</td>
+<td style="text-align: right;">4.04</td>
+<td style="text-align: right;">2.93</td>
+<td style="text-align: right;">3.35</td>
+<td style="text-align: right;">3.94</td>
+<td style="text-align: right;">0.99</td>
+<td style="text-align: right;">2.27</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">2.94</td>
+<td style="text-align: right;">5.10</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">4</td>
-<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">1.33</td>
+<td style="text-align: right;">1.02</td>
+<td style="text-align: right;">2.64</td>
+<td style="text-align: right;">3.13</td>
+<td style="text-align: right;">2.12</td>
+<td style="text-align: right;">3.26</td>
+<td style="text-align: right;">4.35</td>
+<td style="text-align: right;">7.18</td>
 <td style="text-align: right;">1.04</td>
-<td style="text-align: right;">3.82</td>
-<td style="text-align: right;">1.09</td>
-<td style="text-align: right;">1.37</td>
-<td style="text-align: right;">3.72</td>
-<td style="text-align: right;">5.92</td>
-<td style="text-align: right;">7.79</td>
-<td style="text-align: right;">0.86</td>
-<td style="text-align: right;">11.71</td>
+<td style="text-align: right;">6.57</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">4.33</td>
+<td style="text-align: right;">1.87</td>
 </tr>
 </tbody>
 </table>
@@ -2277,13 +2311,13 @@ Residuals   354 397129240 1121834               </code></pre>
 <tr class="odd">
 <td style="text-align: center;">accuracy</td>
 <td style="text-align: center;">multiclass</td>
-<td style="text-align: center;">0.5444444</td>
+<td style="text-align: center;">0.5555556</td>
 <td style="text-align: center;">Preprocessor1_Model1</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">roc_auc</td>
 <td style="text-align: center;">hand_till</td>
-<td style="text-align: center;">0.6527881</td>
+<td style="text-align: center;">0.6832527</td>
 <td style="text-align: center;">Preprocessor1_Model1</td>
 </tr>
 </tbody>
@@ -2308,8 +2342,8 @@ Residuals   354 397129240 1121834               </code></pre>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">2</td>
-<td style="text-align: right;">41</td>
-<td style="text-align: right;">7</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">6</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
@@ -2322,15 +2356,15 @@ Residuals   354 397129240 1121834               </code></pre>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">3</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">4</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">4</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
@@ -2387,36 +2421,44 @@ Residuals   354 397129240 1121834               </code></pre>
 </tr></thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;">use_bio</td>
+<td style="text-align: right;">0.0078338</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">use_bio3</td>
+<td style="text-align: right;">0.0076051</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">L4</td>
-<td style="text-align: right;">0.0056340</td>
+<td style="text-align: right;">0.0054443</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">smoking</td>
-<td style="text-align: right;">0.0032240</td>
+<td style="text-align: right;">0.0027945</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">LOCATION</td>
-<td style="text-align: right;">0.0015034</td>
+<td style="text-align: right;">0.0015454</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DiagFC</td>
+<td style="text-align: right;">0.0011091</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">behaviour</td>
+<td style="text-align: right;">0.0003897</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">age</td>
-<td style="text-align: right;">0.0013339</td>
+<td style="text-align: right;">-0.0002174</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">DiagFC</td>
-<td style="text-align: right;">0.0003739</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">behaviour</td>
-<td style="text-align: right;">0.0001972</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">SEX</td>
-<td style="text-align: right;">-0.0008423</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">peri</td>
-<td style="text-align: right;">-0.0018048</td>
+<td style="text-align: right;">-0.0004318</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SEX</td>
+<td style="text-align: right;">-0.0005952</td>
 </tr>
 </tbody>
 </table>
@@ -2438,13 +2480,13 @@ Residuals   354 397129240 1121834               </code></pre>
 <tr class="odd">
 <td style="text-align: center;">accuracy</td>
 <td style="text-align: center;">multiclass</td>
-<td style="text-align: center;">0.5111111</td>
+<td style="text-align: center;">0.5555556</td>
 <td style="text-align: center;">Preprocessor1_Model1</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">roc_auc</td>
 <td style="text-align: center;">hand_till</td>
-<td style="text-align: center;">0.6602079</td>
+<td style="text-align: center;">0.6552993</td>
 <td style="text-align: center;">Preprocessor1_Model1</td>
 </tr>
 </tbody>
@@ -2468,15 +2510,15 @@ Residuals   354 397129240 1121834               </code></pre>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">2</td>
-<td style="text-align: right;">43</td>
-<td style="text-align: right;">5</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">3</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">1</td>
-<td style="text-align: right;">21</td>
-<td style="text-align: right;">3</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">5</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
@@ -2489,8 +2531,8 @@ Residuals   354 397129240 1121834               </code></pre>
 </tr>
 <tr class="even">
 <td style="text-align: left;">4</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
@@ -2520,7 +2562,9 @@ Residuals   354 397129240 1121834               </code></pre>
 <span>                      <span class="va">L4</span> <span class="op">+</span></span>
 <span>                      <span class="va">behaviour</span> <span class="op">+</span></span>
 <span>                      <span class="va">peri</span> <span class="op">+</span></span>
-<span>                      <span class="va">FC.VALUE.AT.DIAGNOSIS</span>,</span>
+<span>                      <span class="va">FC.VALUE.AT.DIAGNOSIS</span> <span class="op">+</span> </span>
+<span>                      <span class="va">use_bio</span> <span class="op">+</span></span>
+<span>                      <span class="va">use_bio3</span>,</span>
 <span>                    data <span class="op">=</span> <span class="va">test_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
@@ -2578,13 +2622,13 @@ using the resamples with no tuning. Did you want to [tune()] parameters?</code><
 <tr class="odd">
 <td style="text-align: center;">accuracy</td>
 <td style="text-align: center;">binary</td>
-<td style="text-align: center;">0.5666667</td>
+<td style="text-align: center;">0.6555556</td>
 <td style="text-align: center;">Preprocessor1_Model1</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">roc_auc</td>
 <td style="text-align: center;">binary</td>
-<td style="text-align: center;">0.6066468</td>
+<td style="text-align: center;">0.6676587</td>
 <td style="text-align: center;">Preprocessor1_Model1</td>
 </tr>
 </tbody>
@@ -2607,13 +2651,13 @@ using the resamples with no tuning. Did you want to [tune()] parameters?</code><
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">0</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: right;">23</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">20</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">1</td>
-<td style="text-align: right;">16</td>
-<td style="text-align: right;">32</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">37</td>
 </tr>
 </tbody>
 </table>
@@ -2671,13 +2715,13 @@ using the resamples with no tuning. Did you want to [tune()] parameters?</code><
 <tr class="odd">
 <td style="text-align: center;">accuracy</td>
 <td style="text-align: center;">binary</td>
-<td style="text-align: center;">0.4444444</td>
+<td style="text-align: center;">0.5555556</td>
 <td style="text-align: center;">Preprocessor1_Model1</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">roc_auc</td>
 <td style="text-align: center;">binary</td>
-<td style="text-align: center;">0.4650298</td>
+<td style="text-align: center;">0.5741567</td>
 <td style="text-align: center;">Preprocessor1_Model1</td>
 </tr>
 </tbody>
@@ -2700,13 +2744,13 @@ using the resamples with no tuning. Did you want to [tune()] parameters?</code><
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">0</td>
-<td style="text-align: right;">17</td>
-<td style="text-align: right;">25</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">14</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">1</td>
-<td style="text-align: right;">25</td>
-<td style="text-align: right;">23</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">22</td>
 </tr>
 </tbody>
 </table>

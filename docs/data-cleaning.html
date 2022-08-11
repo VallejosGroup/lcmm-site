@@ -141,8 +141,8 @@
 <meta name="citation_author" content="Nathan Contantine-Cooke &amp;amp;lt;sup&amp;gt;1, 2</sup>">
 <meta name="citation_author" content="Nikolas Plevris &amp;amp;lt;sup&amp;gt;2, 3</sup>">
 <meta name="citation_author" content=" ">
-<meta name="citation_online_date" content="2022-08-09">
-<meta name="citation_publication_date" content="2022-08-09">
+<meta name="citation_online_date" content="2022-08-11">
+<meta name="citation_publication_date" content="2022-08-11">
 <meta name="citation_journal_title" content="undefined">
 <meta name="citation_reference" content="citation_title=Normalization of fecal calprotectin within 12 months of diagnosis is associated with reduced risk of disease progression in patients with Crohn’s disease;,citation_author=Nikolas Plevris;,citation_author=James Fulforth;,citation_author=Mathew Lyons;,citation_author=Spyros I. Siakavellas;,citation_author=Philip W. Jenkinson;,citation_author=Cher S. Chuah;,citation_author=Laura Lucaciu;,citation_author=Rebecca J. Pattenden;,citation_author=Ian D. Arnott;,citation_author=Gareth-Rhys Jones;,citation_author=Charlie W. Lees;,citation_publication_date=2021-09;,citation_issue=9;,citation_volume=19;,citation_journal_title=Clinical Gastroenterology and Hepatology;">
 <meta name="citation_reference" content="citation_title=Ulcerative colitis and clinical course: Results of a 5-year population-based follow-up study (the IBSEN study);,citation_author=Magne Henriksen;,citation_author=Jrgen Jahnsen;,citation_author=Idar Lygren;,citation_author=Jostein Sauar;,citation_author=undefined Kjellevold;,citation_author=Tom Schulz;,citation_author=Morten H. Vatn;,citation_author=Bjrn Moum;,citation_publication_date=2006-07;,citation_issue=7;,citation_volume=12;,citation_journal_title=Inflammatory Bowel Diseases;">
@@ -227,7 +227,7 @@
 <p><sup>2</sup> Centre for Genomic and Experimental Medicine</p>
 </a></p><p><a href="https://services.nhslothian.scot/EdinburghIBDUnit/Pages/default.aspx">
 <p><sup>3</sup> Edinburgh IBD Unit</p>
-</a></p></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">August 9, 2022</p></div></div></div></header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+</a></p></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">August 11, 2022</p></div></div></div></header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/ggdist/">ggdist</a></span><span class="op">)</span></span>
@@ -256,7 +256,7 @@
 </figure>
 </div>
 <p>Previously, data from this cohort has been used by <span class="citation" data-cites="Plevris2021">Plevris et al. (<a href="#ref-Plevris2021" role="doc-biblioref">2021</a>)</span> to demonstrate an association between normalising (&lt; 250 <span class="math inline">\mu g/g</span>) FCAL within one year of diagnosis and CD disease outcomes. The outcomes considered were hospitalisation, surgery, disease behaviour progression, and a composite end-point of all three outcomes.</p>
-<p>Additional follow-up data for this cohort has been collated by a medical student into a large multi-sheet Excel file. Plevris had begun formatting the relevant data into a relevant format for modelling of longitudinal and survival outcomes, but this process had not been completed before the data was transferred. This document details the data processing steps undertaken to facilitate modelling.</p>
+<p>Plevris had begun formatting the relevant data into a relevant format for modelling of longitudinal and survival outcomes, but this process had not been completed before the data was transferred. This document details the data processing steps undertaken to facilitate modelling.</p>
 <p>The data is currently in long format: one row per subject with one date column and one associated FCAL value per sample (see <a href="#tbl-tab1">Table&nbsp;1</a>). As such, there are 375 rows in this dataset. This dataset has 147 columns in the dataset. There are up to 45 FCAL measurements with associated date columns, followed by censored status for each of the four outcomes and the associated dates. Some columns are entirely <code>NA</code>.</p>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">FCcumulative</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, align <span class="op">=</span> <span class="st">"c"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -864,7 +864,7 @@
 </div></section><section id="acknowledgments" class="level2 appendix"><h2 class="quarto-appendix-heading">Acknowledgments</h2><div class="quarto-appendix-contents">
 <p>This work is funded by the Medical Research Council &amp; University of Edinburgh via a Precision Medicine PhD studentship (MR/N013166/1, to <strong>NC-C</strong>).</p>
 </div></section><section id="author-contributions" class="level2 appendix"><h2 class="quarto-appendix-heading">Author contributions</h2><div class="quarto-appendix-contents">
-<p><strong>NC-C</strong> performed the data cleaning detailed in this report. <strong>NP</strong> and INSERT extracted the data from electronic health records and formatted the data in the form initially described.</p>
+<p><strong>NC-C</strong> performed the data cleaning detailed in this report. <strong>NP</strong> extracted the data from electronic health records and formatted the data in the form initially described.</p>
 </div></section><section id="reuse" class="level2 appendix"><h2 class="quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents">
 <p>Licensed by <a href="https://creativecommons.org/licenses/by/4.0/">CC BY </a> unless otherwise stated.</p>
 
