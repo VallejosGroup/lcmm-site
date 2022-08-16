@@ -91,12 +91,6 @@ describe_cat <- function(vars, data){
 
 kaplan_plot <- function(model, title, subtitle = TRUE, legend = TRUE){
   if (legend) {
-    x <- survdiff(Surv(surg.time, surg.censor) ~ class,
-                        data = demographic,
-                        rho = 1)
-    
-    
-    
     p <- ggsurvplot(model,
                     conf.int = TRUE,
                     surv.median.line = "none",
