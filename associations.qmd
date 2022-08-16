@@ -33,6 +33,7 @@ library(survival) # Kaplan-Meier
 library(survminer) # Plot Kaplan-Meier curves
 library(patchwork)
 library(vip)
+library(KONPsurv)
 
 if (!require(plyr)) {
   install.packages("plyr")
@@ -90,6 +91,12 @@ describe_cat <- function(vars, data){
 
 kaplan_plot <- function(model, title, subtitle = TRUE, legend = TRUE){
   if (legend) {
+    x <- survdiff(Surv(surg.time, surg.censor) ~ class,
+                        data = demographic,
+                        rho = 1)
+    
+    
+    
     p <- ggsurvplot(model,
                     conf.int = TRUE,
                     surv.median.line = "none",
@@ -157,8 +164,11 @@ inception cohort and therefore no endpoints are observed within one
 year of diagnosis for the study cohort. For more information, see the
 [Data Cleaning Section](data-cleaning.qmd). 
 
-For log rank tests, we consider both Mantel-Haenszel tests and modified
-Gehan-Wilcoxon tests [@Peto1972] for robustness against assumptions. 
+For comaprisons betwwen survival curves, we consider both Mantel-Haenszel tests
+and Peto-Peto tests (modified Gehan-Wilcoxon tests) [@Peto1972] as the latter
+is more robust against violations of the proportional-hazards assumption. We
+also report the results of $K$-sample omnibus non-proportional hazards (KONP)
+tests.
 
 We have found the survival distributions for hospitalisation, disease
 progression, and the composite endpoint to be significantly different across
@@ -213,12 +223,21 @@ hosp.model <- survfit(Surv(hosp.time, hosp.censor) ~ class, data = demographic)
 kaplan_plot(hosp.model, "Kaplan-Meier Curves for Hospitalisation")
 ```
 
-#### Modified Gehan-Wilcoxon Test
+#### Peto-Peto Test
 
 ```{R}
 pander::pander(survdiff(Surv(hosp.time, hosp.censor) ~ class,
                         data = demographic,
                         rho = 1))
+```
+
+#### KONP Test
+
+```{R}
+konp_test(demographic$hosp.time,
+          demographic$hosp.censor,
+          demographic$class,
+          n_perm=10^3)
 ```
 
 ### Surgery
@@ -243,12 +262,18 @@ surg.model <- survfit(Surv(surg.time, surg.censor) ~ class, data = demographic)
 kaplan_plot(surg.model, "Kaplan-Meier Curves for Surgery")
 ```
 
-#### Modified Gehan-Wilcoxon Test
+#### Peto-Peto Test
 
 ```{R}
 pander::pander(survdiff(Surv(surg.time, surg.censor) ~ class,
                         data = demographic,
                         rho = 1))
+```
+
+#### KONP Test
+
+```{R}
+konp_test(demographic$surg.time, demographic$surg.censor, demographic$class, n_perm=10^3)
 ```
 
 ### Disease progression
@@ -273,12 +298,19 @@ kaplan_plot(prog.model, "Kaplan-Meier Curves for Disease Progression")
 ```
 
 
-#### Modified Gehan-Wilcoxon Test
+#### Peto-Peto Test
 
 ```{R}
 pander::pander(survdiff(Surv(prog.time, prog.censor) ~ class,
                         data = demographic,
                         rho = 1))
+```
+
+
+#### KONP Test
+
+```{R}
+konp_test(demographic$prog.time, demographic$prog.censor, demographic$class, n_perm=10^3)
 ```
 
 ### Composite endpoint
@@ -303,12 +335,19 @@ comp.model <- survfit(Surv(composite.time, composite.censor) ~ class,
 kaplan_plot(comp.model, "Kaplan-Meier Curves for Composite Endpoint")
 ```
 
-#### Modified Gehan-Wilcoxon Test
+#### Peto-Peto Test
 
 ```{R}
 pander::pander(survdiff(Surv(composite.time, composite.censor) ~ class,
                         data = demographic,
                         rho = 1))
+```
+
+
+#### KONP Test
+
+```{R}
+konp_test(demographic$composite.time, demographic$composite.censor, demographic$class, n_perm=10^3)
 ```
 
 :::
