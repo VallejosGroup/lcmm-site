@@ -68,6 +68,17 @@
       "Hash": "aee647d15e5541ad44d157f7b78fda01",
       "Requirements": []
     },
+    "KONPsurv": {
+      "Package": "KONPsurv",
+      "Version": "1.0.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "776ee245db7185e7176f17086c0f536b",
+      "Requirements": [
+        "Rcpp",
+        "survival"
+      ]
+    },
     "KernSmooth": {
       "Package": "KernSmooth",
       "Version": "2.23-20",
