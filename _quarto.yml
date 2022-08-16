@@ -26,6 +26,7 @@ format:
     self-contained-math: false
     mainfont: "Mulish"
     monofont: "Noto Sans Mono"
+    doi: "10.1101/2022.08.16.22278320"
 
 website:
   title: "Analysis by Constantine-Cooke et al."

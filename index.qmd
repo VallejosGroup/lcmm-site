@@ -1,5 +1,5 @@
 ---
-title: "Analysis for Latent Crohn’s Disease Subgroups Are Identified by Faecal Calprotectin Profiles"
+title: "Analysis for Latent Crohn’s Disease Subgroups Are Identified by Longitudinal Faecal Calprotectin Profiles"
 format:
   html:
     code-tools: false
