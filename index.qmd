@@ -1,40 +1,47 @@
 ---
-title: "Analysis for Latent Crohn’s Disease Subgroups Are Identified by Longitudinal Faecal Calprotectin Profiles"
+title: "Analysis for Longitudinal Faecal Calprotectin Profiles Characterise Heterogeneity in Crohn’s Disease"
 format:
   html:
     code-tools: false
 date: ""
 date-format: ""
-title-block-banner: false # can set as hex col
+title-block-banner: false # can set as hex 
+author:
+  - name: "Nathan Contantine-Cooke" 
+    url: https://scholar.google.com/citations?user=2emHWR0AAAAJ&hl=en&oi=ao
+    corresponding: true
+    affiliations:
+      - ref: HGU
+      - ref: CGEM
 ---
 
 ## About
 
-This website presents the analytical reports developed for *Latent Crohn's
-Disease Subgroups Are Identified by Faecal Calprotectin Profiles* by
+This website presents the analytical reports developed for *Longitudinal Faecal
+Calprotectin Profiles Characterise Heterogeneity in Crohn’s Disease* by
 Constantine-Cooke et al. In this work, we use latent class mixed models to
-identify latent subgroups within the Crohn's disease patient population based
-upon the profiles of a biomarker, faecal calprotectin. 
+identify clusters within the Crohn's disease patient population based
+upon the longitudinal profiles of a biomarker, faecal calprotectin. 
 
 The analysis pipeline for this project consists of three stages:
 
 1. [Data cleaning](data-cleaning.qmd) where data obtained from clinicians are
    reformatted and any data quality issues are dealt with.
 2. [Model selection](selection.qmd) where latent class mixed models are fitted
-   with differing numbers of assumed classes and the most appropriate model is
+   with differing numbers of assumed clusters and the most appropriate model is
    selected.
 3. [Association testing](associations.qmd) where potentially significant
-   associations between latent class membership for the optimal model and either
+   associations between cluster membership for the optimal model and either
    data available at diagnosis, treatments, or outcomes are tested for. 
    
 ## Using this website
 
 The navigation menu at the top of the page will allow you to navigate through
 the steps of the analysis pipeline.  The code button at the top of each page can
-be used to show all code blocks instead of clicking on the code
-buttons for each individual block of code. Moving the mouse pointer over any
-citations in a report will produce a pop up box with reference details. Clicking
-on the citation will link to the bibliography at the bottom of the page. 
+be used to show all code blocks instead of clicking on the code buttons for each
+individual block of code. Moving the mouse pointer over any citations in a
+report will produce a pop up box with reference details. Clicking on the
+citation will link to the bibliography at the bottom of the page. 
 
 ## Software versions
 

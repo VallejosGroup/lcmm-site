@@ -2,16 +2,16 @@
 title: "Data Cleaning"
 subtitle: "The Crohn's Disease Inception Cohort."
 author:
-  - name: "Nathan Contantine-Cooke <sup>1, 2</sup>" 
+  - name: "Nathan Contantine-Cooke"
+    corresponding: true
     url: https://scholar.google.com/citations?user=2emHWR0AAAAJ&hl=en&oi=ao
-    affiliation: "<sup>1</sup> MRC Human Genetics Unit"
-    affiliation-url: https://www.ed.ac.uk/mrc-human-genetics-unit
-  - name: "Nikolas Plevris <sup>2, 3</sup>"
-    affiliation: "<sup>2</sup> Centre for Genomic and Experimental Medicine"
-    affiliation-url: https://www.ed.ac.uk/centre-genomic-medicine
-  - name: " "
-    affiliation: "<sup>3</sup> Edinburgh IBD Unit"
-    affiliation-url: https://services.nhslothian.scot/EdinburghIBDUnit/Pages/default.aspx
+    affiliations:
+      - ref: HGU
+      - ref: CGEM
+  - name: "Nikolas Plevris"
+    affiliations:
+      - ref: CGEM
+      - ref: IBD
 #comments:
 #  giscus: 
 #    repo: quarto-dev/quarto-docs

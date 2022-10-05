@@ -2,60 +2,88 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-0.9.180">
+<meta name="generator" content="quarto-1.1.251">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Analysis by Constantine-Cooke et al.&nbsp;- Analysis for Latent Crohn’s Disease Subgroups Are Identified by Longitudinal Faecal Calprotectin Profiles</title>
+<meta name="author" content="Nathan Contantine-Cooke">
+<title>Analysis by Constantine-Cooke et al.&nbsp;- Analysis for Longitudinal Faecal Calprotectin Profiles Characterise Heterogeneity in Crohn’s Disease</title>
 <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-  </style>
-<script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
-    "location": "navbar",
-    "copy-button": false,
-    "collapse-after": 3,
-    "panel-placement": "end",
-    "type": "overlay",
-    "limit": 20,
-    "language": {
-      "search-no-results-text": "No results",
-      "search-matching-documents-text": "matching documents",
-      "search-copy-link-title": "Copy link to search",
-      "search-hide-matches-text": "Hide additional matches",
-      "search-more-match-text": "more match in this document",
-      "search-more-matches-text": "more matches in this document",
-      "search-clear-button-title": "Clear",
-      "search-detached-cancel-button-title": "Cancel",
-      "search-submit-button-title": "Submit"
-    }
-  }</script><!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]--><link rel="stylesheet" href="theme.css">
-<meta name="citation_title" content="Analysis for Latent Crohn’s Disease Subgroups Are Identified by Longitudinal Faecal Calprotectin Profiles">
-<meta name="citation_journal_title" content="undefined">
-<meta name="citation_reference" content="citation_title=Normalization of fecal calprotectin within 12 months of diagnosis is associated with reduced risk of disease progression in patients with Crohn’s disease;,citation_author=Nikolas Plevris;,citation_author=James Fulforth;,citation_author=Mathew Lyons;,citation_author=Spyros I. Siakavellas;,citation_author=Philip W. Jenkinson;,citation_author=Cher S. Chuah;,citation_author=Laura Lucaciu;,citation_author=Rebecca J. Pattenden;,citation_author=Ian D. Arnott;,citation_author=Gareth-Rhys Jones;,citation_author=Charlie W. Lees;,citation_publication_date=2021-09;,citation_issue=9;,citation_volume=19;,citation_journal_title=Clinical Gastroenterology and Hepatology;">
-<meta name="citation_reference" content="citation_title=Ulcerative colitis and clinical course: Results of a 5-year population-based follow-up study (the IBSEN study);,citation_author=Magne Henriksen;,citation_author=Jrgen Jahnsen;,citation_author=Idar Lygren;,citation_author=Jostein Sauar;,citation_author=undefined Kjellevold;,citation_author=Tom Schulz;,citation_author=Morten H. Vatn;,citation_author=Bjrn Moum;,citation_publication_date=2006-07;,citation_issue=7;,citation_volume=12;,citation_journal_title=Inflammatory Bowel Diseases;">
-<meta name="citation_reference" content="citation_title=Polynomials and potential theory for gaussian radial basis function interpolation;,citation_author=Rodrigo B. Platte;,citation_author=Tobin A. Driscoll;,citation_fulltext_html_url=https://doi.org/10.1137/040610143;,citation_publication_date=2005;,citation_issue=2;,citation_volume=43;,citation_journal_title=SIAM Journal on Numerical Analysis;">
-<meta name="citation_reference" content="citation_title=Estimation of extended mixed models using latent classes and latent processes: The R package lcmm;,citation_author=Cécile Proust-Lima;,citation_author=Viviane Philipps;,citation_author=Benoit Liquet;,citation_publication_date=2017;,citation_issue=2;,citation_volume=78;,citation_journal_title=Journal of Statistical Software;">
-<meta name="citation_reference" content="citation_title=Regression modeling strategies;,citation_author=undefined Frank E. Harrell;,citation_publication_date=2015;,citation_journal_title=undefined;">
-<meta name="citation_reference" content="citation_title=The runge phenomenon and spatially variable shape parameters in RBF interpolation;,citation_author=Bengt Fornberg;,citation_author=Julia Zuev;,citation_fulltext_html_url=https://www.sciencedirect.com/science/article/pii/S0898122107002210;,citation_publication_date=2007;,citation_issue=3;,citation_issn=0898-1221;,citation_volume=54;,citation_journal_title=Computers &amp;amp;amp; Mathematics with Applications;">
-<meta name="citation_reference" content="citation_title=Using linear and natural cubic splines, SITAR, and latent trajectory models to characterise nonlinear longitudinal growth trajectories in cohort studies;,citation_author=Ahmed Elhakeem;,citation_author=Rachael A. Hughes;,citation_author=Kate Tilling;,citation_author=Diana L. Cousminer;,citation_author=Stefan A. Jackowski;,citation_author=Tim J. Cole;,citation_author=Alex S. F. Kwong;,citation_author=Zheyuan Li;,citation_author=Struan F. A. Grant;,citation_author=Adam D. G. Baxter-Jones;,citation_author=Babette S. Zemel;,citation_author=Deborah A. Lawlor;,citation_fulltext_html_url=https://doi.org/10.1186/s12874-022-01542-8;,citation_publication_date=2022;,citation_issue=1;,citation_isbn=1471-2288;,citation_volume=22;,citation_journal_title=BMC Medical Research Methodology;">
-<meta name="citation_reference" content="citation_title=Asymptotically efficient rank invariant test procedures;,citation_author=Richard Peto;,citation_author=Julian Peto;,citation_publication_date=1972;,citation_issue=2;,citation_volume=135;,citation_journal_title=Journal of the Royal Statistical Society. Series A (General);">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script><link rel="stylesheet" href="theme.css">
+<meta property="og:title" content="Analysis by Constantine-Cooke et al.&nbsp;- Analysis for Longitudinal Faecal Calprotectin Profiles Characterise Heterogeneity in Crohn’s Disease">
+<meta property="og:description" content="This website presents the analytical reports developed for Longitudinal Faecal Calprotectin Profiles Characterise Heterogeneity in Crohn’s Disease by Constantine-Cooke et al.">
+<meta property="og:site-name" content="Analysis by Constantine-Cooke et al.">
+<meta name="twitter:title" content="Analysis by Constantine-Cooke et al.&nbsp;- Analysis for Longitudinal Faecal Calprotectin Profiles Characterise Heterogeneity in Crohn’s Disease">
+<meta name="twitter:description" content="This website presents the analytical reports developed for Longitudinal Faecal Calprotectin Profiles Characterise Heterogeneity in Crohn’s Disease by Constantine-Cooke et al.">
+<meta name="twitter:creator" content="@nathansam">
+<meta name="twitter:card" content="summary">
+<meta name="citation_title" content="Analysis for Longitudinal Faecal Calprotectin Profiles Characterise Heterogeneity in Crohn’s Disease">
+<meta name="citation_author" content="Nathan Contantine-Cooke">
+<meta name="citation_doi" content="10.1101/2022.08.16.22278320">
+<meta name="citation_language" content="en">
+<meta name="citation_reference" content="citation_title=Normalization of fecal calprotectin within 12 months of diagnosis is associated with reduced risk of disease progression in patients with Crohn’s disease;,citation_author=Nikolas Plevris;,citation_author=James Fulforth;,citation_author=Mathew Lyons;,citation_author=Spyros I. Siakavellas;,citation_author=Philip W. Jenkinson;,citation_author=Cher S. Chuah;,citation_author=Laura Lucaciu;,citation_author=Rebecca J. Pattenden;,citation_author=Ian D. Arnott;,citation_author=Gareth-Rhys Jones;,citation_author=Charlie W. Lees;,citation_publication_date=2021-09;,citation_cover_date=2021-09;,citation_year=2021;,citation_issue=9;,citation_doi=10.1016/j.cgh.2020.08.022;,citation_volume=19;,citation_journal_title=Clinical Gastroenterology and Hepatology;,citation_publisher=Elsevier BV;">
+<meta name="citation_reference" content="citation_title=Ulcerative colitis and clinical course: Results of a 5-year population-based follow-up study (the IBSEN study);,citation_author=Magne Henriksen;,citation_author=Jrgen Jahnsen;,citation_author=Idar Lygren;,citation_author=Jostein Sauar;,citation_author=undefined Kjellevold;,citation_author=Tom Schulz;,citation_author=Morten H. Vatn;,citation_author=Bjrn Moum;,citation_publication_date=2006-07;,citation_cover_date=2006-07;,citation_year=2006;,citation_issue=7;,citation_doi=10.1097/01.mib.0000225339.91484.fc;,citation_volume=12;,citation_journal_title=Inflammatory Bowel Diseases;,citation_publisher=Oxford University Press (OUP);">
+<meta name="citation_reference" content="citation_title=Polynomials and potential theory for gaussian radial basis function interpolation;,citation_abstract=We explore a connection between Gaussian radial basis functions and polynomials. Using standard tools of potential theory, we find that these radial functions are susceptible to the Runge phenomenon, not only in the limit of increasingly flat functions, but also in the finite shape parameter case. We show that there exist interpolation node distributions that prevent such phenomena and allow stable approximations. Using polynomials also provides an explicitinterpolation formula that avoids the difficulties of inverting interpolation matrices, while not imposing restrictions on the shape parameter or number of points.;,citation_author=Rodrigo B. Platte;,citation_author=Tobin A. Driscoll;,citation_publication_date=2005;,citation_cover_date=2005;,citation_year=2005;,citation_fulltext_html_url=https://doi.org/10.1137/040610143;,citation_issue=2;,citation_doi=10.1137/040610143;,citation_volume=43;,citation_journal_title=SIAM Journal on Numerical Analysis;">
+<meta name="citation_reference" content="citation_title=Estimation of extended mixed models using latent classes and latent processes: The R package lcmm;,citation_author=Cécile Proust-Lima;,citation_author=Viviane Philipps;,citation_author=Benoit Liquet;,citation_publication_date=2017;,citation_cover_date=2017;,citation_year=2017;,citation_issue=2;,citation_doi=10.18637/jss.v078.i02;,citation_volume=78;,citation_journal_title=Journal of Statistical Software;">
+<meta name="citation_reference" content="citation_title=Regression modeling strategies;,citation_author=undefined Frank E. Harrell;,citation_publication_date=2015;,citation_cover_date=2015;,citation_year=2015;,citation_doi=10.1007/978-3-319-19425-7;">
+<meta name="citation_reference" content="citation_title=The runge phenomenon and spatially variable shape parameters in RBF interpolation;,citation_abstract=Many studies, mostly empirical, have been devoted to finding an optimal shape parameter for radial basis functions (RBF). When exploring the underlying factors that determine what is a good such choice, we are led to consider the Runge phenomenon (RP; best known in cases of high order polynomial interpolation) as a key error mechanism. This observation suggests that it can be advantageous to let the shape parameter vary spatially, rather than assigning a single value to it. Benefits typically include improvements in both accuracy and numerical conditioning. Still another benefit arises if one wishes to improve local accuracy by clustering nodes in selected areas. This idea is routinely used when working with splines or finite element methods. However, local refinement with RBFs may cause RP-type errors unless we use a spatially variable shape paremeter. With this enhancement, RBF approximations combine freedom from meshes with spectral accuracy on irregular domains, and furthermore permit local node clustering to improve the resolution wherever this might be needed.;,citation_author=Bengt Fornberg;,citation_author=Julia Zuev;,citation_publication_date=2007;,citation_cover_date=2007;,citation_year=2007;,citation_fulltext_html_url=https://www.sciencedirect.com/science/article/pii/S0898122107002210;,citation_issue=3;,citation_doi=https://doi.org/10.1016/j.camwa.2007.01.028;,citation_issn=0898-1221;,citation_volume=54;,citation_journal_title=Computers &amp;amp;amp; Mathematics with Applications;">
+<meta name="citation_reference" content="citation_title=Using linear and natural cubic splines, SITAR, and latent trajectory models to characterise nonlinear longitudinal growth trajectories in cohort studies;,citation_abstract=Longitudinal data analysis can improve our understanding of the influences on health trajectories across the life-course. There are a variety of statistical models which can be used, and their fitting and interpretation can be complex, particularly where there is a nonlinear trajectory. Our aim was to provide an accessible guide along with applied examples to using four sophisticated modelling procedures for describing nonlinear growth trajectories.;,citation_author=Ahmed Elhakeem;,citation_author=Rachael A. Hughes;,citation_author=Kate Tilling;,citation_author=Diana L. Cousminer;,citation_author=Stefan A. Jackowski;,citation_author=Tim J. Cole;,citation_author=Alex S. F. Kwong;,citation_author=Zheyuan Li;,citation_author=Struan F. A. Grant;,citation_author=Adam D. G. Baxter-Jones;,citation_author=Babette S. Zemel;,citation_author=Deborah A. Lawlor;,citation_publication_date=2022;,citation_cover_date=2022;,citation_year=2022;,citation_fulltext_html_url=https://doi.org/10.1186/s12874-022-01542-8;,citation_issue=1;,citation_doi=10.1186/s12874-022-01542-8;,citation_isbn=1471-2288;,citation_volume=22;,citation_journal_title=BMC Medical Research Methodology;">
+<meta name="citation_reference" content="citation_title=Asymptotically efficient rank invariant test procedures;,citation_author=Richard Peto;,citation_author=Julian Peto;,citation_publication_date=1972;,citation_cover_date=1972;,citation_year=1972;,citation_issue=2;,citation_doi=10.2307/2344317;,citation_volume=135;,citation_journal_title=Journal of the Royal Statistical Society. Series A (General);,citation_publisher=JSTOR;">
 </head>
-<body>
+<body class="nav-fixed">
+
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Analysis by Constantine-Cooke et al.</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -86,37 +114,95 @@
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc"><h2 id="toc-title">On this page</h2>
-<ul>
-<li><a href="#about" class="nav-link active" data-scroll-target="#about">About</a></li>
-<li><a href="#using-this-website" class="nav-link" data-scroll-target="#using-this-website">Using this website</a></li>
-<li><a href="#software-versions" class="nav-link" data-scroll-target="#software-versions">Software versions</a></li>
-<li><a href="#section" class="nav-link" data-scroll-target="#section"></a></li>
-</ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/vallejosgroup/lcmm-site/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#about" id="toc-about" class="nav-link active" data-scroll-target="#about">About</a></li>
+  <li><a href="#using-this-website" id="toc-using-this-website" class="nav-link" data-scroll-target="#using-this-website">Using this website</a></li>
+  <li><a href="#software-versions" id="toc-software-versions" class="nav-link" data-scroll-target="#software-versions">Software versions</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/vallejosgroup/lcmm-site/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title"><h1 class="title display-7">Analysis for Latent Crohn’s Disease Subgroups Are Identified by Longitudinal Faecal Calprotectin Profiles</h1></div><div class="quarto-title-meta"><div><div class="quarto-title-meta-heading">DOI</div><div class="quarto-title-meta-contents"><a href="https://doi.org/10.1101/2022.08.16.22278320">10.1101/2022.08.16.22278320</a></div></div></div></header><section id="about" class="level2"><h2 class="anchored" data-anchor-id="about">About</h2>
-<p>This website presents the analytical reports developed for <em>Latent Crohn’s Disease Subgroups Are Identified by Faecal Calprotectin Profiles</em> by Constantine-Cooke et al.&nbsp;In this work, we use latent class mixed models to identify latent subgroups within the Crohn’s disease patient population based upon the profiles of a biomarker, faecal calprotectin.</p>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">Analysis for Longitudinal Faecal Calprotectin Profiles Characterise Heterogeneity in Crohn’s Disease</h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliations</div>
+  
+    <div class="quarto-title-meta-contents">
+    <a href="https://scholar.google.com/citations?user=2emHWR0AAAAJ&amp;hl=en&amp;oi=ao">Nathan Contantine-Cooke</a> 
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            <a href="https://www.ed.ac.uk/mrc-human-genetics-unit">
+            MRC Human Genetics Unit
+            </a>
+          </p>
+        <p class="affiliation">
+            <a href="https://www.ed.ac.uk/centre-genomic-medicine">
+            Centre for Genomic and Experimental Medicine
+            </a>
+          </p>
+      </div>
+    </div>
+
+<div class="quarto-title-meta">
+
+      
+    
+    <div>
+    <div class="quarto-title-meta-heading">Doi</div>
+    <div class="quarto-title-meta-contents">
+      <p class="doi">
+        <a href="https://doi.org/10.1101/2022.08.16.22278320">10.1101/2022.08.16.22278320</a>
+      </p>
+    </div>
+  </div>
+  </div>
+  
+
+</header><section id="about" class="level2"><h2 class="anchored" data-anchor-id="about">About</h2>
+<p>This website presents the analytical reports developed for <em>Longitudinal Faecal Calprotectin Profiles Characterise Heterogeneity in Crohn’s Disease</em> by Constantine-Cooke et al.&nbsp;In this work, we use latent class mixed models to identify clusters within the Crohn’s disease patient population based upon the longitudinal profiles of a biomarker, faecal calprotectin.</p>
 <p>The analysis pipeline for this project consists of three stages:</p>
 <ol type="1">
 <li>
 <a href="./data-cleaning.html">Data cleaning</a> where data obtained from clinicians are reformatted and any data quality issues are dealt with.</li>
 <li>
-<a href="./selection.html">Model selection</a> where latent class mixed models are fitted with differing numbers of assumed classes and the most appropriate model is selected.</li>
+<a href="./selection.html">Model selection</a> where latent class mixed models are fitted with differing numbers of assumed clusters and the most appropriate model is selected.</li>
 <li>
-<a href="./associations.html">Association testing</a> where potentially significant associations between latent class membership for the optimal model and either data available at diagnosis, treatments, or outcomes are tested for.</li>
+<a href="./associations.html">Association testing</a> where potentially significant associations between cluster membership for the optimal model and either data available at diagnosis, treatments, or outcomes are tested for.</li>
 </ol></section><section id="using-this-website" class="level2"><h2 class="anchored" data-anchor-id="using-this-website">Using this website</h2>
 <p>The navigation menu at the top of the page will allow you to navigate through the steps of the analysis pipeline. The code button at the top of each page can be used to show all code blocks instead of clicking on the code buttons for each individual block of code. Moving the mouse pointer over any citations in a report will produce a pop up box with reference details. Clicking on the citation will link to the bibliography at the bottom of the page.</p>
 </section><section id="software-versions" class="level2"><h2 class="anchored" data-anchor-id="software-versions">Software versions</h2>
-<p>All analyses have been generated using <a href="https://www.r-project.org">R version 4.2.0</a>. See the Session Information sections at the bottom of each report to see the R packages used for that particular analysis and the respective package versions.</p>
+<p>All analyses have been generated using <a href="https://www.r-project.org">R version 4.2.1</a>. See the Session Information sections at the bottom of each report to see the R packages used for that particular analysis and the respective package versions.</p>
 </section><div id="quarto-appendix" class="default"><section id="section" class="level2 appendix"><h2 class="quarto-appendix-heading"></h2><div class="quarto-appendix-contents">
 <p>This website has been generated using the <a href="https://quarto.org">Quarto</a> scientific publishing system built on <a href="https://pandoc.org">pandoc</a>.</p>
 
 
-
-</div></section></div></main><!-- /main --><script type="application/javascript">
+</div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -136,7 +222,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.blur();
     // flash "checked"
     button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
     setTimeout(function() {
+      button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
@@ -163,7 +252,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

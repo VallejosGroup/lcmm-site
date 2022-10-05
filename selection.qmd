@@ -2,20 +2,25 @@
 title: "Model Selection"
 subtitle: "Using latent class mixed models with natural cubic splines."
 author:
-  - name: "Nathan Contantine-Cooke <sup>1, 2</sup>" 
+  - name: "Nathan Contantine-Cooke" 
     url: https://scholar.google.com/citations?user=2emHWR0AAAAJ&hl=en&oi=ao
-    affiliation: "<sup>1</sup> MRC Human Genetics Unit"
-    affiliation-url: https://www.ed.ac.uk/mrc-human-genetics-unit
-  - name: "Karla Monterrubio <sup>1</sup>"
+    corresponding: true
+    affiliations:
+      - ref: HGU
+      - ref: CGEM
+  - name: "Karla Monterrubio-Gómez"
     url: https://scholar.google.com/citations?user=YmyxSXAAAAAJ&hl=en
-    affiliation: "<sup>2</sup> Centre for Genomic and Experimental Medicine"
-    affiliation-url: https://www.ed.ac.uk/centre-genomic-medicine
-  - name: "Riccardo Marioni <sup>2</sup>"
+    affiliations:
+      - ref: HGU
+  - name: "Riccardo E. Marioni"
     url: https://scholar.google.com/citations?hl=en&user=gA3Ik3MAAAAJ
-    affiliation: "<sup>3</sup> The Alan Turing Institute"
-    affiliation-url: https://www.turing.ac.uk
-  - name: "Catalina A. Vallejos <sup>1, 3</sup>"
+    affiliations: 
+      - ref: CGEM
+  - name: "Catalina A. Vallejos"
     url: https://scholar.google.com/citations?user=lkdrwm0AAAAJ&hl=en&oi=ao
+    affiliations:
+      - ref: HGU
+      - ref: Turing
 #comments:
 #  giscus: 
 #    repo: quarto-dev/quarto-docs
@@ -113,7 +118,7 @@ DTbuild <- function(hlme.metric, caption) {
                   h3(caption)),
                 style ="bootstrap4",
                 rownames = FALSE,
-                colnames = c("Classes",
+                colnames = c("Clusters",
                              "Maximum log-likelihood",
                              "AIC",
                              "BIC"),
@@ -239,7 +244,7 @@ spaghetti_plot_sub <- function(FCcumulative,
     if (sizes) {
       message("There are ",
               length(id.group),
-              " subjects in class ",
+              " subjects in cluster ",
               g,
               ".")
     }
@@ -319,14 +324,14 @@ spaghetti_plot_sub <- function(FCcumulative,
 }
 ```
 
-To achieve our aims of identifying classes within the CD population with 
+To achieve our aims of identifying clusters within the CD population with 
 similar FCAL profiles, we use latent class mixed models (LCMMs) with natural
 cubic spline formulations for the fixed and random effects components. LCMMs
 are an extension of linear mixed effects models with an added fixed
-effect class-specific component. Class membership in a LCMM is given via
+effect class-specific component. Cluster membership in a LCMM is given via
 a multinomial logistic model.
 
-Previously, we have investigated using polynomial regression, models with an
+Previously, we have investigated using polynomial regression models with an
 I-splines link function, and models which use Gaussian radial basis functions
 (GRBFs) in order to model the fixed and random components of an LCMM.
 Unfortunately, the polynomial regression and I-splines link approaches
@@ -354,8 +359,8 @@ few notable advantages [@Elhakeem2022]:
 
 ## Formal defintions
 
-For formal definitions of the models and statistics we have used in the work, 
-see the supplementary material for our paper. 
+For formal definitions of the models and statistics we have used in the work,
+please see the supplementary material for our paper. 
 
 ## The Crohn's Disease Inception Cohort
 
@@ -400,11 +405,11 @@ FCcumulative %>%
 
 ## Model fitting
 
-LCMMs with 2 - 6 assumed classes are considered. As recommended by
-@Proust-Lima2017, a model is initially fitted with 1 class (I.E a regular linear
-mixed effects model) which is used to sample initial values in  a grid search
-approach which attempts to find optimal models for each assumed number of
-classes based upon maximum likelihood. The trajectory of this linear mixed
+LCMMs with 2 - 6 assumed clusters are considered. As recommended by
+@Proust-Lima2017, a model is initially fitted with one cluster (I.E a regular
+linear mixed effects model) which is used to sample initial values in  a grid
+search approach which attempts to find optimal models for each assumed number of
+clusters based upon maximum likelihood. The trajectory of this linear mixed
 effects model is given by @fig-lme. 
 
 For the fixed and random components of each model, we will consider natural
@@ -580,19 +585,20 @@ DTbuild(hlme.metrics,
 
 Considering all of the models above, AIC is most optimal for the $G = 5$ 
 model and BIC is optimal for the $G = 2$ model. However, considering an alluvial
-plot (@fig-alluvial) suggest neither $G = 2$ nor $G = 5$ are suitable models. 
-The $G = 2$ model clearly has additional well defined latent classes not
-properly represented by just two classes, whilst the $G=5$ model results in an 
-incredibly small new class. As such, $G = 4$ may be a more suitable alternative.
+plot (@fig-alluvial) suggests neither $G = 2$ nor $G = 5$ are suitable models. 
+The $G = 2$ model clearly has additional well defined cluster not properly
+represented by just two clusters, whilst the $G=5$ model results in an 
+incredibly small new cluster. As such, $G = 4$ may be a more suitable
+alternative.
 
-### Class discrimination
+### Cluster discrimination
 
 #### Alluvial plots
 
 ```{R Alluvial plots}
 #| warning: false
 #| label: fig-alluvial
-#| fig-cap: "Alluvial plot demonstrating how class membership changes as the assumed number of classes increase. The height of each band indicates the size of each class."
+#| fig-cap: "Alluvial plot demonstrating how cluster membership changes as the assumed number of clusters increase. The height of each band indicates the size of each cluster."
 re_label <- function(old.G, new.G, alluvial.df){
   
   new.order <- rep(new.G, new.G)
@@ -643,7 +649,7 @@ p <- ggplot(alluvial.df,
   geom_text(stat = "stratum", size = 3) +
   theme_minimal() +
   theme(legend.position = "none") +
-  ggtitle("Alluvial plot of class membership across G",
+  ggtitle("Alluvial plot of cluster membership across G",
           "Crohn's disease inception cohort") +
   scale_fill_manual(values = c("#e3281f",
                                "#3aa534",
@@ -651,7 +657,7 @@ p <- ggplot(alluvial.df,
                                "#fbc926",
                                "#511e9d",
                                "black")) +
-  xlab("Assumed number of latent classes") + 
+  xlab("Assumed number of clusters") + 
   ylab("Frequency")
 print(p)
 
@@ -662,9 +668,9 @@ ggsave("paper/alluvial.pdf", p, width = 8, height = 4.5, units = "in")
 
 #### Posterior classifications
 
-An alternative to co-clustering when considering class discrimination is to
+An alternative to co-clustering when considering cluster discrimination is to
 consider posterior classification possibilities. From the below data, we can
-see how these posterior probabilities change as the number of assumed classes
+see how these posterior probabilities change as the number of assumed clusters
 increase
 
 ::: {.panel-tabset}
@@ -728,11 +734,11 @@ pprobs.4 <- tibble(prob = pprobs.4)
 pprobs.5 <- tibble(prob = pprobs.5)
 pprobs.6 <- tibble(prob = pprobs.6)
 
-pprobs.2$Model <- as.factor(rep("Two classes", nrow(pprobs.2)))
-pprobs.3$Model <- as.factor(rep("Three classes", nrow(pprobs.3)))
-pprobs.4$Model <- as.factor(rep("Four classes", nrow(pprobs.4)))
-pprobs.5$Model <- as.factor(rep("Five classes", nrow(pprobs.5)))
-pprobs.6$Model <- as.factor(rep("Six classes", nrow(pprobs.6)))
+pprobs.2$Model <- as.factor(rep("Two clusters", nrow(pprobs.2)))
+pprobs.3$Model <- as.factor(rep("Three clusters", nrow(pprobs.3)))
+pprobs.4$Model <- as.factor(rep("Four clusters", nrow(pprobs.4)))
+pprobs.5$Model <- as.factor(rep("Five clusters", nrow(pprobs.5)))
+pprobs.6$Model <- as.factor(rep("Six clusters", nrow(pprobs.6)))
 pprobs <- rbind(pprobs.2, pprobs.3, pprobs.4, pprobs.5, pprobs.6)
 
 p <- pprobs %>%
@@ -742,10 +748,10 @@ p <- pprobs %>%
                     size = 0.8,
                     alpha = 0.2) +
   geom_dots(aes(fill = Model, color = Model), dotsize = 1) +
-  xlab("Posterior Probability for Class Membership") +
+  xlab("Posterior probability for cluster membership") +
   ylab("") + 
   ggtitle("Distribution of Posterior Probabilities Across Models",
-          "Subject-specific posterior probabilities for assigned class") +
+          "Subject-specific posterior probabilities for assigned cluster") +
   theme_minimal() + 
   scale_color_manual(values = c("#e3281f",
                                 "#3aa534",
@@ -889,9 +895,9 @@ plot(cubicbf.fits[[6]], shades = TRUE)
 
 :::
 
-### Spaghetti plots per class
+### Spaghetti plots per cluster
 
-Plotting the mean class trajectories alongside spaghetti plots of all subject
+Plotting the mean cluster trajectories alongside spaghetti plots of all subject
 trajectories provides evidence for the $G = 4$ model being the
 most appropriate.  
 
@@ -1228,8 +1234,8 @@ spaghetti_plot(FCcumulative,
 
 ### Model output
 
-After considering all of the above findings, the model which assumes four latent
-classes has been deemed the most appropriate. The summary statistics for this
+After considering all of the above findings, the model which assumes four
+clusters has been deemed the most appropriate. The summary statistics for this
 model can be found below. The four splines are denoted by
 $X_{1}(t), \ldots, X_{4}(t)$. We use this notation in the supplementary
 materials for the paper. 

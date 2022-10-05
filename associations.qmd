@@ -1,21 +1,26 @@
 ---
 title: "Association Testing"
-subtitle: "Comparing demographic data, clinical data, and outcomes across classes."
+subtitle: "Comparing demographic data, clinical data, and outcomes across clusters."
 author:
-  - name: "Nathan Contantine-Cooke <sup>1, 2</sup>" 
+  - name: "Nathan Contantine-Cooke" 
     url: https://scholar.google.com/citations?user=2emHWR0AAAAJ&hl=en&oi=ao
-    affiliation: "<sup>1</sup> MRC Human Genetics Unit"
-    affiliation-url: https://www.ed.ac.uk/mrc-human-genetics-unit
-  - name: "Karla Monterrubio <sup>1</sup>"
+    corresponding: true
+    affiliations:
+      - ref: HGU
+      - ref: CGEM
+  - name: "Karla Monterrubio-Gómez"
     url: https://scholar.google.com/citations?user=YmyxSXAAAAAJ&hl=en
-    affiliation: "<sup>2</sup> Centre for Genomic and Experimental Medicine"
-    affiliation-url: https://www.ed.ac.uk/centre-genomic-medicine
-  - name: "Riccardo Marioni <sup>2</sup>"
+    affiliations:
+      - ref: HGU
+  - name: "Riccardo E. Marioni"
     url: https://scholar.google.com/citations?hl=en&user=gA3Ik3MAAAAJ
-    affiliation: "<sup>3</sup> The Alan Turing Institute"
-    affiliation-url: https://www.turing.ac.uk
-  - name: "Catalina A. Vallejos <sup>1, 3</sup>"
+    affiliations: 
+      - ref: CGEM
+  - name: "Catalina A. Vallejos"
     url: https://scholar.google.com/citations?user=lkdrwm0AAAAJ&hl=en&oi=ao
+    affiliations:
+      - ref: HGU
+      - ref: Turing
 #comments:
 #  giscus: 
 #    repo: quarto-dev/quarto-docs
@@ -118,7 +123,7 @@ kaplan_plot <- function(model, title, subtitle = TRUE, legend = TRUE){
                     legend = "none")
   }
   if (subtitle) {
-    p <- p + ggtitle(title, "Stratified by class") + xlab("Time (years)") 
+    p <- p + ggtitle(title, "Stratified by cluster") + xlab("Time (years)") 
   } else {
     p <- p + ggtitle(title) + xlab("Time (years)")
   }
@@ -126,39 +131,39 @@ kaplan_plot <- function(model, title, subtitle = TRUE, legend = TRUE){
 } 
 ```
 
-After [deeming the four-class LCMM to be the most suitable](selection.qmd), we
-will now explore potential associations with class membership. We will consider
-variables typically available at diagnosis, outcomes usually indicative of a poor
-disease course, and treatments prescribed within one year of diagnosis. For all
-categorical variables, frequency tables for the study population and classes
-have been generated in addition to either chi-squared test or (if a cell has < 5
-observations) Fisher's exact test results. For continuous variables, the
-median, first quartile, and third quartile have been reported for the study
-population and classes in addition to ANOVA results. 
+After [deeming the four-cluster LCMM to be the most suitable](selection.qmd), we
+will now explore potential associations with cluster membership. We will
+consider variables typically available at diagnosis, outcomes usually indicative
+of a poor disease course, and treatments prescribed within one year of
+diagnosis. For all categorical variables, frequency tables for the study
+population and clusters have been generated in addition to either chi-squared
+test or (if a cell has < 5 observations) Fisher's exact test results. For
+continuous variables, the median, first quartile, and third quartile have been
+reported for the study population and clusters in addition to ANOVA results. 
 
 To streamline the analysis, descriptive functions have been created,
 `describe_cat()` and `describe_cont()` which generate the aforementioned results
 
-We also attempt to predict class membership based on these variables to
-determine if class membership can be accurately predicted ahead of time using
+We also attempt to predict cluster membership based on these variables to
+determine if cluster membership can be accurately predicted ahead of time using
 these variables. We consider both multinomial logistic regression and random
 forest predictive models for this purpose. 
 
 ## Outcomes
 
 We will first consider associations with outcomes in order to determine if there 
-is are potentially clinically significant aspects to these classes. For this 
+is are potentially clinically significant aspects to these clusters. For this 
 purpose, we use Kaplan-Meier curves for endpoints of interest stratified by
-class membership. The endpoints considered are hospitalisation, surgery, disease
-progression, and a composite end point. We use log-rank tests to determine if
-survival distributions differ across classes. All censoring indicators have
-been mapped to 0 (censored) and 1 (observed). Patients who met one of these
-endpoints within one year of diagnosis were excluded from the Crohn's disease
-inception cohort and therefore no endpoints are observed within one
-year of diagnosis for the study cohort. For more information, see the
+cluster membership. The endpoints considered are hospitalisation, surgery,
+disease progression, and a composite end point. We use log-rank tests to
+determine if survival distributions differ across clusters. All censoring
+indicators have been mapped to 0 (censored) and 1 (observed). Patients who met
+one of these endpoints within one year of diagnosis were excluded from the
+Crohn's disease inception cohort and therefore no endpoints are observed within
+one year of diagnosis for the study cohort. For more information, see the
 [Data Cleaning Section](data-cleaning.qmd). 
 
-For comaprisons betwwen survival curves, we consider both Mantel-Haenszel tests
+For comparisons between survival curves, we consider both Mantel-Haenszel tests
 and Peto-Peto tests (modified Gehan-Wilcoxon tests) [@Peto1972] as the latter
 is more robust against violations of the proportional-hazards assumption. We
 also report the results of $K$-sample omnibus non-proportional hazards (KONP)
@@ -166,12 +171,10 @@ tests.
 
 We have found the survival distributions for hospitalisation, disease
 progression, and the composite endpoint to be significantly different across
-classes but not the survival distribution for the surgery endpoint. 
+clusters but not the survival distribution for the surgery endpoint. 
 
-From the below plots, we can clearly see class 1, which is characterised by
+From the below plots, we can clearly see cluster 1, which is characterised by
 a decrease in FCAL, results in high survival probabilities over time.
-Class 2, distinguished by consistently high FCAL, demonstrates poor survival
-probabilities.
 
 ```{R}
 FCcumulative <- readRDS(paste0("/Volumes/igmm/cvallejo-predicct/processed-data/cdi/",
@@ -191,6 +194,7 @@ colnames(demographic)[1] <- "id"
 classes <- model$pprob[, 1:2]
 
 demographic <- merge(demographic, classes, by = "id")
+demographic$cluster <- demographic$class
 ```
 
 ::: {.panel-tabset}
@@ -205,14 +209,20 @@ hosp.time <- c()
 
 for (i in 1:nrow(demographic)) {
   subject <- subset(FCcumulative, id == demographic[i, "id"])
-  hosp.censor <- c(hosp.censor, subject[1, "hosp"])
-  hosp.time <- c(hosp.time, subject[1, "hosp.date"])
+  
+  if (subject[1, "hosp.date"] > 5) {
+    hosp.censor <- c(hosp.censor, 0)
+    hosp.time <- c(hosp.time, 5)
+  } else {
+    hosp.censor <- c(hosp.censor, subject[1, "hosp"])
+    hosp.time <- c(hosp.time, subject[1, "hosp.date"])
+  }
 }
 
 demographic$hosp.censor <- hosp.censor
 demographic$hosp.time <- hosp.time
 
-hosp.model <- survfit(Surv(hosp.time, hosp.censor) ~ class, data = demographic)
+hosp.model <- survfit(Surv(hosp.time, hosp.censor) ~ cluster, data = demographic)
 
 kaplan_plot(hosp.model, "Kaplan-Meier Curves for Hospitalisation")
 ```
@@ -220,7 +230,7 @@ kaplan_plot(hosp.model, "Kaplan-Meier Curves for Hospitalisation")
 #### Peto-Peto Test
 
 ```{R}
-pander::pander(survdiff(Surv(hosp.time, hosp.censor) ~ class,
+pander::pander(survdiff(Surv(hosp.time, hosp.censor) ~ cluster,
                         data = demographic,
                         rho = 1))
 ```
@@ -230,8 +240,8 @@ pander::pander(survdiff(Surv(hosp.time, hosp.censor) ~ class,
 ```{R}
 konp_test(demographic$hosp.time,
           demographic$hosp.censor,
-          demographic$class,
-          n_perm=10^3)
+          demographic$cluster,
+          n_perm = 10^3)
 ```
 
 ### Surgery
@@ -244,14 +254,20 @@ surg.time <- c()
 
 for (i in 1:nrow(demographic)) {
   subject <- subset(FCcumulative, id == demographic[i, "id"])
-  surg.censor <- c(surg.censor, subject[1, "surg"])
-  surg.time <- c(surg.time, subject[1, "surg.date"])
+  if (subject[1, "surg.date"] > 5) {
+    surg.censor <- c(surg.censor, 0)
+    surg.time <- c(surg.time, 5)
+  } else {  
+    surg.censor <- c(surg.censor, subject[1, "surg"])
+    surg.time <- c(surg.time, subject[1, "surg.date"])
+  }
 }
 
 demographic$surg.censor <- surg.censor
 demographic$surg.time <- surg.time
 
-surg.model <- survfit(Surv(surg.time, surg.censor) ~ class, data = demographic)
+surg.model <- survfit(Surv(surg.time, surg.censor) ~ cluster,
+                      data = demographic)
 
 kaplan_plot(surg.model, "Kaplan-Meier Curves for Surgery")
 ```
@@ -259,7 +275,7 @@ kaplan_plot(surg.model, "Kaplan-Meier Curves for Surgery")
 #### Peto-Peto Test
 
 ```{R}
-pander::pander(survdiff(Surv(surg.time, surg.censor) ~ class,
+pander::pander(survdiff(Surv(surg.time, surg.censor) ~ cluster,
                         data = demographic,
                         rho = 1))
 ```
@@ -267,7 +283,10 @@ pander::pander(survdiff(Surv(surg.time, surg.censor) ~ class,
 #### KONP Test
 
 ```{R}
-konp_test(demographic$surg.time, demographic$surg.censor, demographic$class, n_perm=10^3)
+konp_test(demographic$surg.time,
+          demographic$surg.censor,
+          demographic$cluster,
+          n_perm = 10^3)
 ```
 
 ### Disease progression
@@ -280,13 +299,19 @@ prog.time <- c()
 
 for (i in 1:nrow(demographic)) {
   subject <- subset(FCcumulative, id == demographic[i, "id"])
-  prog.censor <- c(prog.censor, subject[1, "prog"])
-  prog.time <- c(prog.time, subject[1, "prog.date"])
+  if (subject[1, "prog.date"] > 5) {
+    prog.censor <- c(prog.censor, 0)
+    prog.time <- c(prog.time, 5)
+  } else {  
+    prog.censor <- c(prog.censor, subject[1, "prog"])
+    prog.time <- c(prog.time, subject[1, "prog.date"])
+  }
 }
 
 demographic$prog.censor <- prog.censor
 demographic$prog.time <- prog.time
-prog.model <- survfit(Surv(prog.time, prog.censor) ~ class, data = demographic)
+prog.model <- survfit(Surv(prog.time, prog.censor) ~ cluster,
+                      data = demographic)
 
 kaplan_plot(prog.model, "Kaplan-Meier Curves for Disease Progression")
 ```
@@ -295,7 +320,7 @@ kaplan_plot(prog.model, "Kaplan-Meier Curves for Disease Progression")
 #### Peto-Peto Test
 
 ```{R}
-pander::pander(survdiff(Surv(prog.time, prog.censor) ~ class,
+pander::pander(survdiff(Surv(prog.time, prog.censor) ~ cluster,
                         data = demographic,
                         rho = 1))
 ```
@@ -304,7 +329,10 @@ pander::pander(survdiff(Surv(prog.time, prog.censor) ~ class,
 #### KONP Test
 
 ```{R}
-konp_test(demographic$prog.time, demographic$prog.censor, demographic$class, n_perm=10^3)
+konp_test(demographic$prog.time,
+          demographic$prog.censor,
+          demographic$cluster,
+          n_perm = 10^3)
 ```
 
 ### Composite endpoint
@@ -317,14 +345,19 @@ composite.time <- c()
 
 for (i in 1:nrow(demographic)) {
   subject <- subset(FCcumulative, id == demographic[i, "id"])
-  composite.censor <- c(composite.censor, subject[1, "composite"])
-  composite.time <- c(composite.time, subject[1, "composites.day"])
+  if (subject[1, "composites.day"] > 5 * 365.25) {
+    composite.censor <- c(composite.censor, 0)
+    composite.time <- c(composite.time, 5 * 365.25)
+  } else {  
+    composite.censor <- c(composite.censor, subject[1, "composite"])
+    composite.time <- c(composite.time, subject[1, "composites.day"])
+  }
 }
 
 demographic$composite.censor <- composite.censor
 demographic$composite.time <- composite.time / 365.25
 
-comp.model <- survfit(Surv(composite.time, composite.censor) ~ class,
+comp.model <- survfit(Surv(composite.time, composite.censor) ~ cluster,
                       data = demographic)
 kaplan_plot(comp.model, "Kaplan-Meier Curves for Composite Endpoint")
 ```
@@ -332,7 +365,7 @@ kaplan_plot(comp.model, "Kaplan-Meier Curves for Composite Endpoint")
 #### Peto-Peto Test
 
 ```{R}
-pander::pander(survdiff(Surv(composite.time, composite.censor) ~ class,
+pander::pander(survdiff(Surv(composite.time, composite.censor) ~ cluster,
                         data = demographic,
                         rho = 1))
 ```
@@ -341,7 +374,10 @@ pander::pander(survdiff(Surv(composite.time, composite.censor) ~ class,
 #### KONP Test
 
 ```{R}
-konp_test(demographic$composite.time, demographic$composite.censor, demographic$class, n_perm=10^3)
+konp_test(demographic$composite.time,
+          demographic$composite.censor,
+          demographic$cluster,
+          n_perm=10^3)
 ```
 
 :::
@@ -397,7 +433,7 @@ ggsave("paper/kaplan.png",
 
 ## Characteristics available at diagnosis
 
-We have found two variables available at diagnosis to be associated with class
+We have found two variables available at diagnosis to be associated with cluster
 membership: smoking at diagnosis ($p = 0.015$) and upper gastrointestinal
 inflammation (Montreal L4; $p < 0.001$). 
 
@@ -411,25 +447,25 @@ inflammation (Montreal L4; $p < 0.001$).
 describe_cat("SEX", demographic)
 ```
 
-#### Class = 1
+#### Cluster = 1
 
 ```{R}
 describe_cat("SEX", subset(demographic, class == 1))
 ```
 
-#### Class = 2
+#### Cluster = 2
 
 ```{R}
 describe_cat("SEX", subset(demographic, class == 2))
 ```
 
-#### Class = 3
+#### Cluster = 3
 
 ```{R}
 describe_cat("SEX", subset(demographic, class == 3))
 ```
 
-#### Class = 4
+#### Cluster = 4
 
 ```{R}
 describe_cat("SEX", subset(demographic, class == 4))
@@ -438,7 +474,7 @@ describe_cat("SEX", subset(demographic, class == 4))
 #### Chi-squared test
 
 ```{R}
-chisq.test(demographic$SEX, demographic$class)
+chisq.test(demographic$SEX, demographic$cluster)
 ```
 
 ### Age at diagnosis
@@ -449,25 +485,25 @@ chisq.test(demographic$SEX, demographic$class)
 describe_cont("age", demographic)
 ```
 
-#### Class = 1
+#### Cluster = 1
 
 ```{R}
 describe_cont("age", subset(demographic, class == 1))
 ```
 
-#### Class = 2
+#### Cluster = 2
 
 ```{R}
 describe_cont("age", subset(demographic, class == 2))
 ```
 
-#### Class = 3
+#### Cluster = 3
 
 ```{R}
 describe_cont("age", subset(demographic, class == 3))
 ```
 
-#### Class = 4
+#### Cluster = 4
 
 ```{R}
 describe_cont("age", subset(demographic, class == 4))
@@ -497,25 +533,25 @@ demographic$smoking <- factor(demographic$smoking, labels = c("no", "yes"))
 describe_cat("smoking", demographic)
 ```
 
-#### Class = 1 
+#### Cluster = 1 
 
 ```{R}
 describe_cat("smoking", subset(demographic, class == 1))
 ```
 
-#### Class = 2
+#### Cluster = 2
 
 ```{R}
 describe_cat("smoking", subset(demographic, class == 2))
 ```
 
-#### Class = 3
+#### Cluster = 3
 
 ```{R}
 describe_cat("smoking", subset(demographic, class == 3))
 ```
 
-#### Class = 4
+#### Cluster = 4
 
 ```{R}
 describe_cat("smoking", subset(demographic, class == 4))
@@ -525,7 +561,7 @@ describe_cat("smoking", subset(demographic, class == 4))
 #### Fisher's exact test
 
 ```{R}
-fisher.test(demographic$class, demographic$smoking)
+fisher.test(demographic$cluster, demographic$smoking)
 ```
 
 ### Diagnostic FCAL
@@ -547,25 +583,25 @@ demographic$DiagFC <- DiagFC
 describe_cont("DiagFC", demographic)
 ```
 
-#### Class = 1
+#### Cluster = 1
 
 ```{R}
 describe_cont("DiagFC", subset(demographic, class == 1))
 ```
 
-#### Class = 2
+#### Cluster = 2
 
 ```{R}
 describe_cont("DiagFC", subset(demographic, class == 2))
 ```
 
-#### Class = 3
+#### Cluster = 3
 
 ```{R}
 describe_cont("DiagFC", subset(demographic, class == 3))
 ```
 
-#### Class = 4
+#### Cluster = 4
 
 ```{R}
 describe_cont("DiagFC", subset(demographic, class == 4))
@@ -590,25 +626,25 @@ demographic$behaviour <- as.factor(demographic$behaviour)
 describe_cat("behaviour", demographic)
 ```
 
-#### Class = 1 
+#### Cluster = 1 
 
 ```{R}
 describe_cat("behaviour", subset(demographic, class == 1))
 ```
 
-#### Class = 2
+#### Cluster = 2
 
 ```{R}
 describe_cat("behaviour", subset(demographic, class == 2))
 ```
 
-#### Class = 3
+#### Cluster = 3
 
 ```{R}
 describe_cat("behaviour", subset(demographic, class == 3))
 ```
 
-#### Class = 4
+#### Cluster = 4
 
 ```{R}
 describe_cat("behaviour", subset(demographic, class == 4))
@@ -617,7 +653,7 @@ describe_cat("behaviour", subset(demographic, class == 4))
 #### Fisher's exact test
 
 ```{R}
-fisher.test(demographic$class, demographic$behaviour)
+fisher.test(demographic$cluster, demographic$behaviour)
 ```
 
 ### Perianal
@@ -633,25 +669,25 @@ demographic$peri <- factor(demographic$peri, labels = c("no", "yes"))
 describe_cat("peri", demographic)
 ```
 
-#### Class = 1 
+#### Cluster = 1 
 
 ```{R}
 describe_cat("peri", subset(demographic, class == 1))
 ```
 
-#### Class = 2
+#### Cluster = 2
 
 ```{R}
 describe_cat("peri", subset(demographic, class == 2))
 ```
 
-#### Class = 3
+#### Cluster = 3
 
 ```{R}
 describe_cat("peri", subset(demographic, class == 3))
 ```
 
-#### Class = 4
+#### Cluster = 4
 
 ```{R}
 describe_cat("peri", subset(demographic, class == 4))
@@ -660,7 +696,7 @@ describe_cat("peri", subset(demographic, class == 4))
 #### Fisher's exact test
 
 ```{R}
-fisher.test(demographic$class, demographic$peri)
+fisher.test(demographic$cluster, demographic$peri)
 ```
 
 ### Montreal location
@@ -675,26 +711,26 @@ demographic$LOCATION <- factor(demographic$LOCATION, labels = c("L1", "L2", "L3"
 describe_cat("LOCATION", demographic)
 ```
 
-#### Class = 1 
+#### Cluster = 1 
 
 ```{R}
 describe_cat("LOCATION", subset(demographic, class == 1))
 ```
 
 
-#### Class = 2
+#### Cluster = 2
 
 ```{R}
 describe_cat("LOCATION", subset(demographic, class == 2))
 ```
 
-#### Class = 3 
+#### Cluster = 3 
 
 ```{R}
 describe_cat("LOCATION", subset(demographic, class == 3))
 ```
 
-##### Class = 4
+##### Cluster = 4
 
 ```{R}
 describe_cat("LOCATION", subset(demographic, class == 4))
@@ -704,7 +740,7 @@ describe_cat("LOCATION", subset(demographic, class == 4))
 #### Fisher's exact test
 
 ```{R}
-fisher.test(demographic$class, demographic$LOCATION, workspace = 800000)
+fisher.test(demographic$cluster, demographic$LOCATION, workspace = 800000)
 ```
 
 ### Upper GI
@@ -720,25 +756,25 @@ demographic$L4 <- factor(demographic$L4, labels = c("no", "yes"))
 describe_cat("L4", demographic)
 ```
 
-#### Class = 1 
+#### Cluster = 1 
 
 ```{R}
 describe_cat("L4", subset(demographic, class == 1))
 ```
 
-#### Class = 2
+#### Cluster = 2
 
 ```{R}
 describe_cat("L4", subset(demographic, class == 2))
 ```
 
-#### Class = 3
+#### Cluster = 3
 
 ```{R}
 describe_cat("L4", subset(demographic, class == 3))
 ```
 
-#### Class = 4
+#### Cluster = 4
 
 ```{R}
 describe_cat("L4", subset(demographic, class == 4))
@@ -747,7 +783,7 @@ describe_cat("L4", subset(demographic, class == 4))
 #### Fisher's exact test
 
 ```{R}
-fisher.test(demographic$class, demographic$L4)
+fisher.test(demographic$cluster, demographic$L4)
 ```
 
 :::
@@ -755,11 +791,11 @@ fisher.test(demographic$class, demographic$L4)
 ## Treatment effects
 
 To explore the potential presence of treatment effects, we have tested for
-associations between class membership and common IBD prescriptions. All 
+associations between cluster membership and common IBD prescriptions. All 
 treatments were prescribed within one year of diagnosis unless otherwise stated.
-Thiprine use ($p = 0.02$), biologic use within three months of diagnosis
+Thioprine use ($p = 0.02$), biologic use within three months of diagnosis
 ($p < 0.001$), and biologic use within one year of diagnosis ($p < 0.001$) were
-found to be significantly associated with class membership. 
+found to be significantly associated with cluster membership. 
 
 ::: {.panel-tabset}
 
@@ -771,25 +807,25 @@ found to be significantly associated with class membership.
 describe_cat("X5ASA", demographic)
 ```
 
-#### Class = 1
+#### Cluster = 1
 
 ```{R}
 describe_cat("X5ASA", subset(demographic, class == 1))
 ```
 
-#### Class = 2
+#### Cluster = 2
 
 ```{R}
 describe_cat("X5ASA", subset(demographic, class == 2))
 ```
 
-#### Class = 3
+#### Cluster = 3
 
 ```{R}
 describe_cat("X5ASA", subset(demographic, class == 3))
 ```
 
-#### Class = 4
+#### Cluster = 4
 
 ```{R}
 describe_cat("X5ASA", subset(demographic, class == 4))
@@ -798,7 +834,7 @@ describe_cat("X5ASA", subset(demographic, class == 4))
 #### Fisher's exact test
 
 ```{R}
-fisher.test(demographic$class, demographic$X5ASA)
+fisher.test(demographic$cluster, demographic$X5ASA)
 ```
 
 ### Thioprine
@@ -813,25 +849,25 @@ colnames(demographic)[colnames(demographic) == "THIOPURINE.WITHIN.1st.YEAR..Y.N.
 describe_cat("use_thio", demographic)
 ```
 
-#### Class = 1
+#### Cluster = 1
 
 ```{R}
 describe_cat("use_thio", subset(demographic, class == 1))
 ```
 
-#### Class = 2
+#### Cluster = 2
 
 ```{R}
 describe_cat("use_thio", subset(demographic, class == 2))
 ```
 
-#### Class = 3
+#### Cluster = 3
 
 ```{R}
 describe_cat("use_thio", subset(demographic, class == 3))
 ```
 
-#### Class = 4
+#### Cluster = 4
 
 ```{R}
 describe_cat("use_thio", subset(demographic, class == 4))
@@ -840,7 +876,7 @@ describe_cat("use_thio", subset(demographic, class == 4))
 #### Fisher's exact test
 
 ```{R}
-fisher.test(demographic$class, demographic$use_thio)
+fisher.test(demographic$cluster, demographic$use_thio)
 ```
 
 ### Corticosteroids
@@ -856,25 +892,25 @@ demographic$use_cortico <- plyr::mapvalues(demographic$use_cortico, "y", "Y")
 describe_cat("use_cortico", demographic)
 ```
 
-#### Class = 1
+#### Cluster = 1
 
 ```{R}
 describe_cat("use_cortico", subset(demographic, class == 1))
 ```
 
-#### Class = 2
+#### Cluster = 2
 
 ```{R}
 describe_cat("use_cortico", subset(demographic, class == 2))
 ```
 
-#### Class = 3
+#### Cluster = 3
 
 ```{R}
 describe_cat("use_cortico", subset(demographic, class == 3))
 ```
 
-#### Class = 4
+#### Cluster = 4
 
 ```{R}
 describe_cat("use_cortico", subset(demographic, class == 4))
@@ -883,7 +919,7 @@ describe_cat("use_cortico", subset(demographic, class == 4))
 #### Fisher's exact test
 
 ```{R}
-fisher.test(demographic$class, demographic$use_cortico)
+fisher.test(demographic$cluster, demographic$use_cortico)
 ```
 
 ### Methotrexate
@@ -898,25 +934,25 @@ colnames(demographic)[colnames(demographic) == "MTX.WITHIN.1st.YEAR..Y.N."] <- "
 describe_cat("use_mtx", demographic)
 ```
 
-#### Class = 1
+#### Cluster = 1
 
 ```{R}
 describe_cat("use_mtx", subset(demographic, class == 1))
 ```
 
-#### Class = 2
+#### Cluster = 2
 
 ```{R}
 describe_cat("use_mtx", subset(demographic, class == 2))
 ```
 
-#### Class = 3
+#### Cluster = 3
 
 ```{R}
 describe_cat("use_mtx", subset(demographic, class == 3))
 ```
 
-#### Class = 4
+#### Cluster = 4
 
 ```{R}
 describe_cat("use_mtx", subset(demographic, class == 4))
@@ -925,7 +961,7 @@ describe_cat("use_mtx", subset(demographic, class == 4))
 #### Fisher's exact test
 
 ```{R}
-fisher.test(demographic$class, demographic$use_mtx)
+fisher.test(demographic$cluster, demographic$use_mtx)
 ```
 
 ### EEN
@@ -941,25 +977,25 @@ demographic$EEN <- na_if(demographic$EEN, "")
 describe_cat("EEN", demographic)
 ```
 
-#### Class = 1
+#### Cluster = 1
 
 ```{R}
 describe_cat("EEN", subset(demographic, class == 1))
 ```
 
-#### Class = 2
+#### Cluster = 2
 
 ```{R}
 describe_cat("EEN", subset(demographic, class == 2))
 ```
 
-#### Class = 3
+#### Cluster = 3
 
 ```{R}
 describe_cat("EEN", subset(demographic, class == 3))
 ```
 
-#### Class = 4
+#### Cluster = 4
 
 ```{R}
 describe_cat("EEN", subset(demographic, class == 4))
@@ -968,7 +1004,7 @@ describe_cat("EEN", subset(demographic, class == 4))
 #### Fisher's exact test
 
 ```{R}
-fisher.test(demographic$class, demographic$EEN)
+fisher.test(demographic$cluster, demographic$EEN)
 ```
 
 ### Biologic use within three months
@@ -983,25 +1019,25 @@ colnames(demographic)[colnames(demographic) == "BIOLOGIC.MONO...COMBO.WITHIN.3M"
 describe_cat("use_bio3", demographic)
 ```
 
-#### Class = 1
+#### Cluster = 1
 
 ```{R}
 describe_cat("use_bio3", subset(demographic, class == 1))
 ```
 
-#### Class = 2
+#### Cluster = 2
 
 ```{R}
 describe_cat("use_bio3", subset(demographic, class == 2))
 ```
 
-#### Class = 3
+#### Cluster = 3
 
 ```{R}
 describe_cat("use_bio3", subset(demographic, class == 3))
 ```
 
-#### Class = 4
+#### Cluster = 4
 
 ```{R}
 describe_cat("use_bio3", subset(demographic, class == 4))
@@ -1010,7 +1046,7 @@ describe_cat("use_bio3", subset(demographic, class == 4))
 #### Fisher's exact test
 
 ```{R}
-fisher.test(demographic$class, demographic$use_bio3)
+fisher.test(demographic$cluster, demographic$use_bio3)
 ```
 
 ### Biologic use within one year
@@ -1025,25 +1061,25 @@ colnames(demographic)[colnames(demographic) == "BIOLOGIC.WITHIN.1st.YEAR..Y.N."]
 describe_cat("use_bio", demographic)
 ```
 
-#### Class = 1
+#### Cluster = 1
 
 ```{R}
 describe_cat("use_bio", subset(demographic, class == 1))
 ```
 
-#### Class = 2
+#### Cluster = 2
 
 ```{R}
 describe_cat("use_bio", subset(demographic, class == 2))
 ```
 
-#### Class = 3
+#### Cluster = 3
 
 ```{R}
 describe_cat("use_bio", subset(demographic, class == 3))
 ```
 
-#### Class = 4
+#### Cluster = 4
 
 ```{R}
 describe_cat("use_bio", subset(demographic, class == 4))
@@ -1052,14 +1088,14 @@ describe_cat("use_bio", subset(demographic, class == 4))
 #### Fisher's exact test
 
 ```{R}
-fisher.test(demographic$class, demographic$use_bio)
+fisher.test(demographic$cluster, demographic$use_bio)
 ```
 
 ### Date of diagnosis
 
 Here, we consider the number of days from the start of the study period
 (2005-01-1) to when a subject was diagnosed to determine if when a subject was
-diagnosed has a statistically significant impact on which class a subject was
+diagnosed has a statistically significant impact on which cluster a subject was
 assigned to. 
 
 ```{R}
@@ -1070,25 +1106,25 @@ demographic$Days.From.Start <- as.numeric(demographic$DATE.OF.DIAGNOSIS) -
 describe_cont("Days.From.Start", demographic)
 ```
 
-#### Class = 1
+#### Cluster = 1
 
 ```{R}
 describe_cont("Days.From.Start", subset(demographic, class == 1))
 ```
 
-#### Class = 2
+#### Cluster = 2
 
 ```{R}
 describe_cont("Days.From.Start", subset(demographic, class == 2))
 ```
 
-#### Class = 3
+#### Cluster = 3
 
 ```{R}
 describe_cont("Days.From.Start", subset(demographic, class == 3))
 ```
 
-#### Class = 4
+#### Cluster = 4
 
 ```{R}
 describe_cont("Days.From.Start", subset(demographic, class == 4))
@@ -1105,9 +1141,9 @@ summary(aov(Days.From.Start ~ class, data = demographic))
 
 ## Predictive models
 
-Here, we consider whether we can accurately predict class membership using age,
+Here, we consider whether we can accurately predict cluster membership using age,
 sex, and the variables we found to be significantly associated with
-class membership: smoking at diagnosis, upper gastrointestinal inflammation
+cluster membership: smoking at diagnosis, upper gastrointestinal inflammation
 (Montreal L4), and being prescribed a biologic therapeutic within one year of
 diagnosis. We consider two types of models: multinomial logistic
 regression models and a random forest classifiers using the `{nnet}` and
@@ -1118,21 +1154,21 @@ The data are split into a 75:25 train:test split and k-fold cross validation
 is used. Reported metrics and the confusion matrix are based on the test data
 split. 
 
-###  All classes
+###  All clusters
 
-Firstly, we attempt to predict class membership for all four classes.
+Firstly, we attempt to predict cluster membership for all four clusters.
 
 ```{R}
-demographic$class <- as.factor(demographic$class)
-demographic$class = relevel(demographic$class, ref = 2) # 
+demographic$cluster <- as.factor(demographic$cluster)
+demographic$cluster = relevel(demographic$cluster, ref = 2) # 
 
-data_split <- initial_split(demographic, prop = 0.75, strata = class)
+data_split <- initial_split(demographic, prop = 0.75, strata = cluster)
 train_data <- training(data_split)
 test_data  <- testing(data_split)
 
 folds <- vfold_cv(train_data, v = 4)
 
-class_rec <- recipe(class ~ age +
+class_rec <- recipe(cluster ~ age +
                       SEX  +
                       smoking +
                       LOCATION +
@@ -1181,7 +1217,7 @@ final_fit <-
 
 temp <- final_fit %>% extract_fit_engine()
 
-temp$call <- quote(nnet::multinom(formula = class ~ age +
+temp$call <- quote(nnet::multinom(formula = cluster ~ age +
                                       SEX  +
                                       smoking +
                                       LOCATION +
@@ -1234,7 +1270,7 @@ knitr::kable(
 results <- final_fit %>%
   collect_predictions() 
 
-knitr::kable(table(results$class, results$.pred_class), row.names = TRUE)
+knitr::kable(table(results$cluster, results$.pred_class), row.names = TRUE)
 ```
 
 #### Random forest
@@ -1293,33 +1329,32 @@ knitr::kable(
 ```{R}
 results <- final_fit %>%
   collect_predictions() 
-knitr::kable(table(results$class, results$.pred_class), row.names = TRUE)
+knitr::kable(table(results$cluster, results$.pred_class), row.names = TRUE)
 ```
 
 Model performance for both the multinomial logistic regression model and the
 random forest classifier is very poor. 
 
-### Class 2 
+### Cluster 2 
 
-Due to the clinical significance of class 2 (see [outcomes](#outcomes)), the
-clear separation in mean class profiles between class 2 and the other 
-classes, and the poor model performance described above, we now consider binary
-outcome models which attempt to predict membership, or non-membership, of class
-2. 
+Due to the the clear separation in mean class profiles between cluster 2 and the
+other clusters and the poor model performance described above, we now consider
+binary outcome models which attempt to predict membership, or non-membership,
+of cluster 2. 
 
 ```{R}
-demographic$class2 <- rep(NA, nrow(demographic))
-demographic[demographic[,"class"] == 2, "class2"] <- 1
-demographic[demographic[,"class"] != 2, "class2"] <- 0
-demographic$class2 <- as.factor(demographic$class2)
+demographic$cluster2 <- rep(NA, nrow(demographic))
+demographic[demographic[,"cluster"] == 2, "cluster2"] <- 1
+demographic[demographic[,"cluster"] != 2, "cluster2"] <- 0
+demographic$cluster2 <- as.factor(demographic$cluster2)
 
-data_split <- initial_split(demographic, prop = 0.75, strata = class2)
+data_split <- initial_split(demographic, prop = 0.75, strata = cluster2)
 train_data <- training(data_split)
 test_data  <- testing(data_split)
 
 folds <- vfold_cv(train_data, v = 4)
 
-class_rec <- recipe(class2 ~ age +
+class_rec <- recipe(cluster2 ~ age +
                       SEX  +
                       smoking +
                       LOCATION +
@@ -1384,7 +1419,7 @@ knitr::kable(
 results <- final_fit %>%
   collect_predictions() 
 
-knitr::kable(table(results$class2, results$.pred_class), row.names = TRUE)
+knitr::kable(table(results$cluster2, results$.pred_class), row.names = TRUE)
 ```
 
 #### Random forest
@@ -1437,7 +1472,7 @@ knitr::kable(
 results <- final_fit %>%
   collect_predictions() 
 
-knitr::kable(table(results$class2, results$.pred_class), row.names = TRUE)
+knitr::kable(table(results$cluster2, results$.pred_class), row.names = TRUE)
 ```
 
 However, model performance remains very poor. 

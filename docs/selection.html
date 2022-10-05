@@ -2,131 +2,149 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-0.9.180">
+<meta name="generator" content="quarto-1.1.251">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="Nathan Contantine-Cooke 1, 2">
-<meta name="author" content="Karla Monterrubio 1">
-<meta name="author" content="Riccardo Marioni 2">
-<meta name="author" content="Catalina A. Vallejos 1, 3">
+<meta name="author" content="Nathan Contantine-Cooke">
+<meta name="author" content="Karla Monterrubio-Gómez">
+<meta name="author" content="Riccardo E. Marioni">
+<meta name="author" content="Catalina A. Vallejos">
+<meta name="dcterms.date" content="2022-10-05">
 <title>Analysis by Constantine-Cooke et al.&nbsp;- Model Selection</title>
 <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      {   }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-    code span.at { color: #7d9029; } /* Attribute */
-    code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #4070a0; } /* Char */
-    code span.cn { color: #880000; } /* Constant */
-    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-    code span.dt { color: #902000; } /* DataType */
-    code span.dv { color: #40a070; } /* DecVal */
-    code span.er { color: #ff0000; font-weight: bold; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #40a070; } /* Float */
-    code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-    code span.op { color: #666666; } /* Operator */
-    code span.ot { color: #007020; } /* Other */
-    code span.pp { color: #bc7a00; } /* Preprocessor */
-    code span.sc { color: #4070a0; } /* SpecialChar */
-    code span.ss { color: #bb6688; } /* SpecialString */
-    code span.st { color: #4070a0; } /* String */
-    code span.va { color: #19177c; } /* Variable */
-    code span.vs { color: #4070a0; } /* VerbatimString */
-    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-    div.csl-bib-body { }
-    div.csl-entry {
-      clear: both;
-    }
-    .hanging div.csl-entry {
-      margin-left:2em;
-      text-indent:-2em;
-    }
-    div.csl-left-margin {
-      min-width:2em;
-      float:left;
-    }
-    div.csl-right-inline {
-      margin-left:2em;
-      padding-left:1em;
-    }
-    div.csl-indent {
-      margin-left: 2em;
-    }
-  </style>
-<script src="site_libs/quarto-nav/quarto-nav.js"></script><script src="site_libs/quarto-nav/headroom.min.js"></script><script src="site_libs/clipboard/clipboard.min.js"></script><meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script><script src="site_libs/quarto-search/fuse.min.js"></script><script src="site_libs/quarto-search/quarto-search.js"></script><script src="site_libs/quarto-html/quarto.js"></script><script src="site_libs/quarto-html/popper.min.js"></script><script src="site_libs/quarto-html/tippy.umd.min.js"></script><script src="site_libs/quarto-html/anchor.min.js"></script><link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link id="quarto-text-highlighting-styles" href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script><link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
-    "location": "navbar",
-    "copy-button": false,
-    "collapse-after": 3,
-    "panel-placement": "end",
-    "type": "overlay",
-    "limit": 20,
-    "language": {
-      "search-no-results-text": "No results",
-      "search-matching-documents-text": "matching documents",
-      "search-copy-link-title": "Copy link to search",
-      "search-hide-matches-text": "Hide additional matches",
-      "search-more-match-text": "more match in this document",
-      "search-more-matches-text": "more matches in this document",
-      "search-clear-button-title": "Clear",
-      "search-detached-cancel-button-title": "Cancel",
-      "search-submit-button-title": "Submit"
-    }
-  }</script><script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script><script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
 <script src="site_libs/datatables-binding-0.22/datatables.js"></script><script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="site_libs/dt-core-bootstrap4-1.11.3/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 <link href="site_libs/dt-core-bootstrap4-1.11.3/css/dataTables.bootstrap4.extra.css" rel="stylesheet">
 <script src="site_libs/dt-core-bootstrap4-1.11.3/js/jquery.dataTables.min.js"></script><script src="site_libs/dt-core-bootstrap4-1.11.3/js/dataTables.bootstrap4.min.js"></script><link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
-<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script defer="" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script><script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
  for (var i = 0; i < mathElements.length; i++) {
@@ -139,33 +157,44 @@
     fleqn: false
    });
 }}});
-  </script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
-<!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]--><link rel="stylesheet" href="theme.css">
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+<link rel="stylesheet" href="theme.css">
+<meta property="og:title" content="Analysis by Constantine-Cooke et al.&nbsp;- Model Selection">
+<meta property="og:description" content="Using latent class mixed models with natural cubic splines.">
+<meta property="og:site-name" content="Analysis by Constantine-Cooke et al.">
+<meta name="twitter:title" content="Analysis by Constantine-Cooke et al.&nbsp;- Model Selection">
+<meta name="twitter:description" content="Using latent class mixed models with natural cubic splines.">
+<meta name="twitter:creator" content="@nathansam">
+<meta name="twitter:card" content="summary">
 <meta name="citation_title" content="Model Selection">
-<meta name="citation_author" content="Nathan Contantine-Cooke &amp;amp;lt;sup&amp;gt;1, 2</sup>">
-<meta name="citation_author" content="Karla Monterrubio &amp;amp;lt;sup&amp;gt;1</sup>">
-<meta name="citation_author" content="Riccardo Marioni &amp;amp;lt;sup&amp;gt;2</sup>">
-<meta name="citation_author" content="Catalina A. Vallejos &amp;amp;lt;sup&amp;gt;1, 3</sup>">
-<meta name="citation_online_date" content="2022-08-04">
-<meta name="citation_publication_date" content="2022-08-04">
-<meta name="citation_journal_title" content="undefined">
-<meta name="citation_reference" content="citation_title=Normalization of fecal calprotectin within 12 months of diagnosis is associated with reduced risk of disease progression in patients with Crohn’s disease;,citation_author=Nikolas Plevris;,citation_author=James Fulforth;,citation_author=Mathew Lyons;,citation_author=Spyros I. Siakavellas;,citation_author=Philip W. Jenkinson;,citation_author=Cher S. Chuah;,citation_author=Laura Lucaciu;,citation_author=Rebecca J. Pattenden;,citation_author=Ian D. Arnott;,citation_author=Gareth-Rhys Jones;,citation_author=Charlie W. Lees;,citation_publication_date=2021-09;,citation_issue=9;,citation_volume=19;,citation_journal_title=Clinical Gastroenterology and Hepatology;">
-<meta name="citation_reference" content="citation_title=Ulcerative colitis and clinical course: Results of a 5-year population-based follow-up study (the IBSEN study);,citation_author=Magne Henriksen;,citation_author=Jrgen Jahnsen;,citation_author=Idar Lygren;,citation_author=Jostein Sauar;,citation_author=undefined Kjellevold;,citation_author=Tom Schulz;,citation_author=Morten H. Vatn;,citation_author=Bjrn Moum;,citation_publication_date=2006-07;,citation_issue=7;,citation_volume=12;,citation_journal_title=Inflammatory Bowel Diseases;">
-<meta name="citation_reference" content="citation_title=Polynomials and potential theory for gaussian radial basis function interpolation;,citation_author=Rodrigo B. Platte;,citation_author=Tobin A. Driscoll;,citation_fulltext_html_url=https://doi.org/10.1137/040610143;,citation_publication_date=2005;,citation_issue=2;,citation_volume=43;,citation_journal_title=SIAM Journal on Numerical Analysis;">
-<meta name="citation_reference" content="citation_title=Estimation of extended mixed models using latent classes and latent processes: The R package lcmm;,citation_author=Cécile Proust-Lima;,citation_author=Viviane Philipps;,citation_author=Benoit Liquet;,citation_publication_date=2017;,citation_issue=2;,citation_volume=78;,citation_journal_title=Journal of Statistical Software;">
-<meta name="citation_reference" content="citation_title=Regression modeling strategies;,citation_author=undefined Frank E. Harrell;,citation_publication_date=2015;,citation_journal_title=undefined;">
-<meta name="citation_reference" content="citation_title=The runge phenomenon and spatially variable shape parameters in RBF interpolation;,citation_author=Bengt Fornberg;,citation_author=Julia Zuev;,citation_fulltext_html_url=https://www.sciencedirect.com/science/article/pii/S0898122107002210;,citation_publication_date=2007;,citation_issue=3;,citation_issn=0898-1221;,citation_volume=54;,citation_journal_title=Computers &amp;amp;amp; Mathematics with Applications;">
-<meta name="citation_reference" content="citation_title=Using linear and natural cubic splines, SITAR, and latent trajectory models to characterise nonlinear longitudinal growth trajectories in cohort studies;,citation_author=Ahmed Elhakeem;,citation_author=Rachael A. Hughes;,citation_author=Kate Tilling;,citation_author=Diana L. Cousminer;,citation_author=Stefan A. Jackowski;,citation_author=Tim J. Cole;,citation_author=Alex S. F. Kwong;,citation_author=Zheyuan Li;,citation_author=Struan F. A. Grant;,citation_author=Adam D. G. Baxter-Jones;,citation_author=Babette S. Zemel;,citation_author=Deborah A. Lawlor;,citation_fulltext_html_url=https://doi.org/10.1186/s12874-022-01542-8;,citation_publication_date=2022;,citation_issue=1;,citation_isbn=1471-2288;,citation_volume=22;,citation_journal_title=BMC Medical Research Methodology;">
-<meta name="citation_reference" content="citation_title=Asymptotically efficient rank invariant test procedures;,citation_author=Richard Peto;,citation_author=Julian Peto;,citation_publication_date=1972;,citation_issue=2;,citation_volume=135;,citation_journal_title=Journal of the Royal Statistical Society. Series A (General);">
+<meta name="citation_author" content="Nathan Contantine-Cooke">
+<meta name="citation_author" content="Karla Monterrubio-Gómez">
+<meta name="citation_author" content="Riccardo E. Marioni">
+<meta name="citation_author" content="Catalina A. Vallejos">
+<meta name="citation_publication_date" content="NaN-NaN-NaN">
+<meta name="citation_cover_date" content="NaN-NaN-NaN">
+<meta name="citation_year" content="NaN">
+<meta name="citation_online_date" content="NaN-NaN-NaN">
+<meta name="citation_doi" content="10.1101/2022.08.16.22278320">
+<meta name="citation_language" content="en">
+<meta name="citation_reference" content="citation_title=Normalization of fecal calprotectin within 12 months of diagnosis is associated with reduced risk of disease progression in patients with Crohn’s disease;,citation_author=Nikolas Plevris;,citation_author=James Fulforth;,citation_author=Mathew Lyons;,citation_author=Spyros I. Siakavellas;,citation_author=Philip W. Jenkinson;,citation_author=Cher S. Chuah;,citation_author=Laura Lucaciu;,citation_author=Rebecca J. Pattenden;,citation_author=Ian D. Arnott;,citation_author=Gareth-Rhys Jones;,citation_author=Charlie W. Lees;,citation_publication_date=2021-09;,citation_cover_date=2021-09;,citation_year=2021;,citation_issue=9;,citation_doi=10.1016/j.cgh.2020.08.022;,citation_volume=19;,citation_journal_title=Clinical Gastroenterology and Hepatology;,citation_publisher=Elsevier BV;">
+<meta name="citation_reference" content="citation_title=Ulcerative colitis and clinical course: Results of a 5-year population-based follow-up study (the IBSEN study);,citation_author=Magne Henriksen;,citation_author=Jrgen Jahnsen;,citation_author=Idar Lygren;,citation_author=Jostein Sauar;,citation_author=undefined Kjellevold;,citation_author=Tom Schulz;,citation_author=Morten H. Vatn;,citation_author=Bjrn Moum;,citation_publication_date=2006-07;,citation_cover_date=2006-07;,citation_year=2006;,citation_issue=7;,citation_doi=10.1097/01.mib.0000225339.91484.fc;,citation_volume=12;,citation_journal_title=Inflammatory Bowel Diseases;,citation_publisher=Oxford University Press (OUP);">
+<meta name="citation_reference" content="citation_title=Polynomials and potential theory for gaussian radial basis function interpolation;,citation_abstract=We explore a connection between Gaussian radial basis functions and polynomials. Using standard tools of potential theory, we find that these radial functions are susceptible to the Runge phenomenon, not only in the limit of increasingly flat functions, but also in the finite shape parameter case. We show that there exist interpolation node distributions that prevent such phenomena and allow stable approximations. Using polynomials also provides an explicitinterpolation formula that avoids the difficulties of inverting interpolation matrices, while not imposing restrictions on the shape parameter or number of points.;,citation_author=Rodrigo B. Platte;,citation_author=Tobin A. Driscoll;,citation_publication_date=2005;,citation_cover_date=2005;,citation_year=2005;,citation_fulltext_html_url=https://doi.org/10.1137/040610143;,citation_issue=2;,citation_doi=10.1137/040610143;,citation_volume=43;,citation_journal_title=SIAM Journal on Numerical Analysis;">
+<meta name="citation_reference" content="citation_title=Estimation of extended mixed models using latent classes and latent processes: The R package lcmm;,citation_author=Cécile Proust-Lima;,citation_author=Viviane Philipps;,citation_author=Benoit Liquet;,citation_publication_date=2017;,citation_cover_date=2017;,citation_year=2017;,citation_issue=2;,citation_doi=10.18637/jss.v078.i02;,citation_volume=78;,citation_journal_title=Journal of Statistical Software;">
+<meta name="citation_reference" content="citation_title=Regression modeling strategies;,citation_author=undefined Frank E. Harrell;,citation_publication_date=2015;,citation_cover_date=2015;,citation_year=2015;,citation_doi=10.1007/978-3-319-19425-7;">
+<meta name="citation_reference" content="citation_title=The runge phenomenon and spatially variable shape parameters in RBF interpolation;,citation_abstract=Many studies, mostly empirical, have been devoted to finding an optimal shape parameter for radial basis functions (RBF). When exploring the underlying factors that determine what is a good such choice, we are led to consider the Runge phenomenon (RP; best known in cases of high order polynomial interpolation) as a key error mechanism. This observation suggests that it can be advantageous to let the shape parameter vary spatially, rather than assigning a single value to it. Benefits typically include improvements in both accuracy and numerical conditioning. Still another benefit arises if one wishes to improve local accuracy by clustering nodes in selected areas. This idea is routinely used when working with splines or finite element methods. However, local refinement with RBFs may cause RP-type errors unless we use a spatially variable shape paremeter. With this enhancement, RBF approximations combine freedom from meshes with spectral accuracy on irregular domains, and furthermore permit local node clustering to improve the resolution wherever this might be needed.;,citation_author=Bengt Fornberg;,citation_author=Julia Zuev;,citation_publication_date=2007;,citation_cover_date=2007;,citation_year=2007;,citation_fulltext_html_url=https://www.sciencedirect.com/science/article/pii/S0898122107002210;,citation_issue=3;,citation_doi=https://doi.org/10.1016/j.camwa.2007.01.028;,citation_issn=0898-1221;,citation_volume=54;,citation_journal_title=Computers &amp;amp;amp; Mathematics with Applications;">
+<meta name="citation_reference" content="citation_title=Using linear and natural cubic splines, SITAR, and latent trajectory models to characterise nonlinear longitudinal growth trajectories in cohort studies;,citation_abstract=Longitudinal data analysis can improve our understanding of the influences on health trajectories across the life-course. There are a variety of statistical models which can be used, and their fitting and interpretation can be complex, particularly where there is a nonlinear trajectory. Our aim was to provide an accessible guide along with applied examples to using four sophisticated modelling procedures for describing nonlinear growth trajectories.;,citation_author=Ahmed Elhakeem;,citation_author=Rachael A. Hughes;,citation_author=Kate Tilling;,citation_author=Diana L. Cousminer;,citation_author=Stefan A. Jackowski;,citation_author=Tim J. Cole;,citation_author=Alex S. F. Kwong;,citation_author=Zheyuan Li;,citation_author=Struan F. A. Grant;,citation_author=Adam D. G. Baxter-Jones;,citation_author=Babette S. Zemel;,citation_author=Deborah A. Lawlor;,citation_publication_date=2022;,citation_cover_date=2022;,citation_year=2022;,citation_fulltext_html_url=https://doi.org/10.1186/s12874-022-01542-8;,citation_issue=1;,citation_doi=10.1186/s12874-022-01542-8;,citation_isbn=1471-2288;,citation_volume=22;,citation_journal_title=BMC Medical Research Methodology;">
+<meta name="citation_reference" content="citation_title=Asymptotically efficient rank invariant test procedures;,citation_author=Richard Peto;,citation_author=Julian Peto;,citation_publication_date=1972;,citation_cover_date=1972;,citation_year=1972;,citation_issue=2;,citation_doi=10.2307/2344317;,citation_volume=135;,citation_journal_title=Journal of the Royal Statistical Society. Series A (General);,citation_publisher=JSTOR;">
 </head>
-<body>
+<body class="nav-fixed">
+
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="./index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Analysis by Constantine-Cooke et al.</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -196,52 +225,115 @@
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc"><h2 id="toc-title">On this page</h2>
-<ul>
-<li><a href="#introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-<li><a href="#formal-defintions" class="nav-link" data-scroll-target="#formal-defintions">Formal defintions</a></li>
-<li><a href="#the-crohns-disease-inception-cohort" class="nav-link" data-scroll-target="#the-crohns-disease-inception-cohort">The Crohn’s Disease Inception Cohort</a></li>
-<li><a href="#model-fitting" class="nav-link" data-scroll-target="#model-fitting">Model fitting</a></li>
-<li>
-<a href="#model-selection" class="nav-link" data-scroll-target="#model-selection">Model selection</a>
-<ul class="collapse">
-<li><a href="#model-fit" class="nav-link" data-scroll-target="#model-fit">Model fit</a></li>
-<li><a href="#class-discrimination" class="nav-link" data-scroll-target="#class-discrimination">Class discrimination</a></li>
-<li><a href="#residual-plots" class="nav-link" data-scroll-target="#residual-plots">Residual plots</a></li>
-<li><a href="#spaghetti-plots-per-class" class="nav-link" data-scroll-target="#spaghetti-plots-per-class">Spaghetti plots per class</a></li>
-<li><a href="#model-output" class="nav-link" data-scroll-target="#model-output">Model output</a></li>
-</ul>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">On this page</h2>
+   
+  <ul>
+<li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#formal-defintions" id="toc-formal-defintions" class="nav-link" data-scroll-target="#formal-defintions">Formal defintions</a></li>
+  <li><a href="#the-crohns-disease-inception-cohort" id="toc-the-crohns-disease-inception-cohort" class="nav-link" data-scroll-target="#the-crohns-disease-inception-cohort">The Crohn’s Disease Inception Cohort</a></li>
+  <li><a href="#model-fitting" id="toc-model-fitting" class="nav-link" data-scroll-target="#model-fitting">Model fitting</a></li>
+  <li>
+<a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection">Model selection</a>
+  <ul class="collapse">
+<li><a href="#model-fit" id="toc-model-fit" class="nav-link" data-scroll-target="#model-fit">Model fit</a></li>
+  <li><a href="#cluster-discrimination" id="toc-cluster-discrimination" class="nav-link" data-scroll-target="#cluster-discrimination">Cluster discrimination</a></li>
+  <li><a href="#residual-plots" id="toc-residual-plots" class="nav-link" data-scroll-target="#residual-plots">Residual plots</a></li>
+  <li><a href="#spaghetti-plots-per-cluster" id="toc-spaghetti-plots-per-cluster" class="nav-link" data-scroll-target="#spaghetti-plots-per-cluster">Spaghetti plots per cluster</a></li>
+  <li><a href="#model-output" id="toc-model-output" class="nav-link" data-scroll-target="#model-output">Model output</a></li>
+  </ul>
 </li>
-<li><a href="#session-information" class="nav-link" data-scroll-target="#session-information">Session information</a></li>
-<li><a href="#section" class="nav-link" data-scroll-target="#section"></a></li>
-<li><a href="#acknowledgments" class="nav-link" data-scroll-target="#acknowledgments">Acknowledgments</a></li>
-<li><a href="#author-contributions" class="nav-link" data-scroll-target="#author-contributions">Author contributions</a></li>
-<li><a href="#reuse" class="nav-link" data-scroll-target="#reuse">Reuse</a></li>
-</ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/vallejosgroup/lcmm-site/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+  <li><a href="#session-information" id="toc-session-information" class="nav-link" data-scroll-target="#session-information">Session information</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#acknowledgments" id="toc-acknowledgments" class="nav-link" data-scroll-target="#acknowledgments">Acknowledgments</a></li>
+  <li><a href="#author-contributions" id="toc-author-contributions" class="nav-link" data-scroll-target="#author-contributions">Author contributions</a></li>
+  <li><a href="#reuse" id="toc-reuse" class="nav-link" data-scroll-target="#reuse">Reuse</a></li>
+  </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/vallejosgroup/lcmm-site/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title-block"><div><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Model Selection</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button" data-quarto-source-url="https://github.com/vallejosgroup/lcmm-site/blob/main/selection.qmd">View Source</a></li></ul></div></div>
+<p class="subtitle lead">Using latent class mixed models with natural cubic splines.</p>
+</div>
 
 
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Authors</div>
+  <div class="quarto-title-meta-heading">Affiliations</div>
+  
+    <div class="quarto-title-meta-contents">
+    <a href="https://scholar.google.com/citations?user=2emHWR0AAAAJ&amp;hl=en&amp;oi=ao">Nathan Contantine-Cooke</a> 
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            <a href="https://www.ed.ac.uk/mrc-human-genetics-unit">
+            MRC Human Genetics Unit
+            </a>
+          </p>
+        <p class="affiliation">
+            <a href="https://www.ed.ac.uk/centre-genomic-medicine">
+            Centre for Genomic and Experimental Medicine
+            </a>
+          </p>
+      </div>
+      <div class="quarto-title-meta-contents">
+    <a href="https://scholar.google.com/citations?user=YmyxSXAAAAAJ&amp;hl=en">Karla Monterrubio-Gómez</a> 
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            <a href="https://www.ed.ac.uk/mrc-human-genetics-unit">
+            MRC Human Genetics Unit
+            </a>
+          </p>
+      </div>
+      <div class="quarto-title-meta-contents">
+    <a href="https://scholar.google.com/citations?hl=en&amp;user=gA3Ik3MAAAAJ">Riccardo E. Marioni</a> 
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            <a href="https://www.ed.ac.uk/centre-genomic-medicine">
+            Centre for Genomic and Experimental Medicine
+            </a>
+          </p>
+      </div>
+      <div class="quarto-title-meta-contents">
+    <a href="https://scholar.google.com/citations?user=lkdrwm0AAAAJ&amp;hl=en&amp;oi=ao">Catalina A. Vallejos</a> 
+  </div>
+    <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            <a href="https://www.ed.ac.uk/mrc-human-genetics-unit">
+            MRC Human Genetics Unit
+            </a>
+          </p>
+        <p class="affiliation">
+            <a href="https://www.turing.ac.uk">
+            The Alan Turing Institute
+            </a>
+          </p>
+      </div>
+    </div>
 
+<div class="quarto-title-meta">
 
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 5, 2022</p>
+    </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Doi</div>
+    <div class="quarto-title-meta-contents">
+      <p class="doi">
+        <a href="https://doi.org/10.1101/2022.08.16.22278320">10.1101/2022.08.16.22278320</a>
+      </p>
+    </div>
+  </div>
+  </div>
+  
 
-
-<div class="quarto-title"><h1 class="title">Model Selection</h1><p class="subtitle lead">Using latent class mixed models with natural cubic splines.</p></div><div class="quarto-title-meta"><div><div class="quarto-title-meta-heading">Authors</div><div class="quarto-title-meta-contents"><div class="quarto-title-authors"><div><a href="https://scholar.google.com/citations?user=2emHWR0AAAAJ&amp;hl=en&amp;oi=ao">
-<p>Nathan Contantine-Cooke <sup>1, 2</sup></p>
-</a></div><div><a href="https://scholar.google.com/citations?user=YmyxSXAAAAAJ&amp;hl=en">
-<p>Karla Monterrubio <sup>1</sup></p>
-</a></div><div><a href="https://scholar.google.com/citations?hl=en&amp;user=gA3Ik3MAAAAJ">
-<p>Riccardo Marioni <sup>2</sup></p>
-</a></div><div><a href="https://scholar.google.com/citations?user=lkdrwm0AAAAJ&amp;hl=en&amp;oi=ao">
-<p>Catalina A. Vallejos <sup>1, 3</sup></p>
-</a></div></div></div></div><div><div class="quarto-title-meta-heading">Affilliations</div><div class="quarto-title-meta-contents"><div class="quarto-title-affiliations"><p><a href="https://www.ed.ac.uk/mrc-human-genetics-unit">
-<p><sup>1</sup> MRC Human Genetics Unit</p>
-</a></p><p><a href="https://www.ed.ac.uk/centre-genomic-medicine">
-<p><sup>2</sup> Centre for Genomic and Experimental Medicine</p>
-</a></p><p><a href="https://www.turing.ac.uk">
-<p><sup>3</sup> The Alan Turing Institute</p>
-</a></p><p>&nbsp;</p></div></div></div><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">August 4, 2022</p></div></div><div><div class="quarto-title-meta-heading">DOI</div><div class="quarto-title-meta-contents"><a href="https://doi.org/10.1101/2022.08.16.22278320">10.1101/2022.08.16.22278320</a></div></div></div></header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+</header><section id="introduction" class="level2"><h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span></span>
@@ -331,7 +423,7 @@
 <span>                  <span class="fu"><a href="https://rdrr.io/pkg/htmltools/man/builder.html">h3</a></span><span class="op">(</span><span class="va">caption</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                style <span class="op">=</span><span class="st">"bootstrap4"</span>,</span>
 <span>                rownames <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>                colnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Classes"</span>,</span>
+<span>                colnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Clusters"</span>,</span>
 <span>                             <span class="st">"Maximum log-likelihood"</span>,</span>
 <span>                             <span class="st">"AIC"</span>,</span>
 <span>                             <span class="st">"BIC"</span><span class="op">)</span>,</span>
@@ -457,7 +549,7 @@
 <span>    <span class="kw">if</span> <span class="op">(</span><span class="va">sizes</span><span class="op">)</span> <span class="op">{</span></span>
 <span>      <span class="fu"><a href="https://rdrr.io/r/base/message.html">message</a></span><span class="op">(</span><span class="st">"There are "</span>,</span>
 <span>              <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">id.group</span><span class="op">)</span>,</span>
-<span>              <span class="st">" subjects in class "</span>,</span>
+<span>              <span class="st">" subjects in cluster "</span>,</span>
 <span>              <span class="va">g</span>,</span>
 <span>              <span class="st">"."</span><span class="op">)</span></span>
 <span>    <span class="op">}</span></span>
@@ -537,8 +629,8 @@
 <span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>To achieve our aims of identifying classes within the CD population with similar FCAL profiles, we use latent class mixed models (LCMMs) with natural cubic spline formulations for the fixed and random effects components. LCMMs are an extension of linear mixed effects models with an added fixed effect class-specific component. Class membership in a LCMM is given via a multinomial logistic model.</p>
-<p>Previously, we have investigated using polynomial regression, models with an I-splines link function, and models which use Gaussian radial basis functions (GRBFs) in order to model the fixed and random components of an LCMM. Unfortunately, the polynomial regression and I-splines link approaches demonstrated inflexibility and, in the case of polynomial regression behaved erratically near the ends of the time period.</p>
+<p>To achieve our aims of identifying clusters within the CD population with similar FCAL profiles, we use latent class mixed models (LCMMs) with natural cubic spline formulations for the fixed and random effects components. LCMMs are an extension of linear mixed effects models with an added fixed effect class-specific component. Cluster membership in a LCMM is given via a multinomial logistic model.</p>
+<p>Previously, we have investigated using polynomial regression models with an I-splines link function, and models which use Gaussian radial basis functions (GRBFs) in order to model the fixed and random components of an LCMM. Unfortunately, the polynomial regression and I-splines link approaches demonstrated inflexibility and, in the case of polynomial regression behaved erratically near the ends of the time period.</p>
 <p>The GRBF approach was very sensitive to <span class="math inline">l</span>, a length scale parameter, and the iterative Marquardt algorithm implemented in the <code>{lcmm}</code> package did not converge in many cases- possibly due the number of parameters required to be estimated and/or the Runge phenomenon <span class="citation" data-cites="Fornberg2007">(<a href="#ref-Fornberg2007" role="doc-biblioref">Fornberg and Zuev 2007</a>)</span>.</p>
 <p>This has led us to consider an approach using natural cubic splines which has a few notable advantages <span class="citation" data-cites="Elhakeem2022">(<a href="#ref-Elhakeem2022" role="doc-biblioref">Elhakeem et al. 2022</a>)</span>:</p>
 <ol type="1">
@@ -546,7 +638,7 @@
 <li>Natural cubic splines enforce linearity between <span class="math inline">t_0</span> and the first knot and between the last knot and <span class="math inline">t_\text{max}</span> which ensures the model does not behave erratically in these sometimes problematic areas.</li>
 <li>Natural cubics are not highly sensitive to a continuous parameter and instead requires only <span class="math inline">K</span>, the number of knots, to be tuned: being robust to where the knots themselves are placed.</li>
 </ol></section><section id="formal-defintions" class="level2"><h2 class="anchored" data-anchor-id="formal-defintions">Formal defintions</h2>
-<p>For formal definitions of the models and statistics we have used in the work, see the supplementary material for our paper.</p>
+<p>For formal definitions of the models and statistics we have used in the work, please see the supplementary material for our paper.</p>
 </section><section id="the-crohns-disease-inception-cohort" class="level2"><h2 class="anchored" data-anchor-id="the-crohns-disease-inception-cohort">The Crohn’s Disease Inception Cohort</h2>
 <p>The background for the data we will fit to the models and an explanation of the data processing steps implemented can be found on a <a href="./data-cleaning.html">dedicated page</a>. Due to the distribution of the FCAL values (<a href="#fig-dist">Figure&nbsp;1</a>), FCAL values have been log-transformed prior to model fitting (<a href="#fig-dist-log">Figure&nbsp;2</a>).</p>
 <div class="cell">
@@ -563,7 +655,7 @@
 </details><div class="cell-output-display">
 <div id="fig-dist" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="selection_files/figure-html/fig-dist-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 1: Distribution of FCAL values when in measurement units.</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Distribution of FCAL values when in measurement units.</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -584,13 +676,13 @@
 </details><div class="cell-output-display">
 <div id="fig-dist-log" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="selection_files/figure-html/fig-dist-log-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 2: Distribution of FCAL values after a log transformation has been applied.</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Distribution of FCAL values after a log transformation has been applied.</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
 </section><section id="model-fitting" class="level2"><h2 class="anchored" data-anchor-id="model-fitting">Model fitting</h2>
-<p>LCMMs with 2 - 6 assumed classes are considered. As recommended by <span class="citation" data-cites="Proust-Lima2017">Proust-Lima, Philipps, and Liquet (<a href="#ref-Proust-Lima2017" role="doc-biblioref">2017</a>)</span>, a model is initially fitted with 1 class (I.E a regular linear mixed effects model) which is used to sample initial values in a grid search approach which attempts to find optimal models for each assumed number of classes based upon maximum likelihood. The trajectory of this linear mixed effects model is given by <a href="#fig-lme">Figure&nbsp;3</a>.</p>
+<p>LCMMs with 2 - 6 assumed clusters are considered. As recommended by <span class="citation" data-cites="Proust-Lima2017">Proust-Lima, Philipps, and Liquet (<a href="#ref-Proust-Lima2017" role="doc-biblioref">2017</a>)</span>, a model is initially fitted with one cluster (I.E a regular linear mixed effects model) which is used to sample initial values in a grid search approach which attempts to find optimal models for each assumed number of clusters based upon maximum likelihood. The trajectory of this linear mixed effects model is given by <a href="#fig-lme">Figure&nbsp;3</a>.</p>
 <p>For the fixed and random components of each model, we will consider natural cubic splines of time with three knots (I.E five fixed points including the boundaries of the splines. The knots for the natural cubic splines are placed at the 1<sup>st</sup> quantile, median, and 3<sup>rd</sup> quartile of the FCAL measurement times for the study cohort. This corresponds to [0.63, 1.64, 3.05] years from diagnosis.</p>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">ngroups</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span></span>
@@ -693,7 +785,7 @@
 </details><div class="cell-output-display">
 <div id="fig-lme" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="selection_files/figure-html/fig-lme-1.png" class="img-fluid figure-img" width="1152"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 3: Linear mixed effects (LME) model fitted to data and used to generate inital values for the grid search method used for LCMMs with <span class="math inline">G &gt; 2</span></figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Linear mixed effects (LME) model fitted to data and used to generate inital values for the grid search method used for LCMMs with <span class="math inline">G &gt; 2</span></figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -712,12 +804,13 @@
 <span><span class="fu">DTbuild</span><span class="op">(</span><span class="va">hlme.metrics</span>,</span>
 <span>        caption <span class="op">=</span> <span class="st">"Fit Metrics for Natural Cubic Splines Model"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
+
 <div id="htmlwidget-9eceb20dc2a931752ae4" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9eceb20dc2a931752ae4">{"x":{"style":"bootstrap4","filter":"none","vertical":false,"caption":"<caption style=\"text-align: center;\">\n  <h3>Fit Metrics for Natural Cubic Splines Model<\/h3>\n<\/caption>","data":[[1,2,3,4,5,6],[-4030.5,-4005.34,-3990.46,-3983.49,-3970.17,-3968.42],[8103,8064.69,8046.92,8044.97,8030.33,8038.84],[8184.38,8169.31,8174.79,8196.1,8204.71,8236.46]],"container":"<table class=\"table table-striped table-hover row-border order-column display\">\n  <thead>\n    <tr>\n      <th>Classes<\/th>\n      <th>Maximum log-likelihood<\/th>\n      <th>AIC<\/th>\n      <th>BIC<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-right","targets":[0,1,2,3]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-9eceb20dc2a931752ae4">{"x":{"style":"bootstrap4","filter":"none","vertical":false,"caption":"<caption style=\"text-align: center;\">\n  <h3>Fit Metrics for Natural Cubic Splines Model<\/h3>\n<\/caption>","data":[[1,2,3,4,5,6],[-4030.5,-4005.34,-3990.46,-3983.49,-3970.17,-3968.42],[8103,8064.69,8046.92,8044.97,8030.33,8038.84],[8184.38,8169.31,8174.79,8196.1,8204.71,8236.46]],"container":"<table class=\"table table-striped table-hover row-border order-column display\">\n  <thead>\n    <tr>\n      <th>Clusters<\/th>\n      <th>Maximum log-likelihood<\/th>\n      <th>AIC<\/th>\n      <th>BIC<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","columnDefs":[{"className":"dt-right","targets":[0,1,2,3]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<p>Considering all of the models above, AIC is most optimal for the <span class="math inline">G = 5</span> model and BIC is optimal for the <span class="math inline">G = 2</span> model. However, considering an alluvial plot (<a href="#fig-alluvial">Figure&nbsp;4</a>) suggest neither <span class="math inline">G = 2</span> nor <span class="math inline">G = 5</span> are suitable models. The <span class="math inline">G = 2</span> model clearly has additional well defined latent classes not properly represented by just two classes, whilst the <span class="math inline">G=5</span> model results in an incredibly small new class. As such, <span class="math inline">G = 4</span> may be a more suitable alternative.</p>
-</section><section id="class-discrimination" class="level3"><h3 class="anchored" data-anchor-id="class-discrimination">Class discrimination</h3>
+<p>Considering all of the models above, AIC is most optimal for the <span class="math inline">G = 5</span> model and BIC is optimal for the <span class="math inline">G = 2</span> model. However, considering an alluvial plot (<a href="#fig-alluvial">Figure&nbsp;4</a>) suggests neither <span class="math inline">G = 2</span> nor <span class="math inline">G = 5</span> are suitable models. The <span class="math inline">G = 2</span> model clearly has additional well defined cluster not properly represented by just two clusters, whilst the <span class="math inline">G=5</span> model results in an incredibly small new cluster. As such, <span class="math inline">G = 4</span> may be a more suitable alternative.</p>
+</section><section id="cluster-discrimination" class="level3"><h3 class="anchored" data-anchor-id="cluster-discrimination">Cluster discrimination</h3>
 <section id="alluvial-plots" class="level4"><h4 class="anchored" data-anchor-id="alluvial-plots">Alluvial plots</h4>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">re_label</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">old.G</span>, <span class="va">new.G</span>, <span class="va">alluvial.df</span><span class="op">)</span><span class="op">{</span></span>
@@ -770,7 +863,7 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"stratum"</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Alluvial plot of class membership across G"</span>,</span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Alluvial plot of cluster membership across G"</span>,</span>
 <span>          <span class="st">"Crohn's disease inception cohort"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#e3281f"</span>,</span>
 <span>                               <span class="st">"#3aa534"</span>,</span>
@@ -778,7 +871,7 @@
 <span>                               <span class="st">"#fbc926"</span>,</span>
 <span>                               <span class="st">"#511e9d"</span>,</span>
 <span>                               <span class="st">"black"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Assumed number of latent classes"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Assumed number of clusters"</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Frequency"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span>
 <span></span>
@@ -788,13 +881,13 @@
 </details><div class="cell-output-display">
 <div id="fig-alluvial" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure"><p><img src="selection_files/figure-html/fig-alluvial-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption aria-hidden="true" class="figure-caption">Figure 4: Alluvial plot demonstrating how class membership changes as the assumed number of classes increase. The height of each band indicates the size of each class.</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Alluvial plot demonstrating how cluster membership changes as the assumed number of clusters increase. The height of each band indicates the size of each cluster.</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
 </section><section id="posterior-classifications" class="level4"><h4 class="anchored" data-anchor-id="posterior-classifications">Posterior classifications</h4>
-<p>An alternative to co-clustering when considering class discrimination is to consider posterior classification possibilities. From the below data, we can see how these posterior probabilities change as the number of assumed classes increase</p>
+<p>An alternative to co-clustering when considering cluster discrimination is to consider posterior classification possibilities. From the below data, we can see how these posterior probabilities change as the number of assumed clusters increase</p>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
 <li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">G = 2</a></li>
@@ -804,10 +897,10 @@
 <li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">G = 6</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labeledby="tabset-1-1-tab">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/postprob.html">postprob</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code> 
 Posterior classification: 
   class1 class2
@@ -829,10 +922,10 @@ prob&gt;0.9  62.50  83.08
 </div>
 </div>
 </div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labeledby="tabset-1-2-tab">
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/postprob.html">postprob</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code> 
 Posterior classification: 
   class1 class2 class3
@@ -855,10 +948,10 @@ prob&gt;0.9  57.73  65.20  43.64
 </div>
 </div>
 </div>
-<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labeledby="tabset-1-3-tab">
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/postprob.html">postprob</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code> 
 Posterior classification: 
   class1 class2 class3 class4
@@ -882,10 +975,10 @@ prob&gt;0.9  13.33  39.66  51.09  53.93
 </div>
 </div>
 </div>
-<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labeledby="tabset-1-4-tab">
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/postprob.html">postprob</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">5</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code> 
 Posterior classification: 
   class1 class2 class3 class4 class5
@@ -910,10 +1003,10 @@ prob&gt;0.9  47.37  53.40  50.00  36.36  39.62
 </div>
 </div>
 </div>
-<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labeledby="tabset-1-5-tab">
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/lcmm/man/postprob.html">postprob</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">6</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code> 
 Posterior classification: 
   class1 class2 class3 class4 class5 class6
@@ -965,11 +1058,11 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 <span><span class="va">pprobs.5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>prob <span class="op">=</span> <span class="va">pprobs.5</span><span class="op">)</span></span>
 <span><span class="va">pprobs.6</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>prob <span class="op">=</span> <span class="va">pprobs.6</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">pprobs.2</span><span class="op">$</span><span class="va">Model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Two classes"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pprobs.2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">pprobs.3</span><span class="op">$</span><span class="va">Model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Three classes"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pprobs.3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">pprobs.4</span><span class="op">$</span><span class="va">Model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Four classes"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pprobs.4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">pprobs.5</span><span class="op">$</span><span class="va">Model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Five classes"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pprobs.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">pprobs.6</span><span class="op">$</span><span class="va">Model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Six classes"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pprobs.6</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">pprobs.2</span><span class="op">$</span><span class="va">Model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Two clusters"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pprobs.2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">pprobs.3</span><span class="op">$</span><span class="va">Model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Three clusters"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pprobs.3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">pprobs.4</span><span class="op">$</span><span class="va">Model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Four clusters"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pprobs.4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">pprobs.5</span><span class="op">$</span><span class="va">Model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Five clusters"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pprobs.5</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">pprobs.6</span><span class="op">$</span><span class="va">Model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Six clusters"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">pprobs.6</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">pprobs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">pprobs.2</span>, <span class="va">pprobs.3</span>, <span class="va">pprobs.4</span>, <span class="va">pprobs.5</span>, <span class="va">pprobs.6</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">p</span> <span class="op">&lt;-</span> <span class="va">pprobs</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
@@ -979,10 +1072,10 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 <span>                    size <span class="op">=</span> <span class="fl">0.8</span>,</span>
 <span>                    alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/geom_dotsinterval.html">geom_dots</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">Model</span>, color <span class="op">=</span> <span class="va">Model</span><span class="op">)</span>, dotsize <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Posterior Probability for Class Membership"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Posterior probability for cluster membership"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Distribution of Posterior Probabilities Across Models"</span>,</span>
-<span>          <span class="st">"Subject-specific posterior probabilities for assigned class"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>          <span class="st">"Subject-specific posterior probabilities for assigned cluster"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#e3281f"</span>,</span>
 <span>                                <span class="st">"#3aa534"</span>,</span>
@@ -1017,7 +1110,7 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 <li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-6" role="tab" aria-controls="tabset-2-6" aria-selected="false">G = 6</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labeledby="tabset-2-1-tab">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, shades <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
@@ -1025,7 +1118,7 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 </div>
 </div>
 </div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labeledby="tabset-2-2-tab">
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span>, shades <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
@@ -1033,7 +1126,7 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 </div>
 </div>
 </div>
-<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labeledby="tabset-2-3-tab">
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span>, shades <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
@@ -1041,7 +1134,7 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 </div>
 </div>
 </div>
-<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labeledby="tabset-2-4-tab">
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span>, shades <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
@@ -1049,7 +1142,7 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 </div>
 </div>
 </div>
-<div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labeledby="tabset-2-5-tab">
+<div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-5-tab">
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">5</span><span class="op">]</span><span class="op">]</span>, shades <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
@@ -1057,7 +1150,7 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 </div>
 </div>
 </div>
-<div id="tabset-2-6" class="tab-pane" role="tabpanel" aria-labeledby="tabset-2-6-tab">
+<div id="tabset-2-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-6-tab">
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">6</span><span class="op">]</span><span class="op">]</span>, shades <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
@@ -1067,8 +1160,8 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 </div>
 </div>
 </div>
-</section><section id="spaghetti-plots-per-class" class="level3"><h3 class="anchored" data-anchor-id="spaghetti-plots-per-class">Spaghetti plots per class</h3>
-<p>Plotting the mean class trajectories alongside spaghetti plots of all subject trajectories provides evidence for the <span class="math inline">G = 4</span> model being the most appropriate.</p>
+</section><section id="spaghetti-plots-per-cluster" class="level3"><h3 class="anchored" data-anchor-id="spaghetti-plots-per-cluster">Spaghetti plots per cluster</h3>
+<p>Plotting the mean cluster trajectories alongside spaghetti plots of all subject trajectories provides evidence for the <span class="math inline">G = 4</span> model being the most appropriate.</p>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist">
 <li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">For G = 2</a></li>
@@ -1078,15 +1171,15 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 <li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-5" role="tab" aria-controls="tabset-3-5" aria-selected="false">For G = 6</a></li>
 </ul>
 <div class="tab-content">
-<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labeledby="tabset-3-1-tab">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <section id="log-scale-all-subjects" class="level5"><h5 class="anchored" data-anchor-id="log-scale-all-subjects">Log-scale, all subjects</h5>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">2</span>, log <span class="op">=</span> <span class="cn">TRUE</span>, sizes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stderr">
-<pre><code>There are 96 subjects in class 1.</code></pre>
+</details><div class="cell-output cell-output-stderr">
+<pre><code>There are 96 subjects in cluster 1.</code></pre>
 </div>
-<div class="cell-output-stderr">
-<pre><code>There are 260 subjects in class 2.</code></pre>
+<div class="cell-output cell-output-stderr">
+<pre><code>There are 260 subjects in cluster 2.</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="selection_files/figure-html/Spaghetti%20G2%20log%20all%20subjects-1.png" class="img-fluid" width="1056"></p>
@@ -1123,7 +1216,7 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 </div>
 </section>
 </div>
-<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labeledby="tabset-3-2-tab">
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <section id="log-scale-all-subjects-1" class="level5"><h5 class="anchored" data-anchor-id="log-scale-all-subjects-1">Log-scale, all subjects</h5>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#| fig-width: 11</span></span>
@@ -1134,14 +1227,14 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 <span>               log <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>               mapping <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">2</span><span class="op">)</span>,</span>
 <span>               sizes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stderr">
-<pre><code>There are 97 subjects in class 1.</code></pre>
+</details><div class="cell-output cell-output-stderr">
+<pre><code>There are 97 subjects in cluster 1.</code></pre>
 </div>
-<div class="cell-output-stderr">
-<pre><code>There are 204 subjects in class 3.</code></pre>
+<div class="cell-output cell-output-stderr">
+<pre><code>There are 204 subjects in cluster 3.</code></pre>
 </div>
-<div class="cell-output-stderr">
-<pre><code>There are 55 subjects in class 2.</code></pre>
+<div class="cell-output cell-output-stderr">
+<pre><code>There are 55 subjects in cluster 2.</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="selection_files/figure-html/Spaghetti%20G3%20log%20all%20subjects-1.png" class="img-fluid" width="672"></p>
@@ -1178,7 +1271,7 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 </div>
 </section>
 </div>
-<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labeledby="tabset-3-3-tab">
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
 <p>Class membership has been relabelled to ensure consistency with the alluvial plot</p>
 <section id="log-scale-all-subjects-2" class="level5"><h5 class="anchored" data-anchor-id="log-scale-all-subjects-2">Log-scale, all subjects</h5>
 <div class="cell">
@@ -1188,17 +1281,17 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 <span>               log <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>               mapping <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">1</span><span class="op">)</span>,</span>
 <span>               sizes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stderr">
-<pre><code>There are 191 subjects in class 3.</code></pre>
+</details><div class="cell-output cell-output-stderr">
+<pre><code>There are 191 subjects in cluster 3.</code></pre>
 </div>
-<div class="cell-output-stderr">
-<pre><code>There are 58 subjects in class 2.</code></pre>
+<div class="cell-output cell-output-stderr">
+<pre><code>There are 58 subjects in cluster 2.</code></pre>
 </div>
-<div class="cell-output-stderr">
-<pre><code>There are 15 subjects in class 4.</code></pre>
+<div class="cell-output cell-output-stderr">
+<pre><code>There are 15 subjects in cluster 4.</code></pre>
 </div>
-<div class="cell-output-stderr">
-<pre><code>There are 92 subjects in class 1.</code></pre>
+<div class="cell-output cell-output-stderr">
+<pre><code>There are 92 subjects in cluster 1.</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="selection_files/figure-html/Spaghetti%20G4%20log%20all%20subjects-1.png" class="img-fluid" width="1056"></p>
@@ -1241,7 +1334,7 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 </div>
 </section>
 </div>
-<div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labeledby="tabset-3-4-tab">
+<div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
 <section id="log-scale-all-subjects-3" class="level5"><h5 class="anchored" data-anchor-id="log-scale-all-subjects-3">Log-scale, all subjects</h5>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb46"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">5</span>, log <span class="op">=</span> <span class="cn">TRUE</span>, sizes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1280,27 +1373,27 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 </div>
 </section>
 </div>
-<div id="tabset-3-5" class="tab-pane" role="tabpanel" aria-labeledby="tabset-3-5-tab">
+<div id="tabset-3-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-5-tab">
 <section id="log-scale-all-subjects-4" class="level5"><h5 class="anchored" data-anchor-id="log-scale-all-subjects-4">Log-scale, all subjects</h5>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb50"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">spaghetti_plot</span><span class="op">(</span><span class="va">FCcumulative</span>, <span class="va">cubicbf.fits</span>, G <span class="op">=</span> <span class="fl">6</span>, log <span class="op">=</span> <span class="cn">TRUE</span>, sizes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stderr">
-<pre><code>There are 48 subjects in class 1.</code></pre>
+</details><div class="cell-output cell-output-stderr">
+<pre><code>There are 48 subjects in cluster 1.</code></pre>
 </div>
-<div class="cell-output-stderr">
-<pre><code>There are 63 subjects in class 2.</code></pre>
+<div class="cell-output cell-output-stderr">
+<pre><code>There are 63 subjects in cluster 2.</code></pre>
 </div>
-<div class="cell-output-stderr">
-<pre><code>There are 52 subjects in class 3.</code></pre>
+<div class="cell-output cell-output-stderr">
+<pre><code>There are 52 subjects in cluster 3.</code></pre>
 </div>
-<div class="cell-output-stderr">
-<pre><code>There are 117 subjects in class 4.</code></pre>
+<div class="cell-output cell-output-stderr">
+<pre><code>There are 117 subjects in cluster 4.</code></pre>
 </div>
-<div class="cell-output-stderr">
-<pre><code>There are 67 subjects in class 5.</code></pre>
+<div class="cell-output cell-output-stderr">
+<pre><code>There are 67 subjects in cluster 5.</code></pre>
 </div>
-<div class="cell-output-stderr">
-<pre><code>There are 9 subjects in class 6.</code></pre>
+<div class="cell-output cell-output-stderr">
+<pre><code>There are 9 subjects in cluster 6.</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="selection_files/figure-html/Spaghetti%20G6%20log%20all%20subjects-1.png" class="img-fluid" width="1056"></p>
@@ -1340,7 +1433,7 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 </div>
 </div>
 </section><section id="model-output" class="level3"><h3 class="anchored" data-anchor-id="model-output">Model output</h3>
-<p>After considering all of the above findings, the model which assumes four latent classes has been deemed the most appropriate. The summary statistics for this model can be found below. The four splines are denoted by <span class="math inline">X_{1}(t), \ldots, X_{4}(t)</span>. We use this notation in the supplementary materials for the paper.</p>
+<p>After considering all of the above findings, the model which assumes four clusters has been deemed the most appropriate. The summary statistics for this model can be found below. The four splines are denoted by <span class="math inline">X_{1}(t), \ldots, X_{4}(t)</span>. We use this notation in the supplementary materials for the paper.</p>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb60"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">### Match notation to supp. materials</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">cubicbf.fits</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span></span>
@@ -1354,7 +1447,7 @@ prob&gt;0.9  58.33  26.98  36.54  41.03  13.43  44.44
 <span>                   <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Varcov "</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">15</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>                   <span class="st">"Standard error"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-stdout">
+</details><div class="cell-output cell-output-stdout">
 <pre><code>Heterogenous linear mixed model 
      fitted by maximum likelihood method 
  
@@ -1432,12 +1525,12 @@ Residual standard error:  0.77672 0.01273</code></pre>
 </section></section><section id="session-information" class="level2"><h2 class="anchored" data-anchor-id="session-information">Session information</h2>
 <div class="cell">
 <div class="cell-output-display">
-<p><strong>R version 4.2.0 (2022-04-22)</strong></p>
+<p><strong>R version 4.2.1 (2022-06-23)</strong></p>
 <p><strong>Platform:</strong> x86_64-apple-darwin17.0 (64-bit)</p>
 <p><strong>locale:</strong> en_GB.UTF-8||en_GB.UTF-8||en_GB.UTF-8||C||en_GB.UTF-8||en_GB.UTF-8</p>
 <p><strong>attached base packages:</strong> <em>grid</em>, <em>splines</em>, <em>parallel</em>, <em>stats</em>, <em>graphics</em>, <em>grDevices</em>, <em>datasets</em>, <em>utils</em>, <em>methods</em> and <em>base</em></p>
 <p><strong>other attached packages:</strong> <em>DT(v.0.22)</em>, <em>ggalluvial(v.0.12.3)</em>, <em>ggdist(v.3.1.1)</em>, <em>patchwork(v.1.1.1)</em>, <em>htmltools(v.0.5.2)</em>, <em>lcmm(v.1.9.5)</em>, <em>randtoolbox(v.1.31.1)</em>, <em>rngWELL(v.0.10-7)</em>, <em>mvtnorm(v.1.1-3)</em>, <em>survival(v.3.3-1)</em>, <em>forcats(v.0.5.1)</em>, <em>stringr(v.1.4.0)</em>, <em>dplyr(v.1.0.9)</em>, <em>purrr(v.0.3.4)</em>, <em>readr(v.2.1.2)</em>, <em>tidyr(v.1.2.0)</em>, <em>tibble(v.3.1.7)</em>, <em>ggplot2(v.3.3.6)</em> and <em>tidyverse(v.1.3.1)</em></p>
-<p><strong>loaded via a namespace (and not attached):</strong> <em>httr(v.1.4.3)</em>, <em>jsonlite(v.1.8.0)</em>, <em>modelr(v.0.1.8)</em>, <em>assertthat(v.0.2.1)</em>, <em>distributional(v.0.3.0)</em>, <em>pander(v.0.6.5)</em>, <em>renv(v.0.15.5)</em>, <em>cellranger(v.1.1.0)</em>, <em>yaml(v.2.3.5)</em>, <em>pillar(v.1.7.0)</em>, <em>backports(v.1.4.1)</em>, <em>lattice(v.0.20-45)</em>, <em>glue(v.1.6.2)</em>, <em>digest(v.0.6.29)</em>, <em>rvest(v.1.0.2)</em>, <em>colorspace(v.2.0-3)</em>, <em>plyr(v.1.8.7)</em>, <em>Matrix(v.1.4-1)</em>, <em>pkgconfig(v.2.0.3)</em>, <em>broom(v.0.8.0)</em>, <em>haven(v.2.5.0)</em>, <em>scales(v.1.2.0)</em>, <em>tzdb(v.0.3.0)</em>, <em>generics(v.0.1.2)</em>, <em>farver(v.2.1.0)</em>, <em>ellipsis(v.0.3.2)</em>, <em>withr(v.2.5.0)</em>, <em>cli(v.3.3.0)</em>, <em>magrittr(v.2.0.3)</em>, <em>crayon(v.1.5.1)</em>, <em>readxl(v.1.4.0)</em>, <em>evaluate(v.0.15)</em>, <em>fs(v.1.5.2)</em>, <em>fansi(v.1.0.3)</em>, <em>nlme(v.3.1-157)</em>, <em>xml2(v.1.3.3)</em>, <em>textshaping(v.0.3.6)</em>, <em>tools(v.4.2.0)</em>, <em>hms(v.1.1.1)</em>, <em>lifecycle(v.1.0.1)</em>, <em>munsell(v.0.5.0)</em>, <em>reprex(v.2.0.1)</em>, <em>jquerylib(v.0.1.4)</em>, <em>compiler(v.4.2.0)</em>, <em>systemfonts(v.1.0.4)</em>, <em>rlang(v.1.0.2)</em>, <em>rstudioapi(v.0.13)</em>, <em>htmlwidgets(v.1.5.4)</em>, <em>crosstalk(v.1.2.0)</em>, <em>labeling(v.0.4.2)</em>, <em>rmarkdown(v.2.14)</em>, <em>gtable(v.0.3.0)</em>, <em>DBI(v.1.1.2)</em>, <em>R6(v.2.5.1)</em>, <em>lubridate(v.1.8.0)</em>, <em>knitr(v.1.39)</em>, <em>fastmap(v.1.1.0)</em>, <em>utf8(v.1.2.2)</em>, <em>ragg(v.1.2.2)</em>, <em>stringi(v.1.7.6)</em>, <em>Rcpp(v.1.0.8.3)</em>, <em>vctrs(v.0.4.1)</em>, <em>dbplyr(v.2.1.1)</em>, <em>tidyselect(v.1.1.2)</em> and <em>xfun(v.0.30)</em></p>
+<p><strong>loaded via a namespace (and not attached):</strong> <em>httr(v.1.4.3)</em>, <em>jsonlite(v.1.8.0)</em>, <em>modelr(v.0.1.8)</em>, <em>assertthat(v.0.2.1)</em>, <em>distributional(v.0.3.0)</em>, <em>pander(v.0.6.5)</em>, <em>renv(v.0.15.5)</em>, <em>cellranger(v.1.1.0)</em>, <em>yaml(v.2.3.5)</em>, <em>pillar(v.1.7.0)</em>, <em>backports(v.1.4.1)</em>, <em>lattice(v.0.20-45)</em>, <em>glue(v.1.6.2)</em>, <em>digest(v.0.6.29)</em>, <em>rvest(v.1.0.2)</em>, <em>colorspace(v.2.0-3)</em>, <em>plyr(v.1.8.7)</em>, <em>Matrix(v.1.4-1)</em>, <em>pkgconfig(v.2.0.3)</em>, <em>broom(v.0.8.0)</em>, <em>haven(v.2.5.0)</em>, <em>scales(v.1.2.0)</em>, <em>tzdb(v.0.3.0)</em>, <em>generics(v.0.1.2)</em>, <em>farver(v.2.1.0)</em>, <em>ellipsis(v.0.3.2)</em>, <em>withr(v.2.5.0)</em>, <em>cli(v.3.3.0)</em>, <em>magrittr(v.2.0.3)</em>, <em>crayon(v.1.5.1)</em>, <em>readxl(v.1.4.0)</em>, <em>evaluate(v.0.15)</em>, <em>fs(v.1.5.2)</em>, <em>fansi(v.1.0.3)</em>, <em>nlme(v.3.1-157)</em>, <em>xml2(v.1.3.3)</em>, <em>textshaping(v.0.3.6)</em>, <em>tools(v.4.2.1)</em>, <em>hms(v.1.1.1)</em>, <em>lifecycle(v.1.0.1)</em>, <em>munsell(v.0.5.0)</em>, <em>reprex(v.2.0.1)</em>, <em>compiler(v.4.2.1)</em>, <em>jquerylib(v.0.1.4)</em>, <em>systemfonts(v.1.0.4)</em>, <em>rlang(v.1.0.2)</em>, <em>rstudioapi(v.0.13)</em>, <em>htmlwidgets(v.1.5.4)</em>, <em>crosstalk(v.1.2.0)</em>, <em>labeling(v.0.4.2)</em>, <em>rmarkdown(v.2.14)</em>, <em>gtable(v.0.3.0)</em>, <em>DBI(v.1.1.2)</em>, <em>R6(v.2.5.1)</em>, <em>lubridate(v.1.8.0)</em>, <em>knitr(v.1.39)</em>, <em>fastmap(v.1.1.0)</em>, <em>utf8(v.1.2.2)</em>, <em>ragg(v.1.2.2)</em>, <em>stringi(v.1.7.6)</em>, <em>Rcpp(v.1.0.8.3)</em>, <em>vctrs(v.0.4.1)</em>, <em>dbplyr(v.2.1.1)</em>, <em>tidyselect(v.1.1.2)</em> and <em>xfun(v.0.30)</em></p>
 </div>
 </div>
 </section><div id="quarto-appendix" class="default"><section id="section" class="level2 appendix"><h2 class="quarto-appendix-heading"></h2><div class="quarto-appendix-contents">
@@ -1453,7 +1546,6 @@ Residual standard error:  0.77672 0.01273</code></pre>
 
 
 
-
 </div></section><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-Elhakeem2022" class="csl-entry" role="doc-biblioentry">
 Elhakeem, Ahmed, Rachael A. Hughes, Kate Tilling, Diana L. Cousminer, Stefan A. Jackowski, Tim J. Cole, Alex S. F. Kwong, et al. 2022. <span>“Using Linear and Natural Cubic Splines, SITAR, and Latent Trajectory Models to Characterise Nonlinear Longitudinal Growth Trajectories in Cohort Studies.”</span> <em>BMC Medical Research Methodology</em> 22 (1): 68. <a href="https://doi.org/10.1186/s12874-022-01542-8">https://doi.org/10.1186/s12874-022-01542-8</a>.
@@ -1464,8 +1556,26 @@ Fornberg, Bengt, and Julia Zuev. 2007. <span>“The Runge Phenomenon and Spatial
 <div id="ref-Proust-Lima2017" class="csl-entry" role="doc-biblioentry">
 Proust-Lima, Cécile, Viviane Philipps, and Benoit Liquet. 2017. <span>“Estimation of Extended Mixed Models Using Latent Classes and Latent Processes: The <span>R</span> Package <span class="nocase">lcmm</span>.”</span> <em>Journal of Statistical Software</em> 78 (2): 1–56. <a href="https://doi.org/10.18637/jss.v078.i02">https://doi.org/10.18637/jss.v078.i02</a>.
 </div>
-</div></section></div></main><!-- /main --><script type="application/javascript">
+</div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -1485,7 +1595,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.blur();
     // flash "checked"
     button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
     setTimeout(function() {
+      button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
     // clear code selection
@@ -1563,7 +1676,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);

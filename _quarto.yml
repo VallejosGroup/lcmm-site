@@ -1,17 +1,12 @@
 project:
   type: website
   output-dir: docs
-  favicon: "favicon.png"
   render:
-    - index.qmd
-    - data-cleaning.qmd
-    - selection.qmd
-    - associations.qmd
-    - 404.qmd
-  twitter-card:
-    creator: "@nathansam"
-    site: "@EdinUni_IGC"
-  opengraph: true
+    - "index.qmd"
+    - "data-cleaning.qmd"
+    - "selection.qmd"
+    - "associations.qmd"
+    - "404.qmd"
 
 format:
   html:
@@ -30,6 +25,11 @@ format:
 
 website:
   title: "Analysis by Constantine-Cooke et al."
+  favicon: "favicon.png"
+  twitter-card:
+    creator: "@nathansam"
+    site: "@EdinUni_IGC"
+  open-graph: true
   navbar:
     background: "#004276"
     search: true
@@ -57,4 +57,28 @@ title-block-banner: false
 execute:
   freeze: auto
   cache: false
+
+affiliations:
+  - id: HGU
+    name: "MRC Human Genetics Unit"
+    city: "Edinburgh"
+    region: "Scotland"
+    country: "United Kingdom"
+    url: "https://www.ed.ac.uk/mrc-human-genetics-unit"
+  - id: CGEM
+    name: "Centre for Genomic and Experimental Medicine"
+    city: "Edinburgh"
+    country: "United Kingdom"
+    url: "https://www.ed.ac.uk/centre-genomic-medicine"
+  - id: IBD
+    name: "Edinburgh IBD Unit"
+    city: "Edinburgh"
+    country: "United Kingdom"
+    url: "https://services.nhslothian.scot/EdinburghIBDUnit/Pages/default.aspx"
+  - id: Turing
+    name: "The Alan Turing Institute"
+    city: "London"
+    country: "United Kingdom"
+    url: "https://www.turing.ac.uk"
+
 
