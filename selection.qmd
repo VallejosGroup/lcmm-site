@@ -69,6 +69,10 @@ FCcumulative <- readRDS(paste0("/Volumes/igmm/cvallejo-predicct/",
 #-- Create directories and readme files --#
 ###########################################
 
+if (!dir.exists("plots")) {
+  dir.create("plots")
+}
+
 fileConn <- file("plots/README.md")
 writeLines(c("# README",
              "",
