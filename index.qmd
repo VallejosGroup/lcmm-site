@@ -1,5 +1,5 @@
 ---
-title: "Analysis for Longitudinal Faecal Calprotectin Profiles Characterise Heterogeneity in Crohn’s Disease"
+title: "Analysis for Longitudinal Faecal Calprotectin Profiles Characterise Disease Course Heterogeneity in Crohn's Disease"
 format:
   html:
     code-tools: false
@@ -17,8 +17,7 @@ author:
 
 ## About
 
-This website presents the analytical reports developed for *Longitudinal Faecal
-Calprotectin Profiles Characterise Heterogeneity in Crohn’s Disease* by
+This website presents the analytical reports developed for *Longitudinal Faecal Calprotectin Profiles Characterise Disease Course Heterogeneity in Crohn's Disease* by
 Constantine-Cooke et al. In this work, we use latent class mixed models to
 identify clusters within the Crohn's disease patient population based
 upon the longitudinal profiles of a biomarker, faecal calprotectin. 
