@@ -1,15 +1,20 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - "apple-touch-icon-precomposed.png"
+    - "apple-touch-icon.png"
   render:
     - "index.qmd"
     - "data-cleaning.qmd"
     - "selection.qmd"
     - "associations.qmd"
     - "404.qmd"
-
 format:
   html:
+    theme:
+      light: [default]
+      dark: [darkly]
     css: theme.css
     code-fold: true
     code-link: true

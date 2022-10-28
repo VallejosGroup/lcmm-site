@@ -149,37 +149,15 @@ determine if cluster membership can be accurately predicted ahead of time using
 these variables. We consider both multinomial logistic regression and random
 forest predictive models for this purpose. 
 
-## Outcomes
+## Characteristics available at diagnosis
 
-We will first consider associations with outcomes in order to determine if there 
-is are potentially clinically significant aspects to these clusters. For this 
-purpose, we use Kaplan-Meier curves for endpoints of interest stratified by
-cluster membership. The endpoints considered are hospitalisation, surgery,
-disease progression, and a composite end point. We use log-rank tests to
-determine if survival distributions differ across clusters. All censoring
-indicators have been mapped to 0 (censored) and 1 (observed). Patients who met
-one of these endpoints within one year of diagnosis were excluded from the
-Crohn's disease inception cohort and therefore no endpoints are observed within
-one year of diagnosis for the study cohort. For more information, see the
-[Data Cleaning Section](data-cleaning.qmd). 
-
-For comparisons between survival curves, we consider both Mantel-Haenszel tests
-and Peto-Peto tests (modified Gehan-Wilcoxon tests) [@Peto1972] as the latter
-is more robust against violations of the proportional-hazards assumption. We
-also report the results of $K$-sample omnibus non-proportional hazards (KONP)
-tests.
-
-We have found the survival distributions for hospitalisation, disease
-progression, and the composite endpoint to be significantly different across
-clusters but not the survival distribution for the surgery endpoint. 
-
-From the below plots, we can clearly see cluster 1, which is characterised by
-a decrease in FCAL, results in high survival probabilities over time.
+We have found two variables available at diagnosis to be associated with cluster
+membership: smoking at diagnosis ($p = 0.015$) and upper gastrointestinal
+inflammation (Montreal L4; $p < 0.001$). 
 
 ```{R}
 FCcumulative <- readRDS(paste0("/Volumes/igmm/cvallejo-predicct/processed-data/cdi/",
                                "FCcumulativeLongInc.RDS"))
-
 model <- readRDS("cache/cubicbf.fits.RDS")[[4]]
 model$pprob$class <- plyr::mapvalues(model$pprob$class,
                                      from = c(4, 3, 2, 1),
@@ -189,253 +167,11 @@ demographic <- read.csv(paste0("/Volumes/igmm/cvallejo-predicct/data/",
                                "Nathan_FCprogressioncohort.csv")
                          )
 demographic <- subset(demographic, Number %in% model$pprob$id)
-
 colnames(demographic)[1] <- "id"
 classes <- model$pprob[, 1:2]
-
 demographic <- merge(demographic, classes, by = "id")
 demographic$cluster <- demographic$class
 ```
-
-::: {.panel-tabset}
-
-### Hospitalisation
-
-#### Mantel-Haenszel Test
-
-```{R}
-hosp.censor <- c()
-hosp.time <- c()
-
-for (i in 1:nrow(demographic)) {
-  subject <- subset(FCcumulative, id == demographic[i, "id"])
-  
-  if (subject[1, "hosp.date"] > 5) {
-    hosp.censor <- c(hosp.censor, 0)
-    hosp.time <- c(hosp.time, 5)
-  } else {
-    hosp.censor <- c(hosp.censor, subject[1, "hosp"])
-    hosp.time <- c(hosp.time, subject[1, "hosp.date"])
-  }
-}
-
-demographic$hosp.censor <- hosp.censor
-demographic$hosp.time <- hosp.time
-
-hosp.model <- survfit(Surv(hosp.time, hosp.censor) ~ cluster, data = demographic)
-
-kaplan_plot(hosp.model, "Kaplan-Meier Curves for Hospitalisation")
-```
-
-#### Peto-Peto Test
-
-```{R}
-pander::pander(survdiff(Surv(hosp.time, hosp.censor) ~ cluster,
-                        data = demographic,
-                        rho = 1))
-```
-
-#### KONP Test
-
-```{R}
-konp_test(demographic$hosp.time,
-          demographic$hosp.censor,
-          demographic$cluster,
-          n_perm = 10^3)
-```
-
-### Surgery
-
-#### Mantel-Haenszel Test
-
-```{R}
-surg.censor <- c()
-surg.time <- c()
-
-for (i in 1:nrow(demographic)) {
-  subject <- subset(FCcumulative, id == demographic[i, "id"])
-  if (subject[1, "surg.date"] > 5) {
-    surg.censor <- c(surg.censor, 0)
-    surg.time <- c(surg.time, 5)
-  } else {  
-    surg.censor <- c(surg.censor, subject[1, "surg"])
-    surg.time <- c(surg.time, subject[1, "surg.date"])
-  }
-}
-
-demographic$surg.censor <- surg.censor
-demographic$surg.time <- surg.time
-
-surg.model <- survfit(Surv(surg.time, surg.censor) ~ cluster,
-                      data = demographic)
-
-kaplan_plot(surg.model, "Kaplan-Meier Curves for Surgery")
-```
-
-#### Peto-Peto Test
-
-```{R}
-pander::pander(survdiff(Surv(surg.time, surg.censor) ~ cluster,
-                        data = demographic,
-                        rho = 1))
-```
-
-#### KONP Test
-
-```{R}
-konp_test(demographic$surg.time,
-          demographic$surg.censor,
-          demographic$cluster,
-          n_perm = 10^3)
-```
-
-### Disease progression
-
-#### Mantel-Haenszel Test
-
-```{R}
-prog.censor <- c()
-prog.time <- c()
-
-for (i in 1:nrow(demographic)) {
-  subject <- subset(FCcumulative, id == demographic[i, "id"])
-  if (subject[1, "prog.date"] > 5) {
-    prog.censor <- c(prog.censor, 0)
-    prog.time <- c(prog.time, 5)
-  } else {  
-    prog.censor <- c(prog.censor, subject[1, "prog"])
-    prog.time <- c(prog.time, subject[1, "prog.date"])
-  }
-}
-
-demographic$prog.censor <- prog.censor
-demographic$prog.time <- prog.time
-prog.model <- survfit(Surv(prog.time, prog.censor) ~ cluster,
-                      data = demographic)
-
-kaplan_plot(prog.model, "Kaplan-Meier Curves for Disease Progression")
-```
-
-
-#### Peto-Peto Test
-
-```{R}
-pander::pander(survdiff(Surv(prog.time, prog.censor) ~ cluster,
-                        data = demographic,
-                        rho = 1))
-```
-
-
-#### KONP Test
-
-```{R}
-konp_test(demographic$prog.time,
-          demographic$prog.censor,
-          demographic$cluster,
-          n_perm = 10^3)
-```
-
-### Composite endpoint
-
-#### Mantel-Haenszel Test
-
-```{R}
-composite.censor <- c()
-composite.time <- c()
-
-for (i in 1:nrow(demographic)) {
-  subject <- subset(FCcumulative, id == demographic[i, "id"])
-  if (subject[1, "composites.day"] > 5 * 365.25) {
-    composite.censor <- c(composite.censor, 0)
-    composite.time <- c(composite.time, 5 * 365.25)
-  } else {  
-    composite.censor <- c(composite.censor, subject[1, "composite"])
-    composite.time <- c(composite.time, subject[1, "composites.day"])
-  }
-}
-
-demographic$composite.censor <- composite.censor
-demographic$composite.time <- composite.time / 365.25
-
-comp.model <- survfit(Surv(composite.time, composite.censor) ~ cluster,
-                      data = demographic)
-kaplan_plot(comp.model, "Kaplan-Meier Curves for Composite Endpoint")
-```
-
-#### Peto-Peto Test
-
-```{R}
-pander::pander(survdiff(Surv(composite.time, composite.censor) ~ cluster,
-                        data = demographic,
-                        rho = 1))
-```
-
-
-#### KONP Test
-
-```{R}
-konp_test(demographic$composite.time,
-          demographic$composite.censor,
-          demographic$cluster,
-          n_perm=10^3)
-```
-
-:::
-
-```{R}
-#| include: false
-# Plot in 2x2 grid
-splots <- list(kap.comp = kaplan_plot(comp.model,
-                                      "A",
-                                      subtitle = FALSE, 
-                                      legend = TRUE),
-               kap.prog = kaplan_plot(prog.model,
-                                      "C",
-                                      subtitle = FALSE,
-                                      legend = TRUE ),
-               kap.hosp = kaplan_plot(hosp.model,
-                                      "B",
-                                      subtitle = FALSE,
-                                      legend = TRUE),
-               kap.surgery = kaplan_plot(surg.model,
-                                         "D",
-                                         subtitle = FALSE,
-                                         legend = TRUE)
-               )
-
-ggsave("paper/kaplan.pdf",
-       (splots$kap.comp$plot +
-          splots$kap.hosp$plot +
-          splots$kap.prog$plot +
-          splots$kap.surgery$plot) +
-         plot_layout(ncol = 2,
-                     nrow = 2,
-                     guides = 'collect',
-                     widths = 1,
-                     heights = 1) & theme(legend.position = 'bottom'), 
-       width = 8.25, 
-       height = 8, 
-       units = "in")
-ggsave("paper/kaplan.png",
-       (splots$kap.comp$plot +
-          splots$kap.hosp$plot +
-          splots$kap.prog$plot +
-          splots$kap.surgery$plot) +
-         plot_layout(ncol = 2,
-                     nrow = 2,
-                     guides = 'collect',
-                     widths = 1,
-                     heights = 1) & theme(legend.position = 'bottom'), 
-       width = 8.25, 
-       height = 8, 
-       units = "in")
-```
-
-## Characteristics available at diagnosis
-
-We have found two variables available at diagnosis to be associated with cluster
-membership: smoking at diagnosis ($p = 0.015$) and upper gastrointestinal
-inflammation (Montreal L4; $p < 0.001$). 
 
 ::: {.panel-tabset}
 
@@ -788,7 +524,7 @@ fisher.test(demographic$cluster, demographic$L4)
 
 :::
 
-## Treatment effects
+## Associations with treatment information
 
 To explore the potential presence of treatment effects, we have tested for
 associations between cluster membership and common IBD prescriptions. All 
@@ -1154,9 +890,8 @@ The data are split into a 75:25 train:test split and k-fold cross validation
 is used. Reported metrics and the confusion matrix are based on the test data
 split. 
 
-###  All clusters
 
-Firstly, we attempt to predict cluster membership for all four clusters.
+We attempt to predict cluster membership for all four clusters.
 
 ```{R}
 demographic$cluster <- as.factor(demographic$cluster)
@@ -1166,7 +901,7 @@ data_split <- initial_split(demographic, prop = 0.75, strata = cluster)
 train_data <- training(data_split)
 test_data  <- testing(data_split)
 
-folds <- vfold_cv(train_data, v = 4)
+folds <- vfold_cv(train_data, v = 4, strata = cluster)
 
 class_rec <- recipe(cluster ~ age +
                       SEX  +
@@ -1181,7 +916,7 @@ class_rec <- recipe(cluster ~ age +
                     data = test_data)
 ```
 
-#### Multinomial logistic regression
+### Multinomial logistic regression
 
 ```{R}
 mlr_mod <- multinom_reg(penalty = tune(),
@@ -1234,7 +969,7 @@ temp$call <- quote(nnet::multinom(formula = cluster ~ age +
 hmm <- summary(temp)
 ```
 
-##### Odd ratios 
+#### Odd ratios 
 
 Point estimates:
 
@@ -1254,7 +989,7 @@ Upper 95% confidence interval:
 knitr::kable(round(exp(hmm$coefficients + qnorm(0.975) * hmm$standard.errors), 2))
 ```
 
-##### Metrics
+#### Metrics
 
 ```{R}
 knitr::kable(
@@ -1264,7 +999,7 @@ knitr::kable(
   align = "cccc") 
 ```
 
-##### Confusion matrix
+#### Confusion matrix
 
 ```{R}
 results <- final_fit %>%
@@ -1273,9 +1008,9 @@ results <- final_fit %>%
 knitr::kable(table(results$cluster, results$.pred_class), row.names = TRUE)
 ```
 
-#### Random forest
+### Random forest
 
-##### Metrics
+#### Metrics
 
 ```{R}
 rf_mod <- rand_forest(mtry = tune(), 
@@ -1324,7 +1059,7 @@ knitr::kable(
   align = "cccc") 
 ```
 
-##### Confusion matrix
+#### Confusion matrix
 
 ```{R}
 results <- final_fit %>%
@@ -1334,150 +1069,6 @@ knitr::kable(table(results$cluster, results$.pred_class), row.names = TRUE)
 
 Model performance for both the multinomial logistic regression model and the
 random forest classifier is very poor. 
-
-### Cluster 2 
-
-Due to the the clear separation in mean class profiles between cluster 2 and the
-other clusters and the poor model performance described above, we now consider
-binary outcome models which attempt to predict membership, or non-membership,
-of cluster 2. 
-
-```{R}
-demographic$cluster2 <- rep(NA, nrow(demographic))
-demographic[demographic[,"cluster"] == 2, "cluster2"] <- 1
-demographic[demographic[,"cluster"] != 2, "cluster2"] <- 0
-demographic$cluster2 <- as.factor(demographic$cluster2)
-
-data_split <- initial_split(demographic, prop = 0.75, strata = cluster2)
-train_data <- training(data_split)
-test_data  <- testing(data_split)
-
-folds <- vfold_cv(train_data, v = 4)
-
-class_rec <- recipe(cluster2 ~ age +
-                      SEX  +
-                      smoking +
-                      LOCATION +
-                      L4 +
-                      behaviour +
-                      peri +
-                      FC.VALUE.AT.DIAGNOSIS + 
-                      use_bio +
-                      use_bio3,
-                    data = test_data)
-```
-
-#### Logistic regression
-
-As we now considering a binary outcome, logistic regression via the `glm()`
-function is used instead of multinomial logistic regression. 
-
-##### Metrics
-
-```{R}
-
-lr_mod <- logistic_reg(penalty = tune(),
-                        mode = "classification") %>%
-  set_engine("glm")
-
-class_wflow <- 
-  workflow() %>% 
-  add_model(lr_mod) %>% 
-  add_recipe(class_rec)
-
-lr_grid <- grid_regular(penalty(),
-                        levels = 5)
-
-class_fit <- class_wflow %>% 
-    tune_grid(
-    resamples = folds,
-    grid = lr_grid
-    )
-
-best_lr <- class_fit %>%
-  select_best("accuracy")
-
-final_wf <- 
-  class_wflow %>% 
-  finalize_workflow(best_lr)
-
-
-final_fit <- 
-  final_wf %>%
-  last_fit(data_split) 
-
-knitr::kable(
-  final_fit %>%
-    collect_metrics(), 
-  col.names = c("Metric", "Estimator", "Estimate", "Config"),
-  align = "cccc") 
-```
-
-##### Confusion matrix
-
-```{R}
-results <- final_fit %>%
-  collect_predictions() 
-
-knitr::kable(table(results$cluster2, results$.pred_class), row.names = TRUE)
-```
-
-#### Random forest
-
-##### Metrics
-
-```{R}
-rf_mod <- rand_forest(mtry = tune(), 
-                      trees = tune(),
-                      mode = "classification") %>%
-  set_engine("ranger")
-
-class_wflow <- 
-  workflow() %>% 
-  add_model(rf_mod) %>% 
-  add_recipe(class_rec)
-
-tree_grid <- grid_regular(mtry(range(c(1,8))),
-                          trees(),
-                          levels = 5)
-
-class_fit <- class_wflow %>% 
-    tune_grid(
-    resamples = folds,
-    grid = tree_grid
-    )
-
-best_tree <- class_fit %>%
-  select_best("accuracy")
-
-final_wf <- 
-  class_wflow %>% 
-  finalize_workflow(best_tree)
-
-
-final_fit <- 
-  final_wf %>%
-  last_fit(data_split) 
-
-knitr::kable(
-  final_fit %>%
-    collect_metrics(), 
-  col.names = c("Metric", "Estimator", "Estimate", "Config"),
-  align = "cccc")
-```
-
-##### Confusion matrix
-
-```{R}
-results <- final_fit %>%
-  collect_predictions() 
-
-knitr::kable(table(results$cluster2, results$.pred_class), row.names = TRUE)
-```
-
-However, model performance remains very poor. 
-
-
 
 ## Session information
 
