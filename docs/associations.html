@@ -1608,8 +1608,14 @@ alternative hypothesis: two.sided</code></pre>
 <div id="tabset-2-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-8-tab">
 <p>Here, we consider the number of days from the start of the study period (2005-01-1) to when a subject was diagnosed to determine if when a subject was diagnosed has a statistically significant impact on which cluster a subject was assigned to.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb194"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">demographic</span> <span class="op">&lt;-</span> <span class="fu">datefixR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/datefixR/man/fix_dates.html">fix_dates</a></span><span class="op">(</span><span class="va">demographic</span>, <span class="st">"DATE.OF.DIAGNOSIS"</span><span class="op">)</span></span>
-<span><span class="va">demographic</span><span class="op">$</span><span class="va">Days.From.Start</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">demographic</span><span class="op">$</span><span class="va">DATE.OF.DIAGNOSIS</span><span class="op">)</span> <span class="op">-</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb194"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">demographic</span> <span class="op">&lt;-</span> <span class="fu">datefixR</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/datefixR/reference/fix_dates.html">fix_dates</a></span><span class="op">(</span><span class="va">demographic</span>, <span class="st">"DATE.OF.DIAGNOSIS"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stderr">
+<pre><code>Warning: `fix_dates()` was deprecated in datefixR 1.0.0.
+Please use `fix_date_df()` instead.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+</div>
+<details><summary>Code</summary><div class="sourceCode" id="cb196"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">demographic</span><span class="op">$</span><span class="va">Days.From.Start</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">demographic</span><span class="op">$</span><span class="va">DATE.OF.DIAGNOSIS</span><span class="op">)</span> <span class="op">-</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2005-01-01"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">describe_cont</span><span class="op">(</span><span class="st">"Days.From.Start"</span>, <span class="va">demographic</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1620,7 +1626,7 @@ alternative hypothesis: two.sided</code></pre>
 </div>
 <section id="cluster-1-15" class="level4"><h4 class="anchored" data-anchor-id="cluster-1-15">Cluster = 1</h4>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb196"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">describe_cont</span><span class="op">(</span><span class="st">"Days.From.Start"</span>, <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">demographic</span>, <span class="va">class</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb198"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">describe_cont</span><span class="op">(</span><span class="st">"Days.From.Start"</span>, <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">demographic</span>, <span class="va">class</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>         Variable  n Median   Q1   Q3 Min  Max
 1 Days.From.Start 92   3060 2480 4000 150 4700</code></pre>
@@ -1628,7 +1634,7 @@ alternative hypothesis: two.sided</code></pre>
 </div>
 </section><section id="cluster-2-15" class="level4"><h4 class="anchored" data-anchor-id="cluster-2-15">Cluster = 2</h4>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb198"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">describe_cont</span><span class="op">(</span><span class="st">"Days.From.Start"</span>, <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">demographic</span>, <span class="va">class</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb200"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">describe_cont</span><span class="op">(</span><span class="st">"Days.From.Start"</span>, <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">demographic</span>, <span class="va">class</span> <span class="op">==</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>         Variable   n Median   Q1   Q3 Min  Max
 1 Days.From.Start 191   3050 2110 3850   0 4710</code></pre>
@@ -1636,7 +1642,7 @@ alternative hypothesis: two.sided</code></pre>
 </div>
 </section><section id="cluster-3-15" class="level4"><h4 class="anchored" data-anchor-id="cluster-3-15">Cluster = 3</h4>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb200"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">describe_cont</span><span class="op">(</span><span class="st">"Days.From.Start"</span>, <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">demographic</span>, <span class="va">class</span> <span class="op">==</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb202"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">describe_cont</span><span class="op">(</span><span class="st">"Days.From.Start"</span>, <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">demographic</span>, <span class="va">class</span> <span class="op">==</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>         Variable  n Median   Q1   Q3 Min  Max
 1 Days.From.Start 58   2840 2260 3790 424 4410</code></pre>
@@ -1644,7 +1650,7 @@ alternative hypothesis: two.sided</code></pre>
 </div>
 </section><section id="cluster-4-15" class="level4"><h4 class="anchored" data-anchor-id="cluster-4-15">Cluster = 4</h4>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb202"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">describe_cont</span><span class="op">(</span><span class="st">"Days.From.Start"</span>, <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">demographic</span>, <span class="va">class</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb204"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">describe_cont</span><span class="op">(</span><span class="st">"Days.From.Start"</span>, <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">demographic</span>, <span class="va">class</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>         Variable  n Median   Q1   Q3  Min  Max
 1 Days.From.Start 15   2820 2360 3430 1370 4300</code></pre>
@@ -1652,7 +1658,7 @@ alternative hypothesis: two.sided</code></pre>
 </div>
 </section><section id="anova-2" class="level4"><h4 class="anchored" data-anchor-id="anova-2">ANOVA</h4>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb204"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Days.From.Start</span> <span class="op">~</span> <span class="va">class</span>, data <span class="op">=</span> <span class="va">demographic</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb206"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/aov.html">aov</a></span><span class="op">(</span><span class="va">Days.From.Start</span> <span class="op">~</span> <span class="va">class</span>, data <span class="op">=</span> <span class="va">demographic</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>             Df    Sum Sq Mean Sq F value Pr(&gt;F)
 class         1   2713998 2713998   2.419  0.121
@@ -1668,7 +1674,7 @@ Residuals   354 397129240 1121834               </code></pre>
 <p>The data are split into a 75:25 train:test split and k-fold cross validation is used. Reported metrics and the confusion matrix are based on the test data split.</p>
 <p>We attempt to predict cluster membership for all four clusters.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb206"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">demographic</span><span class="op">$</span><span class="va">cluster</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">demographic</span><span class="op">$</span><span class="va">cluster</span><span class="op">)</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb208"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">demographic</span><span class="op">$</span><span class="va">cluster</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">demographic</span><span class="op">$</span><span class="va">cluster</span><span class="op">)</span></span>
 <span><span class="va">demographic</span><span class="op">$</span><span class="va">cluster</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/relevel.html">relevel</a></span><span class="op">(</span><span class="va">demographic</span><span class="op">$</span><span class="va">cluster</span>, ref <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="co"># </span></span>
 <span></span>
 <span><span class="va">data_split</span> <span class="op">&lt;-</span> <span class="fu">initial_split</span><span class="op">(</span><span class="va">demographic</span>, prop <span class="op">=</span> <span class="fl">0.75</span>, strata <span class="op">=</span> <span class="va">cluster</span><span class="op">)</span></span>
@@ -1692,7 +1698,7 @@ Residuals   354 397129240 1121834               </code></pre>
 </div>
 <section id="multinomial-logistic-regression" class="level3"><h3 class="anchored" data-anchor-id="multinomial-logistic-regression">Multinomial logistic regression</h3>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb207"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mlr_mod</span> <span class="op">&lt;-</span> <span class="fu">multinom_reg</span><span class="op">(</span>penalty <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb209"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">mlr_mod</span> <span class="op">&lt;-</span> <span class="fu">multinom_reg</span><span class="op">(</span>penalty <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                        mode <span class="op">=</span> <span class="st">"classification"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"nnet"</span><span class="op">)</span></span>
 <span></span>
@@ -1745,7 +1751,7 @@ Residuals   354 397129240 1121834               </code></pre>
 <section id="odd-ratios" class="level4"><h4 class="anchored" data-anchor-id="odd-ratios">Odd ratios</h4>
 <p>Point estimates:</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb208"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">hmm</span><span class="op">$</span><span class="va">coefficients</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb210"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">hmm</span><span class="op">$</span><span class="va">coefficients</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <table class="table table-sm table-striped">
 <colgroup>
@@ -1835,7 +1841,7 @@ Residuals   354 397129240 1121834               </code></pre>
 </div>
 <p>Lower 95% confidence interval:</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb209"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">hmm</span><span class="op">$</span><span class="va">coefficients</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.975</span><span class="op">)</span> <span class="op">*</span> <span class="va">hmm</span><span class="op">$</span><span class="va">standard.errors</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb211"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">hmm</span><span class="op">$</span><span class="va">coefficients</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.975</span><span class="op">)</span> <span class="op">*</span> <span class="va">hmm</span><span class="op">$</span><span class="va">standard.errors</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <table class="table table-sm table-striped">
 <colgroup>
@@ -1925,7 +1931,7 @@ Residuals   354 397129240 1121834               </code></pre>
 </div>
 <p>Upper 95% confidence interval:</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb210"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">hmm</span><span class="op">$</span><span class="va">coefficients</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.975</span><span class="op">)</span> <span class="op">*</span> <span class="va">hmm</span><span class="op">$</span><span class="va">standard.errors</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details><summary>Code</summary><div class="sourceCode" id="cb212"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">hmm</span><span class="op">$</span><span class="va">coefficients</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.975</span><span class="op">)</span> <span class="op">*</span> <span class="va">hmm</span><span class="op">$</span><span class="va">standard.errors</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <table class="table table-sm table-striped">
 <colgroup>
@@ -2015,7 +2021,7 @@ Residuals   354 397129240 1121834               </code></pre>
 </div>
 </section><section id="metrics" class="level4"><h4 class="anchored" data-anchor-id="metrics">Metrics</h4>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb211"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb213"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span></span>
 <span>  <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu">collect_metrics</span><span class="op">(</span><span class="op">)</span>, </span>
 <span>  col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Metric"</span>, <span class="st">"Estimator"</span>, <span class="st">"Estimate"</span>, <span class="st">"Config"</span><span class="op">)</span>,</span>
@@ -2047,7 +2053,7 @@ Residuals   354 397129240 1121834               </code></pre>
 </div>
 </section><section id="confusion-matrix" class="level4"><h4 class="anchored" data-anchor-id="confusion-matrix">Confusion matrix</h4>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb212"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb214"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">collect_predictions</span><span class="op">(</span><span class="op">)</span> </span>
 <span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">results</span><span class="op">$</span><span class="va">cluster</span>, <span class="va">results</span><span class="op">$</span><span class="va">.pred_class</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2096,7 +2102,7 @@ Residuals   354 397129240 1121834               </code></pre>
 </section></section><section id="random-forest" class="level3"><h3 class="anchored" data-anchor-id="random-forest">Random forest</h3>
 <section id="metrics-1" class="level4"><h4 class="anchored" data-anchor-id="metrics-1">Metrics</h4>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb213"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rf_mod</span> <span class="op">&lt;-</span> <span class="fu">rand_forest</span><span class="op">(</span>mtry <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>, </span>
+<details><summary>Code</summary><div class="sourceCode" id="cb215"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">rf_mod</span> <span class="op">&lt;-</span> <span class="fu">rand_forest</span><span class="op">(</span>mtry <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>, </span>
 <span>                      trees <span class="op">=</span> <span class="fu">tune</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                      mode <span class="op">=</span> <span class="st">"classification"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">set_engine</span><span class="op">(</span><span class="st">"ranger"</span>,</span>
@@ -2143,48 +2149,48 @@ Residuals   354 397129240 1121834               </code></pre>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">use_bio</td>
-<td style="text-align: right;">0.0087830</td>
+<td style="text-align: right;">0.0086542</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">use_bio3</td>
-<td style="text-align: right;">0.0084372</td>
+<td style="text-align: right;">0.0084335</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">L4</td>
-<td style="text-align: right;">0.0051904</td>
+<td style="text-align: right;">0.0051902</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">smoking</td>
-<td style="text-align: right;">0.0032150</td>
+<td style="text-align: right;">0.0031569</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">LOCATION</td>
-<td style="text-align: right;">0.0022410</td>
+<td style="text-align: right;">0.0021937</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">DiagFC</td>
-<td style="text-align: right;">0.0018696</td>
+<td style="text-align: right;">0.0016417</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">behaviour</td>
-<td style="text-align: right;">0.0005040</td>
+<td style="text-align: right;">0.0003184</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">age</td>
 <td style="text-align: right;">0.0000993</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">SEX</td>
-<td style="text-align: right;">-0.0010218</td>
+<td style="text-align: left;">peri</td>
+<td style="text-align: right;">-0.0006497</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">peri</td>
-<td style="text-align: right;">-0.0010979</td>
+<td style="text-align: left;">SEX</td>
+<td style="text-align: right;">-0.0010218</td>
 </tr>
 </tbody>
 </table>
 </div>
-<details><summary>Code</summary><div class="sourceCode" id="cb214"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb216"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span></span>
 <span>  <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu">collect_metrics</span><span class="op">(</span><span class="op">)</span>, </span>
 <span>  col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Metric"</span>, <span class="st">"Estimator"</span>, <span class="st">"Estimate"</span>, <span class="st">"Config"</span><span class="op">)</span>,</span>
@@ -2216,7 +2222,7 @@ Residuals   354 397129240 1121834               </code></pre>
 </div>
 </section><section id="confusion-matrix-1" class="level4"><h4 class="anchored" data-anchor-id="confusion-matrix-1">Confusion matrix</h4>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb215"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<details><summary>Code</summary><div class="sourceCode" id="cb217"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">collect_predictions</span><span class="op">(</span><span class="op">)</span> </span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">results</span><span class="op">$</span><span class="va">cluster</span>, <span class="va">results</span><span class="op">$</span><span class="va">.pred_class</span><span class="op">)</span>, row.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
@@ -2269,8 +2275,8 @@ Residuals   354 397129240 1121834               </code></pre>
 <p><strong>Platform:</strong> x86_64-apple-darwin17.0 (64-bit)</p>
 <p><strong>locale:</strong> en_GB.UTF-8||en_GB.UTF-8||en_GB.UTF-8||C||en_GB.UTF-8||en_GB.UTF-8</p>
 <p><strong>attached base packages:</strong> <em>stats</em>, <em>graphics</em>, <em>grDevices</em>, <em>datasets</em>, <em>utils</em>, <em>methods</em> and <em>base</em></p>
-<p><strong>other attached packages:</strong> <em>plyr(v.1.8.7)</em>, <em>KONPsurv(v.1.0.4)</em>, <em>vip(v.0.3.2)</em>, <em>patchwork(v.1.1.1)</em>, <em>survminer(v.0.4.9)</em>, <em>ggpubr(v.0.4.0)</em>, <em>survival(v.3.3-1)</em>, <em>ranger(v.0.13.1)</em>, <em>yardstick(v.0.0.9)</em>, <em>workflowsets(v.0.2.1)</em>, <em>workflows(v.0.2.6)</em>, <em>tune(v.0.2.0)</em>, <em>tidyr(v.1.2.0)</em>, <em>tibble(v.3.1.7)</em>, <em>rsample(v.0.1.1)</em>, <em>recipes(v.0.2.0)</em>, <em>purrr(v.0.3.4)</em>, <em>parsnip(v.0.2.1)</em>, <em>modeldata(v.0.1.1)</em>, <em>infer(v.1.0.0)</em>, <em>ggplot2(v.3.3.6)</em>, <em>dplyr(v.1.0.9)</em>, <em>dials(v.0.1.1)</em>, <em>scales(v.1.2.0)</em>, <em>broom(v.0.8.0)</em>, <em>tidymodels(v.0.2.0)</em> and <em>nnet(v.7.3-17)</em></p>
-<p><strong>loaded via a namespace (and not attached):</strong> <em>colorspace(v.2.0-3)</em>, <em>ggsignif(v.0.6.3)</em>, <em>ellipsis(v.0.3.2)</em>, <em>class(v.7.3-20)</em>, <em>rstudioapi(v.0.13)</em>, <em>listenv(v.0.8.0)</em>, <em>furrr(v.0.3.0)</em>, <em>prodlim(v.2019.11.13)</em>, <em>fansi(v.1.0.3)</em>, <em>lubridate(v.1.8.0)</em>, <em>codetools(v.0.2-18)</em>, <em>splines(v.4.2.1)</em>, <em>knitr(v.1.39)</em>, <em>jsonlite(v.1.8.0)</em>, <em>pROC(v.1.18.0)</em>, <em>km.ci(v.0.5-6)</em>, <em>compiler(v.4.2.1)</em>, <em>backports(v.1.4.1)</em>, <em>assertthat(v.0.2.1)</em>, <em>Matrix(v.1.4-1)</em>, <em>fastmap(v.1.1.0)</em>, <em>cli(v.3.3.0)</em>, <em>htmltools(v.0.5.2)</em>, <em>tools(v.4.2.1)</em>, <em>gtable(v.0.3.0)</em>, <em>glue(v.1.6.2)</em>, <em>Rcpp(v.1.0.8.3)</em>, <em>carData(v.3.0-5)</em>, <em>DiceDesign(v.1.9)</em>, <em>vctrs(v.0.4.1)</em>, <em>iterators(v.1.0.14)</em>, <em>timeDate(v.3043.102)</em>, <em>gower(v.1.0.0)</em>, <em>xfun(v.0.30)</em>, <em>stringr(v.1.4.0)</em>, <em>globals(v.0.14.0)</em>, <em>lifecycle(v.1.0.1)</em>, <em>renv(v.0.15.5)</em>, <em>rstatix(v.0.7.0)</em>, <em>future(v.1.25.0)</em>, <em>MASS(v.7.3-57)</em>, <em>zoo(v.1.8-10)</em>, <em>ipred(v.0.9-12)</em>, <em>parallel(v.4.2.1)</em>, <em>yaml(v.2.3.5)</em>, <em>gridExtra(v.2.3)</em>, <em>pander(v.0.6.5)</em>, <em>KMsurv(v.0.1-5)</em>, <em>rpart(v.4.1.16)</em>, <em>stringi(v.1.7.6)</em>, <em>highr(v.0.9)</em>, <em>foreach(v.1.5.2)</em>, <em>lhs(v.1.1.5)</em>, <em>hardhat(v.0.2.0)</em>, <em>lava(v.1.6.10)</em>, <em>rlang(v.1.0.2)</em>, <em>pkgconfig(v.2.0.3)</em>, <em>evaluate(v.0.15)</em>, <em>lattice(v.0.20-45)</em>, <em>datefixR(v.0.1.4)</em>, <em>htmlwidgets(v.1.5.4)</em>, <em>tidyselect(v.1.1.2)</em>, <em>parallelly(v.1.31.1)</em>, <em>magrittr(v.2.0.3)</em>, <em>R6(v.2.5.1)</em>, <em>generics(v.0.1.2)</em>, <em>DBI(v.1.1.2)</em>, <em>pillar(v.1.7.0)</em>, <em>withr(v.2.5.0)</em>, <em>abind(v.1.4-5)</em>, <em>future.apply(v.1.9.0)</em>, <em>crayon(v.1.5.1)</em>, <em>car(v.3.0-13)</em>, <em>survMisc(v.0.5.6)</em>, <em>utf8(v.1.2.2)</em>, <em>rmarkdown(v.2.14)</em>, <em>grid(v.4.2.1)</em>, <em>data.table(v.1.14.2)</em>, <em>digest(v.0.6.29)</em>, <em>xtable(v.1.8-4)</em>, <em>GPfit(v.1.0-8)</em> and <em>munsell(v.0.5.0)</em></p>
+<p><strong>other attached packages:</strong> <em>plyr(v.1.8.7)</em>, <em>KONPsurv(v.1.0.4)</em>, <em>vip(v.0.3.2)</em>, <em>patchwork(v.1.1.2)</em>, <em>survminer(v.0.4.9)</em>, <em>ggpubr(v.0.4.0)</em>, <em>survival(v.3.4-0)</em>, <em>ranger(v.0.14.1)</em>, <em>yardstick(v.1.0.0)</em>, <em>workflowsets(v.1.0.0)</em>, <em>workflows(v.1.0.0)</em>, <em>tune(v.1.0.0)</em>, <em>tidyr(v.1.2.0)</em>, <em>tibble(v.3.1.7)</em>, <em>rsample(v.1.1.0)</em>, <em>recipes(v.1.0.1)</em>, <em>purrr(v.0.3.4)</em>, <em>parsnip(v.1.0.1)</em>, <em>modeldata(v.1.0.1)</em>, <em>infer(v.1.0.3)</em>, <em>ggplot2(v.3.3.6)</em>, <em>dplyr(v.1.0.9)</em>, <em>dials(v.1.1.0)</em>, <em>scales(v.1.2.0)</em>, <em>broom(v.1.0.2)</em>, <em>tidymodels(v.1.0.0)</em> and <em>nnet(v.7.3-17)</em></p>
+<p><strong>loaded via a namespace (and not attached):</strong> <em>colorspace(v.2.0-3)</em>, <em>ggsignif(v.0.6.3)</em>, <em>ellipsis(v.0.3.2)</em>, <em>class(v.7.3-20)</em>, <em>rstudioapi(v.0.13)</em>, <em>listenv(v.0.8.0)</em>, <em>furrr(v.0.3.0)</em>, <em>prodlim(v.2019.11.13)</em>, <em>fansi(v.1.0.3)</em>, <em>lubridate(v.1.8.0)</em>, <em>codetools(v.0.2-18)</em>, <em>splines(v.4.2.1)</em>, <em>knitr(v.1.39)</em>, <em>jsonlite(v.1.8.0)</em>, <em>km.ci(v.0.5-6)</em>, <em>compiler(v.4.2.1)</em>, <em>backports(v.1.4.1)</em>, <em>assertthat(v.0.2.1)</em>, <em>Matrix(v.1.4-1)</em>, <em>fastmap(v.1.1.0)</em>, <em>cli(v.3.3.0)</em>, <em>htmltools(v.0.5.2)</em>, <em>tools(v.4.2.1)</em>, <em>gtable(v.0.3.0)</em>, <em>glue(v.1.6.2)</em>, <em>Rcpp(v.1.0.8.3)</em>, <em>carData(v.3.0-5)</em>, <em>DiceDesign(v.1.9)</em>, <em>vctrs(v.0.4.1)</em>, <em>iterators(v.1.0.14)</em>, <em>timeDate(v.4021.104)</em>, <em>gower(v.1.0.0)</em>, <em>xfun(v.0.30)</em>, <em>stringr(v.1.4.0)</em>, <em>globals(v.0.14.0)</em>, <em>lifecycle(v.1.0.1)</em>, <em>renv(v.0.15.5)</em>, <em>rstatix(v.0.7.0)</em>, <em>future(v.1.25.0)</em>, <em>MASS(v.7.3-57)</em>, <em>zoo(v.1.8-10)</em>, <em>ipred(v.0.9-13)</em>, <em>parallel(v.4.2.1)</em>, <em>yaml(v.2.3.5)</em>, <em>gridExtra(v.2.3)</em>, <em>pander(v.0.6.5)</em>, <em>KMsurv(v.0.1-5)</em>, <em>rpart(v.4.1.16)</em>, <em>stringi(v.1.7.6)</em>, <em>highr(v.0.9)</em>, <em>foreach(v.1.5.2)</em>, <em>lhs(v.1.1.5)</em>, <em>hardhat(v.1.2.0)</em>, <em>lava(v.1.6.10)</em>, <em>rlang(v.1.0.6)</em>, <em>pkgconfig(v.2.0.3)</em>, <em>evaluate(v.0.15)</em>, <em>lattice(v.0.20-45)</em>, <em>datefixR(v.1.3.1)</em>, <em>htmlwidgets(v.1.5.4)</em>, <em>tidyselect(v.1.1.2)</em>, <em>parallelly(v.1.31.1)</em>, <em>magrittr(v.2.0.3)</em>, <em>R6(v.2.5.1)</em>, <em>generics(v.0.1.2)</em>, <em>DBI(v.1.1.2)</em>, <em>pillar(v.1.7.0)</em>, <em>withr(v.2.5.0)</em>, <em>abind(v.1.4-5)</em>, <em>future.apply(v.1.9.0)</em>, <em>crayon(v.1.5.1)</em>, <em>car(v.3.0-13)</em>, <em>survMisc(v.0.5.6)</em>, <em>utf8(v.1.2.2)</em>, <em>rmarkdown(v.2.16)</em>, <em>grid(v.4.2.1)</em>, <em>data.table(v.1.14.2)</em>, <em>digest(v.0.6.29)</em>, <em>xtable(v.1.8-4)</em>, <em>GPfit(v.1.0-8)</em> and <em>munsell(v.0.5.0)</em></p>
 </div>
 </div>
 </section><div id="quarto-appendix" class="default"><section id="section" class="level2 appendix"><h2 class="quarto-appendix-heading"></h2><div class="quarto-appendix-contents">

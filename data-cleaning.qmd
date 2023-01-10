@@ -110,7 +110,7 @@ retained.
 
 For analysis, it is necessary to convert the data to long format: one
 row per measurement.
-`fix_dates()` from the `{datefixR}` R package is
+`fix_date_df()` and `fix_date_char()` from the `{datefixR}` R package is
 used to convert the dates to R's `Date` type. We also map censoring status
 indicators for endpoints to either 0 (censored) or 1 (observed).
 
@@ -131,6 +131,8 @@ date.surgs <- c()
 
 composites <- c()
 composites.days <- c()
+composites.old <- c()
+composites.days.old <- c()
 
 
 for (subject in 1:nrow(FCcumulative)) {
@@ -173,8 +175,14 @@ for (subject in 1:nrow(FCcumulative)) {
       date.surg <- FCcumulative[subject, "DATE.OF.LAST.FOLLOW.UP"]
     }
     
-    composite  <- FCcumulative[subject, "COMPOSITE.CENSOR"]
-    composite.day <- FCcumulative[subject, "COMPOSITE.DAYS"]
+
+    composite  <-  ifelse(hosp | prog | surg, 1, 0)
+    composite.day <- min(fix_date_char(c(date.hosp,
+                                         date.prog,
+                                         date.surg)))
+
+    composite.old  <- FCcumulative[subject, "COMPOSITE.CENSOR"]
+    composite.day.old <- FCcumulative[subject, "COMPOSITE.DAYS"]
     
     ids <- c(ids, subject); values <- c(values, value); dates <- c(dates, date)
     hosps <- c(hosps, hosp); date.hosps <- c(date.hosps, date.hosp)
@@ -182,6 +190,8 @@ for (subject in 1:nrow(FCcumulative)) {
     surgs <- c(surgs, surg); date.surgs <- c(date.surgs, date.surg)
     composites <- c(composites, composite)
     composites.days <- c(composites.days, composite.day)
+    composites.old <- c(composites.old, composite.old)
+    composites.days.old <- c(composites.days.old, composite.day.old)
     }
   }
 }
@@ -196,13 +206,18 @@ FCcumulativeLong <- data.frame(id = ids,
                                surg = surgs,
                                surg.date = date.surgs,
                                composite = composites,
-                               composites.day = composites.days)
+                               composites.day = composites.days,
+                               comp.old = composites.old,
+                               comp.day.old = composites.days.old)
 
-FCcumulativeLong <- fix_dates(FCcumulativeLong,
+FCcumulativeLong <- fix_date_df(FCcumulativeLong,
                               c("date",
                                 "hosp.date",
                                 "prog.date",
                                 "surg.date"))
+
+FCcumulativeLong$composites.day <- as.Date(FCcumulativeLong$composites.day,
+                                           origin = "1970-01-01")
 
 FCcounts <- as.vector(table(FCcumulativeLong$id))
 
@@ -320,6 +335,7 @@ for (subject in seq_along(FCcumulative$Patient.number)) {
   temp$hosp.date <- as.numeric(temp$hosp.date - temp$date[1]) / 365.25
   temp$prog.date <- as.numeric(temp$prog.date - temp$date[1]) / 365.25
   temp$surg.date <- as.numeric(temp$surg.date - temp$date[1]) / 365.25
+  temp$composites.day <- as.numeric(temp$composites.day - temp$date[1]) / 365.25
   tempdf <- rbind(tempdf, temp)
 }
 
@@ -445,7 +461,8 @@ print(p)
 p <- FCcountsdf %>%
   ggplot(aes(x = counts)) +
   geom_histogram(binwidth = 1, fill = "#479AA7", col = "#327c88") +
-  theme_minimal() +
+  theme_classic() +
+  theme(axis.line = element_line(colour = "gray")) +
   xlab("Faecal calprotectin measurement frequency") +
   ylab("Subjects")
 ggsave("paper/fcal-dist.png", p, width = 8, height = 4.5, units = "in")
@@ -484,6 +501,28 @@ FCcumulativeLong %>%
   ylab("Log FCAL") +
   ggtitle("Spaghetti Plot of FCAL Trajectories",
           "Subject-specific trajectories show a high degree of heterogeneity")
+```
+
+```{R}
+#| echo: false
+#| results: false
+#| warning: false
+#| fig.show: "hide"
+if(!dir.exists("GraphicalAbstract")) dir.create("GraphicalAbstract")
+cairo_pdf("GraphicalAbstract/all-trajectories.pdf",
+          width = 7.8617 / 1.5,
+          height = 7.4162 / 1.5)
+FCcumulativeLong %>% 
+  ggplot(aes(x = time, y = log(value), color = factor(id))) +
+  geom_line(alpha = 0.1) +
+  theme_minimal() + 
+  scale_color_manual(values = rep("black", 375)) +
+  theme_classic() +
+  theme(axis.line = element_line(colour = "gray")) +
+  guides(color = "none") +
+  xlab("Time (years)") +
+  ylab("Log (FCAL (μg/g))")
+dev.off()
 ```
 
 It should be noted `r lubridate::month(max.followup, label = TRUE, abbr = FALSE)`

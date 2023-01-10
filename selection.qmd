@@ -310,8 +310,10 @@ spaghetti_plot_sub <- function(FCcumulative,
         # Add subfigure labels
         print(p[[g]] +
                 ggtitle(labels[g]) +
-                theme(plot.title = element_text(face = "bold",
-                                                 size = 20)),
+                theme_classic() +
+                theme(axis.line = element_line(colour = "gray"),
+                      plot.title = element_text(face = "bold",
+                                                size = 20)),
               vp = viewport(layout.pos.row = matchidx$row,
                             layout.pos.col = matchidx$col)
               )
@@ -651,7 +653,8 @@ p <- ggplot(alluvial.df,
   geom_flow()  +
   geom_stratum(alpha = 0.5) +
   geom_text(stat = "stratum", size = 3) +
-  theme_minimal() +
+  theme_classic() +
+  theme(axis.line = element_line(colour = "gray")) +
   theme(legend.position = "none") +
   ggtitle("Alluvial plot of cluster membership across G",
           "Crohn's disease inception cohort") +
