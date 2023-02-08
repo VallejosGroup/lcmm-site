@@ -409,7 +409,7 @@ knitr::kable(data.frame(years = years,
 From this table, measurements within six years of diagnosis seems a
 sensible cut-off. However, we have ultimately decided five years is a better
 choice in order to be able to directly compare with other studies, for example
-the IBSEN study [@Henriksen2006], which describe 5-year disease activity
+the IBSEN study [@Henriksen2007], which describe 5-year disease activity
 trajectories.
 
 
@@ -563,11 +563,12 @@ via a Precision Medicine PhD studentship (MR/N013166/1, to **NC-C**).
 ## Author contributions {.appendix}
 
 **NC-C** performed the data cleaning detailed in this report. **NP** extracted
-the data from electronic health records and formatted the data in the form
-initially described.
+the data from electronic health records and formatted the data in the format
+initially described. **KM-G** and **CAV** provided supervisory support and
+assisted with revisions. 
 
 ## Reuse {.appendix}
 
 Licensed by 
-<a href="https://creativecommons.org/licenses/by/4.0/">CC BY </a>
- unless otherwise stated.
+<a href="https://creativecommons.org/licenses/by/4.0/">CC BY</a>
+except for the MRC Human Genetics Unit, The University of Edinburgh, and Centre for Genomic & Experimental Medicine logos or unless otherwise stated.

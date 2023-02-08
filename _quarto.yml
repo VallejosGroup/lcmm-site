@@ -46,8 +46,14 @@ website:
       - associations.qmd
       - icon: github
         href: https://github.com/vallejosgroup/lcmm-site
+      - icon: person-rolodex
+        href: https://vallejosgroup.github.io
   page-footer:
+    background: "#004276"
+    left: "Copyright 2023, The Authors"
     right:
+      - icon: github
+        href: https://github.com/vallejosgroup/lcmm-site
       - icon: twitter
         href: https://twitter.com/IBDNathan
   page-navigation: true

@@ -1,11 +1,11 @@
 ---
-title: "Analysis for Longitudinal Faecal Calprotectin Profiles Characterize Disease Course Heterogeneity in Crohn's Disease"
+title: "Analysis for Longitudinal Fecal Calprotectin Profiles Characterize Disease Course Heterogeneity in Crohn's Disease"
 format:
   html:
     code-tools: false
 date: ""
 date-format: ""
-title-block-banner: false # can set as hex 
+title-block-banner: false
 author:
   - name: "Nathan Contantine-Cooke" 
     url: https://scholar.google.com/citations?user=2emHWR0AAAAJ&hl=en&oi=ao

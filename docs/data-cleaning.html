@@ -176,7 +176,7 @@ div.csl-indent {
 <meta name="citation_doi" content="10.1101/2022.08.16.22278320">
 <meta name="citation_language" content="en">
 <meta name="citation_reference" content="citation_title=Normalization of fecal calprotectin within 12 months of diagnosis is associated with reduced risk of disease progression in patients with Crohn’s disease;,citation_author=Nikolas Plevris;,citation_author=James Fulforth;,citation_author=Mathew Lyons;,citation_author=Spyros I. Siakavellas;,citation_author=Philip W. Jenkinson;,citation_author=Cher S. Chuah;,citation_author=Laura Lucaciu;,citation_author=Rebecca J. Pattenden;,citation_author=Ian D. Arnott;,citation_author=Gareth-Rhys Jones;,citation_author=Charlie W. Lees;,citation_publication_date=2021-09;,citation_cover_date=2021-09;,citation_year=2021;,citation_issue=9;,citation_doi=10.1016/j.cgh.2020.08.022;,citation_volume=19;,citation_journal_title=Clinical Gastroenterology and Hepatology;,citation_publisher=Elsevier BV;">
-<meta name="citation_reference" content="citation_title=Ulcerative colitis and clinical course: Results of a 5-year population-based follow-up study (the IBSEN study);,citation_author=Magne Henriksen;,citation_author=Jrgen Jahnsen;,citation_author=Idar Lygren;,citation_author=Jostein Sauar;,citation_author=undefined Kjellevold;,citation_author=Tom Schulz;,citation_author=Morten H. Vatn;,citation_author=Bjrn Moum;,citation_publication_date=2006-07;,citation_cover_date=2006-07;,citation_year=2006;,citation_issue=7;,citation_doi=10.1097/01.mib.0000225339.91484.fc;,citation_volume=12;,citation_journal_title=Inflammatory Bowel Diseases;,citation_publisher=Oxford University Press (OUP);">
+<meta name="citation_reference" content="citation_title=Clinical course in crohns disease: Results of a five-year population-based follow-up study (the IBSEN study);,citation_author=Magne Henriksen;,citation_author=Jørgen Jahnsen;,citation_author=Idar Lygren;,citation_author=Erling Aadland;,citation_author=Tom Schulz;,citation_author=Morten H. Vatn;,citation_author=Bjørn Moum;,citation_author=THE IBSEN STUDY GROUP;,citation_publication_date=2007-01;,citation_cover_date=2007-01;,citation_year=2007;,citation_fulltext_html_url=https://doi.org/10.1080%2F00365520601076124;,citation_issue=5;,citation_doi=10.1080/00365520601076124;,citation_volume=42;,citation_journal_title=Scandinavian Journal of Gastroenterology;,citation_publisher=Informa UK Limited;">
 <meta name="citation_reference" content="citation_title=Polynomials and potential theory for gaussian radial basis function interpolation;,citation_abstract=We explore a connection between Gaussian radial basis functions and polynomials. Using standard tools of potential theory, we find that these radial functions are susceptible to the Runge phenomenon, not only in the limit of increasingly flat functions, but also in the finite shape parameter case. We show that there exist interpolation node distributions that prevent such phenomena and allow stable approximations. Using polynomials also provides an explicitinterpolation formula that avoids the difficulties of inverting interpolation matrices, while not imposing restrictions on the shape parameter or number of points.;,citation_author=Rodrigo B. Platte;,citation_author=Tobin A. Driscoll;,citation_publication_date=2005;,citation_cover_date=2005;,citation_year=2005;,citation_fulltext_html_url=https://doi.org/10.1137/040610143;,citation_issue=2;,citation_doi=10.1137/040610143;,citation_volume=43;,citation_journal_title=SIAM Journal on Numerical Analysis;">
 <meta name="citation_reference" content="citation_title=Estimation of extended mixed models using latent classes and latent processes: The R package lcmm;,citation_author=Cécile Proust-Lima;,citation_author=Viviane Philipps;,citation_author=Benoit Liquet;,citation_publication_date=2017;,citation_cover_date=2017;,citation_year=2017;,citation_issue=2;,citation_doi=10.18637/jss.v078.i02;,citation_volume=78;,citation_journal_title=Journal of Statistical Software;">
 <meta name="citation_reference" content="citation_title=Regression modeling strategies;,citation_author=undefined Frank E. Harrell;,citation_publication_date=2015;,citation_cover_date=2015;,citation_year=2015;,citation_doi=10.1007/978-3-319-19425-7;">
@@ -212,6 +212,11 @@ div.csl-indent {
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/vallejosgroup/lcmm-site"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://vallejosgroup.github.io"><i class="bi bi-person-rolodex" role="img">
 </i> 
  </a>
   </li>  
@@ -875,7 +880,7 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p>From this table, measurements within six years of diagnosis seems a sensible cut-off. However, we have ultimately decided five years is a better choice in order to be able to directly compare with other studies, for example the IBSEN study <span class="citation" data-cites="Henriksen2006">(<a href="#ref-Henriksen2006" role="doc-biblioref">Henriksen et al. 2006</a>)</span>, which describe 5-year disease activity trajectories.</p>
+<p>From this table, measurements within six years of diagnosis seems a sensible cut-off. However, we have ultimately decided five years is a better choice in order to be able to directly compare with other studies, for example the IBSEN study <span class="citation" data-cites="Henriksen2007">(<a href="#ref-Henriksen2007" role="doc-biblioref">Henriksen et al. 2007</a>)</span>, which describe 5-year disease activity trajectories.</p>
 <p>Based on the data cleaning step of the pipeline, restricting measurements to within 5 years of diagnosis seemed appropriate. Additionally, we will only consider subjects with at least 3 FCAL measurements within this time period. This report reports descriptive statistics for the cohort after this inclusion criteria is applied.</p>
 <div class="cell">
 <details><summary>Code</summary><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">FCcumulativeLong</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span>, <span class="va">time</span> <span class="op">&lt;</span> <span class="fl">5</span><span class="op">)</span></span>
@@ -976,10 +981,10 @@ div.csl-indent {
 <div class="cell-output-display">
 <p><strong>R version 4.2.1 (2022-06-23)</strong></p>
 <p><strong>Platform:</strong> x86_64-apple-darwin17.0 (64-bit)</p>
-<p><strong>locale:</strong> en_US.UTF-8||en_US.UTF-8||en_US.UTF-8||C||en_US.UTF-8||en_US.UTF-8</p>
+<p><strong>locale:</strong> en_GB.UTF-8||en_GB.UTF-8||en_GB.UTF-8||C||en_GB.UTF-8||en_GB.UTF-8</p>
 <p><strong>attached base packages:</strong> <em>stats</em>, <em>graphics</em>, <em>grDevices</em>, <em>datasets</em>, <em>utils</em>, <em>methods</em> and <em>base</em></p>
-<p><strong>other attached packages:</strong> <em>viridis(v.0.6.2)</em>, <em>viridisLite(v.0.4.0)</em>, <em>pander(v.0.6.5)</em>, <em>patchwork(v.1.1.2)</em>, <em>datefixR(v.1.3.1)</em>, <em>ggdist(v.3.2.0)</em>, <em>forcats(v.0.5.1)</em>, <em>stringr(v.1.4.0)</em>, <em>dplyr(v.1.0.9)</em>, <em>purrr(v.0.3.4)</em>, <em>readr(v.2.1.2)</em>, <em>tidyr(v.1.2.0)</em>, <em>tibble(v.3.1.7)</em>, <em>ggplot2(v.3.3.6)</em> and <em>tidyverse(v.1.3.2)</em></p>
-<p><strong>loaded via a namespace (and not attached):</strong> <em>Rcpp(v.1.0.8.3)</em>, <em>lubridate(v.1.8.0)</em>, <em>assertthat(v.0.2.1)</em>, <em>digest(v.0.6.29)</em>, <em>utf8(v.1.2.2)</em>, <em>R6(v.2.5.1)</em>, <em>cellranger(v.1.1.0)</em>, <em>backports(v.1.4.1)</em>, <em>reprex(v.2.0.2)</em>, <em>evaluate(v.0.15)</em>, <em>highr(v.0.9)</em>, <em>httr(v.1.4.4)</em>, <em>pillar(v.1.7.0)</em>, <em>rlang(v.1.0.6)</em>, <em>googlesheets4(v.1.0.1)</em>, <em>readxl(v.1.4.1)</em>, <em>rstudioapi(v.0.13)</em>, <em>rmarkdown(v.2.16)</em>, <em>textshaping(v.0.3.6)</em>, <em>labeling(v.0.4.2)</em>, <em>googledrive(v.2.0.0)</em>, <em>htmlwidgets(v.1.5.4)</em>, <em>munsell(v.0.5.0)</em>, <em>broom(v.1.0.2)</em>, <em>compiler(v.4.2.1)</em>, <em>modelr(v.0.1.9)</em>, <em>xfun(v.0.30)</em>, <em>systemfonts(v.1.0.4)</em>, <em>pkgconfig(v.2.0.3)</em>, <em>htmltools(v.0.5.2)</em>, <em>tidyselect(v.1.1.2)</em>, <em>gridExtra(v.2.3)</em>, <em>fansi(v.1.0.3)</em>, <em>crayon(v.1.5.1)</em>, <em>tzdb(v.0.3.0)</em>, <em>dbplyr(v.2.1.1)</em>, <em>withr(v.2.5.0)</em>, <em>grid(v.4.2.1)</em>, <em>distributional(v.0.3.0)</em>, <em>jsonlite(v.1.8.0)</em>, <em>gtable(v.0.3.0)</em>, <em>lifecycle(v.1.0.1)</em>, <em>DBI(v.1.1.2)</em>, <em>magrittr(v.2.0.3)</em>, <em>scales(v.1.2.0)</em>, <em>cli(v.3.3.0)</em>, <em>stringi(v.1.7.6)</em>, <em>farver(v.2.1.0)</em>, <em>renv(v.0.15.5)</em>, <em>fs(v.1.5.2)</em>, <em>xml2(v.1.3.3)</em>, <em>ragg(v.1.2.2)</em>, <em>ellipsis(v.0.3.2)</em>, <em>generics(v.0.1.2)</em>, <em>vctrs(v.0.4.1)</em>, <em>tools(v.4.2.1)</em>, <em>glue(v.1.6.2)</em>, <em>hms(v.1.1.2)</em>, <em>fastmap(v.1.1.0)</em>, <em>yaml(v.2.3.5)</em>, <em>colorspace(v.2.0-3)</em>, <em>gargle(v.1.2.0)</em>, <em>rvest(v.1.0.3)</em>, <em>knitr(v.1.39)</em> and <em>haven(v.2.5.1)</em></p>
+<p><strong>other attached packages:</strong> <em>viridis(v.0.6.2)</em>, <em>viridisLite(v.0.4.0)</em>, <em>pander(v.0.6.5)</em>, <em>patchwork(v.1.1.1)</em>, <em>datefixR(v.1.3.1)</em>, <em>ggdist(v.3.1.1)</em>, <em>forcats(v.0.5.1)</em>, <em>stringr(v.1.4.0)</em>, <em>dplyr(v.1.0.9)</em>, <em>purrr(v.0.3.4)</em>, <em>readr(v.2.1.2)</em>, <em>tidyr(v.1.2.0)</em>, <em>tibble(v.3.1.7)</em>, <em>ggplot2(v.3.3.6)</em> and <em>tidyverse(v.1.3.1)</em></p>
+<p><strong>loaded via a namespace (and not attached):</strong> <em>Rcpp(v.1.0.8.3)</em>, <em>lubridate(v.1.8.0)</em>, <em>assertthat(v.0.2.1)</em>, <em>digest(v.0.6.29)</em>, <em>utf8(v.1.2.2)</em>, <em>R6(v.2.5.1)</em>, <em>cellranger(v.1.1.0)</em>, <em>backports(v.1.4.1)</em>, <em>reprex(v.2.0.1)</em>, <em>evaluate(v.0.15)</em>, <em>highr(v.0.9)</em>, <em>httr(v.1.4.3)</em>, <em>pillar(v.1.7.0)</em>, <em>rlang(v.1.0.2)</em>, <em>readxl(v.1.4.0)</em>, <em>rstudioapi(v.0.13)</em>, <em>rmarkdown(v.2.14)</em>, <em>textshaping(v.0.3.6)</em>, <em>labeling(v.0.4.2)</em>, <em>htmlwidgets(v.1.5.4)</em>, <em>munsell(v.0.5.0)</em>, <em>broom(v.0.8.0)</em>, <em>compiler(v.4.2.1)</em>, <em>modelr(v.0.1.8)</em>, <em>xfun(v.0.30)</em>, <em>systemfonts(v.1.0.4)</em>, <em>pkgconfig(v.2.0.3)</em>, <em>htmltools(v.0.5.2)</em>, <em>tidyselect(v.1.1.2)</em>, <em>gridExtra(v.2.3)</em>, <em>fansi(v.1.0.3)</em>, <em>crayon(v.1.5.1)</em>, <em>tzdb(v.0.3.0)</em>, <em>dbplyr(v.2.1.1)</em>, <em>withr(v.2.5.0)</em>, <em>grid(v.4.2.1)</em>, <em>distributional(v.0.3.0)</em>, <em>jsonlite(v.1.8.0)</em>, <em>gtable(v.0.3.0)</em>, <em>lifecycle(v.1.0.1)</em>, <em>DBI(v.1.1.2)</em>, <em>magrittr(v.2.0.3)</em>, <em>scales(v.1.2.0)</em>, <em>cli(v.3.3.0)</em>, <em>stringi(v.1.7.6)</em>, <em>farver(v.2.1.0)</em>, <em>renv(v.0.15.5)</em>, <em>fs(v.1.5.2)</em>, <em>xml2(v.1.3.3)</em>, <em>ragg(v.1.2.2)</em>, <em>ellipsis(v.0.3.2)</em>, <em>generics(v.0.1.2)</em>, <em>vctrs(v.0.4.1)</em>, <em>tools(v.4.2.1)</em>, <em>glue(v.1.6.2)</em>, <em>hms(v.1.1.1)</em>, <em>fastmap(v.1.1.0)</em>, <em>yaml(v.2.3.5)</em>, <em>colorspace(v.2.0-3)</em>, <em>rvest(v.1.0.2)</em>, <em>knitr(v.1.39)</em> and <em>haven(v.2.5.0)</em></p>
 </div>
 </div>
 </section><div id="quarto-appendix" class="default"><section id="section" class="level2 appendix"><h2 class="quarto-appendix-heading"></h2><div class="quarto-appendix-contents">
@@ -989,15 +994,15 @@ div.csl-indent {
 </div></section><section id="acknowledgments" class="level2 appendix"><h2 class="quarto-appendix-heading">Acknowledgments</h2><div class="quarto-appendix-contents">
 <p>This work is funded by the Medical Research Council &amp; University of Edinburgh via a Precision Medicine PhD studentship (MR/N013166/1, to <strong>NC-C</strong>).</p>
 </div></section><section id="author-contributions" class="level2 appendix"><h2 class="quarto-appendix-heading">Author contributions</h2><div class="quarto-appendix-contents">
-<p><strong>NC-C</strong> performed the data cleaning detailed in this report. <strong>NP</strong> extracted the data from electronic health records and formatted the data in the form initially described.</p>
+<p><strong>NC-C</strong> performed the data cleaning detailed in this report. <strong>NP</strong> extracted the data from electronic health records and formatted the data in the format initially described. <strong>KM-G</strong> and <strong>CAV</strong> provided supervisory support and assisted with revisions.</p>
 </div></section><section id="reuse" class="level2 appendix"><h2 class="quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents">
-<p>Licensed by <a href="https://creativecommons.org/licenses/by/4.0/">CC BY </a> unless otherwise stated.</p>
+<p>Licensed by <a href="https://creativecommons.org/licenses/by/4.0/">CC BY</a> except for the MRC Human Genetics Unit, The University of Edinburgh, and Centre for Genomic &amp; Experimental Medicine logos or unless otherwise stated.</p>
 
 
 
 </div></section><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-Henriksen2006" class="csl-entry" role="doc-biblioentry">
-Henriksen, Magne, Jrgen Jahnsen, Idar Lygren, Jostein Sauar, ystein Kjellevold, Tom Schulz, Morten H. Vatn, and Bjrn Moum. 2006. <span>“Ulcerative Colitis and Clinical Course: Results of a 5-Year Population-Based Follow-up Study (the <span>IBSEN</span> Study).”</span> <em>Inflammatory Bowel Diseases</em> 12 (7): 543–50. <a href="https://doi.org/10.1097/01.mib.0000225339.91484.fc">https://doi.org/10.1097/01.mib.0000225339.91484.fc</a>.
+<div id="ref-Henriksen2007" class="csl-entry" role="doc-biblioentry">
+Henriksen, Magne, Jørgen Jahnsen, Idar Lygren, Erling Aadland, Tom Schulz, Morten H. Vatn, Bjørn Moum, and THE IBSEN STUDY GROUP. 2007. <span>“Clinical Course in Crohn<span></span>s Disease: Results of a Five-Year Population-Based Follow-up Study (the <span>IBSEN</span> Study).”</span> <em>Scandinavian Journal of Gastroenterology</em> 42 (5): 602–10. <a href="https://doi.org/10.1080/00365520601076124">https://doi.org/10.1080/00365520601076124</a>.
 </div>
 <div id="ref-Plevris2021" class="csl-entry" role="doc-biblioentry">
 Plevris, Nikolas, James Fulforth, Mathew Lyons, Spyros I. Siakavellas, Philip W. Jenkinson, Cher S. Chuah, Laura Lucaciu, et al. 2021. <span>“Normalization of Fecal Calprotectin Within 12 Months of Diagnosis Is Associated with Reduced Risk of Disease Progression in Patients with <span class="nocase">Crohn’s</span> Disease.”</span> <em>Clinical Gastroenterology and Hepatology</em> 19 (9): 1835–1844.e6. <a href="https://doi.org/10.1016/j.cgh.2020.08.022">https://doi.org/10.1016/j.cgh.2020.08.022</a>.
@@ -1266,9 +1271,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 </div> <!-- /content -->
 <footer class="footer"><div class="nav-footer">
+    <div class="nav-footer-left">Copyright 2023, The Authors</div>   
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
 <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/vallejosgroup/lcmm-site">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
     <a class="nav-link" href="https://twitter.com/IBDNathan">
       <i class="bi bi-twitter" role="img">
 </i> 

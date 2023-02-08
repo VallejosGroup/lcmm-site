@@ -1097,5 +1097,5 @@ descriptive statistics. **KM**, **RM** and **CAV** provided feedback.
 ## Reuse {.appendix}
 
 Licensed by 
-<a href="https://creativecommons.org/licenses/by/4.0/">CC BY </a>
- unless otherwise stated.
+<a href="https://creativecommons.org/licenses/by/4.0/">CC BY</a>
+except for the MRC Human Genetics Unit, The University of Edinburgh, and Centre for Genomic & Experimental Medicine logos or unless otherwise stated.
