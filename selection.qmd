@@ -51,6 +51,7 @@ library(patchwork)
 library(ggdist)
 library(grid)
 library(ggalluvial)
+library(qqplotr)
 
 if (!require(DT)) {
   install.packages("DT")
@@ -782,7 +783,10 @@ ggsave("plots/Distributions.pdf", p, width = 8.5, height = 4.5, units = "in")
 
 To ensure model assumptions are not violated, residual plots are also consulted.
 The residual plots are very similar across all models considered and are
-reassuring.
+reassuring. As we later decide on the $G = 4$ model
+([see the Spaghetti plots per cluster section](#spaghetti-plots-per-cluster)),
+we have generated additional plots examining the normality of the residuals for
+this model. 
 
 ::: {.panel-tabset}
 
@@ -862,6 +866,77 @@ dev.off()
 #| fig-height: 8
 plot(cubicbf.fits[[4]], shades = TRUE)
 ```
+
+
+```{R}
+#| results: "hold"
+#| label: fig-qqnorm-pop
+#| fig-cap: "(A) Density plot of residuals for the four-cluster model. (B) Quantile-quantile plot of residuals for the four-cluster model."
+#| fig-width: 6.5
+#| fig-height: 6.5
+p1 <- data.frame(residuals = resid(cubicbf.fits[[4]])) %>%
+  ggplot(aes(x = residuals)) +
+  geom_histogram(aes(y = ..density..),
+                 fill = "#D8829D",
+                 color = "#AF6A80",
+                 bins = 30) +
+  geom_density(color = "#023777", size = 1.2) +
+  theme_classic() +
+  theme(axis.line = element_line(colour = "gray")) +
+  ylab("Density") +
+  xlab("Residuals") +
+  ggtitle("A")
+
+p2 <- data.frame(residuals = resid(cubicbf.fits[[4]])) %>%
+  ggplot(aes(sample = residuals)) +
+    stat_qq_band() +
+    stat_qq_line(color = "#D8829D") +
+    stat_qq_point(color = "#023777")  +
+    theme_classic() +
+    theme(axis.line = element_line(colour = "gray")) + 
+    ylab("Theoretical Quantiles") +
+    xlab("Sample Quantiles") +
+  ggtitle("B")
+ggsave("paper/Residual-plot.pdf",
+       plot = p1 / p2,
+       width = 8,
+       height = 8,
+       units = "in")
+print(p1 / p2)
+```
+
+```{R}
+#| label: fig-qqnorm-cluster
+#| fig-cap: "Quantile-quantile plots of residuals for the four-cluster latent class mixed model stratified by (A) cluster 1; (B) cluster 2; (C) cluster 3; and (D) cluster 4."
+dict <- cubicbf.fits[[4]]$pprob[, c("id", "class")]
+dict$class <- plyr::mapvalues(dict$class,
+                              from = c(1, 2, 3, 4),
+                              to = c(4, 3, 1, 2))
+temp <- merge(cubicbf.fits[[4]]$pred, dict, by = "id")
+par(mfrow = c(2,2))
+labels <- c("A", "B", "C", "D")
+p <- list()
+
+for (i in 1:4) {
+  p[[i]] <- subset(temp, class == i) %>%
+    ggplot(aes(sample = resid_ss)) +
+    stat_qq_band() +
+    stat_qq_line(color = "#D8829D") +
+    stat_qq_point(color = "#023777")  +
+    theme_classic() +
+    theme(axis.line = element_line(colour = "gray")) + 
+    ylab("Theoretical Quantiles") +
+    xlab("Sample Quantiles") +
+  ggtitle(labels[i])
+}
+ggsave("paper/cluster-resids.pdf",
+       (p[[1]] + p[[2]]) / (p[[3]] + p[[4]]),
+       width = 8,
+       height = 8,
+       units = "in")
+print((p[[1]] + p[[2]]) / (p[[3]] + p[[4]]))
+```
+
 #### G = 5
 
 ```{R Save residual G5}

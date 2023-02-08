@@ -12,6 +12,15 @@ author:
     affiliations:
       - ref: CGEM
       - ref: IBD
+  - name: "Karla Monterrubio-Gómez"
+    url: https://scholar.google.com/citations?user=YmyxSXAAAAAJ&hl=en
+    affiliations:
+      - ref: HGU
+  - name: "Catalina A. Vallejos"
+    url: https://scholar.google.com/citations?user=lkdrwm0AAAAJ&hl=en&oi=ao
+    affiliations:
+      - ref: HGU
+      - ref: Turing
 #comments:
 #  giscus: 
 #    repo: quarto-dev/quarto-docs
@@ -27,6 +36,7 @@ editor_options:
 library(tidyverse)
 library(ggdist)
 library(datefixR)
+library(patchwork)
 
 if(!require(pander)) {
   install.packages("pander")
@@ -47,11 +57,11 @@ FCcumulative <- read.csv(paste0("/Volumes/igmm/cvallejo-predicct/data/",
 This analysis, which aims to find latent Crohn's disease (CD) subgroups with
 similar faecal calprotectin (FCAL) profiles, uses data from the Crohn's Disease
 Inception Cohort [@Plevris2021]. The Crohn's disease inception cohort is a
-manually validated longitudinal cohort of `r length(unique(FCcumulative$Patient.number))`
-incident Crohn's disease (CD) cases. These are all incident CD cases diagnosed
-between 2005 and 2017 with a diagnosis FCAL of
-$\geq 250 \mu g/g$, at least one FCAL measurement within the first
-12 months of diagnosis, and at least 12 months of follow-up. @fig-flow
+manually validated longitudinal cohort of
+`r length(unique(FCcumulative$Patient.number))` incident Crohn's disease (CD)
+cases. These are all incident CD cases diagnosed between 2005 and 2017 with a
+diagnosis FCAL of $\geq 250 \mu g/g$, at least one FCAL measurement within the
+first 12 months of diagnosis, and at least 12 months of follow-up. @fig-flow
 shows how this cohort was derived.
 
 ![Flowchart of how the Crohn's disease inception cohort was derived
@@ -87,7 +97,7 @@ knitr::kable(FCcumulative[1:5, 1:5], align = "c")
 ### Dropping columns
 
 The first column lists "Overall" for all subjects. This is believed to
-be a holdover from the original format of the data, where each outcome
+be a holdover from the original format of the data where each outcome
 for a subject had separate rows. As such, this column can be freely
 dropped. Additionally, all `NA`-only columns can also be dropped.
 
@@ -240,23 +250,20 @@ detail and demonstrates the substantial skew observed.
 
 ```{R}
 #| label: fig-dist
-#| fig-cap: "Distribution of number of FCAL measurements per subject."
+#| fig-cap: "Distribution of the number of FCAL measurements per subject for the Crohn's disease inception cohort."
 FCcountsdf <- tibble(counts = FCcounts)
 
-FCcountsdf %>%
+p <- FCcountsdf %>%
   ggplot(aes(x = counts)) +
-  stat_slab(size = 0.8, alpha = 0.9, fill = "#235789", color = "#235789") +
-  geom_dots(fill = "#ed1c24",
-            color = "#ed1c24",
-            alpha = 0.5,
-            binwidth = 1,
-            dotsize = 0.5) +
-  theme_minimal() +
-  theme(axis.text.y = element_blank()) +
-  xlab("Number of FCAL observations per subject") +
-  ylab("") +
-  ggtitle("Distribution of Number of FCAL Measurements per Subject",
-          "Crohn's disease inception cohort")
+  geom_histogram(binwidth = 1, fill = "#479AA7", col = "#327c88") +
+  theme_classic() +
+  theme(axis.line = element_line(colour = "gray")) +
+  ggtitle(paste("Distribution of number of fecal calprotectin measurements",
+                "per subject"), 
+          "Crohn's disease inception cohort") +
+  xlab("Number of fecal calprotectin measurements per subject") +
+  ylab("Number of subjects")
+p
 ```
 
 
@@ -416,83 +423,77 @@ criteria is applied.
 FCcumulativeLong <- subset(FCcumulativeLong, time < 5)
 subjects.with.3 <- unique(FCcumulativeLong$id)[table(FCcumulativeLong$id) >=3]
 FCcumulativeLong <- subset(FCcumulativeLong, id %in% subjects.with.3)
-```
-
-There are `r length(subjects.with.3)` CDI subjects which meet the criteria of having
-at least 3 FCAL measurements within 5 years of diagnosis. 
-
-```{R}
 FCcounts <- as.vector(table(FCcumulativeLong$id))
 ```
+
+There are `r length(subjects.with.3)` CDI subjects which meet the criteria of
+having at least 3 FCAL measurements within 5 years of diagnosis. 
+
 
 There are `r nrow(FCcumulativeLong)` FCAL
 samples reported with mean `r round(mean(FCcounts), 2)` measurements per subject
 and median `r median(FCcounts)` (Q1: `r quantile(FCcounts)[2]`, Q3:
-`r quantile(FCcounts)[4]`) measurements per subject.  The below plots are updated
-version of previous plots: updated to only include subjects which meet this
-criteria. 
+`r quantile(FCcounts)[4]`) measurements per subject.  The below plots are
+updated version of previous plots: updated to only include subjects which meet
+these criteria. 
 
 
 ```{R}
-#| fig.width: 8
-#| fig.height: 4.5
-FCcountsdf <- tibble(counts = FCcounts)
-
-p <- FCcountsdf %>%
-  ggplot(aes(x = counts)) +
-  stat_slab(size = 0.8, alpha = 0.9, fill = "#235789", color = "#235789") +
-  geom_dots(fill = "#ed1c24",
-            color = "#ed1c24",
-            alpha = 0.5,
-            binwidth = 1,
-            dotsize = 0.22) +
-  theme_minimal() +
-  theme(axis.text.y = element_blank()) +
-  xlab("Number of FCAL observations per subject") +
-  ylab("") +
-  ggtitle("Distribution of Number of FCAL Measurements per Subject",
-          paste("Crohn's disease inception cohort,",
-                "(inclusion: >2 FCAL measurements within 5 years)"))
-ggsave("plots/dist1.png" , p, width = 8, height = 4.5, units = "in")
-print(p)
-```
-
-```{R}
+#| results: "hold"
+#| label: fig-dist-count-cutoff
+#| fig-cap: "Distribution of number of FCAL measurements per subject after applying cut-off"
 p <- FCcountsdf %>%
   ggplot(aes(x = counts)) +
   geom_histogram(binwidth = 1, fill = "#479AA7", col = "#327c88") +
   theme_classic() +
   theme(axis.line = element_line(colour = "gray")) +
-  xlab("Faecal calprotectin measurement frequency") +
-  ylab("Subjects")
-ggsave("paper/fcal-dist.png", p, width = 8, height = 4.5, units = "in")
-ggsave("paper/fcal-dist.pdf", p, width = 8, height = 4.5, units = "in")
-```
-
-
-```{R}
-p <- FCcumulativeLong %>%
-  ggplot(aes(x = value, y = NULL)) +
-  stat_slab(size = 0.8, alpha = 0.5, fill = "#235789") +
-  geom_dots(color = "#235789",
-            fill = "#235789",
-            binwidth = 10,
-            size = 1,
-            side = "bottom") +
-  theme_minimal() +
-  theme(axis.text.y = element_blank()) +
-  xlab("FCAL (µg/g)") +
-  ylab("") +
-  ggtitle("Distribution of FCAL Measurements",
-          paste("Crohn's disease inception cohort,",
-                "(inclusion: >2 FCAL measurements within 5 years)"))
-ggsave("plots/dist2.png", p, width = 8, height = 4.5, units = "in")
-print(p)
+  xlab("Number of fecal calprotectin measurements per subject") +
+  ylab("Number of subjects")
+ggsave("paper/fcal-freq-dist.pdf", p, width = 8, height = 4.5, units = "in")
+p
 ```
 
 ```{R}
+#| results: "hold"
+#| label: fig-dist-cutoff
+#| fig-cap: "Distribution of FCAL  after applying the cut-off in (A) natural scale; and (B) log scale."
+#| column: "body-outset"
+#| fig-width: 9
+#| fig-height: 4.5 
+p1 <- ggplot(FCcumulativeLong, aes(x = value)) +
+  geom_histogram(aes(y = ..density..),
+                 fill = "#D8829D",
+                 color = "#AF6A80",
+                 bins = 30) +
+  geom_density(color = "#023777", size = 1.2) +
+  theme_classic() +
+  theme(axis.line = element_line(colour = "gray")) +
+  ylab("Density") +
+  xlab("Fecal calprotectin (μg/g)") + ggtitle("A")
+
+  
+p2 <- ggplot(FCcumulativeLong, aes(x = log(value))) +
+  geom_histogram(aes(y = ..density..),
+                 fill = "#D8829D",
+                 color = "#AF6A80",
+                 bins = 30) +
+  geom_density(color = "#023777", size = 1.2) +
+  theme_classic() +
+  theme(axis.line = element_line(colour = "gray")) +
+  ylab("Density") +
+  xlab("Log Fecal calprotectin (FCAL (μg/g))") + ggtitle("B")
+cairo_pdf("plots/Dist-comp.pdf", width = 8, height = 4.5)
+p1 + p2
+invisible(dev.off())
+print(p1 + p2)
+```
+
+```{R}
+#| label: fig-spag-cutoff
+#| fig-cap: "Spaghetti plot of all FCAL trajectories in the Crohn’s disease inception cohort."
 FCcumulativeLong %>% 
-  ggplot(aes(x = time, y = log(value), color = factor(id))) + geom_line(alpha = 0.2) +
+  ggplot(aes(x = time, y = log(value), color = factor(id))) +
+  geom_line(alpha = 0.2) +
   geom_point(alpha = 0.6) +
   theme_minimal() + 
   scale_color_manual(values = viridis::viridis(375)) +
@@ -514,9 +515,9 @@ cairo_pdf("GraphicalAbstract/all-trajectories.pdf",
           height = 7.4162 / 1.5)
 FCcumulativeLong %>% 
   ggplot(aes(x = time, y = log(value), color = factor(id))) +
-  geom_line(alpha = 0.1) +
+  geom_line(alpha = 0.3) +
   theme_minimal() + 
-  scale_color_manual(values = rep("black", 375)) +
+  scale_color_manual(values = viridis(375)) +
   theme_classic() +
   theme(axis.line = element_line(colour = "gray")) +
   guides(color = "none") +
@@ -525,13 +526,14 @@ FCcumulativeLong %>%
 dev.off()
 ```
 
-It should be noted `r lubridate::month(max.followup, label = TRUE, abbr = FALSE)`
-`r lubridate::year(max.followup)` is the last month of followup
+It should be noted
+`r lubridate::month(max.followup, label = TRUE, abbr = FALSE)`
+`r lubridate::year(max.followup)` is the last month of follow-up.
 
 ## Data saving
 
-The tidied data, with a 5-year cut-off applied, has been saved as a  RDS file for
-the [model selection](selection.qmd) step of the analysis pipeline.
+The tidied data, with a 5-year cut-off applied, has been saved as a  RDS file
+for the [model selection](selection.qmd) step of the analysis pipeline.
 
 ```{R}
 saveRDS(FCcumulativeLong,

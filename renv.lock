@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.2.0",
+    "Version": "4.2.2",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -15,6 +15,14 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "dcd1743af4336156873e3ce3c950b8b9",
+      "Requirements": []
+    },
+    "DEoptimR": {
+      "Package": "DEoptimR",
+      "Version": "1.0-11",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "b18b34cfbf932e17803c2e3e4b1a2d2a",
       "Requirements": []
     },
     "DT": {
@@ -488,11 +496,14 @@
     },
     "datefixR": {
       "Package": "datefixR",
-      "Version": "0.1.4",
+      "Version": "1.3.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "5dcf79ef46b65416baf381c25df1b34e",
+      "Hash": "92e04b7173a93d6fed8703d417edae8c",
       "Requirements": [
+        "Rcpp",
+        "lifecycle",
+        "rlang",
         "stringr"
       ]
     },
@@ -524,11 +535,11 @@
       "Package": "desc",
       "Version": "1.4.1.9000",
       "Source": "Repository",
-      "Repository": "https://ropensci-review-tools.r-universe.dev",
+      "RemoteType": "repository",
       "RemoteUrl": "https://github.com/r-lib/desc",
       "RemoteRef": "HEAD",
       "RemoteSha": "a91da3f91a701243b5adb928327a3ec5c3297c0f",
-      "Hash": "7b73ee61d4e636d03e66b50469329024",
+      "Hash": "cb30081dc1802d3bab5545fccb93f20a",
       "Requirements": [
         "R6",
         "cli",
@@ -1764,6 +1775,19 @@
         "rlang"
       ]
     },
+    "qqplotr": {
+      "Package": "qqplotr",
+      "Version": "0.0.5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "679abf2c2bf9031206e03e5ef3fe47a3",
+      "Requirements": [
+        "MASS",
+        "dplyr",
+        "ggplot2",
+        "robustbase"
+      ]
+    },
     "quantreg": {
       "Package": "quantreg",
       "Version": "5.88",
@@ -1946,6 +1970,16 @@
       "Repository": "CRAN",
       "Hash": "3a89ad41b7622e31859bc1987c46e042",
       "Requirements": []
+    },
+    "robustbase": {
+      "Package": "robustbase",
+      "Version": "0.95-0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "c918476150dd483a23f1d1cab6d17e76",
+      "Requirements": [
+        "DEoptimR"
+      ]
     },
     "rpart": {
       "Package": "rpart",
