@@ -26,7 +26,6 @@ format:
     self-contained-math: false
     mainfont: "Mulish"
     monofont: "Noto Sans Mono"
-    doi: "10.1101/2022.08.16.22278320"
 
 website:
   title: "Analysis by Constantine-Cooke et al."
@@ -91,5 +90,24 @@ affiliations:
     city: "London"
     country: "United Kingdom"
     url: "https://www.turing.ac.uk"
+
+citation:
+  type: article-journal
+  title: Longitudinal Fecal Calprotectin Profiles Characterize Disease Course Heterogeneity in Crohn’s Disease
+  author:
+  - Nathan Constantine-Cooke
+  - Karla Monterrubio-Gómez
+  - Nikolas Plevris
+  - Lauranne A.A.P. Derikx
+  - Beatriz Gros
+  - Gareth-Rhys Jones
+  - Riccardo E. Marioni
+  - Charlie W. Lees
+  - Catalina A. Vallejos
+  container-title: "Clinical Gastroenterology and Hepatology"
+  doi: "10.1016/j.cgh.2023.03.026"
+  issn: "1542-3565"
+  publisher: "Elsevier"
+  url: "https://www.cghjournal.org/article/S1542-3565(23)00234-3/"
 
 

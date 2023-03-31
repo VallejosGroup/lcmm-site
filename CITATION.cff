@@ -1,0 +1,62 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Constantine-Cooke"
+  given-names: "Nathan"
+  orcid: "https://orcid.org/0000-0002-4437-8713"
+- family-names: "Monterrubio-Gómez"
+  given-names: "Karla"
+  orcid: "https://orcid.org/0000-0001-5617-0074"
+- family-names: "Plevris"
+  given-names: "Nikolas"
+  orcid: "https://orcid.org/0000-0002-3229-8759"
+- family-names: "Marioni"
+  given-names: "Riccardo E."
+  orcid: "https://orcid.org/0000-0003-4430-4260"
+- family-names: "Vallejos"
+  given-names: "Catalina A."
+  orcid: "https://orcid.org/0000-0003-3638-1960"
+
+title: "Analysis for Longitudinal Fecal Calprotectin Profiles Characterize Disease Course Heterogeneity in Crohn's Disease"
+version: 1.0.0
+date-released: 2023-01-01
+url: "https://github.com/vallejosgroup/lcmm-site"
+preferred-citation:
+  type: article
+  authors:
+  - family-names: "Constantine-Cooke"
+    given-names: "Nathan"
+    orcid: "https://orcid.org/0000-0002-4437-8713"
+  - family-names: "Monterrubio-Gómez"
+    given-names: "Karla"
+    orcid: "https://orcid.org/0000-0001-5617-0074"
+  - family-names: "Plevris"
+    given-names: "Nikolas"
+    orcid: "https://orcid.org/0000-0002-3229-8759"
+  - family-names: "Derikx"
+    given-names: "Lauranne A.A.P."
+    orcid: "https://orcid.org/0000-0002-4081-8451"
+  - family-names: "Gros"
+    given-names: "Beatriz"
+    orcid: "https://orcid.org/0000-0002-5628-313X"
+  - family-names: "Jones"
+    given-names: "Gareth-Rhys"
+    orcid: "https://orcid.org/0000-0001-7355-2357"
+  - family-names: "Marioni"
+    given-names: "Riccardo E."
+    orcid: "https://orcid.org/0000-0003-4430-4260"
+  - family-names: "Lees"
+    given-names: "Charlie W."
+    orcid: "https://orcid.org/0000-0002-0732-8215"
+  - family-names: "Vallejos"
+    given-names: "Catalina A."
+    orcid: "https://orcid.org/0000-0003-3638-1960"
+  doi: "10.0000/00000"
+  journal: "Journal Title"
+  month: 9
+  start: 1 # First page number
+  end: 10 # Last page number
+  title: "Longitudinal Fecal Calprotectin Profiles Characterize Disease Course Heterogeneity in Crohn's Disease"
+  issue: 1
+  volume: 1
+  year: 2021
