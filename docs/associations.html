@@ -8,7 +8,7 @@
 <meta name="author" content="Karla Monterrubio-Gómez">
 <meta name="author" content="Riccardo E. Marioni">
 <meta name="author" content="Catalina A. Vallejos">
-<meta name="dcterms.date" content="2023-02-08">
+<meta name="dcterms.date" content="2023-11-24">
 <title>Analysis by Constantine-Cooke et al.&nbsp;- Association Testing</title>
 <style>
 code{white-space: pre-wrap;}
@@ -156,10 +156,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <meta name="citation_author" content="Riccardo E. Marioni">
 <meta name="citation_author" content="Charlie W. Lees">
 <meta name="citation_author" content="Catalina A. Vallejos">
-<meta name="citation_publication_date" content="2023-02-08">
-<meta name="citation_cover_date" content="2023-02-08">
+<meta name="citation_publication_date" content="2023-11-24">
+<meta name="citation_cover_date" content="2023-11-24">
 <meta name="citation_year" content="2023">
-<meta name="citation_online_date" content="2023-02-08">
+<meta name="citation_online_date" content="2023-11-24">
 <meta name="citation_fulltext_html_url" content="https://www.cghjournal.org/article/S1542-3565(23)00234-3/">
 <meta name="citation_doi" content="10.1016/j.cgh.2023.03.026">
 <meta name="citation_issn" content="1542-3565">
@@ -315,7 +315,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 8, 2023</p>
+      <p class="date">November 24, 2023</p>
     </div>
   </div>
   
@@ -328,7 +328,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.stats.ox.ac.uk/pub/MASS4/">nnet</a></span><span class="op">)</span> <span class="co"># Multinomial logistic regression</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org">tidymodels</a></span><span class="op">)</span> <span class="co"># Modelling framework</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/imbs-hl/ranger">ranger</a></span><span class="op">)</span> <span class="co"># Random forest</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://imbs-hl.github.io/ranger/">ranger</a></span><span class="op">)</span> <span class="co"># Random forest</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/therneau/survival">survival</a></span><span class="op">)</span> <span class="co"># Kaplan-Meier</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/survminer/index.html">survminer</a></span><span class="op">)</span> <span class="co"># Plot Kaplan-Meier curves</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://patchwork.data-imaginist.com">patchwork</a></span><span class="op">)</span></span>
@@ -432,14 +432,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section><section id="characteristics-available-at-diagnosis" class="level2"><h2 class="anchored" data-anchor-id="characteristics-available-at-diagnosis">Characteristics available at diagnosis</h2>
 <p>We have found two variables available at diagnosis to be associated with cluster membership: smoking at diagnosis (<span class="math inline">p = 0.015</span>) and upper gastrointestinal inflammation (Montreal L4; <span class="math inline">p &lt; 0.001</span>).</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">FCcumulative</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"/Volumes/igmm/cvallejo-predicct/processed-data/cdi/"</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">FCcumulative</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"/Volumes/igmm/cvallejo-predicct/cdi/processed/"</span>,</span>
 <span>                               <span class="st">"FCcumulativeLongInc.RDS"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"cache/cubicbf.fits.RDS"</span><span class="op">)</span><span class="op">[[</span><span class="fl">4</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="va">model</span><span class="op">$</span><span class="va">pprob</span><span class="op">$</span><span class="va">class</span> <span class="op">&lt;-</span> <span class="fu">plyr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/plyr/man/mapvalues.html">mapvalues</a></span><span class="op">(</span><span class="va">model</span><span class="op">$</span><span class="va">pprob</span><span class="op">$</span><span class="va">class</span>,</span>
 <span>                                     from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>,</span>
 <span>                                     to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">demographic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"/Volumes/igmm/cvallejo-predicct/data/"</span>,</span>
-<span>                               <span class="st">"crohns-inception/20220328/"</span>,</span>
+<span><span class="va">demographic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"/Volumes/igmm/cvallejo-predicct/cdi/data/"</span>,</span>
+<span>                               <span class="st">"20220328/"</span>,</span>
 <span>                               <span class="st">"Nathan_FCprogressioncohort.csv"</span><span class="op">)</span></span>
 <span>                         <span class="op">)</span></span>
 <span><span class="va">demographic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">demographic</span>, <span class="va">Number</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">model</span><span class="op">$</span><span class="va">pprob</span><span class="op">$</span><span class="va">id</span><span class="op">)</span></span>
@@ -1623,9 +1623,7 @@ alternative hypothesis: two.sided</code></pre>
 <details><summary>Code</summary><div class="sourceCode" id="cb194"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">demographic</span> <span class="op">&lt;-</span> <span class="fu">datefixR</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/datefixR/reference/fix_dates.html">fix_dates</a></span><span class="op">(</span><span class="va">demographic</span>, <span class="st">"DATE.OF.DIAGNOSIS"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stderr">
 <pre><code>Warning: `fix_dates()` was deprecated in datefixR 1.0.0.
-Please use `fix_date_df()` instead.
-This warning is displayed once every 8 hours.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+ℹ Please use `fix_date_df()` instead.</code></pre>
 </div>
 <details><summary>Code</summary><div class="sourceCode" id="cb196"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">demographic</span><span class="op">$</span><span class="va">Days.From.Start</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">demographic</span><span class="op">$</span><span class="va">DATE.OF.DIAGNOSIS</span><span class="op">)</span> <span class="op">-</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html">as.Date</a></span><span class="op">(</span><span class="st">"2005-01-01"</span><span class="op">)</span><span class="op">)</span></span>
@@ -1682,7 +1680,7 @@ Residuals   354 397129240 1121834               </code></pre>
 </div>
 </div>
 </section><section id="predictive-models" class="level2"><h2 class="anchored" data-anchor-id="predictive-models">Predictive models</h2>
-<p>Here, we consider whether we can accurately predict cluster membership using age, sex, and the variables we found to be significantly associated with cluster membership: smoking at diagnosis, upper gastrointestinal inflammation (Montreal L4), and being prescribed a biologic therapeutic within one year of diagnosis. We consider two types of models: multinomial logistic regression models and a random forest classifiers using the <a href="http://www.stats.ox.ac.uk/pub/MASS4/">nnet</a> and <a href="https://github.com/imbs-hl/ranger">ranger</a> packages. We use the <a href="https://tidymodels.tidymodels.org">tidymodels</a> framework for fitting these models.</p>
+<p>Here, we consider whether we can accurately predict cluster membership using age, sex, and the variables we found to be significantly associated with cluster membership: smoking at diagnosis, upper gastrointestinal inflammation (Montreal L4), and being prescribed a biologic therapeutic within one year of diagnosis. We consider two types of models: multinomial logistic regression models and a random forest classifiers using the <a href="http://www.stats.ox.ac.uk/pub/MASS4/">nnet</a> and <a href="http://imbs-hl.github.io/ranger/">ranger</a> packages. We use the <a href="https://tidymodels.tidymodels.org">tidymodels</a> framework for fitting these models.</p>
 <p>The data are split into a 75:25 train:test split and k-fold cross validation is used. Reported metrics and the confusion matrix are based on the test data split.</p>
 <p>We attempt to predict cluster membership for all four clusters.</p>
 <div class="cell">
@@ -2150,7 +2148,7 @@ Residuals   354 397129240 1121834               </code></pre>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span></span>
 <span>  <span class="va">final_fit</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>    <span class="fu">extract_fit_parsnip</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
-<span>    <span class="fu"><a href="https://rdrr.io/pkg/vip/man/vi.html">vi</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://koalaverse.github.io/vip/reference/vi.html">vi</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <table class="table table-sm table-striped">
@@ -2161,43 +2159,43 @@ Residuals   354 397129240 1121834               </code></pre>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">use_bio</td>
-<td style="text-align: right;">0.0087830</td>
+<td style="text-align: right;">0.0086542</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">use_bio3</td>
-<td style="text-align: right;">0.0084372</td>
+<td style="text-align: right;">0.0084335</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">L4</td>
-<td style="text-align: right;">0.0051904</td>
+<td style="text-align: right;">0.0051902</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">smoking</td>
-<td style="text-align: right;">0.0032150</td>
+<td style="text-align: right;">0.0031569</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">LOCATION</td>
-<td style="text-align: right;">0.0022410</td>
+<td style="text-align: right;">0.0021937</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">DiagFC</td>
-<td style="text-align: right;">0.0018696</td>
+<td style="text-align: right;">0.0016417</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">behaviour</td>
-<td style="text-align: right;">0.0005040</td>
+<td style="text-align: right;">0.0003184</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">age</td>
 <td style="text-align: right;">0.0000993</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">SEX</td>
-<td style="text-align: right;">-0.0010218</td>
+<td style="text-align: left;">peri</td>
+<td style="text-align: right;">-0.0006497</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">peri</td>
-<td style="text-align: right;">-0.0010979</td>
+<td style="text-align: left;">SEX</td>
+<td style="text-align: right;">-0.0010218</td>
 </tr>
 </tbody>
 </table>
@@ -2283,12 +2281,12 @@ Residuals   354 397129240 1121834               </code></pre>
 </section></section></section><section id="session-information" class="level2"><h2 class="anchored" data-anchor-id="session-information">Session information</h2>
 <div class="cell">
 <div class="cell-output-display">
-<p><strong>R version 4.2.1 (2022-06-23)</strong></p>
-<p><strong>Platform:</strong> x86_64-apple-darwin17.0 (64-bit)</p>
+<p><strong>R version 4.3.2 (2023-10-31)</strong></p>
+<p><strong>Platform:</strong> aarch64-apple-darwin20 (64-bit)</p>
 <p><strong>locale:</strong> en_GB.UTF-8||en_GB.UTF-8||en_GB.UTF-8||C||en_GB.UTF-8||en_GB.UTF-8</p>
-<p><strong>attached base packages:</strong> <em>stats</em>, <em>graphics</em>, <em>grDevices</em>, <em>datasets</em>, <em>utils</em>, <em>methods</em> and <em>base</em></p>
-<p><strong>other attached packages:</strong> <em>plyr(v.1.8.7)</em>, <em>KONPsurv(v.1.0.4)</em>, <em>vip(v.0.3.2)</em>, <em>patchwork(v.1.1.1)</em>, <em>survminer(v.0.4.9)</em>, <em>ggpubr(v.0.4.0)</em>, <em>survival(v.3.3-1)</em>, <em>ranger(v.0.13.1)</em>, <em>yardstick(v.0.0.9)</em>, <em>workflowsets(v.0.2.1)</em>, <em>workflows(v.0.2.6)</em>, <em>tune(v.0.2.0)</em>, <em>tidyr(v.1.2.0)</em>, <em>tibble(v.3.1.7)</em>, <em>rsample(v.0.1.1)</em>, <em>recipes(v.0.2.0)</em>, <em>purrr(v.0.3.4)</em>, <em>parsnip(v.0.2.1)</em>, <em>modeldata(v.0.1.1)</em>, <em>infer(v.1.0.0)</em>, <em>ggplot2(v.3.3.6)</em>, <em>dplyr(v.1.0.9)</em>, <em>dials(v.0.1.1)</em>, <em>scales(v.1.2.0)</em>, <em>broom(v.0.8.0)</em>, <em>tidymodels(v.0.2.0)</em> and <em>nnet(v.7.3-17)</em></p>
-<p><strong>loaded via a namespace (and not attached):</strong> <em>colorspace(v.2.0-3)</em>, <em>ggsignif(v.0.6.3)</em>, <em>ellipsis(v.0.3.2)</em>, <em>class(v.7.3-20)</em>, <em>rstudioapi(v.0.13)</em>, <em>listenv(v.0.8.0)</em>, <em>furrr(v.0.3.0)</em>, <em>prodlim(v.2019.11.13)</em>, <em>fansi(v.1.0.3)</em>, <em>lubridate(v.1.8.0)</em>, <em>codetools(v.0.2-18)</em>, <em>splines(v.4.2.1)</em>, <em>knitr(v.1.39)</em>, <em>jsonlite(v.1.8.0)</em>, <em>pROC(v.1.18.0)</em>, <em>km.ci(v.0.5-6)</em>, <em>compiler(v.4.2.1)</em>, <em>backports(v.1.4.1)</em>, <em>assertthat(v.0.2.1)</em>, <em>Matrix(v.1.4-1)</em>, <em>fastmap(v.1.1.0)</em>, <em>cli(v.3.3.0)</em>, <em>htmltools(v.0.5.2)</em>, <em>tools(v.4.2.1)</em>, <em>gtable(v.0.3.0)</em>, <em>glue(v.1.6.2)</em>, <em>Rcpp(v.1.0.8.3)</em>, <em>carData(v.3.0-5)</em>, <em>DiceDesign(v.1.9)</em>, <em>vctrs(v.0.4.1)</em>, <em>iterators(v.1.0.14)</em>, <em>timeDate(v.3043.102)</em>, <em>gower(v.1.0.0)</em>, <em>xfun(v.0.30)</em>, <em>stringr(v.1.4.0)</em>, <em>globals(v.0.14.0)</em>, <em>lifecycle(v.1.0.1)</em>, <em>renv(v.0.15.5)</em>, <em>rstatix(v.0.7.0)</em>, <em>future(v.1.25.0)</em>, <em>MASS(v.7.3-57)</em>, <em>zoo(v.1.8-10)</em>, <em>ipred(v.0.9-12)</em>, <em>parallel(v.4.2.1)</em>, <em>yaml(v.2.3.5)</em>, <em>gridExtra(v.2.3)</em>, <em>pander(v.0.6.5)</em>, <em>KMsurv(v.0.1-5)</em>, <em>rpart(v.4.1.16)</em>, <em>stringi(v.1.7.6)</em>, <em>highr(v.0.9)</em>, <em>foreach(v.1.5.2)</em>, <em>lhs(v.1.1.5)</em>, <em>hardhat(v.0.2.0)</em>, <em>lava(v.1.6.10)</em>, <em>rlang(v.1.0.2)</em>, <em>pkgconfig(v.2.0.3)</em>, <em>evaluate(v.0.15)</em>, <em>lattice(v.0.20-45)</em>, <em>datefixR(v.1.3.1)</em>, <em>htmlwidgets(v.1.5.4)</em>, <em>tidyselect(v.1.1.2)</em>, <em>parallelly(v.1.31.1)</em>, <em>magrittr(v.2.0.3)</em>, <em>R6(v.2.5.1)</em>, <em>generics(v.0.1.2)</em>, <em>DBI(v.1.1.2)</em>, <em>pillar(v.1.7.0)</em>, <em>withr(v.2.5.0)</em>, <em>abind(v.1.4-5)</em>, <em>future.apply(v.1.9.0)</em>, <em>crayon(v.1.5.1)</em>, <em>car(v.3.0-13)</em>, <em>survMisc(v.0.5.6)</em>, <em>utf8(v.1.2.2)</em>, <em>rmarkdown(v.2.14)</em>, <em>grid(v.4.2.1)</em>, <em>data.table(v.1.14.2)</em>, <em>digest(v.0.6.29)</em>, <em>xtable(v.1.8-4)</em>, <em>GPfit(v.1.0-8)</em> and <em>munsell(v.0.5.0)</em></p>
+<p><strong>attached base packages:</strong> <em>stats</em>, <em>graphics</em>, <em>grDevices</em>, <em>utils</em>, <em>datasets</em>, <em>methods</em> and <em>base</em></p>
+<p><strong>other attached packages:</strong> <em>plyr(v.1.8.9)</em>, <em>KONPsurv(v.1.0.4)</em>, <em>vip(v.0.4.1)</em>, <em>patchwork(v.1.1.3)</em>, <em>survminer(v.0.4.9)</em>, <em>ggpubr(v.0.6.0)</em>, <em>survival(v.3.5-7)</em>, <em>ranger(v.0.16.0)</em>, <em>yardstick(v.1.2.0)</em>, <em>workflowsets(v.1.0.1)</em>, <em>workflows(v.1.1.3)</em>, <em>tune(v.1.1.2)</em>, <em>tidyr(v.1.3.0)</em>, <em>tibble(v.3.2.1)</em>, <em>rsample(v.1.2.0)</em>, <em>recipes(v.1.0.8)</em>, <em>purrr(v.1.0.2)</em>, <em>parsnip(v.1.1.1)</em>, <em>modeldata(v.1.2.0)</em>, <em>infer(v.1.0.5)</em>, <em>ggplot2(v.3.4.4)</em>, <em>dplyr(v.1.1.4)</em>, <em>dials(v.1.2.0)</em>, <em>scales(v.1.2.1)</em>, <em>broom(v.1.0.5)</em>, <em>tidymodels(v.1.1.1)</em> and <em>nnet(v.7.3-19)</em></p>
+<p><strong>loaded via a namespace (and not attached):</strong> <em>gridExtra(v.2.3)</em>, <em>httr2(v.1.0.0)</em>, <em>rlang(v.1.1.2)</em>, <em>magrittr(v.2.0.3)</em>, <em>furrr(v.0.3.1)</em>, <em>compiler(v.4.3.2)</em>, <em>vctrs(v.0.6.4)</em>, <em>stringr(v.1.5.1)</em>, <em>lhs(v.1.1.6)</em>, <em>rvest(v.1.0.3)</em>, <em>pkgconfig(v.2.0.3)</em>, <em>fastmap(v.1.1.1)</em>, <em>ellipsis(v.0.3.2)</em>, <em>backports(v.1.4.1)</em>, <em>pander(v.0.6.5)</em>, <em>KMsurv(v.0.1-5)</em>, <em>utf8(v.1.2.4)</em>, <em>datefixR(v.1.6.0.9000)</em>, <em>rmarkdown(v.2.25)</em>, <em>prodlim(v.2023.08.28)</em>, <em>xfun(v.0.41)</em>, <em>jsonlite(v.1.8.7)</em>, <em>parallel(v.4.3.2)</em>, <em>R6(v.2.5.1)</em>, <em>stringi(v.1.8.1)</em>, <em>parallelly(v.1.36.0)</em>, <em>car(v.3.1-2)</em>, <em>rpart(v.4.1.21)</em>, <em>lubridate(v.1.9.3)</em>, <em>Rcpp(v.1.0.11)</em>, <em>iterators(v.1.0.14)</em>, <em>knitr(v.1.45)</em>, <em>future.apply(v.1.11.0)</em>, <em>zoo(v.1.8-12)</em>, <em>clisymbols(v.1.2.0)</em>, <em>Matrix(v.1.6-3)</em>, <em>splines(v.4.3.2)</em>, <em>timechange(v.0.2.0)</em>, <em>tidyselect(v.1.2.0)</em>, <em>rstudioapi(v.0.15.0)</em>, <em>abind(v.1.4-5)</em>, <em>yaml(v.2.3.7)</em>, <em>timeDate(v.4022.108)</em>, <em>codetools(v.0.2-19)</em>, <em>listenv(v.0.9.0)</em>, <em>lattice(v.0.21-9)</em>, <em>withr(v.2.5.2)</em>, <em>evaluate(v.0.23)</em>, <em>future(v.1.33.0)</em>, <em>xml2(v.1.3.5)</em>, <em>survMisc(v.0.5.6)</em>, <em>pillar(v.1.9.0)</em>, <em>carData(v.3.0-5)</em>, <em>foreach(v.1.5.2)</em>, <em>generics(v.0.1.3)</em>, <em>munsell(v.0.5.0)</em>, <em>globals(v.0.16.2)</em>, <em>xtable(v.1.8-4)</em>, <em>class(v.7.3-22)</em>, <em>glue(v.1.6.2)</em>, <em>tools(v.4.3.2)</em>, <em>data.table(v.1.14.8)</em>, <em>gower(v.1.0.1)</em>, <em>ggsignif(v.0.6.4)</em>, <em>grid(v.4.3.2)</em>, <em>ipred(v.0.9-14)</em>, <em>colorspace(v.2.1-0)</em>, <em>cli(v.3.6.1)</em>, <em>DiceDesign(v.1.9)</em>, <em>rappdirs(v.0.3.3)</em>, <em>km.ci(v.0.5-6)</em>, <em>fansi(v.1.0.5)</em>, <em>lava(v.1.7.3)</em>, <em>gtable(v.0.3.4)</em>, <em>GPfit(v.1.0-8)</em>, <em>rstatix(v.0.7.2)</em>, <em>digest(v.0.6.33)</em>, <em>htmlwidgets(v.1.6.3)</em>, <em>htmltools(v.0.5.7)</em>, <em>lifecycle(v.1.0.4)</em>, <em>hardhat(v.1.3.0)</em>, <em>httr(v.1.4.7)</em> and <em>MASS(v.7.3-60)</em></p>
 </div>
 </div>
 </section><div id="quarto-appendix" class="default"><section id="section" class="level2 appendix"><h2 class="quarto-appendix-heading"></h2><div class="quarto-appendix-contents">
@@ -2310,7 +2308,7 @@ Residuals   354 397129240 1121834               </code></pre>
   title = {Longitudinal {Fecal} {Calprotectin} {Profiles} {Characterize}
     {Disease} {Course} {Heterogeneity} in {Crohn’s} {Disease}},
   journal = {Clinical Gastroenterology and Hepatology},
-  date = {2023-02-08},
+  date = {2023-11-24},
   url = {https://www.cghjournal.org/article/S1542-3565(23)00234-3/},
   doi = {10.1016/j.cgh.2023.03.026},
   issn = {1542-3565},
@@ -2322,7 +2320,7 @@ Lauranne A.A.P. Derikx, Beatriz Gros, Gareth-Rhys Jones, Riccardo E.
 Marioni, Charlie W. Lees, and Catalina A. Vallejos. 2023.
 <span>“Longitudinal Fecal Calprotectin Profiles Characterize Disease
 Course Heterogeneity in Crohn’s Disease.”</span> <em>Clinical
-Gastroenterology and Hepatology</em>, February. <a href="https://doi.org/10.1016/j.cgh.2023.03.026">https://doi.org/10.1016/j.cgh.2023.03.026</a>.
+Gastroenterology and Hepatology</em>, November. <a href="https://doi.org/10.1016/j.cgh.2023.03.026">https://doi.org/10.1016/j.cgh.2023.03.026</a>.
 </div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

@@ -50,8 +50,8 @@ if (!dir.exists("paper")) dir.create("paper")
 if (!dir.exists("plots")) dir.create("plots")
 
 options(knitr.table.format = "pipe")
-FCcumulative <- read.csv(paste0("/Volumes/igmm/cvallejo-predicct/data/",
-                                "crohns-inception/20211201/FCcumulative.csv"))
+FCcumulative <- read.csv(paste0("/Volumes/igmm/cvallejo-predicct/cdi/data/",
+                                "20211201/FCcumulative.csv"))
 ```
 
 This analysis, which aims to find latent Crohn's disease (CD) subgroups with
@@ -491,6 +491,7 @@ print(p1 + p2)
 ```{R}
 #| label: fig-spag-cutoff
 #| fig-cap: "Spaghetti plot of all FCAL trajectories in the Crohn’s disease inception cohort."
+cairo_pdf("plots/spaghetti-all.pdf", width = 8, height = 4.5)
 FCcumulativeLong %>% 
   ggplot(aes(x = time, y = log(value), color = factor(id))) +
   geom_line(alpha = 0.2) +
@@ -499,9 +500,8 @@ FCcumulativeLong %>%
   scale_color_manual(values = viridis::viridis(375)) +
   guides(color = "none") +
   xlab("Time (years)") +
-  ylab("Log FCAL") +
-  ggtitle("Spaghetti Plot of FCAL Trajectories",
-          "Subject-specific trajectories show a high degree of heterogeneity")
+  ylab("Log (FCAL (μg/g))")
+invisible(dev.off())
 ```
 
 ```{R}
@@ -537,7 +537,7 @@ for the [model selection](selection.qmd) step of the analysis pipeline.
 
 ```{R}
 saveRDS(FCcumulativeLong,
-        paste0("/Volumes/igmm/cvallejo-predicct/processed-data/cdi/",
+        paste0("/Volumes/igmm/cvallejo-predicct/cdi/processed/",
                "FCcumulativeLongInc.RDS"))
 ```
 

@@ -8,7 +8,7 @@
 <meta name="author" content="Nikolas Plevris">
 <meta name="author" content="Karla Monterrubio-Gómez">
 <meta name="author" content="Catalina A. Vallejos">
-<meta name="dcterms.date" content="2023-02-08">
+<meta name="dcterms.date" content="2023-11-24">
 <title>Analysis by Constantine-Cooke et al.&nbsp;- Data Cleaning</title>
 <style>
 code{white-space: pre-wrap;}
@@ -175,10 +175,10 @@ div.csl-indent {
 <meta name="citation_author" content="Riccardo E. Marioni">
 <meta name="citation_author" content="Charlie W. Lees">
 <meta name="citation_author" content="Catalina A. Vallejos">
-<meta name="citation_publication_date" content="2023-02-08">
-<meta name="citation_cover_date" content="2023-02-08">
+<meta name="citation_publication_date" content="2023-11-24">
+<meta name="citation_cover_date" content="2023-11-24">
 <meta name="citation_year" content="2023">
-<meta name="citation_online_date" content="2023-02-08">
+<meta name="citation_online_date" content="2023-11-24">
 <meta name="citation_fulltext_html_url" content="https://www.cghjournal.org/article/S1542-3565(23)00234-3/">
 <meta name="citation_doi" content="10.1016/j.cgh.2023.03.026">
 <meta name="citation_issn" content="1542-3565">
@@ -341,7 +341,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 8, 2023</p>
+      <p class="date">November 24, 2023</p>
     </div>
   </div>
   
@@ -368,8 +368,8 @@ div.csl-indent {
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.exists</a></span><span class="op">(</span><span class="st">"plots"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="st">"plots"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>knitr.table.format <span class="op">=</span> <span class="st">"pipe"</span><span class="op">)</span></span>
-<span><span class="va">FCcumulative</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"/Volumes/igmm/cvallejo-predicct/data/"</span>,</span>
-<span>                                <span class="st">"crohns-inception/20211201/FCcumulative.csv"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">FCcumulative</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"/Volumes/igmm/cvallejo-predicct/cdi/data/"</span>,</span>
+<span>                                <span class="st">"20211201/FCcumulative.csv"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>This analysis, which aims to find latent Crohn’s disease (CD) subgroups with similar faecal calprotectin (FCAL) profiles, uses data from the Crohn’s Disease Inception Cohort <span class="citation" data-cites="Plevris2021">(<a href="#ref-Plevris2021" role="doc-biblioref">Plevris et al. 2021</a>)</span>. The Crohn’s disease inception cohort is a manually validated longitudinal cohort of 375 incident Crohn’s disease (CD) cases. These are all incident CD cases diagnosed between 2005 and 2017 with a diagnosis FCAL of <span class="math inline">\geq 250 \mu g/g</span>, at least one FCAL measurement within the first 12 months of diagnosis, and at least 12 months of follow-up. <a href="#fig-flow">Figure&nbsp;1</a> shows how this cohort was derived.</p>
@@ -630,7 +630,7 @@ div.csl-indent {
 <details><summary>Code</summary><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">FCcumulativeLong</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/stat_slab.html">stat_slab</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.8</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, fill <span class="op">=</span> <span class="st">"#235789"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/geom_dotsinterval.html">geom_dots</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">value</span> <span class="op">&gt;</span> <span class="fl">2500</span>, fill <span class="op">=</span> <span class="va">value</span> <span class="op">&gt;</span> <span class="fl">2500</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/geom_dots.html">geom_dots</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">value</span> <span class="op">&gt;</span> <span class="fl">2500</span>, fill <span class="op">=</span> <span class="va">value</span> <span class="op">&gt;</span> <span class="fl">2500</span><span class="op">)</span>,</span>
 <span>            binwidth <span class="op">=</span> <span class="fl">10</span>,</span>
 <span>            size <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>            side <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -660,7 +660,7 @@ div.csl-indent {
 <span><span class="va">FCcumulativeLong</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">value</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/stat_slab.html">stat_slab</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.8</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, fill <span class="op">=</span> <span class="st">"#235789"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/geom_dotsinterval.html">geom_dots</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">10</span>, size <span class="op">=</span> <span class="fl">1</span>, side <span class="op">=</span> <span class="st">"bottom"</span>, color <span class="op">=</span> <span class="st">"#235789"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="http://mjskay.github.io/ggdist/reference/geom_dots.html">geom_dots</a></span><span class="op">(</span>binwidth <span class="op">=</span> <span class="fl">10</span>, size <span class="op">=</span> <span class="fl">1</span>, side <span class="op">=</span> <span class="st">"bottom"</span>, color <span class="op">=</span> <span class="st">"#235789"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"FCAL (µg/g)"</span><span class="op">)</span> <span class="op">+</span></span>
@@ -926,10 +926,12 @@ div.csl-indent {
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_classic</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>axis.line <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"gray"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Density"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Fecal calprotectin (μg/g)"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"A"</span><span class="op">)</span></span>
-<span></span>
-<span>  </span>
-<span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Fecal calprotectin (μg/g)"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"A"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+<details><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">..density..</span><span class="op">)</span>,</span>
 <span>                 fill <span class="op">=</span> <span class="st">"#D8829D"</span>,</span>
 <span>                 color <span class="op">=</span> <span class="st">"#AF6A80"</span>,</span>
@@ -940,8 +942,12 @@ div.csl-indent {
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Density"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Log Fecal calprotectin (FCAL (μg/g))"</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"B"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/grDevices/cairo.html">cairo_pdf</a></span><span class="op">(</span><span class="st">"plots/Dist-comp.pdf"</span>, width <span class="op">=</span> <span class="fl">8</span>, height <span class="op">=</span> <span class="fl">4.5</span><span class="op">)</span></span>
-<span><span class="va">p1</span> <span class="op">+</span> <span class="va">p2</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">p1</span> <span class="op">+</span> <span class="va">p2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stderr">
+<pre><code>Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
+ℹ Please use `after_stat(density)` instead.</code></pre>
+</div>
+<details><summary>Code</summary><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">p1</span> <span class="op">+</span> <span class="va">p2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display column-body-outset">
 <div id="fig-dist-cutoff" class="quarto-figure quarto-figure-center anchored">
@@ -952,7 +958,8 @@ div.csl-indent {
 </div>
 </div>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">FCcumulativeLong</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
+<details><summary>Code</summary><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/grDevices/cairo.html">cairo_pdf</a></span><span class="op">(</span><span class="st">"plots/spaghetti-all.pdf"</span>, width <span class="op">=</span> <span class="fl">8</span>, height <span class="op">=</span> <span class="fl">4.5</span><span class="op">)</span></span>
+<span><span class="va">FCcumulativeLong</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="va">value</span><span class="op">)</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">id</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.6</span><span class="op">)</span> <span class="op">+</span></span>
@@ -960,16 +967,9 @@ div.csl-indent {
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu">viridis</span><span class="fu">::</span><span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html">viridis</a></span><span class="op">(</span><span class="fl">375</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">xlab</a></span><span class="op">(</span><span class="st">"Time (years)"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Log FCAL"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Spaghetti Plot of FCAL Trajectories"</span>,</span>
-<span>          <span class="st">"Subject-specific trajectories show a high degree of heterogeneity"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details><div class="cell-output-display">
-<div id="fig-spag-cutoff" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure"><p><img src="data-cleaning_files/figure-html/fig-spag-cutoff-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;8: Spaghetti plot of all FCAL trajectories in the Crohn’s disease inception cohort.</figcaption><p></p>
-</figure>
-</div>
-</div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ylab</a></span><span class="op">(</span><span class="st">"Log (FCAL (μg/g))"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html">dev.off</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell">
 
@@ -978,20 +978,20 @@ div.csl-indent {
 </section><section id="data-saving" class="level2"><h2 class="anchored" data-anchor-id="data-saving">Data saving</h2>
 <p>The tidied data, with a 5-year cut-off applied, has been saved as a RDS file for the <a href="./selection.html">model selection</a> step of the analysis pipeline.</p>
 <div class="cell">
-<details><summary>Code</summary><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span>,</span>
-<span>        <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"/Volumes/igmm/cvallejo-predicct/processed-data/cdi/"</span>,</span>
+<details><summary>Code</summary><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">saveRDS</a></span><span class="op">(</span><span class="va">FCcumulativeLong</span>,</span>
+<span>        <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"/Volumes/igmm/cvallejo-predicct/cdi/processed/"</span>,</span>
 <span>               <span class="st">"FCcumulativeLongInc.RDS"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section><section id="session-information" class="level2"><h2 class="anchored" data-anchor-id="session-information">Session information</h2>
 <div class="cell">
 <div class="cell-output-display">
-<p><strong>R version 4.2.1 (2022-06-23)</strong></p>
-<p><strong>Platform:</strong> x86_64-apple-darwin17.0 (64-bit)</p>
+<p><strong>R version 4.3.2 (2023-10-31)</strong></p>
+<p><strong>Platform:</strong> aarch64-apple-darwin20 (64-bit)</p>
 <p><strong>locale:</strong> en_GB.UTF-8||en_GB.UTF-8||en_GB.UTF-8||C||en_GB.UTF-8||en_GB.UTF-8</p>
-<p><strong>attached base packages:</strong> <em>stats</em>, <em>graphics</em>, <em>grDevices</em>, <em>datasets</em>, <em>utils</em>, <em>methods</em> and <em>base</em></p>
-<p><strong>other attached packages:</strong> <em>viridis(v.0.6.2)</em>, <em>viridisLite(v.0.4.0)</em>, <em>pander(v.0.6.5)</em>, <em>patchwork(v.1.1.1)</em>, <em>datefixR(v.1.3.1)</em>, <em>ggdist(v.3.1.1)</em>, <em>forcats(v.0.5.1)</em>, <em>stringr(v.1.4.0)</em>, <em>dplyr(v.1.0.9)</em>, <em>purrr(v.0.3.4)</em>, <em>readr(v.2.1.2)</em>, <em>tidyr(v.1.2.0)</em>, <em>tibble(v.3.1.7)</em>, <em>ggplot2(v.3.3.6)</em> and <em>tidyverse(v.1.3.1)</em></p>
-<p><strong>loaded via a namespace (and not attached):</strong> <em>Rcpp(v.1.0.8.3)</em>, <em>lubridate(v.1.8.0)</em>, <em>assertthat(v.0.2.1)</em>, <em>digest(v.0.6.29)</em>, <em>utf8(v.1.2.2)</em>, <em>R6(v.2.5.1)</em>, <em>cellranger(v.1.1.0)</em>, <em>backports(v.1.4.1)</em>, <em>reprex(v.2.0.1)</em>, <em>evaluate(v.0.15)</em>, <em>highr(v.0.9)</em>, <em>httr(v.1.4.3)</em>, <em>pillar(v.1.7.0)</em>, <em>rlang(v.1.0.2)</em>, <em>readxl(v.1.4.0)</em>, <em>rstudioapi(v.0.13)</em>, <em>rmarkdown(v.2.14)</em>, <em>textshaping(v.0.3.6)</em>, <em>labeling(v.0.4.2)</em>, <em>htmlwidgets(v.1.5.4)</em>, <em>munsell(v.0.5.0)</em>, <em>broom(v.0.8.0)</em>, <em>compiler(v.4.2.1)</em>, <em>modelr(v.0.1.8)</em>, <em>xfun(v.0.30)</em>, <em>systemfonts(v.1.0.4)</em>, <em>pkgconfig(v.2.0.3)</em>, <em>htmltools(v.0.5.2)</em>, <em>tidyselect(v.1.1.2)</em>, <em>gridExtra(v.2.3)</em>, <em>fansi(v.1.0.3)</em>, <em>crayon(v.1.5.1)</em>, <em>tzdb(v.0.3.0)</em>, <em>dbplyr(v.2.1.1)</em>, <em>withr(v.2.5.0)</em>, <em>grid(v.4.2.1)</em>, <em>distributional(v.0.3.0)</em>, <em>jsonlite(v.1.8.0)</em>, <em>gtable(v.0.3.0)</em>, <em>lifecycle(v.1.0.1)</em>, <em>DBI(v.1.1.2)</em>, <em>magrittr(v.2.0.3)</em>, <em>scales(v.1.2.0)</em>, <em>cli(v.3.3.0)</em>, <em>stringi(v.1.7.6)</em>, <em>farver(v.2.1.0)</em>, <em>renv(v.0.15.5)</em>, <em>fs(v.1.5.2)</em>, <em>xml2(v.1.3.3)</em>, <em>ragg(v.1.2.2)</em>, <em>ellipsis(v.0.3.2)</em>, <em>generics(v.0.1.2)</em>, <em>vctrs(v.0.4.1)</em>, <em>tools(v.4.2.1)</em>, <em>glue(v.1.6.2)</em>, <em>hms(v.1.1.1)</em>, <em>fastmap(v.1.1.0)</em>, <em>yaml(v.2.3.5)</em>, <em>colorspace(v.2.0-3)</em>, <em>rvest(v.1.0.2)</em>, <em>knitr(v.1.39)</em> and <em>haven(v.2.5.0)</em></p>
+<p><strong>attached base packages:</strong> <em>stats</em>, <em>graphics</em>, <em>grDevices</em>, <em>utils</em>, <em>datasets</em>, <em>methods</em> and <em>base</em></p>
+<p><strong>other attached packages:</strong> <em>viridis(v.0.6.4)</em>, <em>viridisLite(v.0.4.2)</em>, <em>pander(v.0.6.5)</em>, <em>patchwork(v.1.1.3)</em>, <em>datefixR(v.1.6.0.9000)</em>, <em>ggdist(v.3.3.0)</em>, <em>lubridate(v.1.9.3)</em>, <em>forcats(v.1.0.0)</em>, <em>stringr(v.1.5.1)</em>, <em>dplyr(v.1.1.4)</em>, <em>purrr(v.1.0.2)</em>, <em>readr(v.2.1.4)</em>, <em>tidyr(v.1.3.0)</em>, <em>tibble(v.3.2.1)</em>, <em>ggplot2(v.3.4.4)</em> and <em>tidyverse(v.2.0.0)</em></p>
+<p><strong>loaded via a namespace (and not attached):</strong> <em>rappdirs(v.0.3.3)</em>, <em>utf8(v.1.2.4)</em>, <em>generics(v.0.1.3)</em>, <em>xml2(v.1.3.5)</em>, <em>stringi(v.1.8.1)</em>, <em>hms(v.1.1.3)</em>, <em>digest(v.0.6.33)</em>, <em>magrittr(v.2.0.3)</em>, <em>evaluate(v.0.23)</em>, <em>grid(v.4.3.2)</em>, <em>timechange(v.0.2.0)</em>, <em>fastmap(v.1.1.1)</em>, <em>jsonlite(v.1.8.7)</em>, <em>gridExtra(v.2.3)</em>, <em>httr(v.1.4.7)</em>, <em>rvest(v.1.0.3)</em>, <em>fansi(v.1.0.5)</em>, <em>scales(v.1.2.1)</em>, <em>textshaping(v.0.3.7)</em>, <em>httr2(v.1.0.0)</em>, <em>cli(v.3.6.1)</em>, <em>rlang(v.1.1.2)</em>, <em>munsell(v.0.5.0)</em>, <em>withr(v.2.5.2)</em>, <em>yaml(v.2.3.7)</em>, <em>tools(v.4.3.2)</em>, <em>tzdb(v.0.4.0)</em>, <em>colorspace(v.2.1-0)</em>, <em>vctrs(v.0.6.4)</em>, <em>R6(v.2.5.1)</em>, <em>lifecycle(v.1.0.4)</em>, <em>htmlwidgets(v.1.6.3)</em>, <em>clisymbols(v.1.2.0)</em>, <em>ragg(v.1.2.6)</em>, <em>pkgconfig(v.2.0.3)</em>, <em>pillar(v.1.9.0)</em>, <em>gtable(v.0.3.4)</em>, <em>Rcpp(v.1.0.11)</em>, <em>glue(v.1.6.2)</em>, <em>systemfonts(v.1.0.5)</em>, <em>xfun(v.0.41)</em>, <em>tidyselect(v.1.2.0)</em>, <em>knitr(v.1.45)</em>, <em>farver(v.2.1.1)</em>, <em>htmltools(v.0.5.7)</em>, <em>labeling(v.0.4.3)</em>, <em>rmarkdown(v.2.25)</em>, <em>compiler(v.4.3.2)</em>, <em>quadprog(v.1.5-8)</em> and <em>distributional(v.0.3.2)</em></p>
 </div>
 </div>
 </section><div id="quarto-appendix" class="default"><section id="section" class="level2 appendix"><h2 class="quarto-appendix-heading"></h2><div class="quarto-appendix-contents">
@@ -1023,7 +1023,7 @@ Plevris, Nikolas, James Fulforth, Mathew Lyons, Spyros I. Siakavellas, Philip W.
   title = {Longitudinal {Fecal} {Calprotectin} {Profiles} {Characterize}
     {Disease} {Course} {Heterogeneity} in {Crohn’s} {Disease}},
   journal = {Clinical Gastroenterology and Hepatology},
-  date = {2023-02-08},
+  date = {2023-11-24},
   url = {https://www.cghjournal.org/article/S1542-3565(23)00234-3/},
   doi = {10.1016/j.cgh.2023.03.026},
   issn = {1542-3565},
@@ -1035,7 +1035,7 @@ Lauranne A.A.P. Derikx, Beatriz Gros, Gareth-Rhys Jones, Riccardo E.
 Marioni, Charlie W. Lees, and Catalina A. Vallejos. 2023.
 <span>“Longitudinal Fecal Calprotectin Profiles Characterize Disease
 Course Heterogeneity in Crohn’s Disease.”</span> <em>Clinical
-Gastroenterology and Hepatology</em>, February. <a href="https://doi.org/10.1016/j.cgh.2023.03.026">https://doi.org/10.1016/j.cgh.2023.03.026</a>.
+Gastroenterology and Hepatology</em>, November. <a href="https://doi.org/10.1016/j.cgh.2023.03.026">https://doi.org/10.1016/j.cgh.2023.03.026</a>.
 </div></div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

@@ -62,7 +62,7 @@ if (!require(DT)) {
 ##########################
 
 FCcumulative <- readRDS(paste0("/Volumes/igmm/cvallejo-predicct/",
-                               "processed-data/cdi/",
+                               "cdi/processed/",
                                "FCcumulativeLongInc.RDS")
                         )
 
