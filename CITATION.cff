@@ -51,12 +51,12 @@ preferred-citation:
   - family-names: "Vallejos"
     given-names: "Catalina A."
     orcid: "https://orcid.org/0000-0003-3638-1960"
-  doi: "10.0000/00000"
-  journal: "Journal Title"
-  month: 9
-  start: 1 # First page number
-  end: 10 # Last page number
+  doi: "10.1101/2022.08.16.22278320"
+  journal: "Clinical Gastroenterology and Hepatology"
+  month: 10
+  start: 2918 # First page number
+  end: 2927 # Last page number
   title: "Longitudinal Fecal Calprotectin Profiles Characterize Disease Course Heterogeneity in Crohn's Disease"
-  issue: 1
-  volume: 1
-  year: 2021
+  issue: 11
+  volume: 21
+  year: 2023
